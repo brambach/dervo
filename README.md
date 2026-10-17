@@ -34,8 +34,9 @@ Dervo runs the coding agents you already have, Claude Code and Codex, on your ow
 keeps track of what they did so you don't have to. Come back after a day away and Home tells you what moved, what
 needs you and what finished.
 
-> **Early software.** Dervo grew out of a private beta and is now open to read, run and improve. The Mac app is the
-> most complete. Windows and Linux builds work but are newer. Expect rough edges, and please file them as issues.
+> **Status.** Dervo grew out of a private beta and is now open to read, run and learn from. It's maintained as time
+> allows: issues and pull requests are welcome, but replies can be slow and there's no roadmap. The Mac app is the most
+> complete. Windows and Linux builds work but are newer. Expect rough edges.
 
 ## Why Dervo
 

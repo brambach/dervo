@@ -4,7 +4,7 @@ Thanks for taking a look. Bug reports, fixes and ideas are all welcome.
 
 ## Before you start
 
-- For anything bigger than a small fix, open an issue first so we can agree on the approach.
+- For anything bigger than a small fix, open an issue first so we can agree on the approach. Dervo is maintained as time allows, so replies can be slow.
 - Be kind: see the [code of conduct](CODE_OF_CONDUCT.md).
 - Read [AGENTS.md](AGENTS.md). It holds the product rules the code follows, and it's what coding agents working in
   this repo read too.
