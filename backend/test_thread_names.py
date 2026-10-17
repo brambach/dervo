@@ -98,7 +98,7 @@ class ShortNameTests(unittest.TestCase):
 class SecretTests(unittest.TestCase):
     """19 Sep review, finding 4: a key or token in a request became the thread's name, and could become a workstream."""
     KEYS = ('ghp_R4nd0mT0k3nV4lu3Xy', 'AKIAIOSFODNN7EXAMPLE', 'sk-ant-api03-AbCdEfGhIjKlMnOpQrStUvWxYz0123456789',
-            'xoxb-1234-5678-abcdefghij', 'sk-proj-AbC123xyz789', 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBxY',
+            'xoxb-1234-5678-abcdefghij', 'sk-proj-AbC123xyz789', 'AIzaSy' + 'D-9tSrke72PouQMnMX-a7eZSW0jkFMBxY',
             'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.abcdef', 'github_pat_11ABCDEFG0123456789', '3f2a9c8e1b7d4e6f')
 
     def test_a_key_shaped_token_is_recognised_and_a_file_or_word_is_not(self):

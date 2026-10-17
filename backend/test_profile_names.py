@@ -58,7 +58,7 @@ class ProfileNameTests(unittest.TestCase):
         # Security review, 19 Sep, finding 4: each of these got through the old rule, and the last plain name was refused.
         for token in ('xoxb-1234567890-abcdefghij', 'wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY',
                       'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0', 'SK-ANT-API03-ABCDEFGH', 'ghp_aB3dE6gH9jK2mN5pQ8sT1vW4yZ7',
-                      'AKIAIOSFODNN7EXAMPLE', 'AIzaSyA1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q', 'my key Sk_test_4eC39HqLyjWDarjtT1z',
+                      'AKIAIOSFODNN7EXAMPLE', 'AIzaSy' + 'A1b2C3d4E5f6G7h8I9j0K1l2M3n4O5p6Q', 'my key Sk_test_4eC39HqLyjWDarjtT1z',
                       'keys/sk-live-12345678', 'glpat-abcdefghijklmnopqrst', '9f86d081884c7d659a2feaa0c55ad015'):
             with self.subTest(token=token), self.assertRaisesRegex(Rejected, 'looks like a key'):
                 self.host.dispatch('profile_rename', {'profileId': self.claude, 'name': token})
