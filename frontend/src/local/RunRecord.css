@@ -1,0 +1,73 @@
+/* One run's record: the reading column and the panel beside it. Layout only, dv- tokens only. */
+.dervo-record-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 284px; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+.dervo-record-column { overflow: auto; padding: var(--dv-s5) var(--dv-s5) var(--dv-s6); }
+.dervo-record-column > .dv-measure { max-width: 540px; gap: var(--dv-s5); }
+.dervo-record-column section > .dv-label { display: block; margin-bottom: var(--dv-s2); }
+.dervo-record-head { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dervo-record-head h1 { outline: none; }
+.dervo-record-head .dervo-history-byline { margin-top: 0; font-size: var(--dv-fs-small); }
+.dervo-record-head .dervo-history-who { width: 20px; height: 20px; border-radius: 6px; }
+
+/* Why it ran: your words first, Home's part labelled as Home's. */
+.dervo-record-asked { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 6px var(--dv-s3); padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2);
+  background: var(--dv-sunk); font-size: var(--dv-fs-small); line-height: 1.5; }
+.dervo-record-asked > div { display: contents; }
+.dervo-record-asked dt { color: var(--dv-faint); font-weight: 600; font-size: var(--dv-fs-caption); padding-top: 2px; }
+.dervo-record-asked dd { color: var(--dv-ink-2); }
+.dervo-record-asked .dervo-record-pair { display: contents; }
+.dervo-record-asked q { quotes: '\201C' '\201D'; }
+.dervo-record-show { display: inline-flex; align-items: center; gap: 6px; margin: var(--dv-s1) 0 0 calc(-1 * var(--dv-s2)); font-size: var(--dv-fs-small); }
+.dervo-record-home { margin-top: var(--dv-s2); padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dervo-record-home p { margin-top: var(--dv-s1); font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); white-space: pre-wrap; }
+
+/* Checked: what Dervo saw beside what it said. */
+.dervo-record-compare { display: grid; grid-template-columns: 1fr 1fr; gap: var(--dv-s5); }
+.dervo-record-compare h3 { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); margin-bottom: var(--dv-s2); }
+.dervo-record-compare ul { display: flex; flex-direction: column; gap: var(--dv-s2); font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+.dervo-record-said li { color: var(--dv-ink-2); }
+
+/* What it did: the steps it reported, bold, over the calls Dervo saw, in mono. */
+.dervo-record-intro { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin: -2px 0 var(--dv-s3); }
+.dervo-record-trail { display: flex; flex-direction: column; gap: var(--dv-s4); }
+.dervo-record-trail > li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: var(--dv-s3); }
+.dervo-record-trail time { font-size: var(--dv-fs-caption); color: var(--dv-faint); padding-top: 1px; }
+.dervo-record-step { font-size: var(--dv-fs-small); color: var(--dv-ink); font-weight: 600; line-height: 1.45; }
+.dervo-record-step.is-before { font-weight: 400; color: var(--dv-muted); }
+.dervo-record-why { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: 2px; line-height: 1.45; }
+.dervo-record-calls { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
+.dervo-record-calls li { display: grid; grid-template-columns: 44px minmax(0, 1fr) auto; gap: var(--dv-s2); font: 400 var(--dv-fs-caption)/1.5 var(--dv-font-mono); color: var(--dv-ink-2); }
+.dervo-record-calls .tool { color: var(--dv-faint); }
+.dervo-record-calls .target { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-record-calls .out { font-family: var(--dv-font-text); color: var(--dv-faint); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dervo-record-calls li[data-failed] .out { color: var(--dv-ink-2); }
+.dervo-record-more { margin: 2px 0 0 calc(-1 * var(--dv-s2)); font-size: var(--dv-fs-caption); height: 24px; }
+.dervo-record-none { font-size: var(--dv-fs-caption); color: var(--dv-faint); line-height: 1.45; }
+
+/* The panel: its state once, then Linked, what it was told and the files. */
+.dervo-record-panel { width: 284px; gap: var(--dv-s5); }
+.dervo-record-panel section > .dv-label { display: block; margin-bottom: var(--dv-s2); }
+.dervo-record-state { display: flex; align-items: center; gap: var(--dv-s2); }
+.dervo-record-state .dv-state { font-size: var(--dv-fs-small); }
+.dervo-record-actions { display: flex; gap: var(--dv-s2); margin-top: var(--dv-s3); }
+.dervo-record-commit { margin-top: var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dervo-record-commit code { font-family: var(--dv-font-mono); }
+.dervo-record-links { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dervo-record-links li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--dv-s2); font-size: var(--dv-fs-small); line-height: 1.4; }
+.dervo-record-links li.dervo-record-none { grid-template-columns: 1fr; }
+.dervo-record-links b { font-weight: 600; }
+.dervo-record-links b .dervo-history-mark { margin-left: -5px; }
+.dervo-record-links small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: 2px; }
+.dervo-record-links .dervo-history-who { width: 20px; height: 20px; border-radius: 6px; }
+.dervo-record-told { display: flex; flex-direction: column; gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.4; }
+.dervo-record-told small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-faint); margin-top: 1px; }
+.dervo-record-file { font: inherit; color: inherit; text-align: left; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-record-file:hover { color: var(--dv-ink); text-decoration: underline; text-underline-offset: 2px; }
+.dervo-record-file:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; border-radius: 3px; }
+.dervo-record-foot { margin-top: auto; align-self: flex-start; margin-left: calc(-1 * var(--dv-s2)); font-size: var(--dv-fs-small); display: inline-flex; gap: 6px; }
+
+@media (max-width: 900px) {
+  .dervo-record-body { grid-template-columns: minmax(0, 1fr); overflow: auto; }
+  .dervo-record-column { overflow: visible; }
+  .dervo-record-panel { width: auto; border-left: 0; border-top: var(--dv-hairline); }
+  .dervo-record-compare { grid-template-columns: 1fr; }
+}

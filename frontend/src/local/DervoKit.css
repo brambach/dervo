@@ -1,0 +1,120 @@
+/* The kit: one material for every menu, popover, dialog, alert, sheet, toast and tooltip in Dervo's local app, drawn
+   from evidence/design-sweep/surfaces/kit.html, which follows the model picker's popover (project-settings/parts.css):
+   raised, --dv-r3, a hairline ring and the float shadow.
+   The shared primitives in shared/ui mark themselves (data-dv-surface, data-dv-mi and friends, dv-kit-pop); nothing
+   here applies outside :root[data-dervo-local], so the inherited app keeps its look. Every selector sits inside
+   :where(), so it has no specificity: a Dervo screen's own class still wins, and the kit still beats the Tailwind
+   utilities, which live in a cascade layer. Every value is a token. */
+
+:root[data-dervo-local] {
+  /* A toast is the width of a sidebar row (the sidebar is 252px, 232px below 1100px). */
+  --dv-toast-width: calc(252px - 2 * var(--dv-s3));
+}
+@media (max-width: 1100px) { :root[data-dervo-local] { --dv-toast-width: calc(232px - 2 * var(--dv-s3)); } }
+
+/* ---------- The material ---------- */
+:where(:root[data-dervo-local] :is(.dv-kit-pop, [data-dv-surface="menu"], [data-dv-surface="popover"], [data-dv-surface="dialog"], [data-dv-surface="alert"], [data-dv-surface="sheet"])) {
+  background: var(--dv-raised); color: var(--dv-ink); border: 0; border-radius: var(--dv-r3); box-shadow: var(--dv-float);
+}
+
+/* ---------- Motion: opacity and a 4px rise, nothing zooms. 120ms for menus, popovers and tooltips, 220ms for dialogs
+   and sheets; out in 120ms. With reduced motion the primitives' own motion-reduce rule turns it off. ---------- */
+:where(:root[data-dervo-local] :is(.dv-kit-pop, [data-dv-surface])) {
+  --tw-enter-scale: 1; --tw-exit-scale: 1; --tw-enter-translate-x: 0; --tw-exit-translate-x: 0; --tw-enter-translate-y: 4px; --tw-exit-translate-y: 0;
+  animation-timing-function: var(--dv-ease);
+}
+:where(:root[data-dervo-local] :is(.dv-kit-pop, [data-dv-surface="menu"], [data-dv-surface="popover"], [data-dv-surface="tooltip"])) { animation-duration: var(--dv-fast); }
+:where(:root[data-dervo-local] :is([data-dv-surface="dialog"], [data-dv-surface="alert"], [data-dv-surface="sheet"], [data-dv-scrim])[data-state="open"]) { animation-duration: var(--dv-calm); }
+:where(:root[data-dervo-local] :is([data-dv-surface], [data-dv-scrim])[data-state="closed"]) { animation-duration: var(--dv-fast); }
+/* Exits accelerate away (design report, 23 Sep, #6): a menu closing on the entrance curve decelerated out and felt sticky. */
+:where(:root[data-dervo-local] :is(.dv-kit-pop, [data-dv-surface], [data-dv-scrim])[data-state="closed"]) { animation-timing-function: var(--dv-ease-in); }
+:where(:root[data-dervo-local] [data-dv-surface="tooltip"]) { --tw-enter-translate-y: 0; }
+
+/* ---------- Menu: dropdown, context menu and submenu ---------- */
+:where(:root[data-dervo-local] [data-dv-surface="menu"]) { padding: var(--dv-s2); min-width: 232px; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+:where(:root[data-dervo-local] [data-dv-mi]) {
+  display: flex; align-items: center; gap: var(--dv-s2); min-height: 32px; padding: 0 var(--dv-s2); border-radius: var(--dv-r1);
+  font-size: var(--dv-fs-small); line-height: 1.35; color: var(--dv-ink-2); outline: none; transition: none;
+}
+:where(:root[data-dervo-local] [data-dv-mi] > svg) { width: 16px; height: 16px; flex: none; color: var(--dv-muted); }
+:where(:root[data-dervo-local] [data-dv-mi]:is([data-highlighted], [data-state="open"])) { background: var(--dv-sunk); color: var(--dv-ink); }
+:where(:root[data-dervo-local] [data-dv-mi]:is([data-highlighted], [data-state="open"]) > svg) { color: var(--dv-ink-2); }
+:where(:root[data-dervo-local] [data-dv-mi][data-disabled]) { opacity: 1; color: var(--dv-faint); }
+:where(:root[data-dervo-local] [data-dv-mi][data-disabled] > svg) { color: var(--dv-faint); }
+/* Destructive rows go last, in ink, never red: rust means "this needs you" and a menu row doesn't. */
+:where(:root[data-dervo-local] [data-dv-mi].text-destructive) { color: var(--dv-ink-2); }
+:where(:root[data-dervo-local] [data-dv-mi].text-destructive[data-highlighted]) { color: var(--dv-ink); }
+/* The submenu's chevron sits on the right in faint. */
+:where(:root[data-dervo-local] [data-dv-sub] > svg:last-child) { width: 12px; height: 12px; margin-left: auto; color: var(--dv-faint); }
+/* A current value is a tick on the right, for checkbox and radio rows alike, and the row reads in ink. */
+:where(:root[data-dervo-local] [data-dv-choice]) { padding-right: calc(var(--dv-s2) + 14px + var(--dv-s2)); }
+:where(:root[data-dervo-local] [data-dv-choice][data-state="checked"]) { color: var(--dv-ink); font-weight: 600; }
+:where(:root[data-dervo-local] [data-dv-tick]) { left: auto; right: var(--dv-s2); width: 14px; height: 14px; color: var(--dv-ink); }
+:where(:root[data-dervo-local] [data-dv-tick] svg) { display: none; }
+:where(:root[data-dervo-local] [data-dv-tick] > span) {
+  display: block; width: 14px; height: 14px; background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px 14px no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px 14px no-repeat;
+}
+:where(:root[data-dervo-local] [data-dv-label]) { padding: var(--dv-s2) var(--dv-s2) var(--dv-s1); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); letter-spacing: .005em; }
+:where(:root[data-dervo-local] [data-dv-sep]) { height: 1px; margin: var(--dv-s1) var(--dv-s2); background: var(--dv-line); }
+:where(:root[data-dervo-local] [data-dv-sc]) { margin-left: auto; font-size: var(--dv-fs-caption); color: var(--dv-faint); letter-spacing: .02em; opacity: 1; font-variant-numeric: tabular-nums; }
+
+/* ---------- Popover: the same material; the default padding steps down to the menu's, width comes from the caller ---------- */
+:where(:root[data-dervo-local] [data-dv-surface="popover"].p-4) { padding: var(--dv-s2); }
+
+/* ---------- Dialog and alert: the same material over a scrim of paper, no blur ---------- */
+:where(:root[data-dervo-local] [data-dv-scrim]:not(.bg-transparent)) { background: color-mix(in srgb, var(--dv-paper) 55%, transparent); }
+/* At night paper is barely darker than canvas, so the scrim is plain shadow and the dialog lifts (dark audit #9). */
+:where(:root[data-dervo-local].dark [data-dv-scrim]:not(.bg-transparent)) { background: rgb(0 0 0 / .45); }
+:where(:root[data-dervo-local] [data-dv-scrim]) { -webkit-backdrop-filter: none; backdrop-filter: none; }
+:where(:root[data-dervo-local] :is([data-dv-surface="dialog"], [data-dv-surface="alert"]) [data-dv-title]) {
+  font-size: var(--dv-fs-title); font-weight: 600; letter-spacing: -.012em; line-height: 1.3; color: var(--dv-ink);
+}
+:where(:root[data-dervo-local] :is([data-dv-surface="dialog"], [data-dv-surface="alert"]) [data-dv-desc]) { font-size: var(--dv-fs-small); line-height: var(--dv-lh-ui); color: var(--dv-ink-2); }
+:where(:root[data-dervo-local] [data-dv-close]) {
+  top: 18px; right: var(--dv-s4); width: 32px; height: 32px; display: grid; place-items: center; border-radius: var(--dv-r1); color: var(--dv-muted); opacity: 1;
+}
+:where(:root[data-dervo-local] [data-dv-close]:hover) { background: var(--dv-sunk); color: var(--dv-ink); }
+:where(:root[data-dervo-local] [data-dv-close]:focus-visible) { outline: 2px solid var(--dv-focus); outline-offset: 2px; box-shadow: none; }
+/* The alert's buttons: the way out first, the verb last and small. */
+:where(:root[data-dervo-local] [data-dv-surface="alert"] [data-dv-btn]) { flex: none; }
+
+/* ---------- Sheet: a record read beside the thread, inset from the window's edges, over the main panel only ---------- */
+:where(:root[data-dervo-local] [data-dv-surface="sheet"][data-side="right"]) {
+  top: var(--dv-s2); right: var(--dv-s2); bottom: var(--dv-s2); height: auto; width: min(560px, calc(100vw - 2 * var(--dv-s2))); max-width: none; padding: 0;
+}
+:where(:root[data-dervo-local] [data-dv-scrim="sheet"]) { background: transparent; }
+
+/* ---------- Tooltip: ink on canvas, so it never reads as a popover. At night an inverted chip is the brightest thing on
+   the screen, so it turns to sunk inside the strong line instead (dark audit #11), and .dv-tip in Surfaces.css follows. ---------- */
+:where(:root[data-dervo-local] [data-dv-surface="tooltip"]) {
+  background: var(--dv-ink); color: var(--dv-canvas); border: 0; border-radius: var(--dv-r1); box-shadow: none;
+  padding: var(--dv-s1) var(--dv-s2); font-size: var(--dv-fs-caption); font-weight: 500; line-height: 1.4;
+}
+:where(:root[data-dervo-local].dark [data-dv-surface="tooltip"]) { background: var(--dv-sunk); color: var(--dv-ink); box-shadow: 0 0 0 1px var(--dv-line-strong); }
+
+/* ---------- Filter field at the top of a long menu or chooser ---------- */
+:where(:root[data-dervo-local] .dv-kit-filter) {
+  gap: var(--dv-s2); height: 32px; padding: 0 var(--dv-s2); border: 0; border-radius: var(--dv-r1); background: transparent;
+  box-shadow: inset 0 0 0 1px var(--dv-line); font-size: var(--dv-fs-small);
+}
+:where(:root[data-dervo-local] .dv-kit-filter:focus-within) { box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+
+/* ---------- Toast: the same material, over the sidebar foot and the width of a row (sonner.tsx places it) ---------- */
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] {
+  flex-wrap: wrap; align-items: flex-start; gap: 0 var(--dv-s2); width: var(--width); padding: var(--dv-s3) var(--dv-s2) var(--dv-s3) var(--dv-s3);
+  background: var(--dv-raised); color: var(--dv-ink-2); border: 0; border-radius: var(--dv-r3); box-shadow: var(--dv-float);
+  font: 400 var(--dv-fs-small)/1.4 var(--dv-font-text);
+}
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] [data-icon] { margin: 1px 0 0; color: var(--dv-muted); }
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] [data-content] { flex: 1 1 calc(100% - 24px); min-width: 0; }
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] [data-title] { font-weight: 400; line-height: 1.4; color: var(--dv-ink-2); }
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] [data-description] { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] :is([data-button], [data-cancel]) {
+  height: 28px; margin: var(--dv-s1) 0 0 auto; padding: 0 var(--dv-s2); border-radius: var(--dv-r1); background: transparent;
+  font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink);
+}
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] [data-cancel] { margin-left: 0; color: var(--dv-muted); }
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] :is([data-button], [data-cancel]):hover { background: var(--dv-sunk); }
+:root[data-dervo-local] [data-sonner-toaster] [data-sonner-toast][data-styled="true"] [data-close-button] { background: var(--dv-raised); color: var(--dv-muted); border-color: var(--dv-line); }

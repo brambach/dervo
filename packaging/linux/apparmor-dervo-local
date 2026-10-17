@@ -1,0 +1,14 @@
+# Dervo's checks and Codex run under bubblewrap, which needs an unprivileged user namespace. Ubuntu 23.10 and later
+# only grant one to programs an AppArmor profile names (kernel.apparmor_restrict_unprivileged_userns), the way they
+# name Discord, VS Code and Obsidian. This profile names Dervo and confines nothing else: every process Dervo starts
+# keeps the access it had. The package's postinst copies it into /etc/apparmor.d and loads it only where AppArmor 4
+# is installed; older systems don't restrict user namespaces and skip it.
+abi <abi/4.0>,
+include <tunables/global>
+
+profile dervo-local /usr/bin/dervo-local flags=(unconfined) {
+  userns,
+
+  # Site-specific additions and overrides. See local/README for details.
+  include if exists <local/dervo-local>
+}

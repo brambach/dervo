@@ -1,0 +1,26 @@
+{
+  "version": "3.13.16",
+  "build": "20261001",
+  "platform": "aarch64-apple-darwin",
+  "source": "python-build-standalone by Astral, the CPython builds uv installs",
+  "release": "https://github.com/astral-sh/python-build-standalone/releases/tag/20261001",
+  "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261001/cpython-3.13.16%2B20261001-aarch64-apple-darwin-install_only_stripped.tar.gz",
+  "size": 25249878,
+  "sha256": "d00669acb53c1b014f1fcf5eaea740d8e45c3aff4b1e0244dc0f8697fb211a82",
+  "archive_root": "python",
+  "executable": "bin/python3.13",
+  "mach_o": ["bin/python3.13"],
+  "licence": "LICENSE-Python",
+  "remove": [
+    "bin/idle3", "bin/idle3.13", "bin/pip", "bin/pip3", "bin/pip3.13", "bin/pydoc3", "bin/pydoc3.13", "bin/python",
+    "bin/python3", "bin/python3-config", "bin/python3.13-config",
+    "include", "share", "lib/pkgconfig", "lib/libpython3.13.dylib",
+    "lib/libtcl9.0.dylib", "lib/libtcl9tk9.0.dylib", "lib/tcl9", "lib/tcl9.0", "lib/tk9.0", "lib/itcl4.3.8",
+    "lib/thread3.0.6",
+    "lib/python3.13/config-3.13-darwin", "lib/python3.13/ensurepip", "lib/python3.13/idlelib",
+    "lib/python3.13/tkinter", "lib/python3.13/turtledemo", "lib/python3.13/turtle.py",
+    "lib/python3.13/site-packages/pip", "lib/python3.13/site-packages/pip-26.2.1.dist-info",
+    "lib/python3.13/lib-dynload/_tkinter.cpython-313-darwin.so",
+    "lib/python3.13/lib-dynload/_dbm.cpython-313-darwin.so"
+  ]
+}

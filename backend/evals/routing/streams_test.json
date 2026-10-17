@@ -1,0 +1,3373 @@
+[
+ {
+  "id": "te-01",
+  "about": "founder: rapid terse follow-ups with no cue words, pending answer, bug on finished thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar drag reorder",
+    "state": "working",
+    "request": "let ppl drag threads in the sidebar to reorder em",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 40
+   },
+   {
+    "id": "t2",
+    "name": "Onboarding model picker",
+    "state": "needs_you",
+    "request": "onboarding needs a model picker step",
+    "pending_question": "Should the picker default to the last used model or always to Opus?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Landing page hero",
+    "state": "finished",
+    "request": "redo the landing hero, bigger smiley + new tagline",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 7200,
+    "at_ago": 7200,
+    "summary": "Hero copy and smiley animation updated, deployed to preview."
+   }
+  ],
+  "stream": [
+   {
+    "text": "also pinned ones shouldnt move below unpinned",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "last used",
+    "gap": 4,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "hero smiley blinks twice on safari now, regression",
+    "gap": 6,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "and the drop indicator line is like 2px off",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "thx",
+    "gap": 8,
+    "expect": "home"
+   }
+  ],
+  "home": [
+   {
+    "text": "drag to reorder threads in sidebar pls",
+    "ago": 120,
+    "thread": "t1"
+   }
+  ]
+ },
+ {
+  "id": "te-02",
+  "about": "founder: explicit new thread then several follow-ups to it, interleaved with an existing thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Voice input button",
+    "state": "working",
+    "request": "add a mic button to the home composer for voice input",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Release notarization",
+    "state": "quiet",
+    "request": "get notarization working in the release script",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 2400,
+    "summary": "notarytool submit wired into release.sh; stapling works locally."
+   }
+  ],
+  "stream": [
+   {
+    "text": "new thread: iphone companion app pairing via qr code",
+    "gap": 2,
+    "expect": "new",
+    "name_has": [
+     "iphone",
+     "pairing",
+     "companion"
+    ]
+   },
+   {
+    "text": "use the same keychain group as mac",
+    "gap": 3,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "and show a typed code fallback if camera access is denied",
+    "gap": 4,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "notarize step is timing out again btw",
+    "gap": 7,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "wait no the qr should expire after 60s not stay forever",
+    "gap": 3,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-03",
+  "about": "founder: greeting, status questions about everything and one thread, then a follow-up to that thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Stripe billing setup",
+    "state": "finished",
+    "request": "hook up stripe checkout for pro plan",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 5400,
+    "at_ago": 5400,
+    "summary": "Checkout + customer portal working against a local mock; not pushed to Stripe yet."
+   },
+   {
+    "id": "t2",
+    "name": "Thread auto naming",
+    "state": "working",
+    "request": "threads should name themselves after first reply",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Sidebar search",
+    "state": "idle",
+    "request": "cmd+f in sidebar to filter threads",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 9000
+   },
+   {
+    "id": "t4",
+    "name": "Crash reporter opt-in",
+    "state": "needs_you",
+    "request": "add opt in crash reporting",
+    "pending_question": "Ask on first launch or only after the first crash?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t5",
+    "name": "Landing page pricing",
+    "state": "stopped",
+    "request": "pricing section on the landing page",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 4000
+   },
+   {
+    "id": "t6",
+    "name": "Voice push to talk",
+    "state": "working",
+    "request": "hold space to talk in home",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t7",
+    "name": "iPhone companion push",
+    "state": "quiet",
+    "request": "push notifs on iphone when a thread needs me",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 6000
+   },
+   {
+    "id": "t8",
+    "name": "Release appcast",
+    "state": "finished",
+    "request": "sparkle appcast generation in release script",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 20000,
+    "at_ago": 20000,
+    "summary": "appcast.xml generated and signed with ed25519."
+   },
+   {
+    "id": "t9",
+    "name": "Billing trial banner",
+    "state": "idle",
+    "request": "banner showing days left in trial",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 40000
+   },
+   {
+    "id": "t10",
+    "name": "Thread archive gesture",
+    "state": "finished",
+    "request": "swipe to archive threads",
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 172800,
+    "at_ago": 172800
+   },
+   {
+    "id": "t11",
+    "name": "Sidebar keyboard nav",
+    "state": "working",
+    "request": "arrow keys to move through sidebar threads",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t12",
+    "name": "Onboarding folder picker",
+    "state": "unknown",
+    "request": "pick a project folder during onboarding",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 3000
+   }
+  ],
+  "stream": [
+   {
+    "text": "gm",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "whats everyone doing",
+    "gap": 3,
+    "expect": "home"
+   },
+   {
+    "text": "is billing done",
+    "gap": 5,
+    "expect": "home"
+   },
+   {
+    "text": "ok push it to stripe test mode then",
+    "gap": 10,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "first crash",
+    "gap": 6,
+    "expect": "existing:t4"
+   }
+  ]
+ },
+ {
+  "id": "te-04",
+  "about": "founder: hard negatives sharing 'sidebar' and 'release' with existing threads",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar unread badges",
+    "state": "working",
+    "request": "show an unread dot on threads in the sidebar when an agent replies",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Release pipeline signing",
+    "state": "working",
+    "request": "release pipeline: codesign everything inside the app bundle w hardened runtime",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Home composer history",
+    "state": "finished",
+    "request": "up arrow in home composer should recall last message",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3600,
+    "at_ago": 3600,
+    "summary": "Up/down arrow cycles through the last 50 Home messages."
+   }
+  ],
+  "stream": [
+   {
+    "text": "sidebar width should be resizable, drag the edge",
+    "gap": 2,
+    "expect": "new",
+    "name_has": [
+     "resiz",
+     "width",
+     "sidebar"
+    ]
+   },
+   {
+    "text": "badge count caps at 99+",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "release build shows the old icon in the dock",
+    "gap": 5,
+    "expect": "existing:t2|new",
+    "name_has": [
+     "icon",
+     "dock"
+    ]
+   },
+   {
+    "text": "up arrow skips the most recent msg",
+    "gap": 4,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "min width 200 max 400",
+    "gap": 3,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-05",
+  "about": "founder: two asks in one message and a numbered list go to unsure; a clean follow-up after",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Home message routing",
+    "state": "working",
+    "request": "route home msgs to the right thread automatically",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Thread auto naming",
+    "state": "quiet",
+    "request": "auto name threads from the first exchange",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 1500,
+    "summary": "Names generated from first user msg + first agent reply."
+   },
+   {
+    "id": "t3",
+    "name": "Onboarding flow",
+    "state": "working",
+    "request": "rebuild onboarding: welcome, sign in, pick folder, done",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "fix the naming thing so it stops saying 'New thread' and also onboarding skips step 3",
+    "gap": 2,
+    "expect": "unsure"
+   },
+   {
+    "text": "1. landing price to $20\n2. remove the waitlist form\n3. add a faq",
+    "gap": 4,
+    "expect": "unsure"
+   },
+   {
+    "text": "names are still too long fwiw, cap at 4 words",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "lol ok",
+    "gap": 6,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-06",
+  "about": "founder: empty project, new threads separated by a long gap, follow-ups to each",
+  "threads": [],
+  "stream": [
+   {
+    "text": "hey",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "set up the release pipeline w github actions, sign + notarize + sparkle feed",
+    "gap": 4,
+    "expect": "new",
+    "name_has": [
+     "release",
+     "pipeline"
+    ]
+   },
+   {
+    "text": "use the dervo-release keychain profile",
+    "gap": 5,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "also make a landing page for downloads",
+    "gap": 2400,
+    "expect": "new",
+    "name_has": [
+     "landing",
+     "download"
+    ]
+   },
+   {
+    "text": "the download button should grab the latest dmg automatically",
+    "gap": 6,
+    "expect": "existing:@2"
+   }
+  ]
+ },
+ {
+  "id": "te-07",
+  "about": "founder: corrections and undo on working, waiting and finished threads",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Thread rename shortcut",
+    "state": "working",
+    "request": "cmd+r to rename the current thread",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 20
+   },
+   {
+    "id": "t2",
+    "name": "Billing usage meter",
+    "state": "needs_you",
+    "request": "usage meter in settings > billing",
+    "pending_question": "Show usage in tokens or dollars?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Sidebar collapse animation",
+    "state": "finished",
+    "request": "animate sidebar collapse, spring not linear",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1200,
+    "at_ago": 1200,
+    "summary": "Collapse now uses a 0.35s spring."
+   }
+  ],
+  "stream": [
+   {
+    "text": "actually make it cmd+shift+r, cmd+r is reload",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "dollars",
+    "gap": 4,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "undo the collapse anim change, it feels laggy",
+    "gap": 6,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "nvm on the dollars, tokens. ppl on subs dont pay per token",
+    "gap": 20,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "te-08",
+  "about": "founder: loose and misspelt references to threads by name, including an archived one",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Voice dictation hotkey",
+    "state": "working",
+    "request": "global hotkey to start voice dictation into home",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "iPhone companion sync",
+    "state": "quiet",
+    "request": "sync threads to the iphone companion",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 3000
+   },
+   {
+    "id": "t3",
+    "name": "Stripe webhook retries",
+    "state": "working",
+    "request": "handle stripe webhook retries idempotently",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t4",
+    "name": "Onboarding permissions screen",
+    "state": "finished",
+    "request": "onboarding screen explaining mic + files permissions",
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 259200,
+    "at_ago": 259200
+   }
+  ],
+  "stream": [
+   {
+    "text": "in the voice dictaton one, use fn key double tap",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "companion thing: sync drafts too",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "strip webhooks - log the event id on every retry",
+    "gap": 4,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "the permisions onboarding screen needs a skip button",
+    "gap": 5,
+    "expect": "existing:t4|new",
+    "name_has": [
+     "permission",
+     "onboarding"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "te-09",
+  "about": "founder: two threads waiting with different questions, each answered tersely",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Model picker defaults",
+    "state": "needs_you",
+    "request": "sensible default models per thread type",
+    "pending_question": "Should Haiku be hidden for coding threads?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Release channel names",
+    "state": "needs_you",
+    "request": "add a beta update channel",
+    "pending_question": "Call the channels beta/stable or preview/stable?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Sidebar search",
+    "state": "working",
+    "request": "search box at the top of the sidebar",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "beta/stable",
+    "gap": 2,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "yes hide it",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "search should match thread summaries not just names",
+    "gap": 5,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "ok whats left",
+    "gap": 7,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-10",
+  "about": "founder: topic switch cues ('separately', 'another thing') make new threads; follow-up to the first new one",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Home composer autocomplete",
+    "state": "working",
+    "request": "autocomplete in the home composer for slash commands",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Crash on wake from sleep",
+    "state": "working",
+    "request": "app crashes when mac wakes from sleep, see console log",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300,
+    "summary": "Suspect the file watcher reconnect; adding logging."
+   }
+  ],
+  "stream": [
+   {
+    "text": "autocomplete should also suggest thread names after @",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "separately, the dmg background image is blurry on retina",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "dmg",
+     "background",
+     "retina"
+    ]
+   },
+   {
+    "text": "another thing: settings window doesnt remember its size",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "settings",
+     "window",
+     "size"
+    ]
+   },
+   {
+    "text": "still crashing on wake btw, got the log",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "make the dmg one use an @2x asset",
+    "gap": 4,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-11",
+  "about": "backend: pending migration answer, limiter follow-ups, auth bug on a finished thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Token bucket rate limiter",
+    "state": "working",
+    "request": "Implement per-API-key rate limiting in internal/ratelimit using a token bucket backed by Redis.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Users table migration",
+    "state": "needs_you",
+    "request": "Add a locale column to users.",
+    "pending_question": "Migration 0042 adds a NOT NULL column to users. Backfill in the same migration or a separate one?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "JWT refresh rotation",
+    "state": "finished",
+    "request": "Rotate refresh tokens on every use and detect reuse.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 10800,
+    "at_ago": 10800,
+    "summary": "Refresh tokens rotate on use; reuse revokes the family. Tests in internal/auth/refresh_test.go."
+   }
+  ],
+  "stream": [
+   {
+    "text": "Separate migration, 0043_backfill_users_locale.sql. Keep 0042 schema-only.",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "For the limiter, return 429 with Retry-After in seconds, not ms.",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Seeing `token is expired` on POST /v1/auth/refresh right after rotation. Is the 30s leeway still applied?",
+    "gap": 8,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "Burst should be 2x the per-second rate.",
+    "gap": 5,
+    "expect": "existing:t1"
+   }
+  ],
+  "home": [
+   {
+    "text": "Use a sliding window in Redis rather than fixed buckets if it's cheap.",
+    "ago": 600,
+    "thread": "t1"
+   }
+  ]
+ },
+ {
+  "id": "te-12",
+  "about": "backend: hard negative sharing 'jobs'; tracing follow-up with no shared words",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Job queue retries",
+    "state": "working",
+    "request": "Background jobs in internal/jobs should retry with exponential backoff and jitter.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "OTel tracing setup",
+    "state": "quiet",
+    "request": "Wire up OpenTelemetry tracing, export to Tempo via OTLP.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 1800,
+    "summary": "HTTP handler spans exported; DB spans not yet."
+   }
+  ],
+  "stream": [
+   {
+    "text": "Add a /admin/jobs page listing failed jobs with their last error.",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "admin",
+     "failed",
+     "jobs"
+    ]
+   },
+   {
+    "text": "Spans from the pgx pool aren't showing up in Tempo.",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Cap the backoff at 15 minutes.",
+    "gap": 5,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Paginate that page too, 50 per page.",
+    "gap": 4,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-13",
+  "about": "backend: greeting and status questions answered by Home, then a direct instruction to an unknown thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Schema migrations runner",
+    "state": "unknown",
+    "request": "Run migrations on boot behind a --migrate flag.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 2700
+   },
+   {
+    "id": "t2",
+    "name": "Webhook signing",
+    "state": "finished",
+    "request": "Sign outgoing webhooks with HMAC-SHA256.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 6000,
+    "at_ago": 6000,
+    "summary": "X-Signature header added; docs updated."
+   },
+   {
+    "id": "t3",
+    "name": "Search endpoint filters",
+    "state": "working",
+    "request": "Add status and created_at filters to GET /v1/orders.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t4",
+    "name": "Idempotency keys",
+    "state": "needs_you",
+    "request": "Support Idempotency-Key header on POST endpoints.",
+    "pending_question": "How long should idempotency records be kept, 24h or 7d?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t5",
+    "name": "Graceful shutdown",
+    "state": "idle",
+    "request": "Drain HTTP and job workers on SIGTERM.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 20000
+   },
+   {
+    "id": "t6",
+    "name": "pgbouncer config",
+    "state": "stopped",
+    "request": "Move to pgbouncer transaction pooling.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 8000
+   }
+  ],
+  "stream": [
+   {
+    "text": "morning",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "What's the state of the migrations work?",
+    "gap": 5,
+    "expect": "home"
+   },
+   {
+    "text": "Anything blocked on me?",
+    "gap": 6,
+    "expect": "home"
+   },
+   {
+    "text": "24h is plenty.",
+    "gap": 8,
+    "expect": "existing:t4"
+   },
+   {
+    "text": "Re-run the migrations runner thread from where it lost track, and check whether 0044 actually applied.",
+    "gap": 10,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "te-14",
+  "about": "backend: empty project, two new threads with 'unrelated' cue, follow-ups to each, thanks",
+  "threads": [],
+  "stream": [
+   {
+    "text": "Set up golang-migrate with migrations under db/migrations and a `make migrate` target.",
+    "gap": 0,
+    "expect": "new",
+    "name_has": [
+     "migrat"
+    ]
+   },
+   {
+    "text": "Use the pgx/v5 driver.",
+    "gap": 4,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "And run them in CI against a postgres:16 service container.",
+    "gap": 5,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "Unrelated: add a /healthz endpoint that pings the db.",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "health"
+    ]
+   },
+   {
+    "text": "Return 503 if the ping takes over 500ms.",
+    "gap": 4,
+    "expect": "existing:@2"
+   },
+   {
+    "text": "thanks",
+    "gap": 10,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-15",
+  "about": "backend: two asks in one message, numbered list, vague message, then a precise error string",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Connection pool tuning",
+    "state": "working",
+    "request": "Tune pgxpool settings; we're hitting connection limits under load.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Structured logging",
+    "state": "working",
+    "request": "Switch from log to slog with JSON output.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Auth middleware tests",
+    "state": "working",
+    "request": "Table-driven tests for internal/http/middleware/auth.go.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "Bump MaxConns to 50 and also add request ids to every log line.",
+    "gap": 2,
+    "expect": "unsure"
+   },
+   {
+    "text": "Today:\n1. slog levels from env\n2. pool health check period 30s\n3. test expired tokens in middleware",
+    "gap": 5,
+    "expect": "unsure"
+   },
+   {
+    "text": "that broke again",
+    "gap": 8,
+    "expect": "unsure"
+   },
+   {
+    "text": "`FATAL: sorry, too many clients already (SQLSTATE 53300)` on staging after the deploy",
+    "gap": 6,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "te-16",
+  "about": "backend: bug reports on finished threads using error strings that share no words with the thread names",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "API key hashing",
+    "state": "finished",
+    "request": "Store API keys hashed, not plaintext.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 14400,
+    "at_ago": 14400,
+    "summary": "API keys stored as SHA-256 hashes; lookup by key_prefix column."
+   },
+   {
+    "id": "t2",
+    "name": "Background email worker",
+    "state": "finished",
+    "request": "Move transactional emails onto the job queue.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 20000,
+    "at_ago": 20000,
+    "summary": "Emails sent from jobs.SendEmail worker in batches of 100."
+   },
+   {
+    "id": "t3",
+    "name": "Request logging middleware",
+    "state": "working",
+    "request": "Log method, path, status, duration for every request.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "`ERROR: column \"key_prefix\" does not exist (SQLSTATE 42703)` on staging",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Customers are getting the welcome email twice when the worker restarts mid-batch.",
+    "gap": 7,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Redact the Authorization header in those logs.",
+    "gap": 5,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "Was the prefix migration even applied in staging? Check schema_migrations.",
+    "gap": 6,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "te-17",
+  "about": "backend: long gaps; new topic after an hour; return to the old thread with a clear continuation",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Pagination cursor encoding",
+    "state": "working",
+    "request": "Switch list endpoints to opaque cursor pagination.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 60
+   }
+  ],
+  "stream": [
+   {
+    "text": "Use base64url without padding for the cursors.",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "p99 on GET /v1/search is 2s. Can you dig into it?",
+    "gap": 3600,
+    "expect": "new",
+    "name_has": [
+     "latency",
+     "search",
+     "p99"
+    ]
+   },
+   {
+    "text": "Probably the trigram index isn't being used, check EXPLAIN ANALYZE.",
+    "gap": 8,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "And the cursor should include the sort key, not just the id.",
+    "gap": 2000,
+    "expect": "existing:t1"
+   }
+  ],
+  "home": [
+   {
+    "text": "Cursors should be opaque to clients.",
+    "ago": 200,
+    "thread": "t1"
+   }
+  ]
+ },
+ {
+  "id": "te-18",
+  "about": "backend: answer, then reversal of that answer; revert request; thanks to both",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Refresh token revocation",
+    "state": "working",
+    "request": "Add POST /v1/auth/revoke for refresh tokens.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Audit log table",
+    "state": "needs_you",
+    "request": "Add an audit_log table for admin actions.",
+    "pending_question": "Should audit_log be partitioned by month?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "Monthly partitions, yes, with pg_partman.",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Scratch that, no pg_partman, we can't install extensions on this RDS instance. Native partitioning plus a cron job that creates next month's partition.",
+    "gap": 25,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Revert the change to internal/auth/store.go, revocation should go through the tokens service.",
+    "gap": 8,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Cool, thanks both",
+    "gap": 10,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-19",
+  "about": "backend: four threads waiting; specific answers route, a bare 'yes' with two yes/no questions open is unsure",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Job claiming strategy",
+    "state": "needs_you",
+    "request": "Make job claiming safe with multiple workers.",
+    "pending_question": "Use advisory locks or SELECT ... FOR UPDATE SKIP LOCKED for claiming jobs?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Rate limit scope",
+    "state": "needs_you",
+    "request": "Rate limit config per plan.",
+    "pending_question": "Should counters be per API key or per account?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Legacy v0 routes",
+    "state": "needs_you",
+    "request": "Clean up the old /v0 handlers.",
+    "pending_question": "Okay to drop the legacy /v0 routes entirely?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t4",
+    "name": "Limiter feature flag",
+    "state": "needs_you",
+    "request": "Roll out the new limiter safely.",
+    "pending_question": "Should I put the new limiter behind a feature flag?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "SKIP LOCKED",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Per account.",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "yes",
+    "gap": 4,
+    "expect": "unsure"
+   },
+   {
+    "text": "Drop the v0 routes, nobody has called them in 90 days.",
+    "gap": 6,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "te-20",
+  "about": "backend: observability bugs on finished and archived threads, a status question about one thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Prometheus metrics",
+    "state": "finished",
+    "request": "Expose /metrics with request duration histograms.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 9000,
+    "at_ago": 9000,
+    "summary": "http_request_duration_seconds histogram exported per route."
+   },
+   {
+    "id": "t2",
+    "name": "Slow query logging",
+    "state": "working",
+    "request": "Log queries slower than a threshold.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Sentry integration",
+    "state": "finished",
+    "request": "Report panics and 5xx to Sentry.",
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 864000,
+    "at_ago": 864000
+   }
+  ],
+  "stream": [
+   {
+    "text": "The http_request_duration_seconds histogram only has the le=\"+Inf\" bucket.",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Add an alert rule for p95 > 1s over 5m.",
+    "gap": 6,
+    "expect": "existing:t1|new",
+    "name_has": [
+     "alert"
+    ]
+   },
+   {
+    "text": "Sentry is dropping events with `event dropped due to rate limit` again.",
+    "gap": 8,
+    "expect": "existing:t3|new",
+    "name_has": [
+     "sentry"
+    ]
+   },
+   {
+    "text": "log_min_duration_statement = 250ms is fine.",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "How's the slow query thing going?",
+    "gap": 9,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-21",
+  "about": "designer: answer a color token question, button follow-up, copy tweak on finished thread, thanks with emoji",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Button component variants",
+    "state": "working",
+    "request": "Can we build out primary/secondary/tertiary button variants?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Color tokens dark mode",
+    "state": "needs_you",
+    "request": "I'd love dark mode values for all our surface tokens",
+    "pending_question": "Should surface-2 in dark mode be #1C1C1E or #232326?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Pricing page copy",
+    "state": "finished",
+    "request": "Can we refresh the pricing page copy? it's a bit stiff",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 4000,
+    "at_ago": 4000,
+    "summary": "Rewrote headline, plan blurbs and FAQ."
+   }
+  ],
+  "stream": [
+   {
+    "text": "Ooh #232326 please, the other one is too close to the background 🙏",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Can we add a ghost variant too? Transparent bg, border on hover",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "I'd love the pricing headline to be punchier, maybe 'Ship with your agents, not around them'",
+    "gap": 8,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "you're the best ✨",
+    "gap": 5,
+    "expect": "home"
+   }
+  ],
+  "home": [
+   {
+    "text": "Can we get dark values for every surface token?",
+    "ago": 900,
+    "thread": "t2"
+   }
+  ]
+ },
+ {
+  "id": "te-22",
+  "about": "designer: hard negative sharing 'animation'; accessibility follow-up with no shared words",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Hero scroll animation",
+    "state": "working",
+    "request": "Can we add a parallax scroll animation to the hero illustration?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Accessibility audit",
+    "state": "working",
+    "request": "Run an accessibility pass over the marketing site, WCAG AA",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "Can we add a subtle animation to the nav dropdown? like a 150ms fade + slide",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "nav",
+     "dropdown"
+    ]
+   },
+   {
+    "text": "and have it respect prefers-reduced-motion",
+    "gap": 3,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "The parallax feels janky on Safari, can we do transform-only?",
+    "gap": 7,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Focus rings are invisible on the dark footer links",
+    "gap": 6,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "te-23",
+  "about": "designer: empty project, greeting, two new threads, follow-ups",
+  "threads": [],
+  "stream": [
+   {
+    "text": "hi! 👋",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "Can we set up a design tokens package? spacing, radii, type scale and colors as CSS vars plus a JSON export",
+    "gap": 5,
+    "expect": "new",
+    "name_has": [
+     "token"
+    ]
+   },
+   {
+    "text": "I'd love the type scale to use a 1.25 ratio",
+    "gap": 6,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "Oh and can we also get Storybook going for the components?",
+    "gap": 8,
+    "expect": "new",
+    "name_has": [
+     "storybook"
+    ]
+   },
+   {
+    "text": "Hook the light/dark tokens into Storybook's theme switcher",
+    "gap": 6,
+    "expect": "existing:@2|existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-24",
+  "about": "designer: combined asks and numbered list are unsure; a soft follow-up; a vague request",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Card component",
+    "state": "working",
+    "request": "Can we build a Card component with image, title, meta and actions?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Footer redesign",
+    "state": "working",
+    "request": "I'd love a cleaner footer, fewer links, bigger logo",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Blog typography",
+    "state": "quiet",
+    "request": "Blog posts need nicer typography",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 2000
+   }
+  ],
+  "stream": [
+   {
+    "text": "Can we make the card shadows softer and also fix the footer logo being squished?",
+    "gap": 2,
+    "expect": "unsure"
+   },
+   {
+    "text": "Few things:\n1) blog line-height 1.7\n2) card radius 12px\n3) footer links in two columns",
+    "gap": 6,
+    "expect": "unsure"
+   },
+   {
+    "text": "hmm the card shadows still look heavy 🤔",
+    "gap": 30,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Can we make it better?",
+    "gap": 8,
+    "expect": "unsure"
+   }
+  ]
+ },
+ {
+  "id": "te-25",
+  "about": "designer: status questions and chit-chat between follow-ups, change of mind",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Testimonial carousel",
+    "state": "finished",
+    "request": "Can we turn the testimonials into an autoplaying carousel?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1500,
+    "at_ago": 1500,
+    "summary": "Carousel autoplays every 4s, pauses on hover."
+   },
+   {
+    "id": "t2",
+    "name": "Icon button sizes",
+    "state": "working",
+    "request": "Icon buttons need sm/md/lg sizes",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Case study template",
+    "state": "idle",
+    "request": "A reusable template for customer case studies",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 30000
+   }
+  ],
+  "stream": [
+   {
+    "text": "how are things going?",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "Is the testimonial carousel done yet?",
+    "gap": 5,
+    "expect": "home"
+   },
+   {
+    "text": "Lovely. Can we slow the autoplay to 6s?",
+    "gap": 8,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "lol I keep changing my mind sorry",
+    "gap": 6,
+    "expect": "home"
+   },
+   {
+    "text": "ok actually 5s",
+    "gap": 4,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "te-26",
+  "about": "designer: follow-ups that share no words with their thread names",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Signup form validation",
+    "state": "working",
+    "request": "Inline validation for the signup form email and password fields",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Testimonials section",
+    "state": "finished",
+    "request": "Testimonials section with 3 customer quotes and photos",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 8000,
+    "at_ago": 8000,
+    "summary": "Three quotes in a responsive grid."
+   },
+   {
+    "id": "t3",
+    "name": "Icon set migration",
+    "state": "working",
+    "request": "Replace Feather icons with Lucide across all components",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "When I type a bad email the red message pushes everything down",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "The little arrow next to 'Learn more' is still the old style",
+    "gap": 6,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "Sarah's quote gets cut off on mobile 😬",
+    "gap": 7,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Can we reserve space for the error text so nothing shifts?",
+    "gap": 5,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "te-27",
+  "about": "designer: loose and misspelt thread names; explicit new-thread request",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Toast notification component",
+    "state": "working",
+    "request": "A toast component for success/error messages",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Mega menu layout",
+    "state": "quiet",
+    "request": "Mega menu for the Product nav item",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 4000
+   },
+   {
+    "id": "t3",
+    "name": "Changelog page",
+    "state": "working",
+    "request": "A changelog page fed from markdown files",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t4",
+    "name": "OG image generator",
+    "state": "finished",
+    "request": "Generate OG images per page with title + mascot",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 7000,
+    "at_ago": 7000,
+    "summary": "Vercel OG route renders title over brand gradient."
+   }
+  ],
+  "stream": [
+   {
+    "text": "for the toaster thing, stack max 3",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "megamenu: 3 columns plz",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "chnagelog should group entries by month",
+    "gap": 4,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "the og images have the wrong font 😭",
+    "gap": 5,
+    "expect": "existing:t4"
+   },
+   {
+    "text": "Can we start a new thread for a 404 page? something playful with the mascot",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "404"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "te-28",
+  "about": "designer: bug on a day-old finished thread, long gap before a new idea, follow-up, thanks",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Dark mode toggle",
+    "state": "finished",
+    "request": "Can we add a dark mode toggle in the header?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 86400,
+    "at_ago": 86400,
+    "summary": "Toggle persists in localStorage and defaults to the system setting."
+   },
+   {
+    "id": "t2",
+    "name": "Newsletter signup copy",
+    "state": "working",
+    "request": "Rewrite the newsletter signup blurb",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "Hiya, the page flashes white on load now when I'm in dark mode",
+    "gap": 30,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Can we tighten the newsletter blurb to one line?",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Okay new idea: an interactive pricing calculator with a seats slider",
+    "gap": 3000,
+    "expect": "new",
+    "name_has": [
+     "pricing",
+     "calculator"
+    ]
+   },
+   {
+    "text": "with a monthly/yearly switch",
+    "gap": 5,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "thank youu",
+    "gap": 10,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-29",
+  "about": "designer: two pending questions answered by content, then idle thread follow-up and global status",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Font loading strategy",
+    "state": "needs_you",
+    "request": "Fonts flash on load, can we fix FOUT?",
+    "pending_question": "Self-host Inter or keep loading it from Google Fonts?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Contrast fixes",
+    "state": "needs_you",
+    "request": "Fix the contrast issues from the audit",
+    "pending_question": "Gray-500 fails AA on white. Darken it globally or only in body text?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Badge component",
+    "state": "idle",
+    "request": "A Badge component with neutral/success/warning",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 12000
+   }
+  ],
+  "stream": [
+   {
+    "text": "Self-host please!",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "only body text, doing it globally would mess up the illustrations",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Can we add a 'new' badge style with a little sparkle ✨",
+    "gap": 7,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "where are we on everything?",
+    "gap": 8,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-30",
+  "about": "designer: undo then partial restore on a finished thread; 'separately' new thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Navbar sticky behavior",
+    "state": "finished",
+    "request": "Can the navbar hide when scrolling down and come back on scroll up?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3000,
+    "at_ago": 3000,
+    "summary": "Navbar hides on scroll down, reappears on scroll up."
+   },
+   {
+    "id": "t2",
+    "name": "Footer newsletter form",
+    "state": "working",
+    "request": "Inline newsletter form in the footer",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "Hmm can we undo the hide-on-scroll? People found it disorienting",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Actually, keep it but only on mobile",
+    "gap": 15,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Separately, I'd love a back-to-top button on long pages",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "top",
+     "back"
+    ]
+   },
+   {
+    "text": "Footer form: the success state should say 'You're in! 🎉'",
+    "gap": 5,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "te-31",
+  "about": "unity: save version answer, inventory follow-ups, shader regression on finished thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Inventory grid UI",
+    "state": "working",
+    "request": "Build a grid-based inventory UI with drag and drop.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Save system versioning",
+    "state": "needs_you",
+    "request": "Add versioning to save files so we can migrate old saves.",
+    "pending_question": "Old saves have no version field. Treat missing as v1 and migrate, or reject them?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Water shader foam",
+    "state": "finished",
+    "request": "Add shoreline foam to the water shader.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 20000,
+    "at_ago": 20000,
+    "summary": "Foam driven by depth texture difference; tested on PC."
+   }
+  ],
+  "stream": [
+   {
+    "text": "Treat missing as v1 and migrate, we can't break people's saves.",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Items should snap to the grid when you drop them, and swap if the slot is occupied.",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Foam is flickering along the shoreline on Switch builds since the last change.",
+    "gap": 8,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "Stackable items should show the count bottom-right.",
+    "gap": 5,
+    "expect": "existing:t1"
+   }
+  ],
+  "home": [
+   {
+    "text": "Inventory grid should be 6x4 to start.",
+    "ago": 400,
+    "thread": "t1"
+   }
+  ]
+ },
+ {
+  "id": "te-32",
+  "about": "unity: hard negative sharing 'controller'/'input' vocabulary; follow-up to the new thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Controller rebinding menu",
+    "state": "working",
+    "request": "Let players rebind controller buttons in the options menu.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Input lag investigation",
+    "state": "working",
+    "request": "There's noticeable input lag on movement, find the cause.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "Add an on-screen keyboard for name entry when playing with a controller.",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "keyboard",
+     "name"
+    ]
+   },
+   {
+    "text": "The rebind menu only shows Xbox glyphs, never PlayStation ones.",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Profiler shows 3 frames between InputSystem.onAfterUpdate and the player actually moving.",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Use a QWERTY layout with a shift key and a done button.",
+    "gap": 5,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-33",
+  "about": "unity: status about one thread, follow-ups with no shared words, request on finished thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "GC alloc in update loop",
+    "state": "working",
+    "request": "Find and remove per-frame GC allocations in gameplay scripts.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "LOD setup for forest",
+    "state": "quiet",
+    "request": "Set up LOD groups for the forest biome trees.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 2500
+   },
+   {
+    "id": "t3",
+    "name": "Loading screen tips",
+    "state": "finished",
+    "request": "Show rotating gameplay tips on the loading screen.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 9000,
+    "at_ago": 9000,
+    "summary": "Tips pulled from a ScriptableObject list, rotate every 4s."
+   }
+  ],
+  "stream": [
+   {
+    "text": "How's the GC stuff looking?",
+    "gap": 2,
+    "expect": "home"
+   },
+   {
+    "text": "The trees still pop in way too close, like 20 meters.",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Found another one: string concat in DamageNumbers.Update allocates 2KB a frame.",
+    "gap": 9,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Add a tip about the dodge roll i-frames.",
+    "gap": 6,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "te-34",
+  "about": "unity: empty project, two new threads, follow-ups, a cross-cutting follow-up, thanks",
+  "threads": [],
+  "stream": [
+   {
+    "text": "Start a thread for a save system: JSON to persistentDataPath, autosave every 5 minutes and on scene change.",
+    "gap": 0,
+    "expect": "new",
+    "name_has": [
+     "save"
+    ]
+   },
+   {
+    "text": "Write to a temp file and rename it, so a crash mid-write can't corrupt the save.",
+    "gap": 7,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "Also, separately, set up a basic inventory with ScriptableObject item definitions.",
+    "gap": 8,
+    "expect": "new",
+    "name_has": [
+     "inventory"
+    ]
+   },
+   {
+    "text": "Items need a max stack size field.",
+    "gap": 5,
+    "expect": "existing:@2"
+   },
+   {
+    "text": "Inventory contents need to go into the save file too, item ids and counts only.",
+    "gap": 6,
+    "expect": "existing:@1|existing:@2"
+   },
+   {
+    "text": "cheers",
+    "gap": 10,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-35",
+  "about": "unity: two asks in one message, a numbered to-do list, a vague complaint, then a specific follow-up",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Boss fight phase two",
+    "state": "working",
+    "request": "Design and implement the second phase of the forest boss.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Audio mixer ducking",
+    "state": "working",
+    "request": "Duck music when important SFX play.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Shader graph outline",
+    "state": "working",
+    "request": "Outline shader for interactable objects in Shader Graph.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "The boss needs an enrage at 30% HP, and also the music should duck when the boss roars.",
+    "gap": 3,
+    "expect": "unsure"
+   },
+   {
+    "text": "To-do for today:\n1. outline thickness by distance\n2. boss arena collision fix\n3. audio sliders in options",
+    "gap": 7,
+    "expect": "unsure"
+   },
+   {
+    "text": "It's still not right.",
+    "gap": 10,
+    "expect": "unsure"
+   },
+   {
+    "text": "The outline gets thicker when the camera zooms out, it should stay constant in screen space.",
+    "gap": 8,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "te-36",
+  "about": "unity: pasted exceptions, one matching a finished thread, one unrelated becoming a new thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Addressables migration",
+    "state": "finished",
+    "request": "Move item icons and prefabs from Resources to Addressables.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 16000,
+    "at_ago": 16000,
+    "summary": "Icons and weapon prefabs load via Addressables labels."
+   },
+   {
+    "id": "t2",
+    "name": "Achievement system",
+    "state": "working",
+    "request": "Achievement system with Steam sync.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "InvalidKeyException: Exception of type 'UnityEngine.AddressableAssets.InvalidKeyException' was thrown., Key=icons/sword_iron, Type=UnityEngine.Sprite",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Unlock 'Pacifist' when you finish a level without killing anyone.",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Different crash, in the fishing scene:\nNullReferenceException: Object reference not set to an instance of an object\n  at FishingRod.Cast () [0x0002c] in Assets/Scripts/Fishing/FishingRod.cs:41",
+    "gap": 9,
+    "expect": "new",
+    "name_has": [
+     "fishing",
+     "rod",
+     "null"
+    ]
+   },
+   {
+    "text": "Steam achievement sync should retry if SteamAPI isn't initialized yet.",
+    "gap": 6,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "te-37",
+  "about": "unity: status about an unknown thread, resume a stopped thread, follow-up, waiting check; archived thread present",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Old input system cleanup",
+    "state": "finished",
+    "request": "Remove the legacy Input Manager code.",
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 432000,
+    "at_ago": 432000
+   },
+   {
+    "id": "t2",
+    "name": "Dialogue system",
+    "state": "stopped",
+    "request": "Branching dialogue system with Yarn-style nodes.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 900
+   },
+   {
+    "id": "t3",
+    "name": "Fishing minigame",
+    "state": "unknown",
+    "request": "Fishing minigame with tension meter.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 3600
+   }
+  ],
+  "stream": [
+   {
+    "text": "What happened to the fishing minigame thread? It says unknown.",
+    "gap": 2,
+    "expect": "home"
+   },
+   {
+    "text": "Resume the dialogue system, I stopped it by accident.",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Branching choices need to support conditions on quest flags.",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Is anything waiting on me?",
+    "gap": 8,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-38",
+  "about": "unity: answer then correction; revert on working thread; explicit new thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Camera shake tuning",
+    "state": "working",
+    "request": "Tune camera shake for landings, hits and explosions.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Day night cycle",
+    "state": "needs_you",
+    "request": "Day/night cycle with lighting transitions.",
+    "pending_question": "Should a full day last 10 or 20 real minutes?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "20",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Wait, 10. Playtesters got bored at night.",
+    "gap": 12,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Revert the shake on landing, keep it for explosions only.",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Make a new thread for a photo mode with a free camera and depth of field.",
+    "gap": 5,
+    "expect": "new",
+    "name_has": [
+     "photo"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "te-39",
+  "about": "unity: different words same work, a genuinely ambiguous menu bug, and a hard negative sharing 'enemy'",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Enemy pathfinding NavMesh",
+    "state": "working",
+    "request": "Enemies should path around obstacles using NavMesh agents.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Pause menu",
+    "state": "finished",
+    "request": "Pause menu on Escape/Start with resume, settings, quit.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 5000,
+    "at_ago": 5000,
+    "summary": "Pause menu works in gameplay scenes."
+   }
+  ],
+  "stream": [
+   {
+    "text": "The goblins keep getting stuck on the bridge corners.",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Escape on the title screen does nothing, it should open settings.",
+    "gap": 7,
+    "expect": "new|existing:t2",
+    "name_has": [
+     "title",
+     "settings",
+     "escape"
+    ]
+   },
+   {
+    "text": "They should also avoid walking through lava areas.",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "Add an enemy spawn wave system for arena mode.",
+    "gap": 8,
+    "expect": "new",
+    "name_has": [
+     "wave",
+     "spawn"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "te-40",
+  "about": "unity: follow-up, long gap then catch-up question, request on finished thread, vague pronoun with nothing recent",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Shader compile hitches",
+    "state": "working",
+    "request": "First-time shader compiles cause hitches in combat.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 1200
+   },
+   {
+    "id": "t2",
+    "name": "Controller vibration",
+    "state": "finished",
+    "request": "Add rumble on hits and explosions.",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 40000,
+    "at_ago": 40000,
+    "summary": "Rumble via Gamepad.SetMotorSpeeds, scaled by damage."
+   }
+  ],
+  "stream": [
+   {
+    "text": "Prewarm a ShaderVariantCollection during the splash screen.",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "ok back. what did I miss?",
+    "gap": 5400,
+    "expect": "home"
+   },
+   {
+    "text": "Rumble's way too strong on DualSense, halve it.",
+    "gap": 10,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Can you look at it again",
+    "gap": 1900,
+    "expect": "unsure"
+   }
+  ]
+ },
+ {
+  "id": "te-41",
+  "about": "ml: pending answer, pasted dataloader stack trace, wandb bug on finished thread, follow-up",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Dataloader worker crash",
+    "state": "working",
+    "request": "dataloader workers die randomly during epoch 2, figure out why",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Eval harness MMLU",
+    "state": "needs_you",
+    "request": "add MMLU to the eval harness",
+    "pending_question": "Use 5-shot or 0-shot for the MMLU baseline?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Wandb logging",
+    "state": "finished",
+    "request": "log train/eval metrics to wandb",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 12000,
+    "at_ago": 12000,
+    "summary": "train loss, lr, eval metrics logged under project 'pretrain-v3'."
+   }
+  ],
+  "stream": [
+   {
+    "text": "5-shot, to match the paper",
+    "gap": 2,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "Traceback (most recent call last):\n  File \"train.py\", line 211, in <module>\n    for batch in loader:\n  File \".../torch/utils/data/dataloader.py\", line 1345, in _next_data\nRuntimeError: DataLoader worker (pid 41213) is killed by signal: Killed.",
+    "gap": 5,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "all eval points show up at step 0 in wandb, looks like we log before incrementing global_step",
+    "gap": 9,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "try num_workers=4 and persistent_workers=True",
+    "gap": 6,
+    "expect": "existing:t1"
+   }
+  ],
+  "home": [
+   {
+    "text": "workers die in epoch 2 again, same as yesterday",
+    "ago": 300,
+    "thread": "t1"
+   }
+  ]
+ },
+ {
+  "id": "te-42",
+  "about": "ml: OOM trace and follow-up, NaN on finished precision thread, new sweep thread and follow-up",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "OOM on 7B finetune",
+    "state": "working",
+    "request": "7B full finetune OOMs on a single A100 80GB",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Mixed precision setup",
+    "state": "finished",
+    "request": "switch training to bf16 autocast",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 30000,
+    "at_ago": 30000,
+    "summary": "bf16 autocast enabled; 1.6x throughput."
+   }
+  ],
+  "stream": [
+   {
+    "text": "torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.96 GiB. GPU 0 has a total capacity of 79.15 GiB of which 1.02 GiB is free.",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "turn on gradient checkpointing for the decoder layers only",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "loss goes NaN after ~2k steps with bf16, was fine in fp32",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "separately, write a wandb sweep over lr from 1e-5 to 3e-4",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "sweep",
+     "lr",
+     "learning"
+    ]
+   },
+   {
+    "text": "bayes method, 20 runs max",
+    "gap": 4,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "te-43",
+  "about": "ml: empty project; greeting, eval harness and data loader threads, follow-ups",
+  "threads": [],
+  "stream": [
+   {
+    "text": "hello",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "set up an eval harness for our summarization checkpoints: ROUGE-L plus a judge model score, results to jsonl",
+    "gap": 5,
+    "expect": "new",
+    "name_has": [
+     "eval",
+     "summar"
+    ]
+   },
+   {
+    "text": "judge prompt should live in prompts/judge_v1.txt, not inline",
+    "gap": 6,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "also need a data loader for the new arxiv dump, parquet shards in s3://research-data/arxiv/",
+    "gap": 7,
+    "expect": "new",
+    "name_has": [
+     "arxiv",
+     "loader",
+     "data"
+    ]
+   },
+   {
+    "text": "stream it, the shards don't fit in RAM",
+    "gap": 5,
+    "expect": "existing:@2"
+   }
+  ]
+ },
+ {
+  "id": "te-44",
+  "about": "ml: two asks in one message, numbered list, vague 'still broken', then a specific follow-up",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Tokenizer padding bug",
+    "state": "working",
+    "request": "generation outputs garbage for batched inputs, padding issue?",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Checkpoint resume",
+    "state": "working",
+    "request": "resuming from checkpoint should restore everything",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Wandb artifacts",
+    "state": "quiet",
+    "request": "save eval outputs as wandb artifacts",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 3000
+   }
+  ],
+  "stream": [
+   {
+    "text": "set padding_side to left for generation and also make checkpoints save every 500 steps",
+    "gap": 3,
+    "expect": "unsure"
+   },
+   {
+    "text": "todo:\n1. auto resume from latest ckpt\n2. upload ckpts as wandb artifacts\n3. delete local ckpts older than the last 3",
+    "gap": 6,
+    "expect": "unsure"
+   },
+   {
+    "text": "still broken",
+    "gap": 9,
+    "expect": "unsure"
+   },
+   {
+    "text": "resume restores the optimizer state but the lr scheduler restarts from warmup",
+    "gap": 7,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "te-45",
+  "about": "ml: status questions, a kill instruction to one thread, thanks",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Ablation no-dropout",
+    "state": "working",
+    "request": "ablation: retrain the 1B with dropout 0",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Eval harness GSM8K",
+    "state": "finished",
+    "request": "add GSM8K to evals",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 4000,
+    "at_ago": 4000,
+    "summary": "GSM8K 8-shot: 41.2% on ckpt-12000."
+   },
+   {
+    "id": "t3",
+    "name": "Data mixture weights",
+    "state": "needs_you",
+    "request": "tune code vs web mixture",
+    "pending_question": "Start the sweep at 20% code or 30% code?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t4",
+    "name": "Flash attention 2",
+    "state": "working",
+    "request": "switch attention to flash-attn 2",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t5",
+    "name": "Tokenizer stats",
+    "state": "idle",
+    "request": "compute fertility stats for the tokenizer",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 50000
+   },
+   {
+    "id": "t6",
+    "name": "Learning rate warmup",
+    "state": "unknown",
+    "request": "try 2k vs 500 step warmup",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 5000
+   },
+   {
+    "id": "t7",
+    "name": "Dropout ablation analysis",
+    "state": "finished",
+    "request": "write up what the dropout ablations showed so far",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 60000,
+    "at_ago": 60000,
+    "summary": "Dropout 0.1 vs 0.0: no eval difference at 300M scale."
+   },
+   {
+    "id": "t8",
+    "name": "Checkpoint averaging",
+    "state": "quiet",
+    "request": "try averaging the last 5 checkpoints",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 7000
+   },
+   {
+    "id": "t9",
+    "name": "Wandb dashboard cleanup",
+    "state": "finished",
+    "request": "clean up the wandb workspace panels",
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 345600,
+    "at_ago": 345600
+   },
+   {
+    "id": "t10",
+    "name": "Data loader prefetch",
+    "state": "working",
+    "request": "prefetch next shard while training on current one",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "status?",
+    "gap": 0,
+    "expect": "home"
+   },
+   {
+    "text": "which runs are still going",
+    "gap": 5,
+    "expect": "home"
+   },
+   {
+    "text": "kill the dropout ablation, it's eating GPUs we need",
+    "gap": 8,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "thanks",
+    "gap": 6,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-46",
+  "about": "ml: hard negative sharing 'eval' (validation loss vs benchmark harness); follow-ups with no shared words",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Eval harness GSM8K",
+    "state": "working",
+    "request": "build a GSM8K eval harness with answer extraction",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Data dedup pipeline",
+    "state": "quiet",
+    "request": "near-dup removal with MinHash LSH over the web crawl",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 3500
+   }
+  ],
+  "stream": [
+   {
+    "text": "the eval loss curve in wandb is totally flat during training, is the val split even being shuffled?",
+    "gap": 3,
+    "expect": "new|unsure",
+    "name_has": [
+     "val",
+     "loss",
+     "split"
+    ]
+   },
+   {
+    "text": "threshold 0.8 is removing too much, try 0.85",
+    "gap": 7,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "answer extraction fails when the model writes '#### 42.' with a trailing period",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "also strip commas, like '1,200'",
+    "gap": 3,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "te-47",
+  "about": "ml: NCCL error on finished launcher thread; packing follow-up; fix report back to launcher thread; thanks",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Distributed training launch",
+    "state": "finished",
+    "request": "multi-node training launch script",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 20000,
+    "at_ago": 20000,
+    "summary": "torchrun launcher with FSDP across 2 nodes x 8 GPUs."
+   },
+   {
+    "id": "t2",
+    "name": "Sequence packing",
+    "state": "working",
+    "request": "pack short sequences to 4096 tokens to cut padding",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "torch.distributed.DistBackendError: NCCL error in: ../torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:1970, unhandled system error\nLast error:\nsocket timeout",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "packed sequences need attention masks that block cross-document attention",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "NCCL_SOCKET_IFNAME=ens5 fixed it actually",
+    "gap": 40,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "ty",
+    "gap": 5,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-48",
+  "about": "ml: two waiting questions answered by content, acknowledgement, status of blocked work",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Long sample handling",
+    "state": "needs_you",
+    "request": "decide what to do with very long samples",
+    "pending_question": "Drop samples longer than 4096 tokens or truncate them?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Gradient logging",
+    "state": "needs_you",
+    "request": "log gradient norms and histograms",
+    "pending_question": "Log gradient histograms to wandb every step or every 100 steps?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Throughput benchmark",
+    "state": "working",
+    "request": "benchmark tokens/sec across batch sizes",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "truncate",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "every 100, every step made the run page unusable last time",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "ok",
+    "gap": 6,
+    "expect": "home"
+   },
+   {
+    "text": "what's still blocked",
+    "gap": 8,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-49",
+  "about": "ml: add then undo on a grid; new thread after a 2h gap; follow-up; status of the old thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "LoRA rank ablation",
+    "state": "working",
+    "request": "ablate LoRA rank 8/16/32/64 on the instruct set",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   }
+  ],
+  "stream": [
+   {
+    "text": "add rank 128 to the grid",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "actually drop 128, we don't have the memory",
+    "gap": 15,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "new thing: reproduce the DPO paper baseline numbers on our preference data",
+    "gap": 7200,
+    "expect": "new",
+    "name_has": [
+     "dpo",
+     "baseline"
+    ]
+   },
+   {
+    "text": "beta 0.1",
+    "gap": 5,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "and how's the lora one doing",
+    "gap": 8,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "te-50",
+  "about": "ml: loose and misspelt thread names, explicit fresh thread, archived thread reference",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Wandb sweep config",
+    "state": "working",
+    "request": "sweep config for the finetune hyperparams",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Flash attention install",
+    "state": "needs_you",
+    "request": "get flash-attn building on the cluster image",
+    "pending_question": "CUDA 12.1 or 12.4 base image?",
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Tokenizer training",
+    "state": "working",
+    "request": "train a BPE tokenizer on the new corpus",
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 300
+   },
+   {
+    "id": "t4",
+    "name": "Old CIFAR baseline",
+    "state": "finished",
+    "request": "ResNet-18 CIFAR-10 baseline",
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1728000,
+    "at_ago": 1728000
+   }
+  ],
+  "stream": [
+   {
+    "text": "flash attn thing: build fails with `error: identifier \"__hfma2\" is undefined`",
+    "gap": 2,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "the sweep one, add warmup_ratio as a param",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "tokenzier: vocab 32k not 50k",
+    "gap": 3,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "can you open a fresh thread for profiling the dataloader with py-spy",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "profil",
+     "dataloader"
+    ]
+   },
+   {
+    "text": "the cifar baseline from before, rerun it with the new augmentation",
+    "gap": 8,
+    "expect": "existing:t4|new",
+    "name_has": [
+     "cifar"
+    ]
+   }
+  ]
+ }
+]

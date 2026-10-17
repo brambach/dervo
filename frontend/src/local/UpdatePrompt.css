@@ -1,0 +1,23 @@
+/* The update prompt (beta.15, group 9): one card in the window's upper right, under the 52px main head, where a Mac
+   notification would be. The lower right is the composer's send button. Over the work but never in front of a dialog.
+   The app icon on the left, then the open card's head, a few notes and its actions. */
+.dv-update-prompt { position: fixed; right: var(--dv-s5); top: calc(52px + var(--dv-s2)); z-index: 40; width: 360px; max-width: calc(100vw - 2 * var(--dv-s5));
+  display: flex; gap: var(--dv-s3); padding: var(--dv-s4); border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: var(--dv-float);
+  animation: dv-rise var(--dv-calm) var(--dv-ease) both; }
+.dv-update-prompt .dv-up-mark { flex: none; width: 40px; height: 40px; margin: -2px 0 0 -4px; }
+.dv-update-prompt .dv-up-body { display: flex; flex-direction: column; gap: var(--dv-s3); min-width: 0; flex: 1; }
+.dv-update-prompt .dv-title { font-size: var(--dv-fs-body); font-weight: 600; color: var(--dv-ink); }
+.dv-up-notes { margin: 0; padding-left: 1.1em; list-style: disc outside; display: flex; flex-direction: column; gap: 2px; font-size: var(--dv-fs-small); line-height: var(--dv-lh-ui); color: var(--dv-ink-2); }
+.dv-up-progress { display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dv-up-progress progress { width: 100%; height: 6px; appearance: none; border: 0; border-radius: var(--dv-r-pill); background: var(--dv-sunk); overflow: hidden; }
+.dv-up-progress progress::-webkit-progress-bar { background: var(--dv-sunk); }
+.dv-up-progress progress::-webkit-progress-value { background: var(--dv-pine); border-radius: var(--dv-r-pill); }
+@media (prefers-reduced-motion: reduce) { .dv-update-prompt { animation: none; } }
+
+/* The dot on Settings and on Updates until you're on the newest build: the live green, not rust, since an update never
+   needs you right now. */
+.dv-update-dot { flex: none; width: 7px; height: 7px; border-radius: 50%; background: var(--dv-live); box-shadow: 0 0 0 2px var(--dv-paper); }
+.dv-sb-item .dv-update-dot { margin-left: auto; }
+.dv-me { position: relative; }
+.dv-me > .dv-update-dot { position: absolute; left: 30px; top: 7px; }
+.dv-mi-end .dv-update-dot { display: inline-block; }

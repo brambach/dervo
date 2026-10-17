@@ -1,0 +1,43 @@
+/* Settings: the settings nav in the sidebar and the page in the main panel. Layout only; the rows, type and page frame
+   are the dv- classes in DervoComponents.css. */
+/* The nav sits where the app sidebar was, on the same wash, under the 40px window chrome. */
+.dv-sb.dv-sb-settings { flex: 1; padding-top: var(--dv-s2); overflow-y: auto; scrollbar-width: none; }
+.dv-sb.dv-sb-settings::-webkit-scrollbar { display: none; }
+.dv-sb-settings .dv-sb-item { width: 100%; text-align: left; }
+.dv-sb-settings .dv-sb-item svg { color: var(--dv-muted); }
+.dv-sb-settings .dv-sb-item[aria-current="page"] svg { color: var(--dv-ink); }
+.dv-sb-settings .dv-sb-item:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dv-sb-settings .dv-sb-back { color: var(--dv-muted); font-weight: 600; margin-bottom: var(--dv-s2); }
+.dv-sb-settings .dv-sb-back:hover { color: var(--dv-ink); }
+.dv-sb-settings .dv-sb-back:hover svg { color: var(--dv-ink); }
+.dv-sb-settings .dv-sb-back .dv-kbd { margin-left: auto; flex: none; }
+.dv-sb-settings .dv-sb-group-head .dv-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* While Settings is open, the app sidebar and the screen you came from stay mounted and out of sight, so going back
+   finds them as you left them, scroll included. */
+.dv-keep { display: contents; }
+.dv-keep[data-away] { display: none; }
+/* The page: the 52px drag band, then Home's column, scrolling on its own. */
+.dv-settings { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.dv-settings > .dv-column { flex: 1; min-height: 0; }
+.dv-settings .dv-measure { padding-bottom: var(--dv-s7); }
+/* Pages still showing today's forms keep their own headings out of the way of the page's title. */
+.dv-settings .dervo-settings-form > header:first-child { display: none; }
+.dv-settings .dervo-settings-form { height: auto; }
+.dv-settings-soon { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 62ch; }
+/* Today's settings forms, as the old project settings page laid them out, until the area builds replace them. */
+.dervo-settings-form { display: flex; flex-direction: column; gap: 18px; }
+.dervo-settings-section { display: flex; flex-direction: column; gap: var(--dv-s4); max-width: 680px; }
+.dervo-settings-section > p { font-size: var(--dv-fs-small); line-height: 1.6; color: var(--dv-muted); }
+.dv-settings .dervo-save-bar { padding-bottom: var(--dv-s4); }
+/* The settings nav stacks its rows with no gap between them, as settings/shell.html draws it. */
+.dv-sb-settings .dv-sb-group { display: flex; flex-direction: column; gap: 0; }
+/* Search uses the same inset field and quiet sidebar type as the existing settings controls. */
+.dv-settings-search { position: relative; display: flex; align-items: center; margin: 0 var(--dv-s2); }
+.dv-settings-search > svg { position: absolute; left: var(--dv-s2); color: var(--dv-muted); pointer-events: none; }
+.dv-settings-search .dv-input { width: 100%; padding-left: calc(var(--dv-s2) * 2 + 16px); }
+.dv-settings-search-status, .dv-settings-search-help { margin: var(--dv-s2) var(--dv-s2) 0; font-size: var(--dv-fs-caption); line-height: var(--dv-lh-read); color: var(--dv-muted); }
+.dv-settings-result-scope { display: block; overflow: hidden; text-overflow: ellipsis; font-size: var(--dv-fs-caption); font-weight: 400; color: var(--dv-muted); }
+.dv-settings-page-scope { margin-bottom: var(--dv-s2); }
+
+/* Page titles in settings are sans (design, 8 Oct): the serif stays for the Home greeting and onboarding. */
+.dv-page-title { margin: 0; font: 600 1.375rem/1.25 var(--dv-font-text); letter-spacing: -.01em; color: var(--dv-ink); }

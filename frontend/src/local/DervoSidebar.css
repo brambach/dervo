@@ -1,0 +1,139 @@
+/* The sidebar's app-side layout, over the mockup classes in DervoComponents.css (dv-sb-*, dv-usage, dv-me). Everything
+   here is layout and state; colours, sizes, radii and spacing are the dv- tokens. The sidebar sits on the meadow wash
+   the window paints, so nothing in it has an opaque background except the frosted selected row. */
+/* In the app the 40px window chrome (traffic lights, sidebar toggle, history) sits above the sidebar, so the mockup's
+   48px top padding becomes 8px here. The sidebar scrolls as one column on a short window. */
+.dv-sb.dv-sb-app { flex: 1; padding-top: var(--dv-s2); overflow-y: auto; scrollbar-width: none; }
+.dv-sb.dv-sb-app::-webkit-scrollbar { display: none; }
+.dv-sb.dv-sb-app > :not(.dv-sb-list) { flex-shrink: 0; }
+.dv-sb-project { width: 100%; }
+.dv-sb-project .dv-sb-project-copy { min-width: 0; flex: 1; }
+.dv-sb-project b, .dv-sb-project small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A Work project's mark stays whole after its name; the name gives way first (b16-work thread-work). */
+.dv-sb-project b.dv-sb-project-name { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.dv-sb-project-name > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dv-sb-project-name .dv-work-tag, .dv-mi-work .dv-work-tag { height: 16px; font-size: 0.6875rem; }
+.dv-mi-work { display: inline-flex; align-items: center; gap: 6px; min-width: 0; }
+.dv-sb-project .dv-chev { flex: none; }
+.dv-sb-search { width: 100%; text-align: left; }
+.dv-sb-search:hover:not(:disabled) { background: var(--dv-hover); color: var(--dv-ink); }
+.dv-sb-search:disabled, .dv-sb-item:disabled { opacity: .5; cursor: default; }
+.dv-sb-search svg { flex: none; }
+.dv-sb-nav { display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dv-sb-nav .dv-sb-item { width: 100%; text-align: left; }
+.dv-sb-nav .dv-sb-item svg { color: var(--dv-muted); }
+.dv-sb-nav .dv-sb-item[aria-current="page"] svg { color: var(--dv-ink); }
+/* The thread list: one column that never widens into a sideways scroll, folding and Archived at its foot. */
+.dv-sb-list { display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: var(--dv-s1); min-height: 176px; flex: 1 1 auto; overflow-x: hidden; overflow-y: auto; scrollbar-width: thin; }
+.dv-sb-list > .dv-sb-group:first-child { margin-top: var(--dv-s3); }
+.dv-sb-group { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; min-width: 0; }
+.dv-sb-group-head .dv-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A workstream quiet for three days folds to its header (item 8): the same label and count, as a button, with a small
+   chevron so it reads as closed. Opening it is the same hover and ring as "N more". */
+.dv-sb-group-stale { width: 100%; align-items: center; border-radius: var(--dv-r1); text-align: left; }
+.dv-sb-group-stale:hover { background: var(--dv-hover); }
+.dv-sb-group-stale:hover .dv-label { color: var(--dv-ink); }
+.dv-sb-group-stale svg { flex: none; color: var(--dv-faint); }
+:root[data-dervo-local] .dv-sb-group-stale:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-sb-group-note { margin: 0 var(--dv-s2) var(--dv-s1); font-size: var(--dv-fs-caption); line-height: 1.4; color: var(--dv-muted); }
+/* The line under a row Dervo changed on its own, indented to the name like a row error, muted, with Undo at the end.
+   Tokens only, so it reads the same on the dark wash. */
+.dv-sb-row-note { display: flex; align-items: baseline; gap: var(--dv-s2); margin: 0 var(--dv-s2) var(--dv-s1) calc(var(--dv-s2) + 16px + var(--dv-s2)); font-size: var(--dv-fs-caption); line-height: 1.4; color: var(--dv-muted); }
+.dv-sb-row-note > span { flex: 1; min-width: 0; }
+.dv-sb-row-note .dv-sb-undo { margin: 0; }
+/* A thread row: the glyph, the name as the button, the time, and ⋯ on hover. The row itself carries the hover and the
+   frosted selection, so the button inside is bare. */
+.dv-sb-thread { position: relative; padding-right: var(--dv-s1); }
+.dv-sb-thread .dv-sb-open { flex: 1; min-width: 0; display: flex; align-items: center; text-align: left; color: inherit; font: inherit; }
+.dv-sb-thread .dv-sb-open .dv-name { display: block; }
+.dv-sb-item .dv-name.dv-unseen { font-weight: 600; color: var(--dv-ink); }
+.dv-sb-thread .dv-meta { flex: none; }
+.dv-sb-thread .dv-sb-more { display: grid; position: absolute; right: var(--dv-s1); top: 50%; translate: 0 -50%; width: 22px; height: 22px; border-radius: var(--dv-r1); place-items: center; color: var(--dv-muted);
+  opacity: 0; pointer-events: none; transition: opacity var(--dv-fast) var(--dv-ease), background-color var(--dv-hover-out) var(--dv-ease); }
+/* 8 Oct: the time and ⋯ share one slot and crossfade. The time keeps its width, so the name never re-truncates under the
+   pointer (it used to swap display:none for display:grid, and the widths differed). */
+.dv-sb-thread .dv-meta { min-width: 22px; text-align: right; transition: opacity var(--dv-fast) var(--dv-ease); }
+.dv-sb-thread .dv-sb-more:hover { color: var(--dv-ink); background: var(--dv-press); }
+.dv-sb-thread:hover .dv-sb-more, .dv-sb-thread:focus-within .dv-sb-more, .dv-sb-thread .dv-sb-more[data-state="open"] { opacity: 1; pointer-events: auto; }
+/* The menu takes focus when it opens; its trigger stays put so the menu stays anchored to the row. */
+.dv-sb-thread:has(.dv-sb-more[data-state="open"]) { background: var(--dv-hover); }
+.dv-sb-thread:has(> .dv-sb-undo) .dv-sb-more { display: none; } /* Undo holds the slot after a rename */
+.dv-sb-thread:hover .dv-meta, .dv-sb-thread:focus-within .dv-meta, .dv-sb-thread:has(.dv-sb-more[data-state="open"]) .dv-meta { opacity: 0; }
+/* "N more" keeps its text at the row's 8px inset, half as margin and half as padding, so the keyboard ring has room on
+   the left and never runs into the words (UX4). The list clips sideways, so the ring stays inside its 4px margin. */
+.dv-sb-fold { justify-self: start; margin: 0 var(--dv-s1) var(--dv-s1); padding: 2px var(--dv-s1); border-radius: var(--dv-r1); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dv-sb-fold:hover { color: var(--dv-ink); }
+:root[data-dervo-local] .dv-sb-fold:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-sb-new { margin-top: var(--dv-s2); color: var(--dv-muted); text-align: left; }
+.dv-sb-new:hover:not(:disabled) { color: var(--dv-ink); }
+/* Usage: one line per account, as a quiet button that opens usage by account; one line in all when every account has
+   more than half left (item 8). */
+.dv-sb-usage { display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dv-usage { width: 100%; text-align: left; border-radius: var(--dv-r1); }
+.dv-usage:hover { background: var(--dv-hover); }
+.dv-usage b { white-space: nowrap; }
+.dv-usage .dv-usage-windows { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-usage-pop .dv-usage-windows { grid-column: 1 / -1; display: grid; gap: 10px; padding-top: 6px; }
+.dv-usage .dv-usage-runs { grid-column: 3 / -1; font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: right; }
+/* One size for the whole line: "Left" and the dots drew at the button's inherited 14px beside 12px figures, and the
+   extra width cut a low figure's "(5h)" at the default 232px sidebar (design review, 23 Sep). */
+.dv-usage-one { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--dv-fs-caption); }
+.dv-usage-one .dv-usage-sep { color: var(--dv-faint); margin-inline: .3em; }
+.dv-usage-one .dv-usage-left { color: var(--dv-muted); }
+.dv-usage-one .dv-usage-part[data-low="true"] .dv-pct { color: var(--dv-ink); font-weight: 600; }
+.dv-usage[data-low="true"] .dv-bar i { background: var(--dv-ink-2); }
+/* Low is worth noticing, but rust is the one "needs you" mark on the screen, so a low account reads in ink. */
+.dv-usage:not(.dv-usage-one)[data-low="true"] .dv-pct { color: var(--dv-ink); font-weight: 600; }
+/* Who's signed in, with the account menu behind it. */
+.dv-me { width: 100%; text-align: left; border-radius: var(--dv-r2); }
+.dv-me:hover { background: var(--dv-hover); }
+.dv-me .dv-me-copy { min-width: 0; flex: 1; }
+.dv-me .dv-me-copy b, .dv-me .dv-me-copy small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-me .dv-chev { color: var(--dv-faint); flex: none; }
+.dv-me > span:first-child { width: 26px; height: 26px; font-size: var(--dv-fs-caption); background: var(--dv-sage-wash); color: var(--dv-ink-2); }
+/* Archived, folded under the list (ConversationLifecycle draws its rows). */
+.dv-sb-list .dervo-archived { margin: var(--dv-s1) 0 0; color: var(--dv-muted); }
+.dv-sb-list .dervo-archived > summary { padding: 7px var(--dv-s2); border-radius: var(--dv-r1); font-size: var(--dv-fs-small); }
+.dv-sb-list .dervo-archived > summary:hover { background: var(--dv-hover); color: var(--dv-ink); }
+.dv-sb-list .dervo-archived-row:hover, .dv-sb-list .dervo-archived-row:has([data-state="open"]) { background: var(--dv-hover); }
+.dv-sb-list .dervo-archived-actions button:hover { background: var(--dv-press); color: var(--dv-ink); }
+/* Multi-select (beta.16.1 item 3). A picked row is pine-tinted, like a Mac list's selection, never rust: rust means "needs
+   you". The open thread keeps its own lift and gains the tint when it's picked too. */
+.dv-sb-item.dv-sb-thread[data-selected] { background: color-mix(in srgb, var(--dv-pine) 8%, transparent); color: var(--dv-ink);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dv-pine) 16%, transparent); }
+.dv-sb-item.dv-sb-thread[data-selected]:hover { background: color-mix(in srgb, var(--dv-pine) 11%, transparent); }
+:root[data-dervo-local].dark .dv-sb-item.dv-sb-thread[data-selected] { background: color-mix(in srgb, var(--dv-pine) 12%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dv-pine) 20%, transparent); }
+/* The selection's actions, pinned to the foot of the thread list so they stay in reach as it scrolls. */
+.dv-sb-selection { position: sticky; bottom: var(--dv-s2); z-index: 2; display: flex; align-items: center; gap: var(--dv-s1);
+  margin-top: var(--dv-s2); padding: var(--dv-s1) var(--dv-s1) var(--dv-s1) var(--dv-s3); border-radius: var(--dv-r2);
+  background: var(--dv-raised); box-shadow: var(--dv-float); font-size: var(--dv-fs-small); }
+.dv-sb-selection-count { flex: 1; min-width: 0; color: var(--dv-ink); font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dv-sb-selection .dv-btn { gap: 6px; padding: 0 var(--dv-s2); }
+.dv-sb-selection .dv-sc { font-size: var(--dv-fs-caption); color: var(--dv-faint); letter-spacing: .02em; }
+/* Subthreads under their parent (beta.17, #27), like Discord's threads under a channel: indented so the glyph lines up
+   with the parent's name, joined by a thin line from the parent's glyph that curves into each one. Solid ink 30% on
+   paper (beta.17.1): translucent ink let the wallpaper through the wash and faded under the selected parent's raised
+   row. The pieces meet without overlapping, so the line never darkens where they join, should it go translucent again.
+   Each piece reaches 1px into the group's 2px row gap. Mocks: evidence/design-tests/b17-threads and b171-subthread-line. */
+.dv-sb-kids-rows { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; min-width: 0; }
+.dv-sb-thread.dv-sb-child { padding-left: calc(var(--dv-s2) + 20px); --dv-sb-line: color-mix(in srgb, var(--dv-ink) 30%, var(--dv-paper)); }
+.dv-sb-thread.dv-sb-parent { --dv-sb-line: color-mix(in srgb, var(--dv-ink) 30%, var(--dv-paper)); }
+.dv-sb-thread.dv-sb-child::before { content: ""; position: absolute; left: calc(var(--dv-s2) + 7.5px); top: -1px; height: calc(50% + 1px); width: 9px;
+  border-left: 1px solid var(--dv-sb-line); border-bottom: 1px solid var(--dv-sb-line); border-bottom-left-radius: 7px; pointer-events: none; }
+.dv-sb-thread.dv-sb-child:not(.dv-sb-child-last)::after { content: ""; position: absolute; left: calc(var(--dv-s2) + 7.5px); top: calc(50% - 7px); bottom: -1px;
+  border-left: 1px solid var(--dv-sb-line); pointer-events: none; }
+.dv-sb-thread.dv-sb-parent[data-family="open"]::after, .dv-sb-thread.dv-sb-parent[data-family="peek"]::after { content: ""; position: absolute;
+  left: calc(var(--dv-s2) + 7.5px); top: calc(50% + 9px); bottom: -1px; border-left: 1px solid var(--dv-sb-line); pointer-events: none; }
+/* A subthread that shows from a folded parent (it needs you, or it's open) hangs from a dotted line: there are more. */
+.dv-sb-thread.dv-sb-parent[data-family="peek"]::after { border-left-style: dotted; }
+/* The parent's count, which is also the fold. Folded, it carries the loudest of their marks. */
+.dv-sb-kids { display: inline-flex; align-items: center; gap: 3px; height: 20px; padding: 0 5px 0 6px; margin: -2px 0; border-radius: var(--dv-r-pill);
+  color: var(--dv-muted); font-size: var(--dv-fs-caption); font-weight: 500; font-variant-numeric: tabular-nums; flex: none;
+  background: color-mix(in srgb, var(--dv-ink) 5%, transparent); }
+.dv-sb-kids:hover { color: var(--dv-ink); background: color-mix(in srgb, var(--dv-ink) 9%, transparent); }
+.dv-sb-kids svg { width: 11px; height: 11px; flex: none; }
+.dv-sb-kids .dv-st { width: 12px; height: 12px; margin-left: -2px; }
+.dv-sb-kids .dv-st svg { width: 12px; height: 12px; }
+.dv-sb-kids[data-roll="needs"] { color: var(--dv-ink); }
+:root[data-dervo-local] .dv-sb-kids:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 1px; }

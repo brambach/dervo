@@ -1,0 +1,54 @@
+/* A file's trace: the lines with who wrote each block, then why the picked line is there. Layout only, dv- tokens only. */
+.dervo-trace-body { flex: 1; min-height: 0; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); padding-top: var(--dv-s4); }
+.dervo-trace-body > .dv-measure { max-width: none; gap: var(--dv-s4); padding-bottom: var(--dv-s6); }
+.dervo-trace-head { display: flex; align-items: flex-end; gap: var(--dv-s3); }
+.dervo-trace-head h1 { outline: none; }
+.dervo-trace-head .dv-caption { display: block; margin-top: 2px; font-size: var(--dv-fs-small); }
+.dervo-trace-head .dv-seg { margin-left: auto; }
+.dervo-trace-name { font: 500 var(--dv-fs-title)/1.3 var(--dv-font-mono); letter-spacing: -.01em; }
+.dervo-trace-note { margin-top: calc(-1 * var(--dv-s2)); }
+
+.dervo-trace-code { background: var(--dv-canvas); box-shadow: inset 0 0 0 1px var(--dv-line); border-radius: var(--dv-r2); padding: var(--dv-s2) 0; max-height: 380px; overflow: auto; }
+.dervo-trace-code:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dervo-trace-code table { border-collapse: collapse; width: 100%; font: 400 var(--dv-fs-caption)/20px var(--dv-font-mono); table-layout: fixed; }
+.dervo-trace-code td { padding: 0; white-space: pre; overflow: hidden; }
+.dervo-trace-code td.blame { width: 124px; padding-left: var(--dv-s3); font: 600 var(--dv-fs-caption)/20px var(--dv-font-text); color: var(--dv-muted); vertical-align: top; overflow: visible; }
+.dervo-trace-code td.blame span { position: sticky; top: 0; display: block; overflow: hidden; text-overflow: ellipsis; background: var(--dv-canvas); }
+.dervo-trace-code tbody tr:is(:hover, [data-selected]) td.blame { background: none; }
+.dervo-trace-code td.ln { width: 48px; text-align: right; padding-right: var(--dv-s3); }
+.dervo-trace-code td.ln button { color: var(--dv-faint); font: inherit; font-variant-numeric: tabular-nums; border-radius: 3px; padding: 0 2px; }
+.dervo-trace-code td.ln button:hover { color: var(--dv-ink); }
+.dervo-trace-code td.ln button:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 0; }
+.dervo-trace-code td.src { color: var(--dv-ink-2); text-overflow: clip; padding-right: var(--dv-s3); }
+.dervo-trace-code tr { cursor: pointer; }
+.dervo-trace-code tr:hover td { background: color-mix(in srgb, var(--dv-ink) 3%, transparent); }
+.dervo-trace-code tr[data-selected] td { background: color-mix(in srgb, var(--dv-sage-wash) 88%, transparent); }
+.dervo-trace-code tr[data-selected] td.src { color: var(--dv-ink); }
+.dervo-trace-goto { display: flex; align-items: center; gap: var(--dv-s2); margin-top: calc(-1 * var(--dv-s2)); }
+.dervo-trace-goto label { display: inline-flex; align-items: center; gap: var(--dv-s2); margin-left: var(--dv-s2); }
+.dervo-trace-goto .dv-input { width: 72px; height: 26px; font-size: var(--dv-fs-caption); }
+
+.dervo-trace-below { display: grid; grid-template-columns: minmax(0, 1fr) 236px; gap: var(--dv-s6); }
+.dervo-trace-below[data-view="runs"] { grid-template-columns: minmax(0, 420px); }
+.dervo-trace-below section > .dv-label { display: block; margin-bottom: var(--dv-s2); }
+.dervo-trace-why { display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 8px var(--dv-s3); font-size: var(--dv-fs-small); line-height: 1.5; }
+.dervo-trace-why > div { display: contents; }
+.dervo-trace-why dt { color: var(--dv-faint); font-weight: 600; font-size: var(--dv-fs-caption); padding-top: 2px; }
+.dervo-trace-why dd { color: var(--dv-ink-2); }
+.dervo-trace-why b { font-weight: 600; color: var(--dv-ink); }
+.dervo-trace-actions { display: flex; align-items: center; gap: var(--dv-s2); margin-top: var(--dv-s4); }
+.dervo-trace-actions .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-trace-runs { display: flex; flex-direction: column; gap: 2px; margin: 0 calc(-1 * var(--dv-s2)); }
+.dervo-trace-runs button { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--dv-s2); width: 100%; padding: var(--dv-s2); border-radius: var(--dv-r1);
+  text-align: left; font-size: var(--dv-fs-small); line-height: 1.4; color: inherit; }
+.dervo-trace-runs button:hover { background: color-mix(in srgb, var(--dv-ink) 4%, transparent); }
+.dervo-trace-runs button:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 1px; }
+.dervo-trace-runs li[data-linked] button { background: color-mix(in srgb, var(--dv-sage-wash) 88%, transparent); }
+.dervo-trace-runs b { font-weight: 600; }
+.dervo-trace-runs small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dervo-trace-runs .dervo-history-who { width: 20px; height: 20px; border-radius: 6px; margin-top: 1px; }
+.dervo-trace-foot { display: block; margin-top: var(--dv-s3); line-height: 1.45; }
+.dervo-trace-pick { display: flex; align-items: center; gap: var(--dv-s2); }
+.dervo-trace-pick .dervo-history-find { margin-left: 0; flex: 1; max-width: 520px; }
+
+@media (max-width: 900px) { .dervo-trace-below { grid-template-columns: minmax(0, 1fr); } }

@@ -1,0 +1,79 @@
+/* Catch up at full depth, on the dv- system (design review 23 Sep, item 5). The page is Settings' and Knowledge's: the
+   project as a 13px kicker, "Catch up" in the display serif, one plain line, then sections set apart by space alone.
+   Each section is Home's sheet of rows (.dv-sheet, .dv-row, the status glyph), and the next step is the one row lifted
+   onto a card (.dv-row.dv-open) with the page's only pine pill. Tokens only, and nothing enters: the page paints
+   finished, and after that only real state changes it. */
+.dervo-catchup { container-type: inline-size; display: flex; flex: 1; min-height: 0; flex-direction: column; color: var(--dv-ink); }
+.dervo-catchup-scroll { flex: 1; min-height: 0; }
+
+.dervo-catchup-head { gap: var(--dv-s2); }
+.dervo-catchup-top { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s4); min-height: 32px; margin-bottom: calc(-1 * var(--dv-s1)); }
+.dervo-catchup-kicker { min-width: 0; font-size: var(--dv-fs-small); color: var(--dv-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-catchup-tools { display: flex; gap: 2px; flex: none; margin-right: calc(-1 * var(--dv-s2)); }
+.dervo-catchup-head h1 { color: var(--dv-ink); outline: none; }
+
+/* A load that failed: ink with its own glyph, never rust. */
+.dervo-catchup-fail { display: flex; align-items: center; gap: var(--dv-s2); font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+.dervo-catchup-fail p { flex: 1; min-width: 0; }
+
+.dervo-catchup-section { display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dervo-catchup-label { padding-bottom: var(--dv-s1); }
+.dervo-catchup-count { font-weight: 400; }
+.dervo-catchup-more { padding-top: var(--dv-s1); }
+
+/* Rows. A name and its lines never push the end column off the row. */
+.dervo-catchup .dv-row-name { display: block; max-width: 100%; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-catchup .dv-row.dv-open .dv-row-name { white-space: normal; overflow-wrap: anywhere; }
+.dervo-catchup .dv-row-name .dv-caption { font-weight: 400; }
+.dervo-catchup .dv-row-line { overflow-wrap: anywhere; }
+.dervo-catchup-detail { color: var(--dv-faint); display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.dervo-catchup .dv-row-end { flex-wrap: wrap; justify-content: flex-end; row-gap: var(--dv-s1); }
+.dervo-catchup .dv-row-end .dv-when { white-space: nowrap; }
+.dervo-catchup .dv-facts dd { overflow-wrap: anywhere; }
+/* A row that is one button: the whole row opens its thread, with the sheet's own hover and a focus ring inside it. */
+.dervo-catchup-button { width: 100%; text-align: left; cursor: pointer; }
+.dervo-catchup-button:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dervo-catchup-copy { display: flex; flex-direction: column; min-width: 0; }
+.dervo-catchup-copy > .dv-row-line { display: block; }
+.dervo-catchup-copy > .dervo-catchup-detail { display: -webkit-box; }
+/* "Why" and "Next" in front of the agent's own words, inline so they cost no row of their own. */
+.dervo-catchup-said { margin-right: var(--dv-s2); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+
+/* The lifted row's actions: the pine pill first, then the kit's outlined pill at the same height, Dismiss last. The
+   shared Button's sunk "secondary" (Approve result, Retry) takes the outlined look here, so the card carries two kinds
+   of pill and not three. */
+.dervo-catchup-actions { flex-wrap: wrap; align-items: center; }
+.dervo-catchup-actions [data-dv-btn="secondary"] { height: 32px; padding: 0 var(--dv-s4); font-size: var(--dv-fs-small); background: var(--dv-raised); color: var(--dv-ink);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+.dervo-catchup-actions [data-dv-btn="secondary"]:hover { background: var(--dv-sunk); }
+.dervo-catchup-actions .dervo-catchup-dismiss { margin-left: auto; }
+.dervo-catchup-confirm { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s2); flex-basis: 100%; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dervo-catchup-error { flex-basis: 100%; font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+
+/* The way out: quiet buttons on the column's edge. */
+.dervo-catchup-foot { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s1) var(--dv-s2); margin: calc(-1 * var(--dv-s3)) 0 0 calc(-1 * var(--dv-s2)); }
+.dervo-catchup-foot .dv-caption { margin-left: var(--dv-s2); }
+
+/* A narrow column: a row's end drops under its text rather than squeezing the name. */
+@container (max-width: 560px) {
+  .dervo-catchup .dv-row:not(.dv-open) { grid-template-columns: 16px minmax(0, 1fr); }
+  .dervo-catchup .dv-row:not(.dv-open) .dv-row-end { grid-column: 2; justify-content: flex-start; margin-top: var(--dv-s1); }
+  .dervo-catchup .dv-row.dv-open .dv-facts { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+
+/* A parent and its subthreads as one group (beta.17, #27): the parent's row, then each subthread with its glyph, name,
+   time and line, indented under the parent's name. Each subthread opens its own thread. */
+.dervo-catchup-family { display: flex; flex-direction: column; }
+.dervo-catchup-sub { margin-left: 6px; font-weight: 400; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-catchup-kids { display: grid; gap: 2px; margin: -4px 0 var(--dv-s2) calc(16px + var(--dv-s3)); }
+.dervo-catchup-kid { display: grid; grid-template-columns: 14px minmax(0, 1fr); column-gap: 8px; align-items: start; width: 100%; padding: 6px 8px;
+  border-radius: var(--dv-r1); text-align: left; cursor: pointer; }
+.dervo-catchup-kid:hover { background: color-mix(in srgb, var(--dv-raised) 45%, transparent); }
+.dervo-catchup-kid:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dervo-catchup-kid .dv-st, .dervo-catchup-kid .dv-st svg { width: 14px; height: 14px; }
+.dervo-catchup-kid .dv-st { margin-top: 3px; }
+.dervo-catchup-kid-copy { display: flex; flex-direction: column; min-width: 0; }
+.dervo-catchup-kid-name { font-weight: 550; font-size: var(--dv-fs-small); color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-catchup-kid-name .dv-when { margin-left: 8px; font-weight: 400; font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dervo-catchup-kid-line { font-size: var(--dv-fs-small); line-height: 1.45; color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dervo-catchup-family-note { margin: calc(-1 * var(--dv-s1)) 0 var(--dv-s2) calc(16px + var(--dv-s3) + 8px); }

@@ -1,0 +1,73 @@
+.dervo-project-setup { width: min(660px,calc(100vw - 32px)); max-width: 660px !important; max-height: 88vh; display:flex; flex-direction:column; gap:0; padding:0; overflow:hidden; }
+.dervo-setup-heading { padding:30px 34px 22px; flex-shrink:0; }
+.dervo-setup-heading h2 { font-size:1.6875rem; letter-spacing:-.04em; outline:none; }
+.dervo-setup-heading p { margin-top:9px; line-height:1.65; }
+.dervo-setup-progress { display:flex; align-items:center; gap:12px; padding:0 34px 22px; color:hsl(var(--muted-foreground)); font-size:0.75rem; }
+.dervo-setup-progress>span:not(.dervo-setup-progress-line) { display:flex; align-items:center; gap:7px; }
+.dervo-setup-progress i { display:grid; place-items:center; width:21px; height:21px; border-radius:50%; background:hsl(var(--muted)); font-style:normal; font-size:0.6875rem; }
+.dervo-setup-progress [data-current=true] { color:hsl(var(--foreground)); font-weight:600; }
+.dervo-setup-progress [data-current=true] i { background:hsl(var(--primary)); color:hsl(var(--primary-foreground)); }
+.dervo-setup-progress-line { width:25px; height:1px; background:hsl(var(--border)); }
+.dervo-setup-body { padding:0 34px 28px; overflow-y:auto; min-height:0; }
+.dervo-setup-folder { display:flex; flex-direction:column; align-items:center; width:100%; border:1px dashed hsl(var(--border)); border-radius:18px; padding:30px 24px; background:hsl(var(--secondary)/.25); text-align:center; transition:background 160ms ease; }
+.dervo-setup-folder:hover { background:hsl(var(--secondary)/.6); }
+.dervo-setup-folder>span { display:grid; place-items:center; width:65px; height:65px; border-radius:18px; background:hsl(var(--secondary)); margin-bottom:17px; }
+.dervo-setup-folder strong { font-size:1rem; font-weight:550; }
+.dervo-setup-folder p { margin-top:8px; font-size:0.75rem; color:hsl(var(--muted-foreground)); overflow-wrap:anywhere; }
+.dervo-setup-folder>svg { margin-top:12px; }
+.dervo-setup-name { display:block; margin-top:23px; font-size:0.8125rem; }
+.dervo-setup-name input { margin-top:8px; }
+.dervo-setup-name>span { display:block; margin-top:6px; font-size:0.75rem; color:hsl(var(--muted-foreground)); }
+.dervo-setup-footnote { margin-top:16px; font-size:0.75rem; line-height:1.6; color:hsl(var(--muted-foreground)); }
+.dervo-setup-footer { display:flex; align-items:center; justify-content:space-between; padding:18px 34px; border-top:1px solid hsl(var(--border)); flex-shrink:0; background:hsl(var(--background)); }
+.dervo-setup-project-chip { display:flex; align-items:center; gap:8px; padding:10px 0 18px; font-size:0.8125rem; }
+.dervo-setup-project-chip>span { font-weight:550; flex:1; overflow-wrap:anywhere; }
+.dervo-setup-project-chip button { font-size:0.75rem; color:hsl(var(--muted-foreground)); text-decoration:underline; text-underline-offset:3px; }
+.dervo-setup-accounts { display:grid; gap:9px; }
+.dervo-setup-accounts>button { display:flex; gap:13px; width:100%; align-items:center; padding:15px; border:1px solid hsl(var(--border)); border-radius:14px; text-align:left; }
+.dervo-setup-accounts>button[aria-pressed=true] { border-color:hsl(var(--primary)/.65); background:hsl(var(--secondary)/.45); }
+.dervo-provider-mark { display:grid; flex-shrink:0; place-items:center; width:40px; height:43px; border-radius:11px; background:hsl(var(--secondary)); font-size:1.25rem; font-weight:600; }
+.dervo-provider-claude { background:#eee0d6; color:#ad582f; }
+.dark .dervo-provider-claude { background:var(--dv-rust-wash); color:var(--dv-rust); }
+.dervo-setup-accounts>button>span:nth-child(2) { flex:1; min-width:0; }
+.dervo-setup-accounts strong { display:block; font-size:0.875rem; }
+.dervo-setup-accounts span>span { display:block; font-size:0.75rem; color:hsl(var(--muted-foreground)); margin-top:3px; overflow-wrap:anywhere; }
+.dervo-setup-accounts small { display:block; font-size:0.6875rem; color:hsl(var(--muted-foreground)); margin-top:5px; }
+.dervo-setup-add-account { margin:10px 0; }
+.dervo-setup-connect { padding:20px 0; }
+.dervo-setup-connect h3,.dervo-setup-model-section h3 { font-weight:600; font-size:0.875rem; margin-bottom:12px; }
+.dervo-setup-connect label { display:block; font-size:0.8125rem; margin:16px 0; }
+.dervo-setup-connect input { margin-top:7px; }
+.dervo-setup-connect p,.dervo-setup-custom-model p { font-size:0.75rem; line-height:1.6; color:hsl(var(--muted-foreground)); margin:10px 0; }
+.dervo-setup-provider-choice { display:flex; gap:7px; }
+.dervo-setup-provider-choice button { padding:8px 14px; font-size:0.8125rem; border:1px solid hsl(var(--border)); border-radius:9px; }
+.dervo-setup-provider-choice button[aria-pressed=true] { background:hsl(var(--secondary)); border-color:hsl(var(--primary)/.5); }
+.dervo-setup-inline-actions { display:flex; gap:8px; }
+.dervo-setup-connection { padding:15px 0 22px; }
+.dervo-setup-model-section { border-top:1px solid hsl(var(--border)); padding-top:22px; }
+.dervo-setup-models { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin-top:12px; }
+.dervo-setup-models button { padding:13px; text-align:left; border:1px solid hsl(var(--border)); border-radius:11px; }
+.dervo-setup-models button[aria-pressed=true] { border-color:hsl(var(--primary)/.65); background:hsl(var(--secondary)/.5); }
+.dervo-setup-models strong { display:block; font-size:0.8125rem; overflow-wrap:anywhere; }
+.dervo-setup-models span { display:block; margin-top:4px; font-size:0.6875rem; color:hsl(var(--muted-foreground)); overflow-wrap:anywhere; }
+.dervo-setup-custom-model { margin-top:18px; color:hsl(var(--muted-foreground)); font-size:0.75rem; }
+.dervo-setup-custom-model summary { cursor:pointer; }
+.dervo-setup-custom-model input { margin-top:10px; }
+.dervo-setup-start-options { display:grid; gap:12px; }
+.dervo-setup-start-options button { display:grid; grid-template-columns:28px 1fr 18px; gap:8px 13px; text-align:left; padding:19px; border:1px solid hsl(var(--border)); border-radius:15px; }
+.dervo-setup-start-options button:hover { background:hsl(var(--secondary)/.45); }
+.dervo-setup-start-options strong { font-size:0.9375rem; font-weight:550; }
+.dervo-setup-start-options span { grid-column:2; font-size:0.75rem; color:hsl(var(--muted-foreground)); line-height:1.6; }
+.dervo-setup-start-options button>svg:last-child { grid-column:3; grid-row:1; }
+.dervo-setup-error { color:hsl(var(--destructive)); font-size:0.8125rem; padding:12px; border-radius:10px; background:hsl(var(--destructive)/.06); margin-top:15px; }
+.dervo-project-setup button:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:3px; }
+.dervo-project-setup button:disabled { opacity:.5; cursor:default; }
+@media(max-width:550px) { .dervo-setup-heading { padding:25px 24px 18px; } .dervo-setup-body { padding:0 24px 24px; } .dervo-setup-progress { padding-left:24px; } .dervo-setup-footer { padding:16px 24px; } .dervo-setup-models { grid-template-columns:1fr; } }
+@media(prefers-reduced-motion:reduce) { .dervo-setup-folder { transition:none; } }
+
+/* Add account: two-line method choice and the spend-limit row */
+.dervo-setup-methods { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+.dervo-setup-methods button { display:flex; flex-direction:column; align-items:flex-start; gap:2px; text-align:left; padding:10px 12px; }
+.dervo-setup-methods button small { color:hsl(var(--muted-foreground)); line-height:1.35; font-size:0.75rem; }
+.dervo-setup-limit { display:grid; gap:6px; }
+.dervo-setup-limit > span { font-size:0.8125rem; color:hsl(var(--muted-foreground)); }

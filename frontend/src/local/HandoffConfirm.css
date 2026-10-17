@@ -1,0 +1,18 @@
+/* The confirm behind Continue in <provider>, and Restore's: a card that lifts in place under the handoff row, says what
+   happens in one line, lists the brief as facts, then the verb and the way out. No accent until something goes wrong. */
+.dv-carry { margin-top: var(--dv-s3); padding: var(--dv-s3) var(--dv-s4) var(--dv-s4); border-radius: var(--dv-r2);
+  background: var(--dv-raised); box-shadow: 0 0 0 1px var(--dv-line), var(--dv-lift); }
+.dv-carry-title { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; color: var(--dv-ink); }
+.dv-carry-note { margin-top: 2px; font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+.dv-carry-error { color: var(--dv-rust); }
+.dv-carry .dv-facts { grid-template-columns: 72px minmax(0, 1fr); }
+.dv-carry .dv-facts dd { overflow-wrap: break-word; }
+/* Inside the handoff row, which is already the lifted card, the confirm sits flat on a wash: one card, not two. */
+.dv-handoff .dv-carry { background: var(--dv-sunk); box-shadow: none; }
+.dv-carry-also { display: block; color: var(--dv-muted); }
+.dv-carry-restore { display: flex; align-items: center; gap: var(--dv-s3); margin-top: var(--dv-s2); }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-carry { animation: dv-carry-in var(--dv-calm) var(--dv-ease) both; }
+}
+@keyframes dv-carry-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+@media (max-width: 520px) { .dv-carry .dv-facts { grid-template-columns: minmax(0, 1fr); gap: 2px; } }

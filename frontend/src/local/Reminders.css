@@ -1,0 +1,18 @@
+/* Reminders on Home (beta.16.1; 9 Oct, reminders kept minimal). A reminder whose day has come is a row under Reminders,
+   in the rows' own shape, with a bell where a run's glyph would be and Done at the row's end. */
+.dv-home-bell { color: var(--dv-ink-2); }
+.dv-home-bell svg { overflow: visible; }
+/* The row's name stretches over the whole row (Home.css, .dv-home-row-open::after): its own buttons sit above that.
+   The quiet button's label lines up with the times in the column and with the row's name (design review, 9 Oct), the
+   same inset "Open in Catch up" uses. */
+.dv-home-row .dv-row-end .dv-btn { position: relative; z-index: 1; margin-block: -5px; margin-right: calc(-1 * var(--dv-s2)); }
+/* Remind me tomorrow on the card that asks you, and what it says once it's set. The status line is always there, empty
+   until it's set, so the change is announced; its text starts where the button's label did. */
+.dv-home-remind { display: inline-flex; align-items: center; min-width: 0; }
+.dv-home-remind [role="status"] { color: var(--dv-muted); }
+.dv-home-remind [role="status"]:not(:empty) { padding-inline: var(--dv-s2) var(--dv-s1); }
+.dv-home-remind .dv-btn[aria-disabled="true"] { opacity: .55; cursor: default; }
+/* The panel head's bell: quiet until it's set, then ink and filled. */
+.dv-home-remind-toggle { flex: none; width: 28px; height: 28px; display: grid; place-items: center; color: var(--dv-muted); }
+.dv-home-remind-toggle[aria-pressed="true"] { color: var(--dv-ink); }
+.dv-home-remind-toggle[aria-disabled="true"] { opacity: .55; cursor: default; }

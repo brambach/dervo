@@ -1,0 +1,172 @@
+{
+  "schema": 1,
+  "note": "The versions Dervo has been built as, and what the next one is meant to hold. Shipped entries record the commit each build was made from; Dervo reads the features of each version from git at those commits, so this file never repeats what a commit already says. Commits were matched to a build by the newest file in its retained source snapshot.",
+  "next": {
+    "version": "0.1.0-beta.19",
+    "headline": null,
+    "planned": []
+  },
+  "shipped": [
+    {
+      "version": "0.1.0-beta.18",
+      "built": "2026-10-07",
+      "commit": "b08de23",
+      "headline": null
+    },
+    {
+      "version": "0.1.0-beta.13",
+      "built": "2026-09-22",
+      "commit": "70878f0",
+      "headline": null
+    },
+    {
+      "version": "0.1.0-beta.3",
+      "built": "2026-09-18",
+      "commit": "dcb3a65",
+      "headline": "Tasks across a project stopped failing at once when Claude Code echoed Dervo's own words back."
+    },
+    {
+      "version": "0.1.0-beta.2",
+      "built": "2026-09-18",
+      "commit": "4f78cfd",
+      "headline": "First run sets Dervo up on a new Mac, and conversations got reading type that holds a line."
+    },
+    {
+      "version": "0.1.0-beta.1",
+      "built": "2026-09-17",
+      "commit": "a7b191d",
+      "from": "bc92003",
+      "headline": "The first private beta: full access in a project, Progress and Catch up, Knowledge, project memory, and chats that can read each other."
+    }
+  ],
+  "previews": [
+    {
+      "version": "0.1.0-preview.20260924081135000",
+      "built": "2026-09-24",
+      "commit": "d33f8df"
+    },
+    {
+      "version": "0.1.0-preview.20260923202221000",
+      "built": "2026-09-23",
+      "commit": "d33f8df"
+    },
+    {
+      "version": "0.1.0-preview.20260923091121000",
+      "built": "2026-09-23",
+      "commit": "af1d690"
+    },
+    {
+      "version": "0.1.0-preview.20260923081044000",
+      "built": "2026-09-23",
+      "commit": "68a471a"
+    },
+    {
+      "version": "0.1.0-preview.20260923050048000",
+      "built": "2026-09-23",
+      "commit": "5700e93"
+    },
+    {
+      "version": "0.1.0-preview.20260923001149000",
+      "built": "2026-09-23",
+      "commit": "0961c83"
+    },
+    {
+      "version": "0.1.0-preview.20260922212431000",
+      "built": "2026-09-22",
+      "commit": "2eb5d66"
+    },
+    {
+      "version": "0.1.0-preview.20260922195856000",
+      "built": "2026-09-22",
+      "commit": "9762810"
+    },
+    {
+      "version": "0.1.0-preview.20260922182743000",
+      "built": "2026-09-22",
+      "commit": "0832f75"
+    },
+    {
+      "version": "0.1.0-preview.20260921210820000",
+      "built": "2026-09-22",
+      "commit": "517791d"
+    },
+    {
+      "version": "0.1.0-preview.20260921182345000",
+      "built": "2026-09-22",
+      "commit": "4689865"
+    },
+    {
+      "version": "0.1.0-preview.20260921141655000",
+      "built": "2026-09-22",
+      "commit": "454c9ef"
+    },
+    {
+      "version": "0.1.0-preview.20260921130739000",
+      "built": "2026-09-21",
+      "commit": "510ec83"
+    },
+    {
+      "version": "0.1.0-preview.20260921112520000",
+      "built": "2026-09-21",
+      "commit": "02d8755"
+    },
+    {
+      "version": "0.1.0-preview.20260921082718000",
+      "built": "2026-09-21",
+      "commit": "64c22f9"
+    },
+    {
+      "version": "0.1.0-preview.20260921075254000",
+      "built": "2026-09-21",
+      "commit": "efa3065"
+    },
+    {
+      "version": "0.1.0-preview.20260921072542000",
+      "built": "2026-09-21",
+      "commit": "1bd4c91"
+    },
+    {
+      "version": "0.1.0-preview.20260921065851000",
+      "built": "2026-09-21",
+      "commit": "f183a0a"
+    },
+    {
+      "version": "0.1.0-preview.20260921052252000",
+      "built": "2026-09-21",
+      "commit": "d29716b"
+    },
+    {
+      "version": "0.1.0-preview.20260921092528000",
+      "built": "2026-09-21",
+      "commit": "e704742"
+    },
+    {
+      "version": "0.1.0-preview.20260920224025000",
+      "built": "2026-09-21",
+      "commit": "52267a0"
+    },
+    {
+      "version": "0.1.0-preview.20260920215951000",
+      "built": "2026-09-21",
+      "commit": "bebc4f3"
+    },
+    {
+      "version": "0.1.0-beta.11-preview.5",
+      "built": "2026-09-19",
+      "commit": "ec58452",
+      "headline": null
+    },
+    {
+      "version": "0.1.0-beta.11-preview.4",
+      "built": "2026-09-19",
+      "commit": "ccb93b6",
+      "headline": null
+    },
+    {
+      "version": "0.1.0-beta.11-preview.3",
+      "built": "2026-09-19",
+      "commit": "5d00eab",
+      "headline": null
+    }
+  ]
+}

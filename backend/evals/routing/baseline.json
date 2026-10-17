@@ -1,0 +1,23 @@
+{
+ "dev": {
+  "messages": 197,
+  "accuracy": 0.7208,
+  "misroutes": 0.0355,
+  "naming": 1.0,
+  "auto_wrong": 0.0
+ },
+ "heldout": {
+  "messages": 169,
+  "accuracy": 0.7515,
+  "misroutes": 0.0769,
+  "naming": 1.0,
+  "auto_wrong": 0.0118
+ },
+ "test": {
+  "messages": 220,
+  "accuracy": 0.5091,
+  "misroutes": 0.0727,
+  "naming": 0.8333,
+  "auto_wrong": 0.0273
+ }
+}

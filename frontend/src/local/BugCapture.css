@@ -1,0 +1,17 @@
+/* ⌘⇧B's capture sheet (BugCapture.tsx). It borrows Send feedback's layout (.dv-feedback in SettingsPages.css) and the
+   kit's dialog material (DervoKit.css), sits high in the window over no scrim, so what you were looking at stays in view
+   underneath, and is a little narrower. One accent: the Log button. Every value is a token. */
+.dv-feedback.dv-capture {
+  width: min(460px, calc(100vw - 2 * var(--dv-s5))) !important; max-width: none !important;
+  align-self: start; margin-top: min(14vh, 120px);
+  display: flex !important; flex-direction: column; gap: var(--dv-s4) !important; padding: var(--dv-s5) !important;
+}
+.dv-capture textarea.dv-input { min-height: 112px; max-height: 320px; padding: var(--dv-s3); line-height: var(--dv-lh-ui); }
+.dv-capture .dv-capture-choices { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--dv-s3); }
+.dv-capture .dv-capture-about { display: inline-flex; align-items: center; gap: var(--dv-s2); }
+.dv-capture .dv-capture-context ul { margin: var(--dv-s2) 0 0; padding: 0; list-style: none; display: grid; gap: 2px;
+  font-size: var(--dv-fs-caption); line-height: 1.5; color: var(--dv-muted); font-weight: 400; overflow-wrap: anywhere; }
+.dv-capture .dv-capture-done { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s2) var(--dv-s3); padding: var(--dv-s3) 0 var(--dv-s1); outline: none; }
+.dv-capture .dv-capture-done > p:first-child { color: var(--dv-ink); font-weight: 600; }
+.dv-capture .dv-capture-done > [role="alert"] { flex-basis: 100%; }
+.dv-capture :is(.dv-btn, .dv-seg button):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }

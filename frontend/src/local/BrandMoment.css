@@ -1,0 +1,61 @@
+/* Brand moments (design sweep, brand/brand.css): startup, first run, welcome and project created. Tokens only. */
+.dv-brand { position: relative; isolation: isolate; height: 100dvh; overflow: auto; background: var(--dv-paper); color: var(--dv-ink);
+  font-family: var(--dv-font-text); font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+/* The meadow photo across the top of the window, fading to paper before anything you read sits on it. */
+.dv-brand[data-meadow="photo"]::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 100dvh; z-index: -1; pointer-events: none;
+  opacity: var(--dv-meadow);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--dv-paper) 18%, transparent), color-mix(in srgb, var(--dv-paper) 70%, transparent) 36%, var(--dv-paper) 56%),
+    url('./brand-assets/studio-meadow.webp') left top / 100% auto no-repeat; }
+/* Without the meadow (an error leads), the page is plain canvas. */
+.dv-brand:not([data-meadow]) { background: var(--dv-canvas); }
+/* The window's drag band: the height of the traffic lights' row. */
+.dv-brand-drag { position: absolute; top: 0; left: 0; right: 0; height: 52px; z-index: 1; }
+.dv-brand-corner { position: absolute; top: 18px; right: var(--dv-s5); z-index: 2; font-size: var(--dv-fs-caption); color: var(--dv-muted); pointer-events: none; }
+.dv-brand-lockup { position: absolute; top: 16px; left: 88px; z-index: 2; display: flex; align-items: center; gap: var(--dv-s2);
+  font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink-2); pointer-events: none; }
+
+/* One reading column, well below the top so the meadow shows above it. */
+.dv-moment { display: flex; justify-content: center; min-height: 100%; padding: 18vh var(--dv-s5) var(--dv-s7); }
+.dv-moment-col { width: 100%; max-width: 540px; display: flex; flex-direction: column; }
+.dv-moment-mark { display: block; flex: none; margin-bottom: var(--dv-s5); }
+.dv-moment-mark .dv-pebble { width: 100%; height: 100%; }
+.dv-kicker { font-size: var(--dv-fs-small); color: var(--dv-muted); margin-bottom: var(--dv-s2); }
+.dv-moment h1 { margin-bottom: var(--dv-s3); color: var(--dv-ink); outline: none; }
+.dv-lede { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 60ch; }
+.dv-moment-actions { display: flex; gap: var(--dv-s2); flex-wrap: wrap; margin-top: var(--dv-s5); }
+.dv-moment-note { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: var(--dv-s3); }
+.dv-status-line { display: flex; align-items: center; gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); margin-top: var(--dv-s3); line-height: 1.5; }
+.dv-status-line .dv-st { flex: none; }
+/* An error is ink with its own glyph, not rust: rust means "this needs you" and nothing else. */
+.dv-err { font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.5; }
+
+/* Disabled buttons read as disabled here too (the kit scopes this to Settings). */
+:is(.dv-brand, .dv-fr-add, .dv-pm, .dv-welcome) .dv-btn:disabled { opacity: .45; cursor: not-allowed; }
+:is(.dv-brand, .dv-fr-add, .dv-pm, .dv-welcome) :is(.dv-btn, .dv-btn-icon):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+
+/* The opening screen: the rocking mark and one caption, centred. */
+/* Where the mockup puts it: the reading column's top plus a little, so it sits in the meadow's sky. */
+.dv-opening { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; padding-top: 26vh; }
+.dv-opening .dv-moment-mark { margin-bottom: var(--dv-s4); }
+
+/* Numbered steps as rows on the page: a small number, the step, one line. No ruled lines. */
+.dv-steps-list { display: flex; flex-direction: column; gap: var(--dv-s3); margin-top: var(--dv-s5); counter-reset: dv-n; list-style: none; padding: 0; }
+.dv-steps-list li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--dv-s3); font-size: var(--dv-fs-body); line-height: 1.5; color: var(--dv-ink-2); counter-increment: dv-n; }
+.dv-steps-list li::before { content: counter(dv-n); width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--dv-sunk);
+  color: var(--dv-ink-2); font-size: var(--dv-fs-caption); font-weight: 600; }
+.dv-steps-list b { color: var(--dv-ink); font-weight: 600; }
+
+/* The raw detail behind a quiet disclosure. */
+.dv-brand-details { margin-top: var(--dv-s5); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-brand-details > summary { display: inline-flex; align-items: center; gap: var(--dv-s1); font-weight: 600; border-radius: var(--dv-r1); }
+.dv-brand-details > summary:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-brand-details pre { margin: var(--dv-s2) 0 0; padding: var(--dv-s3); border-radius: var(--dv-r2); background: var(--dv-sunk);
+  font: 400 var(--dv-fs-caption)/1.55 var(--dv-font-mono); color: var(--dv-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* The mark's one entrance, and its slow rock while real work happens. Nothing moves with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-enter { animation: dv-mark-in 420ms var(--dv-ease) both; }
+  .dv-attending .dv-pebble { transform-origin: 50% 60%; animation: dv-attending 2.4s ease-in-out infinite; /* the 2.4s breathing beat (design report #4) */ }
+}
+@keyframes dv-mark-in { from { opacity: 0; transform: translateY(6px) scale(.94); } to { opacity: 1; transform: none; } }
+@keyframes dv-attending { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(5deg); } }

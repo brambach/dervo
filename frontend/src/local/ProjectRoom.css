@@ -1,0 +1,149 @@
+/* The project room. Layout only: every colour is a token, so light and dark come from DervoBrand.css.
+   The four spacing steps are the ones .dervo-connected-main already defines. */
+.dervo-room { display:flex; flex-direction:column; flex:1; min-height:0; min-width:0; }
+.dervo-room-head { display:flex; align-items:flex-start; justify-content:space-between; gap:var(--dervo-s4);
+  padding:var(--dervo-s4) var(--dervo-s4) var(--dervo-s3); }
+.dervo-room-kicker { font-size:0.75rem; font-weight:550; color:hsl(var(--muted-foreground)); line-height:1.6; }
+.dervo-room-head h1 { margin-top:2px; font-size:1.4375rem; font-weight:600; letter-spacing:-.025em; line-height:1.35; }
+.dervo-room-state { display:flex; align-items:center; gap:var(--dervo-s3); font-size:0.8125rem; color:hsl(var(--muted-foreground)); }
+.dervo-room-state b { color:hsl(var(--foreground)); font-weight:600; font-variant-numeric:tabular-nums; }
+
+/* The one place you type at project level. */
+/* A composer you write one sentence into stays a comfortable measure wide, even when the board beside it is not. */
+.dervo-room-composer { margin:0 var(--dervo-s4); max-width:860px; padding:var(--dervo-s3); border-radius:14px;
+  box-shadow:inset 0 0 0 1px hsl(var(--border)); background:hsl(var(--muted)/.22); }
+.dervo-room-composer textarea { display:block; width:100%; resize:vertical; min-height:3.2em; border:0; background:transparent;
+  color:hsl(var(--foreground)); font:inherit; font-size:0.9375rem; line-height:1.6; }
+.dervo-room-composer textarea:focus-visible { outline:none; }
+.dervo-room-composer textarea::placeholder { color:hsl(var(--muted-foreground)); }
+.dervo-room-tools { display:flex; align-items:center; gap:var(--dervo-s1); margin-top:var(--dervo-s3);
+  padding-top:var(--dervo-s2); border-top:1px solid hsl(var(--border)/.55); }
+.dervo-room-tools button { margin-left:auto; }
+.dervo-room-pick { height:28px; padding:0 var(--dervo-s1); border-radius:999px; font-size:0.75rem; font-weight:550;
+  color:hsl(var(--muted-foreground)); background:transparent; box-shadow:inset 0 0 0 1px hsl(var(--border)); }
+.dervo-room-routing { margin-top:var(--dervo-s2); font-size:0.78rem; line-height:1.55; color:hsl(var(--muted-foreground)); }
+.dervo-room-routing b { color:hsl(var(--foreground)); font-weight:600; }
+.dervo-room-failure { margin-top:var(--dervo-s1); font-size:0.78rem; color:hsl(var(--destructive)); }
+
+.dervo-room-board { flex:1; min-height:0; overflow-y:auto; padding:var(--dervo-s4); }
+.dervo-room-empty { font-size:0.875rem; line-height:1.65; color:hsl(var(--muted-foreground)); max-width:62ch; }
+.dervo-room-empty button { margin-left:var(--dervo-s1); }
+.dervo-room-idea { margin-bottom:var(--dervo-s4); }
+.dervo-room-idea:last-child { margin-bottom:0; }
+.dervo-room-ihead { display:flex; align-items:baseline; gap:var(--dervo-s2); padding-bottom:var(--dervo-s2);
+  border-bottom:1px solid hsl(var(--border)/.7); }
+.dervo-room-ihead h2 { font-size:1rem; font-weight:650; letter-spacing:-.02em; }
+.dervo-room-where { font-size:0.78rem; color:hsl(var(--muted-foreground)); font-variant-numeric:tabular-nums; }
+.dervo-room-target { margin-left:auto; display:flex; align-items:center; gap:6px; white-space:nowrap;
+  font-size:0.72rem; color:hsl(var(--muted-foreground)); }
+.dervo-room-chip.is-planned { background:hsl(var(--muted-foreground)/.14); color:hsl(var(--muted-foreground)); }
+.dervo-room-chip.is-building { background:hsl(var(--foreground)/.1); color:hsl(var(--foreground)); }
+.dervo-room-chip.is-done { background:hsl(var(--dervo-moss)/.16); color:hsl(var(--dervo-moss)); }
+
+.dervo-room-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(296px,1fr)); gap:var(--dervo-s2); margin-top:var(--dervo-s3); }
+.dervo-room-card { position:relative; display:flex; flex-direction:column; gap:7px; padding:var(--dervo-s3); border-radius:12px; text-align:left;
+  box-shadow:inset 0 0 0 1px hsl(var(--border)/.8); color:hsl(var(--foreground)); cursor:pointer; min-width:0; }
+.dervo-room-card:hover { background:hsl(var(--accent)/.4); }
+/* The name is the card's one button; its ::after covers the card so a click anywhere opens the conversation. */
+.dervo-room-open { text-align:left; color:inherit; cursor:pointer; }
+.dervo-room-open::after { content:''; position:absolute; inset:0; border-radius:12px; }
+.dervo-room-open:focus-visible { outline:none; }
+.dervo-room-open:focus-visible::after { outline:2px solid hsl(var(--ring)); outline-offset:2px; }
+.dervo-room-suggest { position:relative; z-index:1; }
+.dervo-room-top { display:flex; align-items:center; gap:7px; min-width:0; }
+.dervo-room-dot { width:6px; height:6px; border-radius:999px; flex:none; background:hsl(var(--muted-foreground)/.45); }
+.dervo-room-dot[data-live] { background:hsl(var(--dervo-live)); }
+.dervo-room-name { font-size:0.875rem; font-weight:600; letter-spacing:-.01em; min-width:0; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap; }
+.dervo-room-unread { margin-left:auto; min-width:18px; height:18px; padding:0 5px; border-radius:999px; flex:none;
+  background:hsl(var(--accent)); font-size:0.68rem; font-weight:650; line-height:18px; text-align:center;
+  font-variant-numeric:tabular-nums; }
+.dervo-room-says { font-size:0.8125rem; line-height:1.5; color:hsl(var(--muted-foreground));
+  display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.dervo-room-who { margin-top:auto; padding-top:var(--dervo-s2); font-size:0.72rem; color:hsl(var(--muted-foreground)); }
+/* The only accent in this view, spent on the only state you can act on. */
+.dervo-room-card[data-state="needs"] { box-shadow:inset 0 0 0 1px hsl(var(--primary)/.5); }
+.dervo-room-ask { align-self:flex-start; height:25px; padding:0 11px; border-radius:999px; display:inline-flex; align-items:center;
+  background:hsl(var(--primary)); color:hsl(var(--primary-foreground)); font-size:0.72rem; font-weight:650; }
+
+@media (prefers-reduced-motion:no-preference) {
+  .dervo-room-card { transition:background-color 120ms ease; }
+}
+
+/* ---- Managing ideas in place */
+.dervo-room-more { display:grid; place-items:center; width:26px; height:26px; border-radius:7px; flex:none;
+  color:hsl(var(--muted-foreground)); }
+.dervo-room-more:hover, .dervo-room-more[data-state="open"] { background:hsl(var(--accent)/.8); color:hsl(var(--foreground)); }
+.dervo-room-more:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:2px; }
+.dervo-room-target + .dervo-room-more { margin-left:2px; }
+.dervo-room-summary { margin-top:var(--dervo-s1); max-width:66ch; font-size:0.8125rem; line-height:1.55; color:hsl(var(--muted-foreground)); }
+.dervo-room-edit { display:flex; align-items:center; gap:var(--dervo-s1); flex:1; min-width:0; }
+.dervo-room-edit input, .dervo-room-edit textarea, .dervo-room-new input { flex:1; min-width:0; height:32px; padding:0 10px; border-radius:8px;
+  font:inherit; font-size:0.8125rem; color:hsl(var(--foreground)); background:hsl(var(--background));
+  box-shadow:inset 0 0 0 1px hsl(var(--border)); border:0; }
+.dervo-room-edit[data-field="name"] input { font-size:1rem; font-weight:650; letter-spacing:-.02em; }
+.dervo-room-edit textarea { height:auto; padding:7px 10px; line-height:1.5; resize:vertical; }
+.dervo-room-edit :is(input,textarea):focus-visible, .dervo-room-new input:focus-visible { outline:none; box-shadow:inset 0 0 0 1px hsl(var(--ring)); }
+.dervo-room-edit-row { flex-basis:100%; order:10; margin-top:var(--dervo-s2); }
+.dervo-room-ihead { flex-wrap:wrap; }
+
+.dervo-room-foot { display:flex; align-items:flex-start; justify-content:space-between; gap:var(--dervo-s3); flex-wrap:wrap; }
+.dervo-room-add { display:inline-flex; align-items:center; gap:7px; padding:6px 4px; border-radius:8px; font-size:0.8125rem; font-weight:550;
+  color:hsl(var(--muted-foreground)); }
+.dervo-room-add:hover { color:hsl(var(--foreground)); }
+.dervo-room-add:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:2px; }
+.dervo-room-new { display:flex; align-items:center; gap:var(--dervo-s1); flex:1; max-width:860px; padding:var(--dervo-s2); border-radius:12px;
+  box-shadow:inset 0 0 0 1px hsl(var(--border)); }
+.dervo-room-new input:nth-of-type(2) { flex:0 0 200px; }
+.dervo-room-archived { font-size:0.78rem; color:hsl(var(--muted-foreground)); }
+.dervo-room-archived summary { padding:6px 4px; }
+.dervo-room-archived summary span { margin-left:4px; font-variant-numeric:tabular-nums; }
+.dervo-room-archived ul { list-style:none; margin:4px 0 0; padding:0; display:grid; gap:2px; }
+.dervo-room-archived li { display:flex; align-items:center; justify-content:space-between; gap:var(--dervo-s2); min-width:220px; }
+
+/* ---- The composer's routing line */
+.dervo-room-switch { margin-left:6px; font-size:inherit; color:hsl(var(--foreground)); text-decoration:underline;
+  text-decoration-color:hsl(var(--muted-foreground)/.5); text-underline-offset:3px; }
+.dervo-room-switch:hover { text-decoration-color:currentColor; }
+.dervo-room-switch:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:2px; border-radius:3px; }
+
+/* ---- Filing: a suggestion, and dragging a card between ideas */
+.dervo-room-suggest { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; height:25px; padding:0 10px; border-radius:999px;
+  font-size:0.72rem; font-weight:600; color:hsl(var(--foreground)); box-shadow:inset 0 0 0 1px hsl(var(--border)); cursor:pointer; }
+.dervo-room-suggest i { font-style:normal; font-weight:500; color:hsl(var(--muted-foreground)); }
+.dervo-room-suggest:hover { background:hsl(var(--accent)/.7); }
+.dervo-room-suggest:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:2px; }
+.dervo-room-cards { border-radius:14px; }
+/* The drop zone grows outward with a box-shadow spread, not padding, so the cards never move when a drag starts. */
+.dervo-room-cards[data-drop="over"] { background:hsl(var(--foreground)/.03);
+  box-shadow:0 0 0 var(--dervo-s2) hsl(var(--foreground)/.03), 0 0 0 calc(var(--dervo-s2) + 1px) hsl(var(--foreground)/.22); }
+.dervo-room-card[data-dragging] { opacity:.35; }
+.dervo-room-card.is-lifted { background:hsl(var(--background)); cursor:grabbing;
+  box-shadow:inset 0 0 0 1px hsl(var(--border)), 0 18px 40px -12px hsl(0 0% 0% / .45); transform:translateY(-2px); }
+.dervo-room-drop-hint { grid-column:1 / -1; padding:var(--dervo-s3) 0; font-size:0.78rem; color:hsl(var(--muted-foreground)); }
+.dervo-room-menu { min-width:220px; }
+
+@media (prefers-reduced-motion:no-preference) {
+  .dervo-room-cards { transition:background-color var(--dv-hover-out, 180ms) ease, box-shadow var(--dv-hover-out, 180ms) ease; }
+  .dervo-room-card[data-dragging] { transition:opacity 120ms ease; }
+}
+
+/* Two conversations in one idea editing the same file. Muted text, no colour: it's worth knowing, not an alarm. */
+.dervo-room-overlap { margin-top:var(--dervo-s2); max-width:860px; display:grid; gap:2px; font-size:0.75rem; line-height:1.5; color:hsl(var(--muted-foreground)); }
+.dervo-room-overlap p:first-child { color:hsl(var(--foreground)); font-weight:600; }
+.dervo-room-overlap p:not(:last-child) { color:hsl(var(--foreground)); font-weight:600; }
+
+/* The sub-threads a conversation opened: helpers its newest task asked, and where each stands. */
+.dervo-room-helpers { font-size:0.72rem; line-height:1.45; color:hsl(var(--muted-foreground)); }
+
+/* The orchestrator: the chat on the left, the board on the right. Below 1100px the board goes under the chat. */
+.dervo-room-single { display:flex; flex-direction:column; flex:1; min-height:0; }
+.dervo-room-split { display:grid; grid-template-columns:minmax(360px,600px) minmax(0,1fr); flex:1; min-height:0; }
+.dervo-room-split > .dervo-orch, .dervo-room-split > .dervo-room-board { min-height:0; }
+.dervo-room-split .dervo-room-board { padding-top:0; }
+.dervo-room-split .dervo-room-cards { grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); }
+@media (max-width:1100px) {
+  .dervo-room-split { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(320px,1fr) auto; overflow-y:auto; }
+  .dervo-room-split > .dervo-orch { border-right:0; border-bottom:1px solid hsl(var(--border)/.7); }
+}
+.dervo-room-failure { margin:0 var(--dervo-s4) var(--dervo-s2); }

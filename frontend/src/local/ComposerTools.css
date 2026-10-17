@@ -1,0 +1,65 @@
+/* The composer foot's tools and the route notes, on the dv- tokens. The pill itself is .dv-composer in DervoComponents.css. */
+.dv-composer-tools { display:inline-flex; align-items:center; flex-wrap:wrap; gap:var(--dv-s1) var(--dv-s2); min-width:0; color:var(--dv-muted); }
+/* One row, never wrapped (Progress open at 1052 leaves about 424px). Beta.18.1 keeps only what you choose before sending:
+   the model chip, the access icon and, before the first run, the branch chip. The model chip gives way last, with an
+   ellipsis on the account's name first. An error still takes a row of its own. */
+.dv-composer-tools { flex-wrap:nowrap; gap:var(--dv-s1); }
+.dv-composer-tools:has(.dervo-composer-tool-error) { flex-wrap:wrap; }
+.dv-composer-tools > * { flex:0 1 auto; min-width:0; }
+.dv-composer-tools > .dv-pk-chip { min-width:76px; }
+.dv-composer-tools > .dv-tf-chip { min-width:0; flex-shrink:3; }
+.dv-composer-tools > .dv-tf-chip[data-icon-only] { flex:none; width:28px; padding:0; justify-content:center; }
+.dv-composer-tools .dv-pk-acct-name { min-width:0; overflow:hidden; text-overflow:ellipsis; flex:0 100 auto; }
+/* Access as an icon the size of attach: muted, ink when it's full access, and its words when it needs you. */
+.dv-access-tool { flex:none; display:inline-flex; align-items:center; justify-content:center; gap:6px; height:28px; min-width:28px; padding:0 7px;
+  border-radius:var(--dv-r-pill); color:var(--dv-muted); font-size:var(--dv-fs-caption); white-space:nowrap; }
+.dv-access-tool svg { width:15px; height:15px; flex:none; }
+.dv-access-tool:hover { background:var(--dv-sunk); color:var(--dv-ink); }
+.dv-access-tool:focus-visible { outline:2px solid var(--dv-focus); outline-offset:1px; }
+.dv-access-tool[data-state="full"] { color:var(--dv-ink-2); }
+.dv-access-tool[data-state="stale"] { color:var(--dv-rust); padding:0 10px 0 8px; }
+/* Above the box, beside the thread's status: a new session and the queue, said in one quiet line. Empty, it takes no room. */
+.dv-composer-notes { display:flex; align-items:center; gap:var(--dv-s3); min-width:0; font-size:var(--dv-fs-caption); color:var(--dv-faint); }
+.dv-composer-notes:empty { display:none; }
+.dv-composer-notes .dv-hint { min-width:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:inherit; color:inherit; }
+.dv-continuity { display:inline-flex; align-items:center; gap:var(--dv-s1); min-width:0; }
+.dv-continuity > span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dv-continuity-undo { display:inline-grid; place-items:center; width:18px; height:18px; border-radius:var(--dv-r-pill); color:var(--dv-muted); }
+.dv-continuity-undo:hover { background:var(--dv-sunk); color:var(--dv-ink); }
+.dv-continuity-undo:disabled { opacity:.5; }
+.dv-continuity-error { color:var(--dv-rust); }
+
+/* The account tool: kept for the account dialog. Native selects keep keyboard and screen reader use. */
+.dervo-composer-tool { display:inline-flex; align-items:center; gap:var(--dv-s1); min-height:26px; padding:0 var(--dv-s1); border-radius:var(--dv-r1); font-size:var(--dv-fs-caption); color:var(--dv-muted); }
+.dervo-composer-tool:hover, .dervo-composer-tool:focus-within { background:var(--dv-sunk); color:var(--dv-ink); }
+.dervo-composer-tool svg { color:var(--dv-live); flex:none; }
+.dervo-composer-tool select { appearance:none; -webkit-appearance:none; border:0; background:transparent; color:inherit; font:inherit; font-weight:600; padding:2px 16px 2px 2px; max-width:190px; text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+  background-position:calc(100% - 7px) 55%,calc(100% - 3px) 55%; background-size:4px 4px; background-repeat:no-repeat; cursor:pointer; }
+.dervo-composer-tool select:focus-visible { outline:2px solid var(--dv-focus); outline-offset:1px; border-radius:var(--dv-r1); }
+.dervo-composer-tool select:disabled { opacity:.6; cursor:default; }
+.dervo-composer-tool-account { display:inline-flex; align-items:center; gap:3px; font-weight:600; color:inherit; padding:2px; border-radius:var(--dv-r1); max-width:220px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dervo-composer-tool-account:focus-visible { outline:2px solid var(--dv-focus); outline-offset:1px; }
+.dervo-composer-tool-account svg { color:inherit; }
+.dervo-composer-tool-error { flex-basis:100%; color:var(--dv-rust); }
+.dervo-route-why { display:flex; align-items:center; gap:5px; font-size:var(--dv-fs-caption); color:var(--dv-muted); }
+.dervo-route-why svg { color:var(--dv-live); flex:none; }
+/* After a provider failure: the offer of the other account. One card, on sunk, the actions as pills. */
+.dervo-suggest { display:grid; grid-template-columns:18px minmax(0,1fr); gap:var(--dv-s2); margin-top:6px; padding:var(--dv-s3); border-radius:var(--dv-r2); background:var(--dv-sunk); color:var(--dv-ink); font-size:var(--dv-fs-small); }
+.dervo-suggest > svg { color:var(--dv-ink-2); margin-top:2px; }
+.dervo-suggest strong { display:block; font-size:var(--dv-fs-body); font-weight:600; }
+.dervo-suggest span { display:block; margin-top:2px; color:var(--dv-muted); }
+.dervo-suggest-actions { display:flex; flex-wrap:wrap; gap:6px; margin-top:var(--dv-s2); }
+.dervo-suggest-actions:empty { display:none; }
+.dervo-suggest-switch { display:flex; align-items:center; gap:6px; margin-top:var(--dv-s2); font-size:var(--dv-fs-caption); color:var(--dv-muted); }
+.dervo-suggest-error { margin-top:6px; color:var(--dv-rust); }
+
+/* A select as wide as its chosen option: the text shows in a span, the native select sits invisibly on top, so the arrow
+   stays next to the words and keyboard and screen reader use stay native. */
+.dervo-fit-select { position:relative; display:inline-flex; align-items:center; min-width:0; max-width:220px; border-radius:var(--dv-r1); }
+.dervo-fit-select>span { font-weight:600; padding:2px 14px 2px 2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+  background-position:calc(100% - 6px) 55%,calc(100% - 2px) 55%; background-size:4px 4px; background-repeat:no-repeat; }
+.dervo-composer-tool .dervo-fit-select>select { position:absolute; inset:0; width:100%; max-width:none; opacity:0; padding:0; cursor:pointer; background:none; }
+.dervo-fit-select:has(select:focus-visible) { outline:2px solid var(--dv-focus); outline-offset:1px; }
+.dervo-fit-select:has(select:disabled) { opacity:.6; }

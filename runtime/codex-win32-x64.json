@@ -1,0 +1,19 @@
+{
+  "version": "0.156.1",
+  "platform": "x86_64-pc-windows-msvc",
+  "npm_package_version": "0.156.1-win32-x64",
+  "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.156.1-win32-x64.tgz",
+  "integrity": "sha512-MJyLxbBs2zzp5kbaR/99Zwe7SmbrwUkveTcT+ayYlO48V0nYh0eU+h2lalBwvC7VJ/ya/bXnUtISJfJKhGCD/g==",
+  "official_release": "https://github.com/openai/codex/releases/tag/rust-v0.156.1",
+  "version_output": "codex-cli 0.156.1",
+  "archive_root": "package/vendor/x86_64-pc-windows-msvc/",
+  "folder": "runtime/codex-win",
+  "files": {
+    "codex-package.json": "d2ba50d0ca2a37853a1b42d5ee8cc840719cb8b507d59b7a56f6d4ea2c693a16",
+    "bin/codex.exe": "70bcb05f9bf1a4e7306edd0cd1b57d02af3267ad02a34b26f45c8c4bb20a3301",
+    "bin/codex-code-mode-host.exe": "0f83a73dc6d511d43bd3e52cc0a999cb383c19c645ef3fbd8fbdaddde3088138",
+    "codex-resources/codex-command-runner.exe": "67fde4e4983c031675773f632991f14794328a8cccf2bc542137bd2658370822",
+    "codex-resources/codex-windows-sandbox-setup.exe": "2bb0e7bd8ae23757c5273c4e82b506eb2923ed5c75facaef230934a1e0aab87b",
+    "codex-path/rg.exe": "14231169855ec5205cf5a1b6f1db358ff4aed4247c86b69ce8aae647c77f6680"
+  }
+}

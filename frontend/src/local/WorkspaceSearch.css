@@ -1,0 +1,120 @@
+.dervo-find-workspace {
+  container-type: inline-size;
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  color: hsl(var(--foreground));
+}
+.dervo-find-header { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 32px 36px 24px; }
+.dervo-find-heading { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.dervo-find-project { font-size: 0.75rem; color: hsl(var(--muted-foreground)); margin-bottom: 3px; }
+.dervo-find-heading h2 { font-size: 1.75rem; font-weight: 650; line-height: 1.2; outline: none; letter-spacing: -.025em; }
+.dervo-find-toolbar { padding: 0 36px 22px; border-bottom: 1px solid hsl(var(--border) / .75); }
+.dervo-find-coverage { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 16px; font-size: 0.8125rem; line-height: 1.55; }
+.dervo-find-coverage p { max-width: 72ch; }
+.dervo-find-coverage button { flex: none; }
+.dervo-result-filters { display: flex; gap: 4px 20px; flex-wrap: wrap; margin-top: 16px; }
+.dervo-result-filters button { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 6px 0; border-bottom: 2px solid transparent; color: hsl(var(--muted-foreground)); font-size: 0.8125rem; cursor: pointer; transition: border-color 160ms, color 160ms; }
+.dervo-result-filters button[aria-pressed="true"] { color: hsl(var(--foreground)); border-color: hsl(var(--primary)); font-weight: 650; }
+.dervo-result-filters button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 4px; border-radius: 2px; }
+.dervo-result-filters button:disabled { opacity: .55; cursor: default; }
+.dervo-result-filters span { font-variant-numeric: tabular-nums; font-weight: 400; }
+.dervo-result-excerpt mark { background: hsl(43 83% 77%); color: hsl(155 24% 18%); border-radius: 3px; padding-inline: 1px; box-decoration-break: clone; }
+.dark .dervo-result-excerpt mark { background: hsl(43 45% 29%); color: hsl(43 80% 91%); }
+.dervo-brief-controls { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.dervo-segmented { display: inline-flex; padding: 4px; gap: 4px; border-radius: 12px; background: hsl(var(--muted) / .6); }
+.dervo-segmented button { min-height: 36px; padding: 6px 14px; border-radius: 8px; font-size: 0.8125rem; cursor: pointer; color: hsl(var(--muted-foreground)); transition: background-color 160ms, color 160ms; }
+.dervo-segmented button[aria-pressed="true"] { color: hsl(var(--primary-foreground)); background: hsl(var(--primary)); }
+.dervo-segmented button:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
+.dervo-segmented button:disabled { opacity: .55; cursor: default; }
+.dervo-find-boundary { max-width: 76ch; margin-top: 12px; font-size: 0.75rem; line-height: 1.6; color: hsl(var(--muted-foreground)); }
+.dervo-find-form label { display: block; margin-bottom: 9px; font-size: 0.8125rem; font-weight: 500; }
+.dervo-find-form>div { display: flex; align-items: center; gap: 12px; }
+.dervo-find-form>div>svg { width: 20px; height: 20px; color: hsl(var(--muted-foreground)); flex: none; }
+.dervo-find-form input { height: 46px; font-size: 0.9375rem; border-color: hsl(var(--muted-foreground) / .7); background: hsl(var(--background)); }
+.dervo-find-form button { height: 44px; padding-inline: 22px; }
+.dervo-find-body { display: flex; flex: 1; min-height: 0; overflow: hidden; }
+.dervo-find-results { flex: 1; min-width: 0; overflow-y: auto; padding: 26px 36px 36px; }
+.dervo-find-body:not(.has-preview) .dervo-brief-section { max-width: 860px; margin-inline: auto; }
+.dervo-brief-section + .dervo-brief-section { margin-top: 36px; }
+.dervo-brief-label { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 0.8125rem; font-weight: 650; }
+.dervo-brief-label>span { color: hsl(var(--muted-foreground)); font-weight: 400; font-variant-numeric: tabular-nums; }
+.dervo-result { position: relative; padding: 20px 0; border-bottom: 1px solid hsl(var(--border) / .8); }
+.dervo-result.is-selected { background: hsl(var(--accent) / .6); border-radius: 10px; padding-inline: 16px; margin-inline: -16px; }
+.dervo-result-meta { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 10px; font-size: 0.75rem; color: hsl(var(--muted-foreground)); }
+.dervo-result-status { font-weight: 550; color: hsl(var(--primary)); }
+.dervo-result-status.needs-attention { color: hsl(var(--foreground)); }
+.dervo-result h4 { font-size: 1.125rem; line-height: 1.4; font-weight: 650; text-wrap: pretty; }
+.dervo-result-request { margin-top: 6px; font-size: 0.8125rem; line-height: 1.6; color: hsl(var(--muted-foreground)); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dervo-result-excerpt { margin-top: 12px; font-size: 1rem; max-width: 72ch; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.dervo-result-blocker, .dervo-result-next { margin-top: 12px; max-width: 70ch; font-size: 0.875rem; line-height: 1.6; }
+.dervo-result-blocker { font-weight: 500; }
+.dervo-result-open { margin-top: 12px; margin-left: -10px; color: hsl(var(--primary)); padding-inline: 10px; }
+.dervo-find-empty { max-width: 54ch; margin: 40px auto; padding: 24px 0; }
+.dervo-find-empty h3 { font-size: 1.4375rem; font-weight: 550; line-height: 1.4; letter-spacing: -.02em; }
+.dervo-find-empty p { margin-top: 12px; font-size: 1rem; line-height: 1.7; color: hsl(var(--muted-foreground)); }
+.dervo-find-notice { margin: 12px 0 20px; font-size: 0.8125rem; line-height: 1.6; color: hsl(var(--muted-foreground)); }
+.dervo-find-more { margin-top: 24px; }
+.has-preview .dervo-find-results { flex: 0 0 38%; padding: 24px; }
+.has-preview .dervo-result h4 { font-size: 1rem; }
+.has-preview .dervo-result-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
+.dervo-result-reader { min-width: 0; flex: 1; overflow-y: auto; padding: 24px 30px 40px; border-left: 1px solid hsl(var(--border)); background: hsl(var(--background)); animation: dervo-reader-enter 180ms ease-out; }
+.dervo-reader-top { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+.dervo-reader-heading { margin-bottom: 26px; }
+.dervo-reader-heading>p, .dervo-reader-heading>span { font-size: 0.75rem; color: hsl(var(--muted-foreground)); }
+.dervo-reader-heading h3 { margin: 8px 0; font-size: 1.4375rem; line-height: 1.4; font-weight: 600; text-wrap: pretty; }
+.dervo-reader-text { max-width: 72ch; font-size: 1rem; line-height: 1.75; }
+.dervo-saved-text code { font-size: .9em; overflow-wrap: anywhere; }
+.dervo-saved-table { max-width: 100%; overflow-x: auto; margin-block: 20px; }
+.dervo-saved-table:focus-visible { outline: 2px solid hsl(var(--ring)); outline-offset: 3px; }
+.dervo-saved-table table { width: 100%; border-collapse: collapse; font-size: 0.9375rem; line-height: 1.65; }
+.dervo-saved-table th, .dervo-saved-table td { min-width: 150px; padding: 12px; text-align: left; vertical-align: top; border-bottom: 1px solid hsl(var(--border)); }
+.dervo-saved-table th { font-weight: 650; background: hsl(var(--accent) / .4); }
+.dervo-reader-record { margin-top: 36px; padding-top: 24px; border-top: 1px solid hsl(var(--border)); color: hsl(var(--muted-foreground)); }
+.dervo-reader-record dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 20px; margin-bottom: 20px; font-size: 0.75rem; line-height: 1.6; }
+.dervo-reader-record dd { overflow-wrap: anywhere; }
+.dervo-find-error { padding: 16px 36px; border-top: 1px solid hsl(var(--border)); display: flex; gap: 20px; align-items: center; justify-content: space-between; font-size: 0.875rem; color: hsl(var(--destructive)); }
+@keyframes dervo-reader-enter { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@container (max-width: 760px) {
+  .dervo-find-header { padding: 24px 24px 20px; gap: 12px; }
+  .dervo-find-heading h2 { font-size: 1.5rem; }
+  /* Was an icon-only 36px button made by font-size: 0, which the shared button's own size overrode, so at 1052 the label showed
+     through a 36px window as "ck to p". Keep the words: there's room, and the heading gives way first. */
+  .dervo-find-close { flex: none; white-space: nowrap; }
+  .dervo-find-toolbar { padding: 0 24px 20px; }
+  .dervo-find-results { padding: 20px 24px; }
+  .has-preview .dervo-find-results { display: none; }
+  .dervo-result-reader { border-left: 0; padding: 20px 24px 32px; }
+  .dervo-brief-controls { gap: 8px; flex-wrap: wrap; }
+  .dervo-find-coverage { align-items: flex-start; flex-wrap: wrap; gap: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dervo-result-reader { animation: none; }
+  .dervo-segmented button { transition: none; }
+  .dervo-result-filters button { transition: none; }
+}
+
+/* The briefing's first sentence: what waits for you and what is new since your last visit. Records only. */
+.dervo-brief-summary { max-width: 860px; margin: 0 auto var(--dervo-s4, 24px); padding: var(--dervo-s3, 16px) var(--dervo-s4, 24px); border-radius: 12px; background: hsl(var(--accent) / .35); }
+.dervo-brief-headline { font-size: 1.0625rem; font-weight: 600; letter-spacing: -.015em; line-height: 1.4; }
+.dervo-brief-counts { margin-top: var(--dervo-s1, 8px); font-size: 0.8125rem; line-height: 1.6; color: hsl(var(--muted-foreground)); }
+.dervo-brief-link { padding: 0; border: 0; background: none; color: hsl(var(--foreground)); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.dervo-brief-link:hover { color: hsl(var(--primary)); }
+.dervo-result-new { display: inline-block; margin-right: var(--dervo-s1, 8px); padding: 1px 7px; border-radius: 999px; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); font-size: 0.6875rem; font-weight: 650; letter-spacing: .02em; }
+.dervo-result-time { color: hsl(var(--muted-foreground)); }
+.dervo-result-summary { margin-top: var(--dervo-s2, 12px); max-width: 70ch; font-size: 0.875rem; line-height: 1.6; }
+.dervo-result-actions { display: flex; flex-wrap: wrap; gap: 0 var(--dervo-s1, 8px); margin-top: var(--dervo-s1, 8px); margin-left: -10px; }
+.dervo-result-actions .dervo-result-open { margin-top: 4px; margin-left: 0; }
+.has-preview .dervo-result-actions { flex-direction: column; align-items: flex-start; }
+/* B1: three counts, when you last looked, and one action per card. */
+.dervo-brief-stats { display:flex; flex-wrap:wrap; gap:8px; }
+.dervo-brief-stat { display:grid; min-width:120px; padding:10px 14px; border-radius:12px; background:hsl(var(--muted)/.6); }
+.dervo-brief-stat b { font-size:1.4rem; font-weight:700; line-height:1.1; font-variant-numeric:tabular-nums; }
+.dervo-brief-stat span { font-size:.78rem; color:hsl(var(--muted-foreground)); }
+.dervo-brief-stat.is-attention b { color:hsl(var(--dervo-alert)); }
+.dervo-brief-since { margin-top:8px; font-size:.8rem; color:hsl(var(--muted-foreground)); }
+.dervo-catchup-confirm { display:inline-flex; flex-wrap:wrap; align-items:center; gap:6px; font-size:.8rem; }
+.dervo-find-workspace .dervo-catchup-error { flex-basis:100%; font-size:.75rem; color:hsl(var(--destructive)); }
+.dervo-find-form > .dervo-find-scope { display:inline-flex; gap:0; margin-bottom:12px; }

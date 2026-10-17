@@ -1,0 +1,20 @@
+.dervo-feedback-launcher{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:10px;color:hsl(var(--foreground));opacity:.72;font-size:0.8125rem;transition:background 180ms,opacity 180ms}
+.dervo-feedback-launcher:hover{background:hsl(var(--muted));opacity:1}
+.dervo-feedback-dialog{width:calc(100vw - 32px);max-width:400px!important;gap:10px}
+.dervo-feedback-dialog form{display:flex;flex-direction:column;gap:14px}
+.dervo-feedback-categories{display:flex;gap:7px;margin-top:6px}
+.dervo-feedback-categories button{border:1px solid hsl(var(--border));border-radius:999px;padding:5px 12px;font-size:0.8125rem;transition:background 180ms,color 180ms}
+.dervo-feedback-categories button[aria-pressed=true]{background:hsl(var(--primary));color:hsl(var(--primary-foreground));border-color:transparent}
+.dervo-feedback-dialog textarea{width:100%;resize:none;min-height:128px;max-height:240px;padding:12px;border:1px solid hsl(var(--border));border-radius:12px;background:hsl(var(--background));font:inherit;font-size:0.875rem;line-height:1.55}
+.dervo-feedback-dialog textarea:focus-visible{outline:2px solid hsl(var(--ring));outline-offset:2px}
+.dervo-feedback-context{font-size:0.6875rem;line-height:1.5;color:hsl(var(--muted-foreground))}
+.dervo-feedback-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;min-height:36px}
+.dervo-feedback-actions button{border-radius:10px;padding:8px 12px;font-size:0.8125rem}
+.dervo-feedback-send{background:hsl(var(--primary));color:hsl(var(--primary-foreground))}
+.dervo-feedback-cancel{color:hsl(var(--muted-foreground))}
+.dervo-feedback-dialog button:disabled{opacity:.5;cursor:default}
+.dervo-feedback-error{font-size:0.75rem;color:hsl(var(--destructive));line-height:1.5}
+.dervo-feedback-success{display:flex;align-items:center;gap:7px;color:hsl(var(--foreground));font-size:0.8125rem}
+@media(prefers-reduced-motion:reduce){.dervo-feedback-launcher,.dervo-feedback-categories button{transition:none}}
+.dervo-feedback-context > summary { cursor: pointer; font-weight: 600; }
+.dervo-feedback-context[open] > summary { margin-bottom: 4px; }

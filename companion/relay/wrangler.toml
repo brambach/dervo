@@ -1,0 +1,24 @@
+# Bryce gave the go to deploy on 8 Oct 2026. Deploy from companion/ with `npm run relay:deploy` once a Cloudflare
+# login or CLOUDFLARE_API_TOKEN (Workers Scripts, Durable Objects and DNS edit on trydervo.com) is available.
+name = "dervo-relay"
+main = "worker.ts"
+compatibility_date = "2025-09-01"
+workers_dev = false
+# The Worker answers wss://relay.trydervo.com/v1/rooms/<room>. Cloudflare creates the DNS record for a custom domain.
+routes = [{ pattern = "relay.trydervo.com", custom_domain = true }]
+
+[durable_objects]
+bindings = [{ name = "ROOMS", class_name = "RelayRoom" }]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["RelayRoom"]
+
+# Connections per client address, checked in the Worker before a room is reached (worker.ts, CONNECTS). A phone and a
+# Mac reconnecting with backoff stay far under this.
+[[ratelimits]]
+name = "CONNECTS"
+namespace_id = "1001"
+  [ratelimits.simple]
+  limit = 30
+  period = 60

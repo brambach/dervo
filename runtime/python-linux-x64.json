@@ -1,0 +1,25 @@
+{
+  "version": "3.13.16",
+  "build": "20261001",
+  "platform": "x86_64-unknown-linux-gnu",
+  "source": "python-build-standalone by Astral, the CPython builds uv installs",
+  "release": "https://github.com/astral-sh/python-build-standalone/releases/tag/20261001",
+  "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261001/cpython-3.13.16%2B20261001-x86_64-unknown-linux-gnu-install_only_stripped.tar.gz",
+  "size": 35067590,
+  "sha256": "ffcb50e716789d1a6e1db5e745d4d194ac8ed9b015ccf5eabcaccb179a25e4a8",
+  "archive_root": "python",
+  "executable": "bin/python3.13",
+  "licence": "LICENSE-Python",
+  "remove": [
+    "bin/idle3", "bin/idle3.13", "bin/pip", "bin/pip3", "bin/pip3.13", "bin/pydoc3", "bin/pydoc3.13", "bin/python",
+    "bin/python3", "bin/python3-config", "bin/python3.13-config",
+    "include", "share", "lib/pkgconfig", "lib/libpython3.13.so", "lib/libpython3.13.so.1.0", "lib/libpython3.so",
+    "lib/libtcl9.0.so", "lib/libtcl9tk9.0.so", "lib/tcl9", "lib/tcl9.0", "lib/tk9.0", "lib/itcl4.3.8",
+    "lib/thread3.0.6",
+    "lib/python3.13/config-3.13-x86_64-linux-gnu", "lib/python3.13/ensurepip", "lib/python3.13/idlelib",
+    "lib/python3.13/tkinter", "lib/python3.13/turtledemo", "lib/python3.13/turtle.py",
+    "lib/python3.13/site-packages/pip", "lib/python3.13/site-packages/pip-26.2.1.dist-info",
+    "lib/python3.13/lib-dynload/_tkinter.cpython-313-x86_64-linux-gnu.so",
+    "lib/python3.13/lib-dynload/_dbm.cpython-313-x86_64-linux-gnu.so"
+  ]
+}

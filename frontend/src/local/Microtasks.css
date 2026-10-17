@@ -1,0 +1,10 @@
+/* The microtask lesson (Microtasks.tsx): a title, two lines, three examples of what tiny means and one way in. Ink on
+   paper with no accent, because nothing here needs you. Tokens only. */
+.dv-mt { margin-top: var(--dv-s5); max-width: 60ch; }
+.dv-mt-title { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; color: var(--dv-ink); }
+.dv-mt-line { margin-top: var(--dv-s1); font-size: var(--dv-fs-body); line-height: var(--dv-lh-read); color: var(--dv-ink-2); }
+.dv-mt-label { margin-top: var(--dv-s3); font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-mt-list { display: flex; flex-direction: column; align-items: flex-start; gap: var(--dv-s2); margin: var(--dv-s2) 0 0; padding: 0; list-style: none; }
+.dv-mt-list li { max-width: 100%; padding: var(--dv-s2) var(--dv-s3); border-radius: var(--dv-r1); background: var(--dv-sunk); color: var(--dv-ink-2);
+  font-size: var(--dv-fs-small); line-height: 1.45; overflow-wrap: anywhere; }
+.dv-mt .dv-moment-actions { margin-top: var(--dv-s4); }

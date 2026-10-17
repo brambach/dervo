@@ -1,0 +1,20 @@
+/* ResultNotes.tsx: inside the result card, under its lead line. Tokens only. The unrecorded files are a quiet inset
+   list, not an alarm; another chat's work is one muted line. */
+.dv-result-files { flex-basis: 100%; margin-top: var(--dv-s1); padding: var(--dv-s2) var(--dv-s3); border-radius: var(--dv-r1); background: var(--dv-sunk); }
+.dv-result-files ul { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: minmax(0, max-content) 1fr; gap: 6px var(--dv-s4); align-items: baseline; }
+.dv-result-files li { display: contents; }
+.dv-result-files code, .dv-result-alongside code { font: 500 var(--dv-fs-caption)/1.4 var(--dv-font-mono); color: var(--dv-ink); overflow-wrap: anywhere; }
+.dv-result-files li > span:last-child { font-size: var(--dv-fs-caption); color: var(--dv-muted); line-height: 1.4; }
+.dv-result-more { margin-top: var(--dv-s2); font-size: var(--dv-fs-caption); }
+.dv-result-hint { margin: var(--dv-s2) 0 0; font-size: var(--dv-fs-caption); line-height: 1.45; color: var(--dv-muted); }
+
+.dv-result-alongside { flex-basis: 100%; font-size: var(--dv-fs-caption); line-height: 1.45; color: var(--dv-muted); }
+.dv-result-alongside p { margin: 0; }
+.dv-result-alongside .dv-link { margin-left: 6px; font-size: inherit; }
+.dv-result-alongside ul { margin: 6px 0 0 22px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 3px; }
+.dv-result-alongside .dv-result-hint { margin: 0; }
+/* Two overlapping rings: two chats, one folder. Muted, never a status colour. */
+.dv-result-pair { display: inline-flex; vertical-align: -1px; margin-right: 8px; }
+.dv-result-pair i { width: 9px; height: 9px; border-radius: 50%; box-shadow: inset 0 0 0 1.3px var(--dv-faint); }
+.dv-result-pair i + i { margin-left: -4px; }
+.dv-result-files .dv-reply-path { justify-self: start; text-align: left; }

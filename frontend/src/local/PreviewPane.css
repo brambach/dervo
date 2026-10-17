@@ -1,0 +1,71 @@
+/* Preview, the thread's second column in its Preview view (panel direction C). Layout only: every value is a dv- token.
+   Beside the thread it takes half the room: the thread and Preview split the main area evenly (526 each at 1052 once the
+   sidebar folds, 630 each at 1512). Under 820 it covers the thread, and the switch goes back. */
+.dervo-conversation-workspace:has(.dervo-preview-pane) .dervo-conversation-main { flex:1 1 0; min-width:0; }
+.dervo-preview-pane { flex:0 0 50%; width:auto; box-sizing:border-box; min-width:0; min-height:0; gap:var(--dv-s3); padding:var(--dv-s4) var(--dv-s4) var(--dv-s3); overflow:hidden;
+  font-size:var(--dv-fs-body); line-height:var(--dv-lh-ui); background:var(--dv-canvas); }
+.dervo-preview-pane button { cursor:pointer; }
+.dervo-preview-pane button:disabled { cursor:default; opacity:.45; }
+.dervo-preview-pane :focus-visible { outline:2px solid var(--dv-focus); outline-offset:2px; border-radius:var(--dv-r1); }
+
+.dv-preview-head { display:flex; align-items:center; justify-content:space-between; gap:var(--dv-s2); }
+.dv-preview-close { width:28px; padding:0; display:inline-flex; align-items:center; justify-content:center; }
+.dv-column-switch { flex:none; }
+.dv-column-switch button { height:28px; }
+
+.dv-preview-path { display:flex; align-items:center; gap:2px; min-height:28px; }
+.dv-preview-where { flex:1; min-width:0; margin:0; display:flex; font-family:var(--dv-font-mono); font-size:var(--dv-fs-small); color:var(--dv-muted); white-space:nowrap; }
+.dv-preview-where span { min-width:0; overflow:hidden; text-overflow:ellipsis; }
+.dv-preview-where b { flex:none; }
+.dv-preview-where b { color:var(--dv-ink); font-weight:600; }
+.dv-preview-path .dv-btn-quiet { width:28px; padding:0; display:inline-flex; align-items:center; justify-content:center; }
+.dv-preview-pager { display:inline-flex; align-items:center; gap:2px; font-size:var(--dv-fs-caption); color:var(--dv-muted); white-space:nowrap; }
+
+.dv-preview-body { flex:1 1 auto; min-height:0; display:flex; flex-direction:column; }
+.dv-preview-stage { position:relative; flex:1 1 auto; min-height:0; overflow:hidden; border-radius:var(--dv-r2); box-shadow:0 0 0 1px var(--dv-line); background:var(--dv-paper); }
+.dv-preview-stage iframe { position:absolute; top:0; left:0; border:0; transform-origin:0 0; background:var(--dv-paper); }
+.dv-preview-shot { flex:1 1 auto; min-height:0; display:flex; align-items:flex-start; justify-content:center; overflow:auto; }
+.dv-preview-shot img { display:block; max-width:100%; height:auto; border-radius:var(--dv-r2); box-shadow:0 0 0 1px var(--dv-line); }
+
+/* Beta.15: Markdown rendered as text (no HTML, no images), a PDF in the same sandboxed frame, and the local pages this
+   thread's agents started, each with Open. */
+.dv-preview-doc { flex:1 1 auto; min-height:0; overflow:auto; padding:var(--dv-s4) var(--dv-s5); border-radius:var(--dv-r2); box-shadow:0 0 0 1px var(--dv-line);
+  background:var(--dv-raised); color:var(--dv-ink); font-size:var(--dv-fs-read); line-height:var(--dv-lh-read); }
+.dv-preview-doc > * + * { margin-top:var(--dv-s3); }
+.dv-preview-doc h1, .dv-preview-doc h2, .dv-preview-doc h3 { font-weight:600; line-height:var(--dv-lh-tight); }
+.dv-preview-doc h1 { font-size:var(--dv-fs-title); } .dv-preview-doc h2 { font-size:var(--dv-fs-body); }
+.dv-preview-doc ul { list-style:disc; padding-left:var(--dv-s5); } .dv-preview-doc ol { list-style:decimal; padding-left:var(--dv-s5); }
+.dv-preview-doc code { font-family:var(--dv-font-mono); font-size:.9em; padding:1px 4px; border-radius:4px; background:var(--dv-sunk); }
+.dv-preview-doc pre { padding:var(--dv-s3); border-radius:var(--dv-r1); background:var(--dv-sunk); overflow:auto; }
+.dv-preview-doc pre code { padding:0; background:none; }
+.dv-preview-doc-link { text-decoration:underline dotted; text-underline-offset:3px; }
+.dv-preview-pdf { flex:1 1 auto; min-height:0; display:flex; border-radius:var(--dv-r2); overflow:hidden; box-shadow:0 0 0 1px var(--dv-line); background:var(--dv-paper); }
+.dv-preview-pdf iframe { flex:1; border:0; }
+.dv-preview-started { display:flex; flex-direction:column; gap:var(--dv-s2); padding:var(--dv-s3); margin-bottom:var(--dv-s2); border-radius:var(--dv-r2); background:var(--dv-raised); box-shadow:var(--dv-card-edge); }
+.dv-preview-started .dv-label { margin:0; }
+.dv-preview-started-row { display:flex; align-items:center; justify-content:space-between; gap:var(--dv-s2); }
+.dv-preview-started-row code { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-family:var(--dv-font-mono); font-size:var(--dv-fs-small); color:var(--dv-ink); }
+
+.dv-preview-empty { margin:auto 0; padding:var(--dv-s5) 0; color:var(--dv-ink-2); display:flex; flex-direction:column; gap:var(--dv-s1); }
+.dv-preview-empty p:first-child { font-weight:600; color:var(--dv-ink); }
+.dv-preview-local { display:flex; flex-direction:column; gap:var(--dv-s2); padding-top:var(--dv-s3); }
+.dv-preview-local label { font-weight:600; color:var(--dv-ink); }
+.dv-preview-local-row { display:flex; gap:var(--dv-s2); }
+.dv-preview-local-row .dv-input { flex:1; font-family:var(--dv-font-mono); font-size:var(--dv-fs-small); color:var(--dv-ink); }
+
+.dv-preview-foot { display:flex; align-items:center; justify-content:space-between; gap:var(--dv-s3); flex-wrap:wrap; }
+.dv-preview-tabs { display:inline-flex; gap:2px; }
+.dv-preview-tabs button { height:30px; padding:0 var(--dv-s3); border-radius:var(--dv-r-pill); font-size:var(--dv-fs-small); font-weight:600; color:var(--dv-muted); white-space:nowrap; }
+.dv-preview-tabs button:hover { color:var(--dv-ink); }
+.dv-preview-tabs button[aria-selected="true"] { background:var(--dv-sunk); color:var(--dv-ink); }
+.dv-preview-tabs .tnum { font-weight:400; margin-left:2px; }
+.dv-preview-caption { margin:0; font-size:var(--dv-fs-caption); color:var(--dv-muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+
+/* The switch in the Progress view sits above the guide's own header. */
+.dervo-task-guide .dv-column-switch { align-self:flex-start; margin-bottom:calc(-1 * var(--dv-s2)); }
+
+@container (max-width: 820px) {
+ /* Narrow: Preview covers the thread; the switch or esc goes back. */
+ .dervo-conversation-workspace:has(.dervo-preview-pane) .dervo-conversation-main { display:none; }
+ .dervo-preview-pane { border-left:0; flex:1 1 auto; }
+}

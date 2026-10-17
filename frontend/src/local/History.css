@@ -1,0 +1,140 @@
+/* History: the log of runs, and the pieces the record and the trace share. Layout only: every colour, size, radius and
+   shadow is a dv- token. The one new treatment is the approved pale green highlight (sage wash) that marks what belongs
+   together, used in place of connector lines (site review, 16 Sep). */
+.dervo-history-workspace { display: flex; flex: 1; min-height: 0; flex-direction: column; overflow: hidden; }
+.dervo-history-bar { flex: none; }
+.dervo-history-bar .dv-tools .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-history-crumb { color: inherit; font: inherit; }
+.dervo-history-crumb:hover { color: var(--dv-ink); }
+.dervo-history-crumb:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; border-radius: 4px; }
+
+.dervo-history-body { flex: 1; min-height: 0; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+.dervo-history-body > .dv-measure { gap: var(--dv-s5); padding-bottom: var(--dv-s7); }
+.dervo-history-head-row { display: flex; align-items: baseline; gap: var(--dv-s3); flex-wrap: wrap; }
+.dervo-history-head-row h1 { outline: none; }
+.dervo-history-head-row .dv-caption { margin-left: auto; font-size: var(--dv-fs-small); }
+
+/* Filters: the segmented control with its counts, the agent, and a file filter at the far end. */
+.dervo-history-filters { display: flex; align-items: center; gap: var(--dv-s3); flex-wrap: wrap; margin-top: calc(-1 * var(--dv-s2)); }
+.dervo-history-filters .dv-seg button { height: 28px; }
+.dervo-history-count { margin-left: 6px; color: var(--dv-faint); font-variant-numeric: tabular-nums; font-weight: 600; }
+.dervo-history-agent-pick { position: relative; padding-right: var(--dv-s3); }
+.dervo-history-agent-pick select { appearance: none; background: transparent; border: 0; font: inherit; color: inherit; padding-right: 2px; cursor: pointer; }
+.dervo-history-agent-pick select:focus-visible { outline: none; }
+.dervo-history-agent-pick:focus-within { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dervo-history-find { display: inline-flex; align-items: center; gap: var(--dv-s2); height: 32px; min-width: 180px; padding: 0 var(--dv-s3); border-radius: var(--dv-r-pill);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); background: var(--dv-raised); color: var(--dv-muted); margin-left: auto; }
+.dervo-history-find input { flex: 1; min-width: 0; border: 0; background: transparent; font-size: var(--dv-fs-small); color: var(--dv-ink); }
+.dervo-history-find input::placeholder { color: var(--dv-faint); }
+.dervo-history-find input:focus { outline: none; }
+.dervo-history-find:focus-within { outline: 2px solid var(--dv-focus); outline-offset: 1px; }
+.dervo-history-find input::-webkit-search-cancel-button { display: none; }
+
+/* A day of runs. The rows are the design system's .dv-row; an open one is its white card. */
+.dervo-history-day > .dv-label { display: block; margin-bottom: var(--dv-s2); }
+.dervo-history-sheet { list-style: none; padding: 0; }
+.dervo-history-row { transition: background-color var(--dv-fast) var(--dv-ease); }
+.dervo-history-row[data-linked]:not(.dv-open) { background: color-mix(in srgb, var(--dv-sage-wash) 88%, transparent); }
+.dervo-history-main { min-width: 0; }
+.dervo-history-head { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; text-align: left; color: inherit; cursor: pointer; border-radius: var(--dv-r1); }
+.dervo-history-head:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 3px; }
+.dervo-history-head .dv-row-line { margin-top: 0; font-size: var(--dv-fs-small); color: var(--dv-muted); line-height: 1.45; }
+.dervo-history-try { font-weight: 400; color: var(--dv-faint); }
+.dervo-history-row .dv-row-end { padding-top: 1px; }
+.dervo-history-row.dv-open .dv-row-name { font-size: var(--dv-fs-body); }
+
+/* The byline: a small pine mark, the agent, then the plain parts after a middle dot. */
+.dervo-history-byline { display: flex; align-items: center; flex-wrap: wrap; gap: 2px var(--dv-s2); margin-top: 6px; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dervo-history-sep { color: var(--dv-faint); font-weight: 400; }
+.dervo-history-plain { font-weight: 400; }
+.dervo-history-who { width: 16px; height: 16px; flex: none; border-radius: 5px; display: block; }
+.dervo-history-who.is-home { display: grid; place-items: center; background: var(--dv-pine); color: var(--dv-pine-ink); }
+
+/* The open row's facts. What it said is quoted and never bold. */
+.dervo-history-facts { grid-template-columns: 64px minmax(0, 1fr); margin-top: var(--dv-s4); gap: 10px var(--dv-s3); font-size: var(--dv-fs-small); line-height: 1.55; }
+.dervo-history-facts dd { color: var(--dv-ink-2); }
+.dervo-history-facts code, .dervo-record-compare code { font: 400 .92em/1 var(--dv-font-mono); }
+.dervo-history-from { color: var(--dv-faint); font-size: var(--dv-fs-caption); }
+:is(.dervo-history-facts, .dervo-record-body, .dervo-trace-body) q { quotes: '\201C' '\201D'; }
+.dervo-history-said { color: var(--dv-ink-2); }
+
+/* The shared highlight: a linked run's name, wherever it's named. */
+.dervo-history-mark { display: inline; background: color-mix(in srgb, var(--dv-sage-wash) 88%, transparent); color: var(--dv-ink); font: inherit; font-weight: 600;
+  padding: 1px 5px; border-radius: 5px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+button.dervo-history-mark { cursor: pointer; }
+button.dervo-history-mark:hover { background: color-mix(in srgb, var(--dv-sage-wash) 100%, var(--dv-ink) 6%); }
+button.dervo-history-mark:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 1px; }
+
+.dervo-history-row .dv-row-actions { margin-top: var(--dv-s4); align-items: center; }
+.dervo-history-row .dv-row-actions .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-history-error { font-size: var(--dv-fs-small); color: var(--dv-ink); }
+.dervo-history-error .dv-btn-quiet { display: inline-flex; height: 24px; margin-left: var(--dv-s1); font-size: var(--dv-fs-caption); }
+.dervo-history-more { margin-top: calc(-1 * var(--dv-s2)); }
+
+/* Pieces of work (beta.16, b16/git; grouped-* mocks, approved 25 Sep): one card per thread, lightly filled, the open one
+   lifted. The git line's chips carry state by shape and words; merged is sage, the one colour besides the rust accent. */
+.dervo-work-list { list-style: none; padding: 0; margin: 0 calc(-1 * var(--dv-s3)); display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dervo-work { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 0 var(--dv-s3); align-items: start; padding: var(--dv-s3);
+  border-radius: var(--dv-r2); box-shadow: var(--dv-card-edge); background: color-mix(in srgb, var(--dv-raised) 55%, transparent);
+  transition: background-color var(--dv-fast) var(--dv-ease), box-shadow var(--dv-fast) var(--dv-ease); }
+.dervo-work:hover { background: var(--dv-raised); }
+.dervo-work > .dv-st { margin-top: 2px; }
+.dervo-work.dv-open { background: var(--dv-raised); box-shadow: var(--dv-card-edge), var(--dv-lift); padding: var(--dv-s4) var(--dv-s3); }
+.dervo-work[data-linked]:not(.dv-open) { background: color-mix(in srgb, var(--dv-sage-wash) 88%, transparent); }
+.dervo-work-main { min-width: 0; }
+.dervo-work-more { grid-column: 2 / 4; min-width: 0; }
+.dervo-work-more:empty { display: none; }
+.dervo-work-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px var(--dv-s2); width: 100%; text-align: left; color: inherit; cursor: pointer; border-radius: var(--dv-r1); }
+.dervo-work-head:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 3px; }
+.dervo-work-head .dv-state { font-weight: 500; }
+.dervo-work .dv-row-end { padding-top: 1px; }
+.dervo-work .dv-when { font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* What it added up to, from the records: who, how many runs, files, checks. */
+.dervo-work-sum { margin-top: 4px; font-size: var(--dv-fs-small); color: var(--dv-muted); line-height: 1.5; }
+.dervo-work-sum > .dervo-history-sep { margin: 0 var(--dv-s1); }
+.dervo-work-agents { display: inline-flex; align-items: center; gap: 0 var(--dv-s1); flex-wrap: wrap; vertical-align: bottom; }
+.dervo-work-agent { display: inline-flex; align-items: center; gap: 5px; font-weight: 600; color: var(--dv-ink-2); }
+.dervo-work-agent .dervo-history-sep { margin-right: var(--dv-s1); font-weight: 400; }
+.dervo-work-agent .dervo-history-who, .dervo-work-run .dervo-history-who { width: 14px; height: 14px; border-radius: 4px; }
+
+/* The git line. */
+.dervo-work-git { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-top: var(--dv-s2); }
+.dervo-git-chip { display: inline-flex; align-items: center; gap: 5px; height: 22px; padding: 0 8px; border-radius: var(--dv-r-pill); font-size: var(--dv-fs-caption);
+  font-weight: 600; color: var(--dv-ink-2); box-shadow: inset 0 0 0 1px var(--dv-line); white-space: nowrap; }
+.dervo-git-chip code { font: 500 .95em/1 var(--dv-font-mono); }
+.dervo-git-chip[data-reverted] code { text-decoration: line-through; color: var(--dv-muted); }
+.dervo-git-chip[data-kind="where"] { font-weight: 500; color: var(--dv-muted); box-shadow: none; padding: 0 2px; }
+.dervo-git-chip[data-kind="merged"] { color: var(--dv-sage); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--dv-sage) 40%, transparent); }
+.dervo-work-none { font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+
+/* Its runs: one quiet line each; on the open card a line opens its facts, and Record opens its record. */
+.dervo-work-runs { list-style: none; padding: 0; margin: var(--dv-s3) 0 0; display: flex; flex-direction: column; gap: 2px; }
+.dervo-work-runs > li { display: grid; grid-template-columns: 12px minmax(0, 1fr) auto auto; gap: 0 var(--dv-s2); align-items: center; font-size: var(--dv-fs-small); color: var(--dv-ink-2); padding: 3px 0; }
+.dervo-work-runs .dv-st { width: 12px; height: 12px; margin: 0; }
+.dervo-work-runs .dv-st svg { width: 12px; height: 12px; }
+.dervo-work-run { display: flex; align-items: center; gap: 6px; min-width: 0; text-align: left; color: inherit; font: inherit; border-radius: var(--dv-r1); }
+.dervo-work-run > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-work-run:disabled { cursor: inherit; }
+.dervo-work-run:not(:disabled):hover > span { color: var(--dv-ink); }
+.dervo-work-run:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dervo-work-record { font-size: var(--dv-fs-caption); height: 22px; }
+.dervo-work-runs > li > .dv-when { grid-column: 4; }
+.dervo-work-facts { grid-column: 2 / -1; padding: var(--dv-s2) 0 var(--dv-s3); }
+.dervo-work-facts .dervo-history-facts { margin-top: 0; }
+.dervo-work-pr { margin-top: var(--dv-s4); }
+.dervo-work .dv-row-actions { margin-top: var(--dv-s4); align-items: center; }
+.dervo-work .dv-row-actions .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-work-note { margin-top: var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+
+/* An archived thread keeps its place, quieter. */
+.dervo-work[data-archived] { background: transparent; box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dervo-work[data-archived] .dv-row-name { color: var(--dv-ink-2); }
+.dervo-work-archived { height: 17px; font-weight: 500; color: var(--dv-muted); }
+
+/* The Progress panel's changed files open their trace here when History is wired in (TaskGuide.tsx, onTraceFile). */
+.dv-file-trace { font: inherit; color: inherit; text-align: left; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-file-trace:hover { color: var(--dv-ink); text-decoration: underline; text-underline-offset: 2px; }
+.dv-file-trace:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; border-radius: 3px; }
+
+@media (prefers-reduced-motion: reduce) { .dervo-history-row, .dervo-work { transition: none; } }

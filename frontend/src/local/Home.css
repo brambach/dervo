@@ -1,0 +1,365 @@
+/* Home, direction A (19 Sep): the chat on the left, the Now pane on the right. Layout only. Every colour, size, radius
+   and shadow comes from the dv- tokens and the dv- component classes in DervoComponents.css; the rules here only place
+   them. Rows sit on the page; the one open item is lifted by .dv-row.dv-open. The only thing that moves: a card that
+   asks you enters once when it arrives while you're here (data-enter), never on opening Home, and nothing on scroll. */
+.dv-home { display: grid; grid-template-columns: minmax(0, 1fr) clamp(320px, 40%, 420px); flex: 1; min-height: 0; min-width: 0;
+  color: var(--dv-ink); font: 400 var(--dv-fs-body)/var(--dv-lh-ui) var(--dv-font-text); letter-spacing: .003em; -webkit-font-smoothing: antialiased; }
+.dv-home[data-narrow] { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); }
+.dv-home-main { display: flex; flex-direction: column; min-height: 0; min-width: 0; }
+/* The same 32px above the title as History, Knowledge and Next up (the column's own padding): Home's was 24, so the title jumped
+   8px between Home and the next screen. */
+.dv-home-main > .dv-column { flex: 1; min-height: 0; padding-top: var(--dv-s6);
+  /* Messages that scroll under the composer fade out over the last spacing step instead of being cut mid-line. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--dv-s5)), transparent);
+  mask-image: linear-gradient(to bottom, #000 calc(100% - var(--dv-s5)), transparent); }
+/* The column is the design system's 700px, like Knowledge, Settings and threads, so the title, the rows and the
+   composer's text share one left edge (design review, 23 Sep, item 4). */
+.dv-home-main > .dv-column > .dv-measure { padding-bottom: var(--dv-s5); }
+.dv-home code { font-family: var(--dv-font-mono); font-size: .92em; }
+
+/* ---------- The Now pane ---------- */
+.dv-now { border-left: var(--dv-hairline); overflow: auto; padding: var(--dv-s5) var(--dv-s5) var(--dv-s5); display: flex; flex-direction: column; gap: var(--dv-s4); min-height: 0; }
+.dv-now-head { display: flex; align-items: baseline; gap: var(--dv-s3); flex-wrap: wrap; }
+.dv-now-head .dv-caption { margin-left: auto; white-space: nowrap; }
+/* "Open in full" ends the head, hard against the pane's right edge. At the widths Home actually gets, the name and the
+   caption fill the first line and the control takes the second on its own; right-aligned it reads as the way out
+   rather than as a stray row. Ghost, like every other quiet control: no second accent up here. */
+.dv-now-expand { margin-left: auto; white-space: nowrap; }
+.dv-now-lead { font-size: var(--dv-fs-small); line-height: 1.55; color: var(--dv-ink-2); }
+.dv-now-lead b { color: var(--dv-ink); font-weight: 600; }
+.dv-now-section { display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dv-now-label { padding: var(--dv-s2) 0 var(--dv-s1); }
+.dv-now-count { font-weight: 400; }
+.dv-home .dv-now-lead { max-width: 62ch; }
+/* ---------- The four buckets (design, 8 Oct): Waiting on you, Working, Idle, Resolved, like the Claude Projects panel.
+   A head is the label and its count in one quiet line; Resolved folds behind a chevron that turns, never jumps. */
+.dv-bucket-head { display: flex; align-items: center; gap: 6px; }
+.dv-bucket-bar { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s2); min-height: 28px; }
+.dv-bucket-bar .dv-now-label { padding-block: 0; }
+.dv-home .dv-bucket-act { margin-right: calc(-1 * var(--dv-s2)); color: var(--dv-muted); background: transparent; box-shadow: none; font-weight: 500; }
+.dv-home .dv-bucket-act:hover { color: var(--dv-ink); background: var(--dv-hover); }
+.dv-bucket-head .dv-now-count { color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+button.dv-bucket-head { width: fit-content; margin-left: calc(-1 * (var(--dv-s1) + 12px + 6px)); padding-inline: var(--dv-s1); border-radius: var(--dv-r1);
+  background: transparent; border: 0; cursor: pointer; text-align: left;
+  transition: background-color var(--dv-hover-out) var(--dv-ease); }
+button.dv-bucket-head:hover { background: var(--dv-hover); transition-duration: var(--dv-hover-in); }
+button.dv-bucket-head:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-bucket-chev { flex: none; color: var(--dv-faint); transition: transform var(--dv-fast) var(--dv-ease); }
+.dv-bucket-chev[data-open] { transform: rotate(90deg); }
+.dv-bucket-empty { margin: 0; padding: 2px 0 var(--dv-s1); font-size: var(--dv-fs-caption); line-height: 1.45; color: var(--dv-faint); }
+@media (prefers-reduced-motion: reduce) { .dv-bucket-chev { transition: none; } }
+.dv-now .dv-sheet { margin: 0 calc(-1 * var(--dv-s3)); }
+.dv-now { container-type: inline-size; container-name: now; }
+.dv-now .dv-row-name { display: block; max-width: 100%; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* The open card's name is a heading, not a link: it wraps rather than cuts. */
+.dv-now .dv-row.dv-open .dv-row-name { white-space: normal; overflow-wrap: anywhere; }
+.dv-now .dv-row-name .dv-caption { font-weight: 400; }
+.dv-now .dv-row-line { overflow-wrap: anywhere; }
+.dv-now .dv-facts { grid-template-columns: 48px minmax(0, 1fr); }
+.dv-now .dv-facts dd { overflow-wrap: anywhere; }
+.dv-now .dv-row-end { flex-wrap: wrap; justify-content: flex-end; row-gap: var(--dv-s1); }
+.dv-now .dv-row.dv-open { margin-bottom: var(--dv-s1); }
+/* A narrow pane: the card's facts stack (label above value), as the narrow mockup draws them, and its state word
+   sits under the name rather than beside it. */
+@container now (max-width: 380px) {
+  .dv-now .dv-row.dv-open .dv-facts { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .dv-now .dv-row.dv-open .dv-facts dt { padding-top: var(--dv-s2); }
+  .dv-now .dv-row.dv-open .dv-facts dt:first-child { padding-top: 0; }
+  .dv-now .dv-row.dv-open { grid-template-columns: 16px minmax(0, 1fr); }
+  .dv-now .dv-row.dv-open .dv-row-end { grid-column: 2; grid-row: 2; justify-content: flex-start; margin-top: var(--dv-s1); }
+  .dv-now .dv-row.dv-open > div:nth-child(2) { display: contents; }
+  .dv-now .dv-row.dv-open .dv-row-name { grid-column: 2; grid-row: 1; }
+  .dv-now .dv-row.dv-open .dv-row-line { grid-column: 2; grid-row: 3; }
+  .dv-now .dv-row.dv-open .dv-facts { grid-column: 2; grid-row: 4; }
+  .dv-now .dv-row.dv-open .dv-row-actions { grid-column: 2; grid-row: 5; }
+}
+/* A narrow pane can't hold a row's words, a wide button like "Continue in Codex" and the time side by side: the words
+   got squeezed to a letter a line at 1052. There, the button and time move under the words. */
+@container now (max-width: 420px) {
+  .dv-now .dv-row:not(.dv-open) { grid-template-columns: 16px minmax(0, 1fr); }
+  .dv-now .dv-row:not(.dv-open) .dv-row-end { grid-column: 2; grid-row: 2; justify-content: flex-start; margin-top: var(--dv-s1); }
+}
+.dv-now-quiet { padding: var(--dv-s3) 0 0; }
+.dv-now-more { padding-top: var(--dv-s1); }
+/* The host is holding the Mac awake for these runs (keep_awake.py): one quiet line under Running, never a banner. */
+.dv-now-awake { padding: var(--dv-s1) 0 0 calc(16px + var(--dv-s3)); } /* lines up with the row names, past the glyph column */
+.dv-now-lead[role="alert"] .dv-btn { margin-left: var(--dv-s1); vertical-align: middle; }
+/* A card that asks you enters once, when it arrives while Home is on screen (Home.tsx marks it data-enter); opening
+   Home moves nothing. The staggered rise after a history read is gone too: the nested fade Bryce cut from the site. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-now .dv-row.dv-open[data-enter] { animation: dv-now-card-in var(--dv-calm) var(--dv-ease) both; }
+}
+@keyframes dv-now-card-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Narrow: the pane folds into a strip above the chat, opened on a click. */
+.dv-now-strip { border-left: 0; border-bottom: var(--dv-hairline); padding: var(--dv-s3) var(--dv-s5); max-height: 60%; }
+.dv-now-strip:not([data-open]) { gap: 0; }
+.dv-now-strip .dv-now-head { align-items: center; }
+.dv-now-strip .dv-now-head .dv-display-2 { font-size: var(--dv-fs-title); font-family: var(--dv-font-text); font-weight: 600; letter-spacing: -.012em; }
+.dv-now-strip .dv-now-head .dv-caption { margin-left: 0; }
+.dv-now-strip .dv-now-head .dv-btn { margin-left: auto; }
+
+/* ---------- The branch and the push, under the lead ---------- */
+.dv-push { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-push-line { display: flex; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; min-height: 28px; }
+.dv-push-branch { display: inline-flex; align-items: center; gap: 6px; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-push-branch b { font: 500 var(--dv-fs-caption)/1.4 var(--dv-font-mono); color: var(--dv-ink-2); }
+.dv-push-line .dv-btn { margin-left: auto; }
+.dv-push-confirm { display: flex; flex-direction: column; gap: var(--dv-s2); padding: var(--dv-s3); border-radius: var(--dv-r2); background: var(--dv-raised);
+  box-shadow: 0 0 0 1px var(--dv-line), var(--dv-lift); }
+.dv-push-question { font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); overflow-wrap: anywhere; }
+.dv-push-commits { display: flex; flex-direction: column; gap: 6px; font-size: var(--dv-fs-caption); line-height: 1.45; }
+.dv-push-commits li { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px var(--dv-s2); align-items: baseline; }
+.dv-push-commits code { font: 500 var(--dv-fs-caption)/1.45 var(--dv-font-mono); color: var(--dv-muted); }
+.dv-push-commits .dv-push-subject { color: var(--dv-ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-push-commits .dv-caption { grid-column: 2; }
+.dv-push-note { overflow-wrap: anywhere; }
+.dv-push-confirm .dv-row-actions { margin-top: var(--dv-s1); }
+
+/* ---------- The chat you act on it with ---------- */
+.dv-home-empty { padding-top: var(--dv-s3); color: var(--dv-muted); max-width: 52ch; }
+.dv-home .dv-msg-you-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: var(--dv-s1); }
+.dv-home .dv-msg-you { white-space: pre-wrap; overflow-wrap: anywhere; }
+.dv-home .dv-msg-you-wrap .dervo-sent-images { margin: 0; justify-content: flex-end; }
+/* A message the host refused, or one that may still go through (send(), beta.18): one line under the bubble. */
+.dv-home .dv-msg-you-note { margin: 0; text-align: right; color: var(--dv-muted); }
+.dv-home .dv-msg-you-wrap[data-outgoing="unsent"] .dv-msg-you { opacity: .6; }
+.dv-home .dv-msg-dervo .dv-read + .dv-read { margin-top: var(--dv-s2); }
+.dv-home .dv-msg-dervo .dv-read { overflow-wrap: anywhere; }
+.dv-home-list { padding-left: 1.2em; list-style: disc; display: flex; flex-direction: column; gap: var(--dv-s1); }
+/* No name row above a reply (reply header D). While Dervo works, one step line sits where the answer will land, in the
+   reply's own reading size so the words replace it without a hop; its shimmer lives in ChatMotion.css. The wait
+   ("· 2 min") follows the words in the caption size. */
+.dv-home .dv-home-step { display: flex; align-items: baseline; gap: var(--dv-s2); color: var(--dv-muted); max-width: 62ch; }
+.dv-home .dv-home-step-words { min-width: 0; }
+.dv-home .dv-home-step-waited { flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+/* What it read and when, said once at the reply's foot: always on the newest reply, on hover or focus for the older
+   ones. The job this screen is sending after an answer takes the same line first (.dv-home-step-foot), same metrics,
+   so the receipt lands in its place. */
+.dv-home .dv-home-receipt, .dv-home .dv-home-step-foot { margin-top: var(--dv-s2); font-size: var(--dv-fs-caption); line-height: 1.45; color: var(--dv-faint); }
+.dv-home .dv-home-receipt:not([data-latest]) { opacity: 0; }
+.dv-home .dv-msg-dervo:is(:hover, :focus-within) .dv-home-receipt { opacity: 1; }
+/* A failed answer: the host's sentence in the reply's place, with Send again beside it. */
+.dv-home .dv-home-failed { color: var(--dv-ink-2); }
+.dv-home .dv-home-failed .dv-btn { margin-left: var(--dv-s1); vertical-align: middle; }
+/* A job in a reply is one line, a link to its thread: no box, no status word on the right (that's the pane's). */
+.dv-home .dv-jobs { background: none; box-shadow: none; padding: 0; margin: var(--dv-s1) 0 0 calc(-1 * var(--dv-s2)); display: flex; flex-direction: column; gap: 0; }
+.dv-home .dv-job { grid-template-columns: 16px minmax(0, 1fr) auto; padding: 6px var(--dv-s2); width: 100%; text-align: left; }
+.dv-home .dv-job-text { display: flex; align-items: baseline; gap: var(--dv-s2); min-width: 0; }
+.dv-home .dv-job b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: none; max-width: 100%; }
+.dv-home .dv-job small { margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A long title leaves room for the line beside it (design review, 23 Sep): at 1052 a long name took the whole row and a
+   running job's step and clock were cut to nothing. Short titles are untouched. */
+.dv-home .dv-job-text:has(> small) > b { max-width: 60%; }
+/* A running job's line: the step gives way, the clock and workstream after it stay whole (JobLive.tsx). */
+.dv-home .dv-job small[data-live-job="running"] { display: flex; gap: .28em; min-width: 0; }
+.dv-home .dv-job .dv-job-step { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dv-home .dv-job .dv-job-when { flex: none; }
+.dv-home .dv-job[data-state="failed"] .dv-job-text { flex-wrap: wrap; }
+.dv-home .dv-job[data-state="failed"] small { white-space: normal; }
+/* A job whose thread is running: the name opens it, Stop sits where the chevron was. */
+.dv-home .dv-job-open { min-width: 0; padding: 0; text-align: left; color: inherit; background: none; cursor: pointer; }
+.dv-home .dv-job-open:hover b { text-decoration: underline; text-underline-offset: 3px; }
+/* Move, and Stop while it runs: the row's own buttons, side by side where the chevron was (dd #10). */
+.dv-home .dv-job-acts { display: flex; align-items: center; gap: var(--dv-s1); }
+
+/* ---------- Home's composer: the design system's box with a real text field in it, the paperclip and the tray ---------- */
+.dv-home-composer textarea.dv-field, .dv-home-panel-composer textarea.dv-field { display: block; width: 100%; padding: 0; border: 0; outline: 0; resize: none; background: transparent;
+  color: var(--dv-ink); font-family: inherit; max-height: 14em; field-sizing: content; }
+.dv-home-composer textarea.dv-field::placeholder, .dv-home-panel-composer textarea.dv-field::placeholder { color: var(--dv-faint); }
+.dv-home-composer textarea.dv-field:disabled { color: var(--dv-faint); }
+.dv-home-composer .dv-btn-send:disabled, .dv-home-panel-composer .dv-btn-send:disabled { cursor: default; }
+/* While Dervo works, Send waits where it is, same size, a shade quieter than plain disabled. There's no Stop: the host
+   can't stop a Home answer yet. */
+.dv-home-composer .dv-btn-send[data-working] svg { opacity: .6; }
+.dv-home-composer .dv-foot .dv-home-clip { width: 28px; height: 28px; margin-left: calc(-1 * var(--dv-s2)); }
+.dv-home-composer .dv-foot .dv-home-clip:disabled { opacity: .45; cursor: default; }
+.dv-home-composer .dv-home-signin { margin-left: auto; }
+/* The agent for this message's jobs (group 8): the thread picker's chip, left of the hint, and a one-pane popover. */
+.dv-home-composer .dv-home-launch { flex: 0 1 auto; min-width: 0; max-width: 55%; font-size: var(--dv-fs-caption); }
+/* Up to two lines beside the chip, so a note about your words isn't cut off at 1052 (design review S2). */
+.dv-home-composer .dv-home-launch + .dv-hint { flex: 1 1 0; min-width: 0; overflow: hidden; white-space: normal; line-height: 1.35;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; text-wrap: pretty; }
+.dv-home-launch[data-from="words"] .dv-pk-model-name { color: var(--dv-ink); font-weight: 600; }
+/* One column: what Home heard and the agent on top, the models and Thinking scrolling in the middle, and the foot that
+   says what the choice does always in view (design review S3: at 1052 x 854 the foot was cut off with two accounts). */
+.dv-picker.dv-home-launch-pop { display: flex; flex-direction: column; width: min(440px, calc(100vw - 2 * var(--dv-s4))); height: auto;
+  max-height: min(560px, var(--radix-popover-content-available-height, 560px)); overflow: hidden; }
+.dv-home-launch-pop .dv-pk-models { flex: 1 1 auto; min-height: 0; padding: var(--dv-s1); box-shadow: none; }
+.dv-home-launch-pop .dv-home-launch-scroll { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: flex; flex-direction: column; gap: var(--dv-s1);
+  margin: 0 calc(-1 * var(--dv-s1)); padding: 0 var(--dv-s1); }
+.dv-home-launch-pop .dv-pk-foot { flex: none; margin-top: 0; box-shadow: 0 -1px 0 var(--dv-line); }
+.dv-home-launch-pop .dv-home-agents { flex: none; align-self: flex-start; margin: 0 var(--dv-s2) var(--dv-s1); }
+.dv-home-launch-pop .dv-home-accounts { flex: none; padding-top: 0; }
+.dv-home-launch-pop .dv-home-acct-seg { align-self: flex-start; }
+.dv-home-launch-pop .dv-home-acct-seg button { height: 24px; padding: 0 10px; font-size: var(--dv-fs-caption); }
+.dv-home-launch-pop .dv-home-acct-seg small { margin-left: 5px; font-size: var(--dv-fs-caption); font-weight: 400; color: var(--dv-muted); }
+.dv-home-launch-pop .dv-home-models-label { padding: var(--dv-s2) var(--dv-s2) 0; }
+.dv-home-launch-pop .dv-home-heard { background: var(--dv-sunk); border-radius: var(--dv-r1); padding: var(--dv-s2); margin: 0 var(--dv-s1); }
+.dv-home-launch-pop .dv-home-heard p { margin: 0; color: var(--dv-ink); }
+.dv-home-launch-pop .dv-pk-foot { flex-wrap: wrap; }
+.dv-home-launch-pop .dv-pk-foot > span:first-child { flex: 1 1 180px; line-height: 1.45; }
+.dv-home-launch-actions { display: flex; gap: var(--dv-s1); margin-left: auto; }
+.dv-home-launch-actions .dv-btn-quiet { margin-left: 0; }
+.dv-home-failure { margin-bottom: var(--dv-s2); }
+.dv-home-tray { display: flex; flex-wrap: wrap; gap: var(--dv-s2); margin-bottom: var(--dv-s3); }
+.dv-home-thumb { position: relative; width: 96px; border-radius: var(--dv-r2); background: var(--dv-sunk); box-shadow: 0 0 0 1px var(--dv-line); overflow: hidden; display: flex; flex-direction: column; }
+.dv-home-thumb img, .dv-home-thumb-blank { display: block; width: 100%; height: 64px; object-fit: cover; background: var(--dv-sunk); }
+.dv-home-thumb[data-state="uploading"] img, .dv-home-thumb[data-state="uploading"] .dv-home-thumb-blank { opacity: .5; }
+.dv-home-thumb-name { display: block; padding: 4px var(--dv-s2) 5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-home-thumb-remove { position: absolute; top: 4px; right: 4px; width: 20px; height: 20px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--dv-raised); color: var(--dv-ink-2); box-shadow: 0 0 0 1px var(--dv-line), 0 1px 2px rgb(0 0 0 / .12); }
+.dv-home-thumb-remove:hover { color: var(--dv-ink); }
+.dv-home-thumb-remove:disabled { opacity: .45; }
+
+/* The thread pickup: three lines above a thread's messages (ThreadPickup.tsx, the thread screen's). */
+.dervo-thread-pickup { margin:var(--dervo-s2) var(--dervo-s4) 0; padding:10px 14px; border-radius:12px; background:hsl(var(--muted)/.32);
+  display:flex; flex-direction:column; gap:3px; font-size:0.8125rem; line-height:1.55; }
+.dervo-thread-pickup p span { color:hsl(var(--muted-foreground)); }
+.dervo-thread-pickup-meta { display:flex; align-items:center; gap:var(--dervo-s2); margin-top:3px; font-size:0.72rem; color:hsl(var(--muted-foreground)); }
+.dervo-thread-pickup-meta .dervo-home-link { margin-left:auto; }
+.dervo-home-link { font-size:0.75rem; font-weight:600; color:hsl(var(--muted-foreground)); text-decoration:underline;
+  text-underline-offset:3px; text-decoration-color:hsl(var(--muted-foreground)/.45); white-space:nowrap; }
+.dervo-home-link:hover { color:hsl(var(--foreground)); }
+.dervo-home-link:disabled { opacity:.5; }
+
+/* ---------- What Dervo did on its own (ActivityLine.tsx) ---------- */
+/* A reply's changes and notes sit under its words, before its jobs. */
+.dv-home .dv-home-activity { margin-top: var(--dv-s2); }
+/* In the pane: lost runs under the heading, a failed summary at the foot. */
+.dv-now .dv-now-activity { margin-top: calc(-1 * var(--dv-s2)); }
+.dv-now .dv-now-activity:last-child { margin-top: 0; }
+/* The day's tidy (b16/lifecycle) stands a little apart from the lead above it, as the design draws it. */
+.dv-now .dv-now-activity.dv-now-tidied { margin-top: var(--dv-s2); }
+
+/* Catch-up is the main canvas. Routing history opens separately and never grows above it. */
+.dv-home { display: flex; }
+.dv-home-main { flex: 1; }
+.dv-home-main > .dv-column { mask-image: none; -webkit-mask-image: none; }
+.dv-home .dv-now { border: 0; overflow: visible; padding: 0; container-type: normal; }
+.dv-home .dv-now-head { align-items: flex-start; flex-wrap: nowrap; gap: var(--dv-s3); }
+/* The title and, on its own line under it, what the moment is: 12px muted, 4px down. Go through these and the Recent
+   requests icon sit at the head's right end, centred on the title's line (34px at 1.1 is 37px; the controls are 28). */
+.dv-home .dv-now-title { display: flex; flex-direction: column; gap: var(--dv-s1); margin-right: auto; min-width: 0; }
+.dv-home .dv-now-head .dv-caption { margin-left: 0; white-space: normal; }
+.dv-home .dv-now-tools { display: flex; align-items: center; gap: var(--dv-s1); flex: none; margin-top: 5px; }
+.dv-home .dv-now-expand { margin-left: 0; }
+.dv-home .dv-now-history { width: 28px; padding: 0; margin-right: calc(-1 * var(--dv-s1)); }
+.dv-home .dv-now .dv-row-name { white-space: normal; overflow-wrap: anywhere; }
+.dv-home-navigation { display: flex; justify-content: space-between; gap: var(--dv-s2); margin-bottom: var(--dv-s4); }
+.dv-home-history { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-home-request-row { display: flex; flex-direction: column; gap: 5px; width: 100%; padding: var(--dv-s3) 0;
+ text-align: left; border-bottom: var(--dv-hairline); overflow-wrap: anywhere; }
+.dv-home-request-row b { font-size: var(--dv-fs-body); font-weight: 600; }
+.dv-home-request-row span { color: var(--dv-ink-2); font-size: var(--dv-fs-small); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dv-home-request-row small { color: var(--dv-muted); font-size: var(--dv-fs-caption); }
+.dv-home-request-row:hover b { text-decoration: underline; text-underline-offset: 3px; }
+.dv-home-arrival { max-width: 58ch; display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-home-arrival ul { padding-left: 1.2em; list-style: disc; }
+
+/* ---------- The useful row, its peek and the thread panel (16.2, #30; evidence/design-tests/b162-home) ---------- */
+/* A row says what the thread did in one sentence, then a quiet line: what it wants from you, files, checks. The whole
+   row opens the thread in the panel (the name's button stretches over it), and its focus ring is drawn on the row. */
+.dv-home-row { position: relative; cursor: pointer; }
+.dv-home .dv-now .dv-home-row-open { position: static; display: block; max-width: 100%; text-align: left; }
+.dv-home-row .dv-home-row-open::after { content: ""; position: absolute; inset: 0; border-radius: var(--dv-r2); }
+.dv-home-row .dv-home-row-open:focus-visible { outline: none; }
+.dv-home-row:has(.dv-home-row-open:focus-visible) { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+/* The open thread's row: a soft background and nothing else, no bar on its edge (Bryce, 27 Sep). */
+.dv-home-row[data-selected], .dv-home-row[data-selected]:hover { background: var(--dv-press); }
+.dv-home-row[data-selected] .dv-row-meta { color: var(--dv-ink-2); } /* muted on the pressed tint measured 4.41:1 in light */
+.dv-home-row:not([data-selected]):hover .dv-row-meta { color: var(--dv-muted); } /* faint on the hover tint measured 4.10:1 */
+.dv-row-did { font-size: var(--dv-fs-small); line-height: 1.45; color: var(--dv-ink-2); margin-top: 3px; overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.dv-row-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 10px; margin-top: 5px; font-size: var(--dv-fs-caption); line-height: 1.4; color: var(--dv-faint); }
+.dv-row-meta span + span::before { content: "·"; margin-right: 10px; color: var(--dv-line-strong); }
+.dv-row-meta [data-tone="ask"] { color: var(--dv-ink-2); font-weight: 500; }
+.dv-row-meta [data-tone="accent"] { color: var(--dv-rust); font-weight: 500; }
+.dv-row-meta [data-tone="ok"] { color: var(--dv-sage); }
+.dv-row-meta [data-tone="warn"] { color: var(--dv-ink-2); }
+/* The step a run is on, as a quiet pill like the Claude Projects panel (design, 8 Oct). The spinning glyph and the
+   Working bucket already say it's live, so the words stay ink, not a third green. */
+.dv-row-meta [data-tone="live"] { color: var(--dv-ink-2); overflow-wrap: anywhere; padding: 1px 8px; border-radius: var(--dv-r2);
+  background: color-mix(in srgb, var(--dv-ink) 5%, transparent); }
+.dv-row-meta [data-tone="live"] + span::before, .dv-row-meta span + [data-tone="live"]::before { content: none; }
+/* The card that asks you: its sentence, then the question in ink, then its buttons. */
+.dv-now .dv-row.dv-open .dv-row-line { color: var(--dv-ink-2); line-height: 1.5; }
+.dv-row-question { margin-top: var(--dv-s2); font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink); overflow-wrap: anywhere; }
+
+/* The peek: beside the row where Home has room, otherwise under it. It never takes the pointer or focus. */
+.dv-home-peek { position: fixed; z-index: 40; pointer-events: none; display: flex; flex-direction: column; gap: var(--dv-s2);
+  padding: var(--dv-s4); border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: var(--dv-float); color: var(--dv-ink); }
+.dv-home-peek-head { display: flex; align-items: center; gap: var(--dv-s2); min-width: 0; font-size: var(--dv-fs-body); }
+.dv-home-peek-head b { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-home-peek-did { font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dv-home-peek .dv-facts { grid-template-columns: 76px minmax(0, 1fr); margin-top: var(--dv-s1); }
+.dv-home-peek .dv-facts dd { overflow-wrap: anywhere; }
+.dv-home-files { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.dv-home-files code { font: 400 var(--dv-fs-caption)/1.5 var(--dv-font-mono); color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dv-home-peek-foot { margin-top: var(--dv-s1); }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-home-peek { animation: dv-home-peek-in var(--dv-fast) var(--dv-ease) both; }
+}
+@keyframes dv-home-peek-in { from { opacity: 0; transform: translateY(2px); } to { opacity: 1; transform: none; } }
+
+/* A thread open where Home's chat was, with Catch up on the right as the list alone. Under 900 px of Home the panel
+   takes it all, and Esc or the foot's buttons bring Catch up back. */
+.dv-home[data-panel] { display: grid; grid-template-columns: minmax(0, 1fr) clamp(320px, 34%, 400px); }
+.dv-home[data-panel][data-narrow] { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); }
+.dv-home[data-panel] > .dv-home-main { min-height: 0; }
+.dv-home-side { border-left: var(--dv-hairline); overflow: auto; min-height: 0; min-width: 0; }
+.dv-home .dv-home-side .dv-now-side { padding: var(--dv-s5); gap: var(--dv-s4); }
+.dv-home .dv-now-side .dv-now-head { align-items: baseline; }
+.dv-home .dv-now-side .dv-now-title .dv-display-2 { font: 600 1.25rem/1.2 var(--dv-font-text); letter-spacing: -.01em; }
+.dv-home .dv-now-side .dv-now-head .dv-caption { margin-left: auto; white-space: nowrap; }
+.dv-home .dv-now-side .dv-row-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-home .dv-now-side .dv-row:not(.dv-open) { grid-template-columns: 16px minmax(0, 1fr) auto; }
+.dv-home .dv-now-side .dv-row:not(.dv-open) .dv-row-end { grid-column: auto; grid-row: auto; margin-top: 0; }
+
+.dv-home-panel { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.dv-home-panel-head { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 14px 20px 12px 32px; border-bottom: var(--dv-hairline); }
+.dv-home-panel-name { min-width: 0; font: 600 var(--dv-fs-title)/1.3 var(--dv-font-text); letter-spacing: -.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-home-panel-name .dv-caption { font-weight: 400; }
+.dv-home-panel-head .dv-when { flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint); white-space: nowrap; }
+/* In a narrow panel the head drops its time for the thread's name, which the bell would otherwise cut short (design
+   review, 9 Oct). The selected row beside it still says when. */
+.dv-home-panel { container-type: inline-size; }
+@container (max-width: 460px) { .dv-home-panel-head .dv-when { display: none; } }
+.dv-home-panel-spacer { flex: 1; }
+.dv-home-panel-head .dv-btn { flex: none; }
+.dv-home-panel-close { flex: none; width: 28px; height: 28px; display: grid; place-items: center; }
+.dv-home-panel-body { flex: 1; min-height: 0; overflow: auto; padding: 20px 32px 24px; display: flex; flex-direction: column; gap: 18px; }
+.dv-home-panel-body > * { max-width: 656px; }
+.dv-home-panel-did { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink); max-width: 60ch; overflow-wrap: anywhere; }
+.dv-home-panel-ask { display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: var(--dv-r3); background: var(--dv-rust-wash); }
+.dv-home-panel-who { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-rust); }
+.dv-home-panel-question { font-size: var(--dv-fs-read); line-height: 1.55; color: var(--dv-ink); overflow-wrap: anywhere; }
+.dv-home-panel-ask .dv-row-actions { margin-top: 0; flex-wrap: wrap; }
+.dv-home-panel-live { display: flex; align-items: center; gap: var(--dv-s2); font-size: var(--dv-fs-read); color: var(--dv-muted); }
+.dv-home-panel-step { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.dv-home-panel-decision { box-shadow: var(--dv-card-edge), var(--dv-lift); }
+.dv-home-panel-decision .dv-what { overflow-wrap: anywhere; }
+.dv-home-panel .dv-home-panel-facts { grid-template-columns: 90px minmax(0, 1fr); margin-top: 0; }
+.dv-home-panel .dv-home-panel-facts dd { overflow-wrap: anywhere; }
+.dv-home-panel-last { display: flex; flex-direction: column; align-items: flex-start; gap: var(--dv-s1); padding: 2px 0 2px 14px; border-left: 2px solid var(--dv-line-strong); }
+.dv-home-panel-reply { font-size: var(--dv-fs-small); line-height: 1.6; color: var(--dv-ink-2); overflow-wrap: anywhere;
+  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.dv-home-panel .dv-home-panel-read { height: auto; padding: 0; font-size: var(--dv-fs-caption); font-weight: 400; text-decoration: underline; text-underline-offset: 2px; }
+.dv-home-panel-read:hover { color: var(--dv-ink); }
+.dv-home-panel-composer.dv-composer { width: auto; max-width: 656px; margin: 0 32px 16px; }
+.dv-home-panel-foot { display: flex; align-items: center; gap: 10px; padding: 10px 20px 12px 32px; border-top: var(--dv-hairline); font-size: var(--dv-fs-caption); color: var(--dv-faint); white-space: nowrap; }
+.dv-home-panel-key { display: inline-flex; align-items: center; gap: 6px; color: inherit; background: none; border-radius: var(--dv-r1); }
+.dv-home-panel-key:hover { color: var(--dv-ink-2); }
+.dv-home-panel-key kbd { font: 500 11px/1.5 var(--dv-font-mono); color: var(--dv-muted); border: 1px solid var(--dv-line-strong); border-radius: 4px; padding: 0 4px; }
+.dv-home-panel-notice { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; text-align: center; color: var(--dv-muted); }
+.dv-home[data-narrow] .dv-home-panel-head, .dv-home[data-narrow] .dv-home-panel-foot { padding-left: var(--dv-s5); }
+.dv-home-strip { display: flex; align-items: center; gap: var(--dv-s3); padding: var(--dv-s2) var(--dv-s5); border-bottom: var(--dv-hairline); }
+.dv-home-strip .dv-caption { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-home[data-narrow] .dv-home-panel-body { padding: var(--dv-s4) var(--dv-s5) var(--dv-s5); }
+.dv-home[data-narrow] .dv-home-panel-composer.dv-composer { margin: 0 var(--dv-s5) var(--dv-s3); }
+
+/* Home leads with what needs you (9 Oct, Bryce and tester Harrison): on Home itself the prompt is a one-line shortcut
+   at the foot, growing as you type; in a request it keeps the chat composer's height. */
+.dv-home-composer[data-view="home"] textarea.dv-field { min-height: calc(var(--dv-fs-read) * var(--dv-lh-read)); }
+/* The card's buttons wrap under one another in a narrow pane rather than squeezing Remind me tomorrow. */
+.dv-now .dv-row.dv-open .dv-row-actions { flex-wrap: wrap; align-items: center; }

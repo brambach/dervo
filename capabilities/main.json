@@ -1,0 +1,16 @@
+{
+  "identifier": "main",
+  "description": "Native drag, fullscreen and focus observation, the window's appearance following the theme you chose, and the app version for the startup page's Copy details",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:window:allow-start-dragging",
+    "core:window:allow-is-fullscreen",
+    "core:event:allow-listen",
+    "core:event:allow-unlisten",
+    "core:window:allow-is-focused",
+    "core:window:allow-set-theme",
+    "core:app:allow-version"
+  ]
+}

@@ -1,0 +1,2754 @@
+[
+ {
+  "id": "ho-01",
+  "about": "empty project: greeting, two fresh asks, follow-up to the first new thread, thanks",
+  "threads": [],
+  "home": [],
+  "stream": [
+   {
+    "text": "hey",
+    "gap": 2,
+    "expect": "home"
+   },
+   {
+    "text": "add a dark mode toggle to settings",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "dark",
+     "mode",
+     "toggle"
+    ]
+   },
+   {
+    "text": "and make it follow the system setting by default",
+    "gap": 4,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "separate thing, the landing page hero copy needs a rewrite its way too wordy",
+    "gap": 9,
+    "expect": "new",
+    "name_has": [
+     "landing",
+     "hero",
+     "copy"
+    ]
+   },
+   {
+    "text": "thanks",
+    "gap": 12,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-02",
+  "about": "burst follow-ups to a working thread, then sidebar hard negative that becomes its own thread with follow-ups",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar scroll position",
+    "state": "working",
+    "request": "sidebar jumps to the top when i switch threads, keep the scroll position",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 120,
+    "at_ago": 10
+   },
+   {
+    "id": "t2",
+    "name": "CSV export",
+    "state": "finished",
+    "request": "add csv export for invoices",
+    "summary": "Added CSV export for invoices with a header row",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 4000,
+    "at_ago": 4000
+   },
+   {
+    "id": "t3",
+    "name": "Voice push to talk",
+    "state": "working",
+    "request": "add push to talk with a global hotkey",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 40
+   }
+  ],
+  "home": [
+   {
+    "text": "sidebar jumps to the top when i switch threads, keep the scroll position",
+    "ago": 120,
+    "thread": "t1"
+   }
+  ],
+  "stream": [
+   {
+    "text": "also when a new thread gets added dont jump",
+    "gap": 8,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "oh and same for collapsing a project group",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "add a search box to the sidebar",
+    "gap": 6,
+    "expect": "new",
+    "name_has": [
+     "search"
+    ]
+   },
+   {
+    "text": "make it filter by thread name only for now",
+    "gap": 4,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "cmd+k should focus it",
+    "gap": 3,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "ho-03",
+  "about": "bug report on a finished thread's work, then status question about another thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "CSV export",
+    "state": "finished",
+    "request": "add csv export for invoices",
+    "summary": "Added CSV export for invoices with a header row",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 7200,
+    "at_ago": 7200
+   },
+   {
+    "id": "t2",
+    "name": "Fix login crash",
+    "state": "working",
+    "request": "app crashes on login when the keychain is locked",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1500,
+    "at_ago": 90
+   },
+   {
+    "id": "t3",
+    "name": "Onboarding copy",
+    "state": "quiet",
+    "request": "rewrite the onboarding copy to be less corporate",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3000,
+    "at_ago": 3000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "the csv export still breaks on empty rows",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "like it drops the whole line instead of writing empty commas",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "how's the login fix going",
+    "gap": 14,
+    "expect": "home"
+   },
+   {
+    "text": "nice",
+    "gap": 25,
+    "expect": "home"
+   },
+   {
+    "text": "also the csv one, add a date range filter before exporting",
+    "gap": 10,
+    "expect": "existing:t1|new",
+    "name_has": [
+     "date",
+     "filter",
+     "range"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ho-04",
+  "about": "answer to the one pending question, follow-up, then status",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Billing plan picker",
+    "state": "needs_you",
+    "request": "build the plan picker for the billing page",
+    "messages": [],
+    "pending_question": "Should the annual plan show the monthly equivalent price (option 1) or the total yearly price (option 2)?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 300,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Release notes generator",
+    "state": "working",
+    "request": "generate release notes from merged branches",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 800,
+    "at_ago": 30
+   },
+   {
+    "id": "t3",
+    "name": "Thread rename bug",
+    "state": "working",
+    "request": "renaming a thread doesnt persist after restart",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1200,
+    "at_ago": 50
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "yes go with option 2",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "and put a save 20% badge next to it",
+    "gap": 5,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "anything else waiting on me?",
+    "gap": 8,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-05",
+  "about": "loose name references to four different threads",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Voice push to talk",
+    "state": "working",
+    "request": "add push to talk with a global hotkey",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 40
+   },
+   {
+    "id": "t2",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   },
+   {
+    "id": "t3",
+    "name": "Release pipeline signing",
+    "state": "quiet",
+    "request": "codesign and notarize the dmg in the release script",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 5000,
+    "at_ago": 4000
+   },
+   {
+    "id": "t4",
+    "name": "Landing page pricing",
+    "state": "finished",
+    "request": "add a pricing section to the landing page",
+    "summary": "Added 3-tier pricing table",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 6000,
+    "at_ago": 6000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "tell the voice thread to use option+space not fn",
+    "gap": 2,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "tell onboarding to skip the workspace step if theres only one folder",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "for the release one, notarization is failing again with the same staple error",
+    "gap": 7,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "in the pricing thread change pro to $24",
+    "gap": 6,
+    "expect": "existing:t4"
+   },
+   {
+    "text": "thx",
+    "gap": 15,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-06",
+  "about": "explicit new-thread requests that overlap existing threads",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   },
+   {
+    "id": "t2",
+    "name": "Thread list sorting",
+    "state": "working",
+    "request": "sort threads by last activity",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 20
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "new thread: onboarding analytics events, track each step completion",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "analytics",
+     "events"
+    ]
+   },
+   {
+    "text": "start a separate thread for the sort menu icons, dont mess with the sorting logic one",
+    "gap": 7,
+    "expect": "new",
+    "name_has": [
+     "icon",
+     "icons",
+     "menu"
+    ]
+   },
+   {
+    "text": "use sf symbols for those",
+    "gap": 4,
+    "expect": "existing:@2"
+   },
+   {
+    "text": "spin up something to bump all the npm deps",
+    "gap": 9,
+    "expect": "new",
+    "name_has": [
+     "deps",
+     "dependencies",
+     "npm"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ho-07",
+  "about": "chit-chat and status questions only",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "iPhone pairing QR",
+    "state": "working",
+    "request": "pair the iphone app by scanning a qr code",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 2000,
+    "at_ago": 60
+   },
+   {
+    "id": "t2",
+    "name": "Stripe webhook retries",
+    "state": "working",
+    "request": "retry failed stripe webhooks",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 30
+   },
+   {
+    "id": "t3",
+    "name": "Composer autosize",
+    "state": "finished",
+    "request": "composer should grow with content",
+    "summary": "Composer grows to 8 lines then scrolls",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3000,
+    "at_ago": 3000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "morning",
+    "gap": 1,
+    "expect": "home"
+   },
+   {
+    "text": "what's everyone doing",
+    "gap": 4,
+    "expect": "home"
+   },
+   {
+    "text": "anything waiting on me?",
+    "gap": 6,
+    "expect": "home"
+   },
+   {
+    "text": "ok cool",
+    "gap": 10,
+    "expect": "home"
+   },
+   {
+    "text": "how far along is the iphone pairing one",
+    "gap": 8,
+    "expect": "home"
+   },
+   {
+    "text": "fix the composer thing and bump stripe retries to 5",
+    "gap": 12,
+    "expect": "unsure"
+   }
+  ]
+ },
+ {
+  "id": "ho-08",
+  "about": "two unrelated asks in one message, then a clear bug report",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Fix login crash",
+    "state": "working",
+    "request": "app crashes on login when the keychain is locked",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1500,
+    "at_ago": 90
+   },
+   {
+    "id": "t2",
+    "name": "CSV export",
+    "state": "finished",
+    "request": "add csv export for invoices",
+    "summary": "Added CSV export for invoices with a header row",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 7200,
+    "at_ago": 7200
+   },
+   {
+    "id": "t3",
+    "name": "Sidebar badge counts",
+    "state": "working",
+    "request": "show unread counts on sidebar threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 20
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "fix the login thing and also the csv header is wrong",
+    "gap": 2,
+    "expect": "unsure"
+   },
+   {
+    "text": "make the badge red and add a settings page for notifications",
+    "gap": 9,
+    "expect": "unsure"
+   },
+   {
+    "text": "breh the login crash is back on 14.2",
+    "gap": 40,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "also the badge should cap at 99+",
+    "gap": 8,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "ho-09",
+  "about": "vague follow-ups where recent Home history makes one thread likely",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar scroll position",
+    "state": "working",
+    "request": "keep sidebar scroll position when switching threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 30
+   },
+   {
+    "id": "t2",
+    "name": "Composer autosize",
+    "state": "working",
+    "request": "composer should grow up to 8 lines then scroll",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 60,
+    "at_ago": 10
+   },
+   {
+    "id": "t3",
+    "name": "Thread header layout",
+    "state": "working",
+    "request": "move the model picker into the thread header",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 50
+   }
+  ],
+  "home": [
+   {
+    "text": "composer should grow up to 8 lines then scroll",
+    "ago": 60,
+    "thread": "t2"
+   }
+  ],
+  "stream": [
+   {
+    "text": "it's still janky",
+    "gap": 5,
+    "expect": "existing:t2|unsure"
+   },
+   {
+    "text": "when i paste a big block it jumps",
+    "gap": 4,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "the padding is off too",
+    "gap": 6,
+    "expect": "existing:t2|unsure"
+   },
+   {
+    "text": "whatever ill look later",
+    "gap": 30,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-10",
+  "about": "long gap before a pronoun follow-up, then clarification",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 2400,
+    "at_ago": 200
+   },
+   {
+    "id": "t2",
+    "name": "Landing page hero",
+    "state": "working",
+    "request": "redo the landing page hero with the smiley animation",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 2500,
+    "at_ago": 300
+   },
+   {
+    "id": "t3",
+    "name": "Settings window",
+    "state": "quiet",
+    "request": "build a settings window with general, accounts and voice tabs",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 4000,
+    "at_ago": 3000
+   }
+  ],
+  "home": [
+   {
+    "text": "onboarding step 1 needs a get started button",
+    "ago": 60,
+    "thread": "t1"
+   }
+  ],
+  "stream": [
+   {
+    "text": "make the button bigger",
+    "gap": 2400,
+    "expect": "existing:t1|unsure"
+   },
+   {
+    "text": "the get started one on the first screen",
+    "gap": 8,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "and the cta on the landing hero too while we're at it",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "separately the settings window needs keyboard nav",
+    "gap": 5,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "ho-11",
+  "about": "explicit reference back to an archived thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Keychain token storage",
+    "state": "finished",
+    "request": "store provider tokens in the keychain not in a json file",
+    "summary": "Moved token storage to keychain",
+    "messages": [],
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600000,
+    "at_ago": 600000
+   },
+   {
+    "id": "t2",
+    "name": "Settings window",
+    "state": "working",
+    "request": "build a settings window with general, accounts and voice tabs",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1000,
+    "at_ago": 40
+   },
+   {
+    "id": "t3",
+    "name": "Voice transcription model",
+    "state": "working",
+    "request": "switch transcription to the local whisper model",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 60
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "reopen the keychain thread from last week, it's prompting for my password on every launch now",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "it should only ask once and respect always allow",
+    "gap": 5,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "settings needs an accounts tab that shows which claude account is signed in",
+    "gap": 12,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "ho-12",
+  "about": "corrections to the thread the previous message went to",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Unread indicator",
+    "state": "working",
+    "request": "show a dot on threads with unread results",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 40,
+    "at_ago": 10
+   },
+   {
+    "id": "t2",
+    "name": "Thread list sorting",
+    "state": "working",
+    "request": "sort threads by last activity",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 20
+   }
+  ],
+  "home": [
+   {
+    "text": "make the unread dot blue",
+    "ago": 30,
+    "thread": "t1"
+   }
+  ],
+  "stream": [
+   {
+    "text": "actually make it red not blue",
+    "gap": 10,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "no wait undo that, blue was fine, just make it bigger",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "new thread to make the dock icon badge show the unread count too",
+    "gap": 9,
+    "expect": "new",
+    "name_has": [
+     "dock",
+     "badge"
+    ]
+   },
+   {
+    "text": "wait what was i doing with the sorting",
+    "gap": 30,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-13",
+  "about": "burst that creates a new iphone thread and keeps following it, then a status question",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "iPhone pairing QR",
+    "state": "working",
+    "request": "pair the iphone app by scanning a qr code",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 2000,
+    "at_ago": 60
+   },
+   {
+    "id": "t2",
+    "name": "Stripe webhook retries",
+    "state": "working",
+    "request": "retry failed stripe webhooks",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 30
+   },
+   {
+    "id": "t3",
+    "name": "Thread title generation",
+    "state": "working",
+    "request": "auto name threads from their first message",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 25
+   },
+   {
+    "id": "t4",
+    "name": "Landing page FAQ",
+    "state": "finished",
+    "request": "add a faq section to the landing page",
+    "summary": "Added 6-question FAQ",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 9000,
+    "at_ago": 9000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "the iphone app needs a way to approve pending questions from the lock screen",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "lock",
+     "approval",
+     "approvals",
+     "notification",
+     "notifications"
+    ]
+   },
+   {
+    "text": "like actionable notifications",
+    "gap": 3,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "with yes/no buttons",
+    "gap": 2,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "and on the watch too if its free",
+    "gap": 4,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "how's pairing going btw",
+    "gap": 15,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-14",
+  "about": "hard negative where staying in the in-progress export thread is defensible",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "CSV export",
+    "state": "working",
+    "request": "add csv export for invoices",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 400,
+    "at_ago": 20
+   },
+   {
+    "id": "t2",
+    "name": "Billing usage meter",
+    "state": "working",
+    "request": "show monthly usage on the billing page",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 40
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "add json export too",
+    "gap": 4,
+    "expect": "existing:t1|new",
+    "name_has": [
+     "json",
+     "export"
+    ]
+   },
+   {
+    "text": "csv should include the thread name column",
+    "gap": 7,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "usage meter should reset on the billing date not the 1st",
+    "gap": 10,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "and fix the onboarding copy and the release script",
+    "gap": 20,
+    "expect": "unsure"
+   }
+  ]
+ },
+ {
+  "id": "ho-15",
+  "about": "hard negatives around a finished login fix",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Fix login crash",
+    "state": "finished",
+    "request": "app crashes on login when the keychain is locked",
+    "summary": "Fixed crash by handling locked keychain",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 5000,
+    "at_ago": 5000
+   },
+   {
+    "id": "t2",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "add sign in with google to the login screen",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "google",
+     "sign"
+    ]
+   },
+   {
+    "text": "the login screen logo is blurry on retina",
+    "gap": 12,
+    "expect": "new|unsure",
+    "name_has": [
+     "logo",
+     "retina",
+     "login"
+    ]
+   },
+   {
+    "text": "ok and the login crash happens again if i lock the keychain mid session",
+    "gap": 20,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "ho-16",
+  "about": "empty project scaffold burst",
+  "threads": [],
+  "home": [],
+  "stream": [
+   {
+    "text": "set up the tauri app with a react frontend and python backend",
+    "gap": 2,
+    "expect": "new",
+    "name_has": [
+     "tauri",
+     "scaffold",
+     "setup",
+     "app"
+    ]
+   },
+   {
+    "text": "use vite",
+    "gap": 3,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "and pnpm not npm",
+    "gap": 2,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "also write a readme for it",
+    "gap": 5,
+    "expect": "existing:@1|new",
+    "name_has": [
+     "readme"
+    ]
+   },
+   {
+    "text": "ty",
+    "gap": 20,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-17",
+  "about": "two threads each with a pending question, answered by content",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Local thread storage",
+    "state": "needs_you",
+    "request": "persist threads locally",
+    "messages": [],
+    "pending_question": "Should I use SQLite or JSON files for local thread storage?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 200,
+    "at_ago": 200
+   },
+   {
+    "id": "t2",
+    "name": "Landing page CTA",
+    "state": "needs_you",
+    "request": "rework the landing page call to action",
+    "messages": [],
+    "pending_question": "Should the CTA say 'Download for Mac' or 'Join the beta'?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 400,
+    "at_ago": 400
+   },
+   {
+    "id": "t3",
+    "name": "Voice transcription model",
+    "state": "working",
+    "request": "switch transcription to the local whisper model",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 60
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "sqlite",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "join the beta",
+    "gap": 4,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "ok both answered, anything else blocked?",
+    "gap": 8,
+    "expect": "home"
+   },
+   {
+    "text": "btw new thread for exporting threads to markdown",
+    "gap": 10,
+    "expect": "new",
+    "name_has": [
+     "markdown",
+     "export"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ho-18",
+  "about": "pending question exists but the first message is an unrelated new ask",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Voice settings cleanup",
+    "state": "needs_you",
+    "request": "clean up old voice settings",
+    "messages": [],
+    "pending_question": "Should I delete the old voice settings keys now or keep them for one more release?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 300,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Thread title generation",
+    "state": "working",
+    "request": "auto name threads from their first message",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 25
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "add a keyboard shortcut cheat sheet on cmd+/",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "shortcut",
+     "shortcuts",
+     "keyboard",
+     "cheat"
+    ]
+   },
+   {
+    "text": "keep them for one more release",
+    "gap": 10,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "titles are coming out too long, cap at 4 words",
+    "gap": 6,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "ho-19",
+  "about": "status questions about one thread, then a pronoun instruction to that thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Fix login crash",
+    "state": "working",
+    "request": "app crashes on login when the keychain is locked",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1500,
+    "at_ago": 90
+   },
+   {
+    "id": "t2",
+    "name": "Stripe webhook retries",
+    "state": "working",
+    "request": "retry failed stripe webhooks",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 30
+   },
+   {
+    "id": "t3",
+    "name": "Landing page hero",
+    "state": "finished",
+    "request": "redo the landing page hero with the smiley animation",
+    "summary": "New hero with animated smiley",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3000,
+    "at_ago": 3000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "how's the login fix going",
+    "gap": 2,
+    "expect": "home"
+   },
+   {
+    "text": "is the stripe one done yet",
+    "gap": 10,
+    "expect": "home"
+   },
+   {
+    "text": "tell it to add idempotency keys",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "landing hero looks great btw",
+    "gap": 20,
+    "expect": "home|existing:t3"
+   },
+   {
+    "text": "hmm",
+    "gap": 30,
+    "expect": "home|unsure"
+   }
+  ]
+ },
+ {
+  "id": "ho-20",
+  "about": "release burst across pipeline, update feed and invites, with a correction",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Release pipeline signing",
+    "state": "working",
+    "request": "codesign and notarize the dmg in the release script",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1200,
+    "at_ago": 30
+   },
+   {
+    "id": "t2",
+    "name": "Auto update feed",
+    "state": "quiet",
+    "request": "publish a sparkle appcast for updates",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 5000,
+    "at_ago": 5000
+   },
+   {
+    "id": "t3",
+    "name": "Beta tester invites",
+    "state": "working",
+    "request": "email invites to the beta waitlist",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 800,
+    "at_ago": 60
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "the dmg should be named Dervo-0.1.0-beta.17.dmg",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "and upload it to the r2 bucket after notarizing",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "the appcast needs the new signature format",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "send invites to the 12 people on the waitlist once its up",
+    "gap": 7,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "wait, not all 12, just the first 5",
+    "gap": 4,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "ho-21",
+  "about": "vague messages with several plausible threads and no history, then clarification",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar badge counts",
+    "state": "working",
+    "request": "show unread counts on sidebar threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 20
+   },
+   {
+    "id": "t2",
+    "name": "Thread header layout",
+    "state": "working",
+    "request": "move the model picker into the thread header",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 50
+   },
+   {
+    "id": "t3",
+    "name": "Settings window",
+    "state": "working",
+    "request": "build a settings window with general, accounts and voice tabs",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1000,
+    "at_ago": 40
+   },
+   {
+    "id": "t4",
+    "name": "Composer autosize",
+    "state": "working",
+    "request": "composer should grow up to 8 lines then scroll",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 500,
+    "at_ago": 15
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "fix the spacing",
+    "gap": 3,
+    "expect": "unsure"
+   },
+   {
+    "text": "it looks off on small windows",
+    "gap": 5,
+    "expect": "unsure"
+   },
+   {
+    "text": "the settings window spacing i mean",
+    "gap": 6,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "and the toggles arent aligned",
+    "gap": 4,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "same thing in the composer",
+    "gap": 30,
+    "expect": "existing:t4"
+   }
+  ]
+ },
+ {
+  "id": "ho-22",
+  "about": "two asks for the same thread are not unsure; then a separate new ask with follow-up",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   },
+   {
+    "id": "t2",
+    "name": "Thread list sorting",
+    "state": "working",
+    "request": "sort threads by last activity",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 20
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "on the onboarding welcome screen make the smiley bigger and center the get started button",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "also fix the typo in step 3 and add a back button on step 4",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "and separately someone needs to look at why tests are flaky on ci",
+    "gap": 8,
+    "expect": "new",
+    "name_has": [
+     "flaky",
+     "tests",
+     "ci"
+    ]
+   },
+   {
+    "text": "its the e2e ones mostly",
+    "gap": 4,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "ho-23",
+  "about": "thanks after a finished result, then a question and approval for that thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Thread rename bug",
+    "state": "finished",
+    "request": "renaming a thread doesnt persist after restart",
+    "summary": "Fixed rename not persisting after restart",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 20,
+    "at_ago": 20
+   },
+   {
+    "id": "t2",
+    "name": "Voice transcription model",
+    "state": "working",
+    "request": "switch transcription to the local whisper model",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 60
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "nice thanks",
+    "gap": 5,
+    "expect": "home"
+   },
+   {
+    "text": "does it also handle renaming while the agent is running?",
+    "gap": 10,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "cool ship it",
+    "gap": 15,
+    "expect": "existing:t1|home"
+   }
+  ]
+ },
+ {
+  "id": "ho-24",
+  "about": "iphone companion: pending answer and loose references, then slang",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "iPhone pairing QR",
+    "state": "working",
+    "request": "pair the iphone app by scanning a qr code",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 2000,
+    "at_ago": 60
+   },
+   {
+    "id": "t2",
+    "name": "iPhone push notifications",
+    "state": "needs_you",
+    "request": "send push notifications to the iphone app",
+    "messages": [],
+    "pending_question": "APNs needs a .p8 key. Can you upload it, or should I use the sandbox for now?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 200,
+    "at_ago": 200
+   },
+   {
+    "id": "t3",
+    "name": "Menu bar icon",
+    "state": "working",
+    "request": "add a menu bar icon with quick status",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 30
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "use sandbox for now",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "the qr code is too small on the mac side",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "make the menu bar icon the smiley",
+    "gap": 5,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "breh",
+    "gap": 3,
+    "expect": "home|unsure"
+   },
+   {
+    "text": "pairing should also work over local network without the qr",
+    "gap": 12,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "ho-25",
+  "about": "follow-up after an hour-long gap is uncertain until clarified",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Landing page pricing",
+    "state": "working",
+    "request": "landing pricing table should have 3 tiers",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 40,
+    "at_ago": 10
+   },
+   {
+    "id": "t2",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   }
+  ],
+  "home": [
+   {
+    "text": "landing pricing table should have 3 tiers",
+    "ago": 40,
+    "thread": "t1"
+   }
+  ],
+  "stream": [
+   {
+    "text": "make the middle one highlighted",
+    "gap": 10,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "make it pop more",
+    "gap": 3600,
+    "expect": "existing:t1|unsure"
+   },
+   {
+    "text": "the onboarding get started button i mean",
+    "gap": 6,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "ho-26",
+  "about": "voice threads: bug on finished thread, transcription follow-ups, a someday idea",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Voice push to talk",
+    "state": "finished",
+    "request": "add push to talk with a global hotkey",
+    "summary": "Push to talk on option+space",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 8000,
+    "at_ago": 8000
+   },
+   {
+    "id": "t2",
+    "name": "Voice transcription model",
+    "state": "working",
+    "request": "switch transcription to the local whisper model",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 60
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "push to talk doesnt release when i let go of the key",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "the transcripts keep saying derby instead of dervo",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "add a custom vocab list for that",
+    "gap": 4,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "and voice should work in the iphone app eventually",
+    "gap": 12,
+    "expect": "new|unsure",
+    "name_has": [
+     "voice",
+     "iphone"
+    ]
+   }
+  ]
+ },
+ {
+  "id": "ho-27",
+  "about": "bugs in an archived thread's work vs a live settings thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Dark mode",
+    "state": "finished",
+    "request": "add dark mode with a toggle in settings",
+    "summary": "Added dark palette and settings toggle",
+    "messages": [],
+    "pending_question": null,
+    "archived": true,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900000,
+    "at_ago": 900000
+   },
+   {
+    "id": "t2",
+    "name": "Settings window",
+    "state": "working",
+    "request": "build a settings window with general, accounts and voice tabs",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1000,
+    "at_ago": 40
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "dark mode toggle is backwards, on means light",
+    "gap": 3,
+    "expect": "existing:t1|new",
+    "name_has": [
+     "dark",
+     "toggle"
+    ]
+   },
+   {
+    "text": "add an about tab to settings",
+    "gap": 10,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "also the about tab should show the version and build number",
+    "gap": 4,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "ho-28",
+  "about": "tests and billing references, one ambiguous test ask",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Router unit tests",
+    "state": "working",
+    "request": "write unit tests for the thread router",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 20
+   },
+   {
+    "id": "t2",
+    "name": "E2E onboarding test",
+    "state": "quiet",
+    "request": "write an e2e test for onboarding",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 4000,
+    "at_ago": 3500
+   },
+   {
+    "id": "t3",
+    "name": "Billing usage meter",
+    "state": "working",
+    "request": "show monthly usage on the billing page",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 40
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "add a test for the empty project case too",
+    "gap": 5,
+    "expect": "existing:t1|unsure"
+   },
+   {
+    "text": "the e2e one should run headless on ci",
+    "gap": 7,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "usage meter numbers are off by 1000, prob ms vs s",
+    "gap": 9,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "tests are slow",
+    "gap": 1900,
+    "expect": "unsure"
+   }
+  ]
+ },
+ {
+  "id": "ho-29",
+  "about": "explicit new faq thread interleaved with the existing hero thread",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Landing page hero",
+    "state": "working",
+    "request": "redo the landing page hero with the smiley animation",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1200,
+    "at_ago": 40
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "start a new thread for the landing page faq section",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "faq"
+    ]
+   },
+   {
+    "text": "questions: is it free, does it need claude code, mac only?",
+    "gap": 6,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "the hero video should autoplay muted",
+    "gap": 8,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "faq items should be collapsible",
+    "gap": 5,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "ho-30",
+  "about": "blocked-status questions, then answering one blocked thread loosely by name",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar badge counts",
+    "state": "working",
+    "request": "show unread counts on sidebar threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 20
+   },
+   {
+    "id": "t2",
+    "name": "Billing plan picker",
+    "state": "needs_you",
+    "request": "build the plan picker for the billing page",
+    "messages": [],
+    "pending_question": "Default the toggle to monthly or annual billing?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 500,
+    "at_ago": 500
+   },
+   {
+    "id": "t3",
+    "name": "Voice settings cleanup",
+    "state": "stopped",
+    "request": "clean up old voice settings",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3000,
+    "at_ago": 3000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "whats stuck",
+    "gap": 2,
+    "expect": "home"
+   },
+   {
+    "text": "who's waiting on me",
+    "gap": 5,
+    "expect": "home"
+   },
+   {
+    "text": "ok answer the billing one: monthly",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "and start fresh on the voice cleanup, delete the old keys this time",
+    "gap": 9,
+    "expect": "existing:t3"
+   }
+  ]
+ },
+ {
+  "id": "ho-31",
+  "about": "empty project, two asks in the first message, then narrowed",
+  "threads": [],
+  "home": [],
+  "stream": [
+   {
+    "text": "make a landing page and also set up stripe billing",
+    "gap": 2,
+    "expect": "unsure"
+   },
+   {
+    "text": "ok just the landing page first",
+    "gap": 15,
+    "expect": "new",
+    "name_has": [
+     "landing"
+    ]
+   },
+   {
+    "text": "single page, hero + pricing + faq",
+    "gap": 5,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "use the smiley from the app icon in the hero",
+    "gap": 6,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "now the stripe billing part",
+    "gap": 40,
+    "expect": "new",
+    "name_has": [
+     "stripe",
+     "billing"
+    ]
+   },
+   {
+    "text": "monthly and annual, 2 tiers",
+    "gap": 5,
+    "expect": "existing:@2"
+   }
+  ]
+ },
+ {
+  "id": "ho-32",
+  "about": "typos in thread references and a status check",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   },
+   {
+    "id": "t2",
+    "name": "Thread list sorting",
+    "state": "working",
+    "request": "sort threads by last activity",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 20
+   },
+   {
+    "id": "t3",
+    "name": "Notarization fix",
+    "state": "working",
+    "request": "notarization fails with a staple error",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1200,
+    "at_ago": 90
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "tell onbaording to use the smily on the first screen",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "sortng should be by last activty not created",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "notarizaton passed yet?",
+    "gap": 9,
+    "expect": "home"
+   },
+   {
+    "text": "k",
+    "gap": 7,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-33",
+  "about": "sidebar hard negative becomes a new thread, follow-up returns after an interleaved csv message",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Sidebar scroll position",
+    "state": "working",
+    "request": "keep sidebar scroll position when switching threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 30
+   },
+   {
+    "id": "t2",
+    "name": "CSV export",
+    "state": "working",
+    "request": "add csv export for invoices",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 400,
+    "at_ago": 20
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "add drag and drop to reorder threads in the sidebar",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "drag",
+     "reorder",
+     "order"
+    ]
+   },
+   {
+    "text": "persist the order",
+    "gap": 3,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "csv export should quote fields with commas",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "and pinned ones always stay on top",
+    "gap": 4,
+    "expect": "existing:@1"
+   },
+   {
+    "text": "thanks",
+    "gap": 30,
+    "expect": "home"
+   }
+  ]
+ },
+ {
+  "id": "ho-34",
+  "about": "two pending questions answered by content, then a correction to one answer",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Thread title generation",
+    "state": "needs_you",
+    "request": "auto name threads from their first message",
+    "messages": [],
+    "pending_question": "Titles can come from the local model or the coordinator model. Which one?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 300,
+    "at_ago": 300
+   },
+   {
+    "id": "t2",
+    "name": "Release pipeline signing",
+    "state": "needs_you",
+    "request": "codesign and notarize the dmg in the release script",
+    "messages": [],
+    "pending_question": "Should this release be beta.17 or beta.16.2?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 200,
+    "at_ago": 200
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "beta.17",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "coordinator model for titles",
+    "gap": 6,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "actually local, coordinator is too slow",
+    "gap": 20,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "ho-35",
+  "about": "also-messages whose content picks between two recently used threads",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Composer autosize",
+    "state": "working",
+    "request": "composer should grow up to 8 lines then scroll",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 60,
+    "at_ago": 15
+   },
+   {
+    "id": "t2",
+    "name": "Thread header layout",
+    "state": "working",
+    "request": "move the model picker into the thread header",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 30,
+    "at_ago": 10
+   }
+  ],
+  "home": [
+   {
+    "text": "composer should grow up to 8 lines then scroll",
+    "ago": 60,
+    "thread": "t1"
+   },
+   {
+    "text": "move the model picker into the thread header",
+    "ago": 30,
+    "thread": "t2"
+   }
+  ],
+  "stream": [
+   {
+    "text": "also show the account next to it",
+    "gap": 5,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "and shift+enter for newline",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "also make it bigger",
+    "gap": 3,
+    "expect": "existing:t1|unsure"
+   }
+  ]
+ },
+ {
+  "id": "ho-36",
+  "about": "bug reports on three finished threads",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Auto update feed",
+    "state": "finished",
+    "request": "publish a sparkle appcast for updates",
+    "summary": "Appcast published, update check works",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 9000,
+    "at_ago": 9000
+   },
+   {
+    "id": "t2",
+    "name": "Crash reporter",
+    "state": "finished",
+    "request": "send crash reports to sentry",
+    "summary": "Sentry crash reporting wired up",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 20000,
+    "at_ago": 20000
+   },
+   {
+    "id": "t3",
+    "name": "Beta tester invites",
+    "state": "finished",
+    "request": "email invites to the beta waitlist",
+    "summary": "Sent 5 invites",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 4000,
+    "at_ago": 4000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "update says available but the install button does nothing",
+    "gap": 3,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "crash reports arent showing up in sentry",
+    "gap": 8,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "two testers say the invite link 404s",
+    "gap": 10,
+    "expect": "existing:t3"
+   },
+   {
+    "text": "ugh",
+    "gap": 4,
+    "expect": "home"
+   },
+   {
+    "text": "also the update one should show release notes in the prompt",
+    "gap": 6,
+    "expect": "existing:t1"
+   }
+  ]
+ },
+ {
+  "id": "ho-37",
+  "about": "new asks in a busy project where existing names share words",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "CSV export",
+    "state": "finished",
+    "request": "add csv export for invoices",
+    "summary": "Added CSV export for invoices",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 9000,
+    "at_ago": 9000
+   },
+   {
+    "id": "t2",
+    "name": "Sidebar scroll position",
+    "state": "working",
+    "request": "keep sidebar scroll position when switching threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 30
+   },
+   {
+    "id": "t3",
+    "name": "Composer autosize",
+    "state": "finished",
+    "request": "composer should grow up to 8 lines then scroll",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 3000,
+    "at_ago": 3000
+   },
+   {
+    "id": "t4",
+    "name": "Fix login crash",
+    "state": "working",
+    "request": "app crashes on login when the keychain is locked",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1500,
+    "at_ago": 90
+   },
+   {
+    "id": "t5",
+    "name": "Voice push to talk",
+    "state": "working",
+    "request": "add push to talk with a global hotkey",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 40
+   },
+   {
+    "id": "t6",
+    "name": "Landing page hero",
+    "state": "working",
+    "request": "redo the landing page hero with the smiley animation",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1200,
+    "at_ago": 40
+   },
+   {
+    "id": "t7",
+    "name": "Release pipeline signing",
+    "state": "quiet",
+    "request": "codesign and notarize the dmg in the release script",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 5000,
+    "at_ago": 4000
+   },
+   {
+    "id": "t8",
+    "name": "iPhone pairing QR",
+    "state": "working",
+    "request": "pair the iphone app by scanning a qr code",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 2000,
+    "at_ago": 60
+   },
+   {
+    "id": "t9",
+    "name": "Billing plan picker",
+    "state": "working",
+    "request": "build the plan picker for the billing page",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 500,
+    "at_ago": 50
+   },
+   {
+    "id": "t10",
+    "name": "Onboarding welcome flow",
+    "state": "working",
+    "request": "build the onboarding welcome flow, 4 steps",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1800,
+    "at_ago": 100
+   },
+   {
+    "id": "t11",
+    "name": "Thread title generation",
+    "state": "working",
+    "request": "auto name threads from their first message",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 700,
+    "at_ago": 25
+   },
+   {
+    "id": "t12",
+    "name": "Router unit tests",
+    "state": "quiet",
+    "request": "write unit tests for the thread router",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 6000,
+    "at_ago": 5000
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "add a copy as markdown button on messages",
+    "gap": 3,
+    "expect": "new",
+    "name_has": [
+     "copy",
+     "markdown"
+    ]
+   },
+   {
+    "text": "export a whole thread to pdf",
+    "gap": 8,
+    "expect": "new",
+    "name_has": [
+     "pdf",
+     "export"
+    ]
+   },
+   {
+    "text": "the pdf should include tool calls collapsed",
+    "gap": 4,
+    "expect": "existing:@2"
+   },
+   {
+    "text": "and the copy button should keep code fences",
+    "gap": 6,
+    "expect": "existing:@1"
+   }
+  ]
+ },
+ {
+  "id": "ho-38",
+  "about": "slang greetings and Home summary questions",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "CSV export",
+    "state": "finished",
+    "request": "add csv export for invoices",
+    "summary": "Added CSV export for invoices",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 9000,
+    "at_ago": 9000
+   },
+   {
+    "id": "t2",
+    "name": "Stripe webhook retries",
+    "state": "working",
+    "request": "retry failed stripe webhooks",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 30
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "yo",
+    "gap": 1,
+    "expect": "home"
+   },
+   {
+    "text": "what did the csv one end up doing",
+    "gap": 6,
+    "expect": "home"
+   },
+   {
+    "text": "lol nice",
+    "gap": 8,
+    "expect": "home"
+   },
+   {
+    "text": "give me a rundown of everything that got done today",
+    "gap": 12,
+    "expect": "home"
+   },
+   {
+    "text": "can u make the stripe one log every retry and also add a new thread for refunds",
+    "gap": 9,
+    "expect": "unsure"
+   }
+  ]
+ },
+ {
+  "id": "ho-39",
+  "about": "bare yes answers the only pending question; follow-up stays there",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Settings window",
+    "state": "needs_you",
+    "request": "build a settings window with general, accounts and voice tabs",
+    "messages": [],
+    "pending_question": "Want me to also add a migration for existing users' settings?",
+    "archived": false,
+    "pinned": false,
+    "unread": true,
+    "since_ago": 120,
+    "at_ago": 120
+   },
+   {
+    "id": "t2",
+    "name": "Sidebar badge counts",
+    "state": "working",
+    "request": "show unread counts on sidebar threads",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 600,
+    "at_ago": 20
+   },
+   {
+    "id": "t3",
+    "name": "Stripe webhook retries",
+    "state": "working",
+    "request": "retry failed stripe webhooks",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 900,
+    "at_ago": 30
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "yes",
+    "gap": 4,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "and write a test for it",
+    "gap": 5,
+    "expect": "existing:t1"
+   },
+   {
+    "text": "what are the other two doing",
+    "gap": 10,
+    "expect": "home"
+   },
+   {
+    "text": "the badge one, cap at 99+",
+    "gap": 8,
+    "expect": "existing:t2"
+   }
+  ]
+ },
+ {
+  "id": "ho-40",
+  "about": "prerequisite detection: corrections and an analogous extension",
+  "threads": [
+   {
+    "id": "t1",
+    "name": "Fresh user setup check",
+    "state": "working",
+    "request": "verify setup works on a fresh mac user with no caches",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 1500,
+    "at_ago": 60
+   },
+   {
+    "id": "t2",
+    "name": "Claude Code detection",
+    "state": "working",
+    "request": "detect whether claude code is installed and signed in",
+    "messages": [],
+    "pending_question": null,
+    "archived": false,
+    "pinned": false,
+    "unread": false,
+    "since_ago": 800,
+    "at_ago": 20
+   }
+  ],
+  "home": [],
+  "stream": [
+   {
+    "text": "if claude code isnt installed show a link to install it",
+    "gap": 3,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "wait no, offer to install it with consent",
+    "gap": 6,
+    "expect": "existing:t2"
+   },
+   {
+    "text": "and the same for codex",
+    "gap": 4,
+    "expect": "existing:t2|new",
+    "name_has": [
+     "codex"
+    ]
+   },
+   {
+    "text": "test it on a clean user account",
+    "gap": 10,
+    "expect": "existing:t1|unsure"
+   },
+   {
+    "text": "nice",
+    "gap": 40,
+    "expect": "home"
+   }
+  ]
+ }
+]

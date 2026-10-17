@@ -1,0 +1,25 @@
+{
+  "about": "Dervo's Mac icon choices (beta.15, group 7). Settings > Preferences > App icon offers them in this order. A choice with a \"tiny\" source uses it for the 16 px bitmap only, where its small face loses detail. scripts/build-icons.py renders each one to <id>.icns here and frontend/public/app-icons/<id>.png, and scripts/build-docktile.sh copies the ICNS files into the Dock tile plug-in. backend/app_icons.py and src/app_icon.rs carry the same ids; test_app_icons checks they agree.",
+  "choices": [
+    {"id": "cream", "name": "Cream", "founder": false, "source": "../dervo.svg", "small": "../dervo-small.svg",
+     "line": "Today’s icon. Pine pebble on a cream tile."},
+    {"id": "forest", "name": "Forest", "founder": false, "source": "forest.svg", "small": "forest-small.svg",
+     "line": "The dark theme as a tile. Reads well on dark wallpapers."},
+    {"id": "meadow", "name": "Meadow", "founder": false, "source": "meadow.svg", "small": "meadow-small.svg", "tiny": "meadow-16.svg",
+     "line": "The pebble in the meadow from the opening screen."},
+    {"id": "peek", "name": "Peek", "founder": false, "source": "peek.svg", "small": "peek-small.svg",
+     "line": "The pebble up close, rising from the bottom edge."},
+    {"id": "crew", "name": "Crew", "founder": false, "source": "crew.svg", "small": "crew-small.svg", "tiny": "crew-16.svg",
+     "line": "Dervo out front with two helpers behind."},
+    {"id": "terminal", "name": "Terminal", "founder": false, "source": "terminal.svg", "small": "terminal-small.svg", "tiny": "terminal-16.svg",
+     "line": "Graphite tile, a prompt in the corner and a caret for a mouth."},
+    {"id": "pixel", "name": "Pixel", "founder": false, "source": "pixel.svg", "small": "pixel-small.svg",
+     "line": "The pebble on a 16 by 16 grid. Crisp at every size."},
+    {"id": "night", "name": "Night", "founder": false, "source": "night.svg", "small": "night-small.svg", "tiny": "night-16.svg",
+     "line": "Asleep under a crescent moon, for late sessions."},
+    {"id": "clay", "name": "Clay", "founder": false, "source": "clay.svg", "small": "clay-small.svg",
+     "line": "Cream pebble on terracotta. Easy to spot in the Dock."},
+    {"id": "obsidian", "name": "Obsidian", "founder": true, "source": "obsidian.svg", "small": "obsidian-small.svg",
+     "line": "Black glass with a gold rim and face. For testers who joined before launch."}
+  ]
+}

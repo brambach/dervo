@@ -1,0 +1,27 @@
+/* ⌘K (surfaces/palette.html): the kit's material over a scrim, centred near the top. The dialog frame comes from the
+   shared dialog and the kit; this sets its size, the field, the rows and the foot. Every value is a token. */
+:root[data-dervo-local] .dervo-palette { width: min(560px, calc(100vw - 2 * var(--dv-s5))); max-width: none; padding: 0; gap: 0; overflow: hidden; align-self: start; margin-top: 48px;
+  display: flex; flex-direction: column; }
+.dervo-palette-field { display: flex; align-items: center; gap: var(--dv-s3); height: 52px; padding: 0 var(--dv-s4); box-shadow: 0 1px 0 var(--dv-line); color: var(--dv-muted); }
+.dervo-palette-field > svg { flex: none; }
+.dervo-palette-field input { flex: 1; min-width: 0; border: 0; outline: 0; background: none; font: 400 var(--dv-fs-read) var(--dv-font-text); color: var(--dv-ink); }
+.dervo-palette-field input::placeholder { color: var(--dv-faint); }
+.dervo-palette-list { max-height: min(392px, 60vh); overflow-y: auto; padding: var(--dv-s2); display: flex; flex-direction: column; }
+.dervo-palette-list[hidden] { display: none; }
+.dervo-palette-group { padding: var(--dv-s2) var(--dv-s2) var(--dv-s1); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); letter-spacing: .005em; }
+.dervo-palette-item { display: flex; align-items: center; gap: var(--dv-s3); min-height: 36px; padding: 0 var(--dv-s2); border-radius: var(--dv-r1); font-size: var(--dv-fs-body); color: var(--dv-ink-2); cursor: default; }
+.dervo-palette-item[aria-selected="true"] { background: var(--dv-sunk); color: var(--dv-ink); }
+.dervo-palette-item > svg, .dervo-palette-item > .dv-st { flex: none; color: var(--dv-muted); }
+.dervo-palette-item[aria-selected="true"] > svg { color: var(--dv-ink-2); }
+/* The status marks keep their own colour, except rust: the view behind has the one accent. */
+.dervo-palette-item > .dv-st:is([data-state="needs"], [data-state="failed"]) { color: var(--dv-ink-2); }
+.dervo-palette-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-palette-label mark { background: none; color: var(--dv-ink); font-weight: 650; }
+.dervo-palette-detail { margin-left: auto; font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 45%; }
+.dervo-palette-keys { margin-left: auto; min-width: 22px; text-align: right; flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint); letter-spacing: .02em; }
+.dervo-palette-detail + .dervo-palette-keys { margin-left: var(--dv-s3); }
+.dervo-palette-empty { margin: 0; padding: var(--dv-s4) var(--dv-s4) var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-palette-foot { display: flex; gap: var(--dv-s4); padding: var(--dv-s2) var(--dv-s4); box-shadow: 0 -1px 0 var(--dv-line); font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dervo-palette-foot b { font-weight: 600; color: var(--dv-muted); margin-right: 4px; }
+.dervo-kbd { flex: none; font: 600 var(--dv-fs-caption) var(--dv-font-text); padding: 0 5px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--dv-line-strong); color: var(--dv-muted); }
+@media (max-width: 520px) { .dervo-palette-foot { display: none; } }

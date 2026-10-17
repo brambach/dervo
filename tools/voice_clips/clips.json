@@ -1,0 +1,170 @@
+{
+ "ptt-request": {
+  "seconds": 4.04,
+  "mode": "push_to_talk",
+  "open_mic": false,
+  "script": [
+   {
+    "at": 0.1,
+    "type": "ptt_down"
+   },
+   {
+    "at": 3.845,
+    "type": "ptt_up"
+   }
+  ],
+  "expect": {
+   "send": "fix the crash when exporting invoices to csv"
+  },
+  "noise_db": null
+ },
+ "ptt-british": {
+  "seconds": 3.59,
+  "mode": "push_to_talk",
+  "open_mic": false,
+  "script": [
+   {
+    "at": 0.1,
+    "type": "ptt_down"
+   },
+   {
+    "at": 3.392,
+    "type": "ptt_up"
+   }
+  ],
+  "expect": {
+   "send": "rename the settings page to preferences"
+  },
+  "noise_db": null
+ },
+ "wake-request": {
+  "seconds": 5.01,
+  "mode": "wake",
+  "open_mic": false,
+  "script": [],
+  "expect": {
+   "wake": true,
+   "send": "what's the export thread doing"
+  },
+  "noise_db": null
+ },
+ "wake-male": {
+  "seconds": 5.1,
+  "mode": "wake",
+  "open_mic": false,
+  "script": [],
+  "expect": {
+   "wake": true,
+   "send": "start a thread for dark mode"
+  },
+  "noise_db": null
+ },
+ "wake-british": {
+  "seconds": 4.8,
+  "mode": "wake",
+  "open_mic": false,
+  "script": [],
+  "expect": {
+   "wake": true,
+   "send": "how are the tests going"
+  },
+  "noise_db": null
+ },
+ "wake-noisy": {
+  "seconds": 4.53,
+  "mode": "wake",
+  "open_mic": false,
+  "script": [],
+  "expect": {
+   "wake": true,
+   "send": "check on the login bug"
+  },
+  "noise_db": 12
+ },
+ "false-wake": {
+  "seconds": 8.86,
+  "mode": "wake",
+  "open_mic": false,
+  "script": [],
+  "expect": {
+   "wake": false,
+   "send": null
+  },
+  "noise_db": 20
+ },
+ "half-sentence": {
+  "seconds": 5.19,
+  "mode": "push_to_talk",
+  "open_mic": true,
+  "script": [],
+  "expect": {
+   "send": "add a button that exports the report as a pdf",
+   "utterances": 1
+  },
+  "noise_db": null
+ },
+ "cancel": {
+  "seconds": 5.08,
+  "mode": "push_to_talk",
+  "open_mic": true,
+  "script": [],
+  "expect": {
+   "send": null,
+   "cancelled": 1
+  },
+  "noise_db": null
+ },
+ "outward-yes": {
+  "seconds": 4.71,
+  "mode": "push_to_talk",
+  "open_mic": true,
+  "script": [],
+  "expect": {
+   "confirm": true,
+   "send": "push the export branch"
+  },
+  "noise_db": null
+ },
+ "outward-no": {
+  "seconds": 5.49,
+  "mode": "push_to_talk",
+  "open_mic": true,
+  "script": [],
+  "expect": {
+   "confirm": true,
+   "send": null
+  },
+  "noise_db": null
+ },
+ "barge-in": {
+  "seconds": 5.18,
+  "mode": "push_to_talk",
+  "open_mic": true,
+  "script": [
+   {
+    "at": 0.1,
+    "type": "speak",
+    "text": "The export thread finished its tests. Three passed and none failed. It is waiting for your review before it commits anything."
+   }
+  ],
+  "expect": {
+   "barge_in": true,
+   "send": "what about the login bug"
+  },
+  "noise_db": null
+ },
+ "follow-up": {
+  "seconds": 9.69,
+  "mode": "wake",
+  "open_mic": false,
+  "script": [],
+  "expect": {
+   "wake": true,
+   "sends": [
+    "start a thread for dark mode",
+    "also make the sidebar narrower"
+   ]
+  },
+  "noise_db": null
+ }
+}

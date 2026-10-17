@@ -1,0 +1,24 @@
+/* Voice on Home (HomeVoice.tsx). Tokens only; the design lane owns the final look. Motion is opacity and colour, never
+   layout, and stops under reduced motion. */
+.dv-home-voice { display: flex; flex-direction: column; gap: var(--dv-s2); margin: 0 var(--dv-s2) var(--dv-s2); }
+.dv-home-voice-line { display: flex; align-items: center; gap: var(--dv-s2); color: var(--dv-muted); }
+.dv-home-voice-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--dv-faint); transition: background var(--dv-fast) var(--dv-ease); }
+.dv-home-voice[data-state="listening"] .dv-home-voice-dot { background: var(--dv-pine); }
+.dv-home-voice[data-state="hearing"] .dv-home-voice-dot { background: var(--dv-live); animation: dv-voice-pulse 1.2s var(--dv-ease) infinite; }
+/* Speaking is a ring, not just another colour, so it reads without colour. */
+.dv-home-voice[data-speaking] .dv-home-voice-dot { background: transparent; box-shadow: inset 0 0 0 2px var(--dv-sage); }
+@keyframes dv-voice-pulse { 50% { box-shadow: 0 0 0 4px var(--dv-live-wash); } }
+@media (prefers-reduced-motion: reduce) { .dv-home-voice[data-state="hearing"] .dv-home-voice-dot { animation: none; } }
+.dv-home-voice-heard, .dv-home-voice-confirm { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s2) var(--dv-s3);
+  padding: var(--dv-s2) var(--dv-s3); border-radius: var(--dv-r2); background: var(--dv-sunk); box-shadow: 0 0 0 1px var(--dv-line); }
+.dv-home-voice-confirm { background: var(--dv-rust-wash); box-shadow: 0 0 0 1px var(--dv-line-strong); }
+.dv-home-voice-words { flex: 1 1 240px; color: var(--dv-ink); font-size: var(--dv-fs-body); }
+.dv-home-voice-ask { flex: 1 1 100%; margin: 0; color: var(--dv-ink-2); font-weight: 500; font-size: var(--dv-fs-small); }
+.dv-home-voice-actions { display: flex; align-items: center; gap: var(--dv-s2); }
+.dv-home-voice-note { color: var(--dv-ink-2); }
+.dv-home-voice-controls { margin-left: auto; display: inline-flex; align-items: center; gap: var(--dv-s1); }
+.dv-home-voice-mode { font: inherit; font-size: var(--dv-fs-caption); color: var(--dv-muted); background: transparent; border: 0; border-radius: var(--dv-r1); padding: 2px var(--dv-s1); }
+.dv-home-voice-mode:focus-visible, .dv-home-mic:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-home-composer .dv-foot .dv-home-mic { width: 28px; height: 28px; border: 0; background: transparent; display: grid; place-items: center; transition: color var(--dv-fast) var(--dv-ease), background var(--dv-fast) var(--dv-ease); }
+.dv-home-mic[data-on] { color: var(--dv-pine); }
+.dv-home-composer .dv-foot .dv-home-mic[data-held] { color: var(--dv-paper); background: var(--dv-pine); }

@@ -1,0 +1,72 @@
+/* The project terminal, beta.15 design pass. Paper dock, the shell on a raised card, like the composer: Dervo's own
+   surfaces rather than a black box bolted under the thread. Instrument Sans for the chrome, JetBrains Mono for the shell.
+   Green means something is running (the one live dot), rust only when it needs you. */
+.dv-terminal { flex:none; display:flex; flex-direction:column; width:100%; min-width:0; height:340px; min-height:250px; max-height:48vh;
+  border-top:var(--dv-hairline); background:var(--dv-paper); color:var(--dv-ink); font-family:var(--dv-font-text); }
+.dv-terminal[hidden] { display:none; }
+
+.dv-terminal-head { display:flex; align-items:center; gap:var(--dv-s3); min-height:44px; padding:var(--dv-s2) var(--dv-s4) var(--dv-s1); }
+.dv-terminal-title { display:flex; align-items:center; gap:var(--dv-s2); min-width:0; flex:1; font-size:var(--dv-fs-small); line-height:var(--dv-lh-ui); }
+.dv-terminal-mark { display:inline-grid; place-items:center; flex:none; width:22px; height:22px; border-radius:var(--dv-r1);
+  background:var(--dv-raised); color:var(--dv-ink-2); box-shadow:var(--dv-card-edge); }
+.dv-terminal-title strong { font-weight:600; letter-spacing:-.005em; }
+.dv-terminal-folder { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  color:var(--dv-muted); font:var(--dv-fs-caption)/var(--dv-lh-ui) var(--dv-font-mono); }
+
+/* One status, one dot. Live breathes gently; reduced motion keeps it still. */
+.dv-terminal-state { display:inline-flex; align-items:center; gap:6px; flex:none; height:24px; padding:0 10px 0 8px; border-radius:var(--dv-r-pill);
+  background:var(--dv-raised); box-shadow:var(--dv-card-edge); color:var(--dv-muted); font-size:var(--dv-fs-caption); font-weight:500; white-space:nowrap;
+  max-width:40ch; overflow:hidden; text-overflow:ellipsis; }
+.dv-terminal-state i { flex:none; width:7px; height:7px; border-radius:50%; background:var(--dv-line-strong); }
+.dv-terminal-state[data-tone="ready"] i { background:var(--dv-sage); }
+.dv-terminal-state[data-tone="live"] { color:var(--dv-ink); background:var(--dv-live-wash); box-shadow:none; }
+.dv-terminal-state[data-tone="live"] i { background:var(--dv-live); animation:dv-terminal-breathe 2.4s var(--dv-ease) infinite; /* the 2.4s breathing beat (design report #4) */ }
+.dv-terminal-state[data-tone="needs"] { color:var(--dv-rust); background:var(--dv-rust-wash); box-shadow:none; }
+.dv-terminal-state[data-tone="needs"] i { background:var(--dv-rust); }
+@keyframes dv-terminal-breathe { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:.45; transform:scale(.8); } }
+
+.dv-terminal-actions { display:flex; align-items:center; flex:none; gap:var(--dv-s1); }
+.dv-terminal-hide { width:28px; padding:0; }
+
+.dv-terminal-notice { display:flex; flex:none; align-items:baseline; gap:var(--dv-s3); margin:0 var(--dv-s4) var(--dv-s2); padding:var(--dv-s2) var(--dv-s3);
+  border-radius:var(--dv-r2); background:var(--dv-rust-wash); color:var(--dv-ink); font-size:var(--dv-fs-caption); line-height:var(--dv-lh-ui); }
+.dv-terminal-notice[data-tone="quiet"] { background:var(--dv-sunk); color:var(--dv-muted); }
+.dv-terminal-notice>span { flex:1; min-width:0; overflow-wrap:anywhere; }
+.dv-terminal-notice button { flex:none; }
+
+/* Commands sent from a reply or Settings, newest last, as small labelled cards above the shell. */
+.dv-terminal-runs { display:flex; align-items:flex-start; gap:var(--dv-s2); flex:none; padding:0 var(--dv-s4) var(--dv-s2); }
+.dv-terminal-runs ol { display:flex; gap:var(--dv-s2); flex:1; min-width:0; margin:0; padding:0; list-style:none; overflow-x:auto; scrollbar-width:none; }
+.dv-terminal-run { display:flex; flex-direction:column; gap:2px; flex:none; max-width:min(360px, 70%); padding:6px 10px 7px; border-radius:var(--dv-r2);
+  background:var(--dv-raised); box-shadow:var(--dv-card-edge); }
+.dv-terminal-run-meta { color:var(--dv-faint); font-size:var(--dv-fs-caption); line-height:1.3; white-space:nowrap; }
+.dv-terminal-run-meta b { color:var(--dv-live); font-weight:600; }
+.dv-terminal-run code { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:var(--dv-ink); font:500 var(--dv-fs-caption)/1.4 var(--dv-font-mono); }
+.dv-terminal-run[data-running] { box-shadow:inset 2px 0 0 var(--dv-live), var(--dv-card-edge); }
+.dv-terminal-clear { flex:none; margin-top:6px; font-size:var(--dv-fs-caption); }
+
+/* The shell sits on a raised card, the same surface as the composer. xterm's own background matches it (the theme). */
+.dv-terminal-body { position:relative; flex:1; min-height:0; margin:0 var(--dv-s3) var(--dv-s3); border-radius:var(--dv-r3);
+  background:var(--dv-raised); box-shadow:var(--dv-card-edge), var(--dv-lift); overflow:hidden; }
+/* Offsets, not padding: xterm's fit reads its parent's height, and under border-box that would count padding as rows. */
+.dv-terminal-screen { position:absolute; top:var(--dv-s3); right:var(--dv-s2); bottom:var(--dv-s2); left:var(--dv-s4); }
+.dv-terminal-screen .xterm { height:100%; }
+.dv-terminal-screen .xterm-viewport { background:var(--dv-raised) !important; scrollbar-width:thin; scrollbar-color:var(--dv-line-strong) transparent; }
+.dv-terminal-screen .xterm:focus-visible { outline:none; }
+.dv-terminal-screen .xterm-helper-textarea:focus-visible { outline:none; }
+.dv-terminal-body:focus-within { box-shadow:0 0 0 1px var(--dv-line-strong), var(--dv-lift); }
+.dv-terminal-idle { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  padding:var(--dv-s4); text-align:center; pointer-events:none; }
+.dv-terminal-idle p { margin:0; color:var(--dv-ink-2); font-size:var(--dv-fs-body); }
+.dv-terminal-idle .dv-terminal-idle-note { color:var(--dv-faint); font-size:var(--dv-fs-caption); }
+
+@media (max-width:700px) {
+  .dv-terminal-head { padding-inline:var(--dv-s3); gap:var(--dv-s2); }
+  .dv-terminal-folder { display:none; }
+  .dv-terminal-runs { padding-inline:var(--dv-s3); }
+  .dv-terminal-notice { margin-inline:var(--dv-s3); }
+  .dv-terminal-body { margin-inline:var(--dv-s2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dv-terminal-state[data-tone="live"] i { animation:none; }
+}

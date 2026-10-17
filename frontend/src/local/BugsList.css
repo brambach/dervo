@@ -1,0 +1,91 @@
+/* Bugs and ideas, one page (evidence/design-tests/bugs-list/index.html). Layout only: every value is a dv- token, and the
+   rows, sheet, add line, segmented control and kbd are the shared components in DervoComponents.css. Everything is
+   scoped to the page so none of it reaches Knowledge or Settings. Rust is spent nowhere here. */
+.dervo-bugs-workspace { display: flex; flex: 1; min-height: 0; flex-direction: column; overflow: hidden; }
+.dervo-bugs-bar { flex: none; }
+.dervo-bugs-bar .dv-tools .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-bugs-body { flex: 1; min-height: 0; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+.dervo-bugs-body > .dv-measure { gap: var(--dv-s5); padding-bottom: var(--dv-s7); }
+
+/* ---------- Page head: the title with the one count beside it, the lead, one line for an error ---------- */
+.dervo-bugs-body .dv-bugs-top { display: flex; align-items: baseline; gap: var(--dv-s3); }
+.dervo-bugs-body .dv-bugs-top .dv-caption { margin-left: auto; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dervo-bugs-body .dv-bugs-error { font-size: var(--dv-fs-small); line-height: var(--dv-lh-ui); color: var(--dv-ink); }
+.dervo-bugs-body .dv-bugs-error .dv-btn-quiet { display: inline-flex; height: 24px; margin-left: var(--dv-s1); font-size: var(--dv-fs-caption); }
+
+/* ---------- Filters: two segmented controls on one line ---------- */
+.dervo-bugs-body .dv-bugs-filters { display: flex; align-items: center; gap: var(--dv-s3); flex-wrap: wrap; }
+.dervo-bugs-body .dv-seg-sm button { height: 22px; padding: 0 var(--dv-s2); font-size: var(--dv-fs-caption); }
+
+/* ---------- The list: the shared row, with the item's number in the glyph column ---------- */
+.dervo-bugs-body .dv-bugs-sheet { gap: 0; }
+.dervo-bugs-body .dv-bugs-row { grid-template-columns: 24px minmax(0, 1fr) auto; padding: 10px var(--dv-s3); cursor: pointer; }
+.dervo-bugs-body .dv-bugs-row:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dervo-bugs-body .dv-bugs-num { margin-top: 1px; text-align: right; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dervo-bugs-body .dv-bugs-copy { min-width: 0; }
+.dervo-bugs-body .dv-bugs-row .dv-row-line { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-bugs-body .dv-bugs-row .dv-row-end { gap: var(--dv-s2); padding-top: 1px; }
+.dervo-bugs-body .dv-bugs-kind { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dervo-bugs-body .dv-bugs-target { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+/* Planned is the default and says nothing; building is ink, done is sage (the shared rule), closed is muted. Nothing
+   people read sits in --dv-faint: it misses AA in dark (evidence/b11-dark-audit/FINDINGS.md). */
+.dervo-bugs-body .dv-row-end .dv-state[data-state="planned"] { display: none; }
+.dervo-bugs-body .dv-row-end .dv-state[data-state="building"] { color: var(--dv-ink-2); }
+.dervo-bugs-body .dv-row-end .dv-state[data-state="closed"] { color: var(--dv-muted); }
+.dervo-bugs-body .dv-bugs-line { padding: var(--dv-s3); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-bugs-body .dv-bugs-keys { padding: var(--dv-s2) var(--dv-s3) 0; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+
+/* ---------- The add line at the top of the sheet: its kind toggle and hint share the end column ---------- */
+.dervo-bugs-body .dv-bugs-add-line { margin-bottom: var(--dv-s2); }
+.dervo-bugs-body .dv-bugs-add-line input:disabled { color: var(--dv-faint); }
+.dervo-bugs-body .dv-bugs-add-end { display: flex; align-items: center; gap: var(--dv-s3); }
+.dervo-bugs-body .dv-bugs-add-end .dv-seg { background: var(--dv-canvas); }
+.dervo-bugs-body .dv-bugs-add-end .dv-seg button[aria-checked="true"] { background: var(--dv-raised); }
+.dervo-bugs-body .dv-bugs-add-line .dv-hint { min-width: 5.5em; text-align: right; }
+
+/* ---------- The one open item, lifted onto the raised card ---------- */
+.dervo-bugs-body .dv-bugs-open { padding: var(--dv-s4) var(--dv-s3) var(--dv-s3); margin: var(--dv-s1) 0 var(--dv-s3); cursor: default; }
+.dervo-bugs-body .dv-bugs-open .dv-row-name { font-size: var(--dv-fs-title); letter-spacing: -.012em; }
+.dervo-bugs-body .dv-bugs-open .dv-row-end { align-self: start; }
+.dervo-bugs-body .dv-bugs-notes { grid-column: 2 / -1; display: flex; flex-direction: column; gap: var(--dv-s3); margin-top: var(--dv-s3); }
+.dervo-bugs-body .dv-bugs-notes:empty { display: none; }
+.dervo-bugs-body .dv-bugs-note { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: var(--dv-s3); align-items: baseline; }
+.dervo-bugs-body .dv-bugs-note .dv-caption { padding-top: 1px; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.dervo-bugs-body .dv-bugs-note p { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); white-space: pre-line; max-width: 62ch; overflow-wrap: anywhere; }
+.dervo-bugs-body .dv-bugs-dropped { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dervo-bugs-body .dv-bugs-note-add { grid-column: 2 / -1; margin-top: var(--dv-s3); }
+.dervo-bugs-body .dv-bugs-note-add textarea { min-width: 0; padding: 0; border: 0; outline: 0; background: none; resize: none; font: inherit; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); color: var(--dv-ink); field-sizing: content; max-height: 12em; }
+.dervo-bugs-body .dv-bugs-note-add textarea::placeholder { color: var(--dv-faint); }
+.dervo-bugs-body .dv-bugs-foot { grid-column: 2 / -1; display: flex; align-items: center; gap: var(--dv-s3); margin-top: var(--dv-s3); flex-wrap: wrap; }
+.dervo-bugs-body .dv-bugs-target-field { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: var(--dv-r-pill); font-size: var(--dv-fs-caption); font-weight: 600;
+  color: var(--dv-ink-2); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dervo-bugs-body .dv-bugs-target-field:hover { background: var(--dv-sunk); }
+.dervo-bugs-body .dv-bugs-target-field[data-empty] { color: var(--dv-muted); font-weight: 500; }
+.dervo-bugs-body .dv-bugs-target-input { height: 26px; width: 180px; padding: 0 10px; border-radius: var(--dv-r-pill); font-size: var(--dv-fs-caption); font-weight: 600; }
+
+/* ---------- The work on an item: the thread on it (one muted line), the build that holds its fix, the button ---------- */
+.dervo-bugs-body .dv-bugs-fixed { font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; }
+.dervo-bugs-body .dv-bugs-open .dv-bugs-work { margin-top: 2px; color: var(--dv-muted); }
+.dervo-bugs-body .dv-bugs-work-btn { margin-left: auto; height: 26px; font-size: var(--dv-fs-caption); }
+
+/* ---------- Focus: the page's one ring, --dv-focus, on every control here (the shared .dv-btn has none yet) ---------- */
+.dervo-bugs-workspace :is(.dv-btn, .dv-seg button, .dv-bugs-target-field, .dv-bugs-target-input):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dervo-bugs-workspace .dv-add-line:focus-within { box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+
+/* ---------- Motion: rows enter once while the sheet carries data-enter (the first listing only, 12ms apart, --i is the
+   row's place), and the open card rises once. Nothing scroll-linked. With reduced motion nothing moves. ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .dervo-bugs-body .dv-bugs-sheet[data-enter] .dv-bugs-row:not(.dv-bugs-open) { animation: dv-bugs-rise var(--dv-calm) var(--dv-ease) backwards; animation-delay: calc(var(--i, 0) * 12ms); }
+  .dervo-bugs-body .dv-bugs-open { animation: dv-bugs-rise var(--dv-calm) var(--dv-ease) both; }
+  .dervo-bugs-body .dv-bugs-row:not(.dv-bugs-open) { transition: background-color var(--dv-fast) var(--dv-ease); }
+}
+@keyframes dv-bugs-rise { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Empty ---------- */
+.dervo-bugs-body .dv-bugs-quiet { padding-bottom: 0; }
+.dervo-bugs-body .dv-bugs-quiet .dv-small { color: var(--dv-muted); max-width: 52ch; line-height: var(--dv-lh-ui); }
+
+/* Keep the add field usable at the native window's minimum width. */
+.dv-bugs-add-line:has(select) { grid-template-columns: 16px minmax(0, 1fr); row-gap: 8px; }
+.dv-bugs-add-line:has(select) .dv-bugs-add-end { grid-column: 2; justify-content: space-between; }
+.dv-report-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }

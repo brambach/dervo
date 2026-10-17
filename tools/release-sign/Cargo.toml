@@ -1,0 +1,15 @@
+[package]
+name = "dervo-release-sign"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+# Its own workspace: this tool runs on Bryce's Mac at release time and is never part of the app bundle.
+[workspace]
+
+[dependencies]
+ed25519-dalek = { version = "2.2", features = ["std", "zeroize"] }
+base64 = "0.22"
+serde_json = "1"
+sha2 = "0.10"
+zeroize = "1"

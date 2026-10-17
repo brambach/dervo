@@ -1,0 +1,4 @@
+Dervo uses Streamdown 2.6.0 by Vercel, Inc., licensed under Apache-2.0.
+https://github.com/vercel/streamdown
+
+Dervo retains its own Markdown components and message plugins, disables additional controls and entrance animations, and normalizes incomplete Markdown only for received active text. No optional Streamdown plugins are installed.

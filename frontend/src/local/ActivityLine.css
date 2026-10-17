@@ -1,0 +1,20 @@
+/* ActivityLine (ActivityLine.tsx): what Dervo did on its own, one muted line with at most one action. dv- tokens only, so
+   it reads the same in dark mode. No bar, no fill, no icon. Text people read is --dv-muted, never --dv-faint. The action
+   is the sidebar's Undo look; its focus ring is DervoBrand.css's shared --dv-focus rule. */
+.dv-activity { display: flex; align-items: baseline; flex-wrap: wrap; gap: 2px var(--dv-s2); margin: 0;
+  font-size: var(--dv-fs-caption); line-height: 1.45; letter-spacing: .01em; color: var(--dv-muted); }
+.dv-activity-text { min-width: 0; overflow-wrap: anywhere; }
+.dv-activity-action { flex: none; margin: -2px 0; padding: 2px var(--dv-s1); border-radius: var(--dv-r1); font: inherit; font-weight: 600; color: var(--dv-ink); }
+.dv-activity-action:hover:not(:disabled) { background: color-mix(in srgb, var(--dv-ink) 6%, transparent); }
+.dv-activity-action:disabled { color: var(--dv-muted); cursor: default; }
+.dv-activity-done { font-weight: 600; }
+.dv-activity-list { display: flex; flex-direction: column; gap: var(--dv-s1); }
+/* It enters once, when it mounts; a refetch keeps the same node, so it never plays again. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-activity { animation: dv-activity-in var(--dv-calm) var(--dv-ease) both; }
+}
+@keyframes dv-activity-in { from { opacity: 0; } to { opacity: 1; } }
+
+/* Where the lines sit. Home's placements are in Home.css; the thread recap's and the sidebar's are here, because their
+   components have no stylesheet of their own. */
+.dervo-thread-recap .dv-activity-list { max-width: 700px; margin: var(--dv-s2) auto var(--dv-s3); padding: 0 var(--dv-s4); }

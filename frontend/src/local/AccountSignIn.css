@@ -1,0 +1,9 @@
+/* Adding an account by signing in first (AccountSignIn.tsx, beta.18), and the Add card's quieter API-key choice
+   (ConnectedAccounts.tsx AddCard). The steps, fields and card actions are the kit's (DervoComponents.css, SettingsPages.css). */
+.dv-signin-add { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-signin-add .dv-step b { font-weight: 600; color: var(--dv-ink); overflow-wrap: anywhere; }
+.dv-signin-add .dv-field-note { margin: 0; }
+.dv-signin-add .dv-card-actions { flex-wrap: wrap; }
+/* "Use an API key instead" and "Sign in instead": a link at the start of the actions, quieter than Cancel. */
+.dv-card-actions > .dv-add-key { margin-right: auto; font-size: var(--dv-fs-small); font-weight: 500; color: var(--dv-ink-2); }
+.dv-card-actions > .dv-add-key:hover { color: var(--dv-ink); }

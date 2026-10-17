@@ -1,0 +1,32 @@
+{
+  "files": {
+    "LICENSE-Hermes.txt": "821556e6336796450ab852d375117b48a4887e71d255794fd6318d99982a5ab6",
+    "NOTICE.md": "8fe2e52954c955ba2f2ccd52c1627579decc15ef2fc379d6a480448cf241da4c",
+    "THIRD_PARTY_NOTICES.md": "d5b8723ad8de453e8b74a31f00cf7666936b06a365066571f1f1d439761458a5",
+    "__init__.py": "6d5b527b4f88bdde6e3c2050068c99216932528e89e2b2fac78637e2ee18d2db",
+    "addressing.py": "ad5ce8ea954b210431d66f6a442428319e795b54273a6f89b44d24babae5296b",
+    "claude_worker.py": "6a8590121745852603095a6306ceea825836847d2a3a34ec8c48743695d059cf",
+    "codex_worker.py": "04be569e83690b73c9e8905e59243179e5bfebc37ae98aa6d27cdde85d9f2e96",
+    "delegation.py": "2bd2868e60e59c218b5d0dfb55a20c088021acac7113655173b4ac054695d28a",
+    "errors.py": "a186e3f18f671a61b48b364abe3fcbb89688abca2d59e0e8adb096cdb2a5a8d5",
+    "harness.py": "bb99c69a5e21d4f4de1a68324ab49afdc93d9ffdc0f45d574a6b3f59a7a78e9d",
+    "models.py": "910530342c2ab182248ed3357471f3c2b15bfc145624f9d42a6d07e6889da524",
+    "runtime.py": "bb232b3360e2c35f6b3be19c82b80c644e03957ba429242f38a9cbb136e7afa5",
+    "session.py": "a00f56917a55819d405cc66d3c8c3bb7e1b14a4696c8d37ee29723dc1e8a1ab3",
+    "store.py": "11fc637f7ac129e7ce0621ba67237dab0e2ed48c101fd7ed395a9131450562b2",
+    "supervisor.py": "415aca44a13fbff6d6c8a5dbbba6c2ec70bc92a92bd4cb95424c3a688c75cba7",
+    "upstream_adapted.py": "149d93d79dd7a5364e9d239b30cd0bfd6ce4a8e9d82e10c1e9ee5f6658d46754"
+  },
+  "license": "THIRD_PARTY_NOTICES.md",
+  "notices": [
+    "THIRD_PARTY_NOTICES.md",
+    "LICENSE-Hermes.txt",
+    "NOTICE.md"
+  ],
+  "package": "dervo_harness",
+  "port": "dervo-harness-port-v2",
+  "source": "harness-core",
+  "tree_sha256": "6574acae618b8ba2e4e7b168f40ea21d72560cd5180738ee554123b124db78e0",
+  "vendored_at": "2026-09-25T12:49:52+00:00",
+  "version": "0.8.2"
+}

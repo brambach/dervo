@@ -1,0 +1,92 @@
+/* Onboarding (8 Oct 2026): the stepper, the agents step's rows, and how each step arrives. Tokens only (DervoTokens.css);
+   the cards, buttons and fields are the kit's. One soft rise per step, nothing that moves size, nothing with reduced motion. */
+
+/* Each step arrives once: a short fade and a 6px rise on the brand moment's own beat. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-ob-phase { animation: dv-ob-arrive var(--dv-arrive) var(--dv-ease-out) both; }
+  /* The agents step's rows come in one after another as the check answers, so the Mac check reads as it happens. */
+  .dv-ag-row { animation: dv-ob-arrive var(--dv-move) var(--dv-ease-out) both; animation-delay: calc(var(--dv-ag-i, 0) * 70ms + 120ms); }
+}
+@keyframes dv-ob-arrive { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* The mark and the stepper, at the top of every step after sign-in. */
+.dv-ob-head { display: flex; align-items: center; gap: var(--dv-s4); margin-bottom: var(--dv-s6); }
+.dv-ob-head .dv-moment-mark { margin: 0; }
+.dv-ob-stepper { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--dv-s2); flex: 1; min-width: 0; list-style: none; margin: 0; padding: 0; }
+.dv-ob-step { display: flex; flex-direction: column; gap: 7px; width: 100%; padding: 0; border-radius: var(--dv-r1); text-align: left; color: var(--dv-muted); font: inherit; background: none; border: 0; }
+button.dv-ob-step { cursor: pointer; }
+button.dv-ob-step:hover { color: var(--dv-ink-2); }
+button.dv-ob-step:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 3px; }
+.dv-ob-track { display: block; height: 3px; border-radius: 9px; background: var(--dv-line-strong); overflow: hidden; position: relative; }
+.dv-ob-track::after { content: ''; position: absolute; inset: 0; background: var(--dv-ink); transform-origin: left; transform: scaleX(0); }
+@media (prefers-reduced-motion: no-preference) { .dv-ob-track::after { transition: transform var(--dv-arrive) var(--dv-ease-out); } }
+.dv-ob-stepper [data-done] .dv-ob-track::after { transform: scaleX(1); background: var(--dv-sage); }
+.dv-ob-stepper [data-now] .dv-ob-track::after { transform: scaleX(.42); }
+.dv-ob-label { display: flex; align-items: center; gap: 6px; font-size: var(--dv-fs-caption); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-ob-n { width: 16px; height: 16px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 0.625rem; font-weight: 600; background: var(--dv-sunk); color: var(--dv-muted); }
+.dv-ob-n svg { width: 10px; height: 10px; }
+.dv-ob-stepper [data-now] .dv-ob-step { color: var(--dv-ink); }
+.dv-ob-stepper [data-now] .dv-ob-n { background: var(--dv-ink); color: var(--dv-canvas); }
+.dv-ob-stepper [data-done] .dv-ob-step { color: var(--dv-ink-2); }
+.dv-ob-stepper [data-done] .dv-ob-n { background: var(--dv-sage-wash); color: var(--dv-sage); }
+
+.dv-ob-title { margin-bottom: var(--dv-s3); outline: none; }
+.dv-ob-resume { margin: 0 0 var(--dv-s2); color: var(--dv-ink-2); }
+/* Said to a screen reader, not shown. */
+.dv-ob-sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+/* Beta access pending, said once on the steps after sign-in, with the way to switch email while it still can. */
+.dv-ob-pending { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--dv-s3); align-items: start; margin-bottom: var(--dv-s5);
+  padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk); font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.5; }
+.dv-ob-pending .dv-st { margin-top: 2px; }
+.dv-ob-pending p { margin: 0; }
+.dv-ob-pending p + p { margin-top: var(--dv-s1); }
+.dv-ob-pending b { font-weight: 600; color: var(--dv-ink); }
+.dv-ob-pending .dv-btn { margin-top: var(--dv-s3); }
+
+/* ---------------------------------------------------------------- The agents step */
+.dv-ag h2 { margin-bottom: var(--dv-s3); outline: none; }
+/* It bleeds out like the step cards (FirstRun.css .dv-fr-card), so its text lines up with the heading above. */
+.dv-ag-list { list-style: none; margin: var(--dv-s5) calc(-1 * var(--dv-s5)) 0; padding: 4px var(--dv-s5); border-radius: var(--dv-r3, 14px); background: var(--dv-raised);
+  box-shadow: 0 0 0 1px var(--dv-line), 0 1px 2px rgb(28 41 33 / .04), 0 12px 32px -18px rgb(28 41 33 / .22); }
+.dv-ag-row { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 2px var(--dv-s3); align-items: start; padding: var(--dv-s3) 0; border-top: 1px solid var(--dv-line); }
+.dv-ag-row:first-child { border-top: 0; }
+.dv-ag-glyph { padding-top: 2px; display: flex; }
+.dv-ag-row[data-state="done"] .dv-ag-glyph { color: var(--dv-sage); }
+.dv-ag-text { min-width: 0; }
+.dv-ag-name { margin: 0; font-size: var(--dv-fs-body); font-weight: 600; color: var(--dv-ink); line-height: 1.4; display: flex; align-items: baseline; gap: var(--dv-s2); }
+.dv-ag-ver { font: 500 var(--dv-fs-caption) var(--dv-font-mono); color: var(--dv-faint); }
+.dv-ag-line { margin-top: 1px; font-size: var(--dv-fs-small); color: var(--dv-muted); line-height: 1.5; overflow-wrap: anywhere; }
+.dv-ag-side { display: flex; align-items: center; gap: var(--dv-s2); min-height: 24px; }
+.dv-ag-body { grid-column: 2 / -1; display: flex; flex-direction: column; gap: var(--dv-s2); min-width: 0; }
+.dv-ag-body > .dv-fr-cmd { align-self: flex-start; margin-top: var(--dv-s1); }
+.dv-ag-acts { display: flex; flex-wrap: wrap; gap: var(--dv-s2); margin-top: var(--dv-s1); }
+.dv-ag-signin { margin-top: var(--dv-s2); padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk); display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-ag-signin > .dv-caption { margin: 0; }
+.dv-ag-alt { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--dv-s2); margin: var(--dv-s4) 0 0; font-size: var(--dv-fs-small); }
+.dv-ag-none { margin-top: var(--dv-s4); padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk);
+  font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.5; }
+.dv-ag-none p { margin: 0 0 var(--dv-s3); }
+.dv-ag-none b { font-weight: 600; color: var(--dv-ink); }
+.dv-ag-key { margin: var(--dv-s4) calc(-1 * var(--dv-s5)) 0; padding: var(--dv-s4) var(--dv-s5); border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: 0 0 0 1px var(--dv-line); }
+.dv-ag-key .dv-fr-inline { margin-top: 0; }
+.dv-ag-note { margin-top: var(--dv-s3); }
+
+/* The step's way on: what happens next on the left, Continue on the right. */
+.dv-ob-next { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s4); margin-top: var(--dv-s6); flex-wrap: wrap; }
+.dv-ob-next .dv-caption { flex: 1; min-width: 200px; }
+
+/* A link that's a button, in running text. */
+.dv-moment .dv-link { padding: 0; border: 0; background: none; font: inherit; font-weight: 600; color: var(--dv-ink); text-decoration: underline;
+  text-decoration-color: var(--dv-line-strong); text-underline-offset: 3px; cursor: pointer; }
+.dv-moment .dv-link:hover { text-decoration-color: currentColor; }
+.dv-moment .dv-link:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; border-radius: 3px; }
+
+/* Offline and mail help, inside the sign-in cards. */
+.dv-fr-offline { margin: var(--dv-s3) 0 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-fr-mailhelp { margin-top: var(--dv-s3); }
+.dv-fr-fine { margin-top: var(--dv-s3); }
+
+@media (max-width: 640px) {
+  .dv-ag-row { grid-template-columns: 18px minmax(0, 1fr); }
+  .dv-ag-side { grid-column: 2; order: 3; margin-top: var(--dv-s1); }
+}

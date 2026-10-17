@@ -1,0 +1,75 @@
+/* Next up (design b16-lifecycle, nextup). The Knowledge page's shape, scoped to this page so neither page's changes
+   reach the other: every value is a dv- token, and the rows, sheets and add line are DervoComponents.css. */
+.dv-nextup { display: flex; flex: 1; min-height: 0; flex-direction: column; overflow: hidden; container-type: inline-size; }
+.dv-nextup-bar { flex: none; }
+.dv-nextup-bar .dv-tools .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dv-nextup-body { flex: 1; min-height: 0; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+.dv-nextup-body > .dv-measure { gap: var(--dv-s6); padding-bottom: var(--dv-s7); }
+.dv-nextup-body :is(h1, h2):focus { outline: none; }
+
+/* ---------- Head: title, lead, when the file last changed ---------- */
+.dv-nextup-body .dv-nu-head { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dv-nextup-body .dv-nu-lead { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 62ch; }
+.dv-nextup-body .dv-nu-file { font-family: var(--dv-font-mono); font-size: .8em; }
+.dv-nextup-body .dv-nu-meta { display: flex; flex-wrap: wrap; gap: var(--dv-s1) var(--dv-s3); align-items: baseline; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-nextup-body .dv-nu-meta .dv-btn-quiet { height: 24px; font-size: var(--dv-fs-small); }
+.dv-nextup-body .dv-nu-error { font-size: var(--dv-fs-small); color: var(--dv-ink); }
+.dv-nextup-body .dv-nu-line { padding: var(--dv-s2) 0; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-nextup-body .dv-sheet > .dv-nu-line { padding-inline: var(--dv-s3); }
+.dv-nextup-body .dv-nu-line .dv-btn-quiet { height: 24px; font-size: var(--dv-fs-small); }
+.dv-nextup-body .dv-nu-choose { display: flex; align-items: baseline; gap: var(--dv-s2); flex-wrap: wrap; }
+
+/* ---------- Sections ---------- */
+.dv-nextup-body .dv-sec { gap: var(--dv-s3); }
+.dv-nextup-body .dv-sec-head { min-height: 28px; margin-bottom: 0; }
+.dv-nextup-body .dv-sec-head .dv-nu-count { font-size: var(--dv-fs-title); font-weight: 600; color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+
+/* ---------- Rows ---------- */
+.dv-nextup-body .dv-row .dv-row-name { overflow-wrap: anywhere; }
+.dv-nextup-body .dv-nu-name { font-weight: 500; }
+.dv-nextup-body .dv-num { margin-top: 1px; text-align: center; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dv-nextup-body .dv-row-end .dv-when { white-space: nowrap; }
+.dv-nextup-body .dv-row-end .dv-btn-quiet { height: 24px; font-size: var(--dv-fs-caption); }
+.dv-nextup-body .dv-row-actions { flex-wrap: wrap; align-items: center; }
+.dv-nextup-body .dv-nu-spacer { flex: 1; }
+/* A row's own actions show on hover and focus, in place of its day. */
+.dv-nextup-body .dv-nu-acts { display: none; gap: var(--dv-s1); }
+.dv-nextup-body .dv-nu-row:is(:hover, :focus-within):not(.dv-open):not([data-open]) .dv-nu-acts { display: flex; }
+.dv-nextup-body .dv-nu-row:is(:hover, :focus-within):not(.dv-open):not([data-open]) .dv-nu-acts ~ .dv-when { display: none; }
+.dv-nextup-body .dv-row.dv-open .dv-nu-acts { display: flex; }
+.dv-nextup-body .dv-row.dv-open .dv-nu-acts ~ .dv-when { display: none; }
+.dv-nextup-body .dv-nu-link { display: inline; height: auto; padding: 0; border: 0; background: none; font: inherit; color: var(--dv-ink); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--dv-line-strong); cursor: pointer; border-radius: 2px; }
+.dv-nextup-body .dv-nu-link:hover { text-decoration-color: var(--dv-ink); }
+.dv-nextup-body .dv-nu-notes { margin-top: var(--dv-s2); max-width: 64ch; font-size: var(--dv-fs-small); color: var(--dv-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.dv-nextup-body .dv-nu-notes p + p { margin-top: var(--dv-s1); }
+.dv-nextup-body .dv-nu-ship { display: inline-flex; align-items: center; gap: var(--dv-s2); }
+.dv-nextup-body .dv-nu-ship .dv-input { width: 150px; height: 28px; }
+
+/* What ⌘⇧B sent with a report: the screen, thread, model and build, as the capture wrote them. */
+.dv-nextup-body .dv-nu-sent { margin-top: var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-nextup-body .dv-nu-sent summary { cursor: pointer; font-weight: 600; color: var(--dv-muted); list-style: none; }
+.dv-nextup-body .dv-nu-sent summary::-webkit-details-marker { display: none; }
+:root[data-dervo-local] .dv-nextup-body details.dv-nu-sent > summary::after { content: none !important; }
+.dv-nextup-body .dv-nu-sent dl { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 2px var(--dv-s3); margin-top: var(--dv-s1); }
+.dv-nextup-body .dv-nu-pair { display: contents; }
+.dv-nextup-body .dv-nu-sent dt { color: var(--dv-faint); font-weight: 600; }
+.dv-nextup-body .dv-nu-sent dd { color: var(--dv-ink-2); margin: 0; overflow-wrap: anywhere; }
+
+/* A tester report's category: a quiet outlined chip. */
+.dv-nextup-body .dv-nu-cat { display: inline-flex; align-items: center; height: 18px; padding: 0 7px; border-radius: var(--dv-r-pill); font-size: var(--dv-fs-caption); font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); color: var(--dv-ink-2); white-space: nowrap; }
+
+/* Shipped: one folded row per version, opened to its items. */
+.dv-nextup-body .dv-nu-shipped > summary { list-style: none; cursor: pointer; }
+.dv-nextup-body .dv-nu-shipped > summary::-webkit-details-marker { display: none; }
+/* DervoBrand.css puts + and − after every summary; these are rows, so they don't get one. */
+:root[data-dervo-local] .dv-nextup-body details.dv-nu-shipped > summary::after { content: none !important; }
+.dv-nextup-body .dv-nu-text { display: flex; flex-direction: column; min-width: 0; }
+.dv-nextup-body .dv-nu-shipped-items { list-style: none; margin: 0 0 var(--dv-s2); padding: 0 var(--dv-s3) 0 calc(16px + 2 * var(--dv-s3)); display: grid; gap: var(--dv-s1);
+  font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-nextup-body .dv-nu-shipped-items .dv-when { font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-nextup-body .dv-nu-quiet { padding: var(--dv-s2) 0; }
+
+.dv-nextup :is(.dv-btn, .dv-nu-link, summary):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-nextup-body .dv-add-line:focus-within { box-shadow: inset 0 0 0 1px var(--dv-line-strong); }

@@ -1,0 +1,23 @@
+/* App icon, in Settings > Preferences (beta.15, group 7). The icons at Dock size in a five-column grid, the name under
+   each, and the founder icon on its own short row with its line. The chosen one gets Theme's ink ring. */
+.dv-icon-picker { display: flex; flex-direction: column; gap: var(--dv-s4); padding-top: var(--dv-s2); }
+.dv-icon-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--dv-s3) var(--dv-s2); }
+.dv-icon-tile { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: var(--dv-s2) 0 6px; border-radius: var(--dv-r2);
+  font-size: var(--dv-fs-small); font-weight: 500; color: var(--dv-ink-2); }
+.dv-icon-tile img { width: 56px; height: 56px; border-radius: 14px; transition: transform var(--dv-fast) var(--dv-ease-out); }
+.dv-icon-tile:hover:not([aria-disabled="true"]) img { transform: translateY(-1px); }
+.dv-icon-tile:hover:not([aria-disabled="true"]) { background: var(--dv-sunk); }
+.dv-icon-tile[aria-checked="true"] { color: var(--dv-ink); font-weight: 600; }
+/* The ring sits on the tile's own shape (the art's 896 tile in a 1024 canvas, so 49 of 56 px), not the transparent margin. */
+.dv-icon-tile[aria-checked="true"] { position: relative; }
+.dv-icon-tile[aria-checked="true"]::before { content: ''; position: absolute; top: calc(var(--dv-s2) + 1px); left: 50%; width: 53px; height: 53px;
+  transform: translateX(-50%); border-radius: 13px; box-shadow: 0 0 0 2px var(--dv-ink); pointer-events: none; }
+.dv-icon-tile[aria-disabled="true"] { cursor: default; color: var(--dv-faint); }
+.dv-icon-tile[aria-disabled="true"] img { filter: grayscale(.85); opacity: .55; }
+.dv-icon-tile:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+
+.dv-icon-founders { display: flex; flex-direction: column; gap: var(--dv-s2); padding-top: var(--dv-s3); border-top: var(--dv-hairline); }
+.dv-icon-founders-head { display: flex; flex-direction: column; gap: 2px; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-icon-founders-head b { color: var(--dv-ink); font-weight: 600; }
+.dv-icon-founders .dv-icon-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (prefers-reduced-motion: reduce) { .dv-icon-tile img { transition: none; } }

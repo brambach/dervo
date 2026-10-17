@@ -1,0 +1,10 @@
+/* Moss squircle. Derived from ldrs "squircle" (MIT, Griffin Johnston); the dash travels a rounded-square track. */
+.dervo-moss { display:inline-grid; place-items:center; flex:none; color:hsl(var(--dervo-live,38 56% 52%)); vertical-align:middle; }
+.dervo-moss svg { display:block; overflow:visible; }
+.dervo-moss-track { fill:none; stroke:hsl(var(--dervo-moss,156 30% 20%)); stroke-linecap:round; opacity:.22; }
+.dark .dervo-moss-track { stroke:hsl(var(--dervo-moss,150 22% 72%)); }
+.dervo-moss-car { fill:none; stroke:currentColor; stroke-linecap:round; stroke-dasharray:22 78; stroke-dashoffset:-6; }
+@media (prefers-reduced-motion: no-preference) {
+ .dervo-moss-car { animation:dervo-moss-travel 2.4s cubic-bezier(.45,.05,.55,.95) infinite; } /* 2 x the 1.2s beat (design report #4) */
+}
+@keyframes dervo-moss-travel { from { stroke-dashoffset:0; } to { stroke-dashoffset:-100; } }

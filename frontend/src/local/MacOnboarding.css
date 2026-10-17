@@ -1,0 +1,167 @@
+/* The whole-Mac onboarding (onboarding-v2.html): the same moment column as first run, the counters and piles of the
+   look, and the suggestion rows. Tokens only, no ruled lines between rows, one accent for what needs you. */
+.dv-ob { display: flex; flex-direction: column; gap: var(--dv-s4); margin-top: var(--dv-s5); }
+.dv-ob h2:focus { outline: none; }
+.dv-ob .dv-lede { margin: 0; }
+.dv-ob-fine { color: var(--dv-faint); }
+.dv-ob-actions { display: flex; justify-content: flex-end; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; margin-top: var(--dv-s2); }
+
+/* Look: three counters, then what's set aside beside what's kept. */
+.dv-ob-counters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--dv-s3); }
+.dv-ob-counters p { margin: 0; padding: var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk); color: var(--dv-muted); font-size: var(--dv-fs-small); }
+.dv-ob-num { display: block; font: 600 var(--dv-fs-h2)/1.1 var(--dv-font-display); color: var(--dv-ink); font-variant-numeric: tabular-nums; margin-bottom: 2px; }
+.dv-ob-collapse span { display: block; }
+.dv-ob-collapse span:not(.dv-ob-keep) { color: var(--dv-muted); }
+.dv-ob-columns { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: var(--dv-s5); }
+.dv-ob-columns .dv-label { margin-bottom: var(--dv-s2); }
+.dv-ob-piles, .dv-ob-kept, .dv-ob-progress { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--dv-s1); font-size: var(--dv-fs-small); }
+.dv-ob-piles li { color: var(--dv-muted); }
+.dv-ob-kept li, .dv-ob-progress li { display: flex; align-items: center; gap: var(--dv-s2); color: var(--dv-ink); }
+
+/* Suggest: Work and Personal as cards (onboarding-v2.html .ob2-ctx, b16-work mocks), each naming the account it runs on,
+   with what the guess rests on said once per card and each row's own reason. Someone with only Personal projects gets one
+   card. Move to is always in view when both sides show; Rename shows on hover and focus. */
+.dv-ob-group { padding: var(--dv-s4) var(--dv-s4) var(--dv-s2); border-radius: var(--dv-r3); background: color-mix(in srgb, var(--dv-raised) 82%, transparent);
+  box-shadow: var(--dv-lift); }
+.dv-ob-group-head { display: flex; align-items: baseline; gap: var(--dv-s2); padding: 0 var(--dv-s1); margin-bottom: var(--dv-s2); }
+.dv-ob-group-head .dv-title { margin: 0; font-size: var(--dv-fs-read); }
+.dv-ob-group-head .dv-caption { margin-left: auto; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-ob-quiet-head { display: flex; align-items: center; gap: var(--dv-s2); margin: var(--dv-s3) var(--dv-s1) var(--dv-s1); }
+.dv-ob-quiet-head::after { content: ''; flex: 1; height: 1px; background: var(--dv-line); }
+.dv-ob-loose-line { margin: 0; padding: 0 var(--dv-s1); color: var(--dv-muted); }
+.dv-ob-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.dv-ob-row { position: relative; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px var(--dv-s3); align-items: start; padding: var(--dv-s3) var(--dv-s1);
+  border-radius: var(--dv-r2); transition: background var(--dv-fast); }
+.dv-ob-row + .dv-ob-row { box-shadow: 0 -1px 0 var(--dv-line); }
+.dv-ob-row:hover { background: var(--dv-sunk); }
+.dv-ob-row[data-compact] { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.dv-ob-row[data-compact] .dv-ob-name, .dv-ob-threads legend { display: inline-flex; align-items: center; gap: var(--dv-s2); }
+.dv-ob-row input[type="checkbox"] { grid-row: 1 / span 3; margin: 3px 0 0; width: 16px; height: 16px; accent-color: var(--dv-ink); }
+.dv-ob-row-name { display: flex; align-items: baseline; gap: var(--dv-s2); min-width: 0; }
+.dv-ob-name { flex: none; font-size: var(--dv-fs-body); font-weight: 600; color: var(--dv-ink); cursor: pointer; }
+.dv-ob-path { min-width: 0; font: 400 var(--dv-fs-caption) var(--dv-font-mono); color: var(--dv-faint); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-ob-why { grid-column: 2; margin: 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.45; }
+.dv-ob-meta { grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 4px var(--dv-s2); margin: 2px 0 0; font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; }
+.dv-ob-tool { display: inline-flex; align-items: center; padding: 1px 7px; border-radius: var(--dv-r-pill); box-shadow: inset 0 0 0 1px var(--dv-line-strong); color: var(--dv-ink-2); }
+.dv-ob-row:not([data-ticked]) .dv-ob-name, .dv-ob-row:not([data-ticked]) .dv-ob-why { color: var(--dv-muted); }
+.dv-ob-row-acts { position: absolute; top: var(--dv-s2); right: var(--dv-s1); display: flex; gap: 2px; padding-left: var(--dv-s4); border-radius: var(--dv-r1);
+  background: linear-gradient(to right, transparent, var(--dv-sunk) var(--dv-s4)); opacity: 0; transition: opacity var(--dv-fast); }
+.dv-ob-row:hover .dv-ob-row-acts, .dv-ob-row:focus-within .dv-ob-row-acts, .dv-ob-row[data-editing] .dv-ob-row-acts { opacity: 1; }
+.dv-ob-rename { width: 100%; max-width: 280px; height: 26px; }
+/* Why Bring in is held, right above it, and the Work projects that wait, beside it. */
+.dv-ob-held { margin: 0; text-align: right; color: var(--dv-muted); }
+.dv-ob-work-stays { margin-right: auto; color: var(--dv-muted); }
+
+/* The why, once, where the choice is made (b16-work .b16w-why). */
+.dv-ob-why-split { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--dv-s3); align-items: start; margin: 0;
+  padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: color-mix(in srgb, var(--dv-raised) 70%, transparent);
+  box-shadow: inset 0 0 0 1px var(--dv-line); font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+.dv-ob-why-split b { color: var(--dv-ink); font-weight: 600; }
+.dv-ob-why-split svg { width: 16px; height: 16px; margin-top: 2px; color: var(--dv-ink-2); }
+
+/* A group's head: the account it runs on, or why there isn't one, in rust. */
+.dv-ob-runs { margin-left: auto; min-width: 0; font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-ob-runs b { font-weight: 600; color: var(--dv-ink-2); }
+.dv-ob-runs[data-held] { color: var(--dv-rust); font-weight: 600; }
+.dv-ob-bulk { margin-left: auto; display: inline-flex; align-items: center; gap: 2px; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-ob-guess { margin: 0 var(--dv-s1) var(--dv-s3); font-size: var(--dv-fs-caption); color: var(--dv-muted); line-height: 1.5; }
+.dv-ob-group-head + .dv-ob-guess { margin-top: calc(-1 * var(--dv-s1)); }
+
+/* A row's guess, and its one-click move. */
+.dv-ob-guess-row::before { content: '·'; margin-right: var(--dv-s2); }
+.dv-ob-name-acts { margin: -4px 0 -4px auto; display: flex; align-items: center; gap: 2px; flex: none; }
+.dv-ob-name-acts .dv-ob-rename-btn { opacity: 0; transition: opacity var(--dv-fast); }
+.dv-ob-row:hover .dv-ob-rename-btn, .dv-ob-row:focus-within .dv-ob-rename-btn { opacity: 1; }
+.dv-ob-move.dv-btn, .dv-ob-name-acts .dv-btn { height: 24px; padding: 0 8px; font-size: var(--dv-fs-caption); }
+/* "Work or personal?": the pick is always showing, not on hover, because the row can't come in without it. */
+.dv-ob-pick { grid-column: 2; display: flex; gap: var(--dv-s1); margin: var(--dv-s2) 0 0; }
+
+/* Held: what to do, never a dead button (suggest-held). */
+.dv-ob-held-box, .dv-ob-done { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--dv-s3); align-items: start; margin: 0 0 var(--dv-s3); padding: var(--dv-s3);
+  border-radius: var(--dv-r2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.5; }
+.dv-ob-held-box { background: var(--dv-rust-wash); }
+.dv-ob-held-box p, .dv-ob-done p { margin: 0; }
+.dv-ob-held-box b, .dv-ob-done b { color: var(--dv-ink); font-weight: 600; }
+.dv-ob-held-box .dv-st, .dv-ob-done .dv-st { margin-top: 2px; }
+.dv-ob-acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s1); margin-top: var(--dv-s2); }
+/* Added: which account it is and what it's for (suggest-work-added). */
+.dv-ob-done { grid-template-columns: auto minmax(0, 1fr) auto; background: var(--dv-sage-wash); }
+.dv-ob-done .dv-caption { display: block; margin-top: 2px; }
+
+/* Adding a work account, in place in the Work card (suggest-add-work). */
+.dv-ob-add { margin: 0 0 var(--dv-s3); padding: var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: inset 0 0 0 1px var(--dv-line-strong);
+  display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dv-ob-add-head { display: flex; align-items: baseline; gap: var(--dv-s2); }
+.dv-ob-add-head h4 { margin: 0; font-size: var(--dv-fs-body); font-weight: 600; color: var(--dv-ink); }
+.dv-ob-add-head .dv-caption { margin-left: auto; }
+.dv-ob-add .dv-steps, .dv-ob-add .dv-card-actions, .dv-ob-add .dv-field { margin: 0; }
+.dv-ob-add .dv-inline { display: flex; align-items: center; gap: var(--dv-s2); }
+.dv-ob-add .dv-inline .dv-input { flex: 1; min-width: 0; }
+.dv-ob-add .dv-step[data-bad] small { color: var(--dv-rust); }
+/* Suggest's actions, pinned to the bottom of the window (design review S5), over a fade into the page behind. */
+.dv-ob-bar { position: sticky; bottom: 0; z-index: 1; display: flex; flex-direction: column; gap: var(--dv-s1);
+  margin: 0 calc(-1 * var(--dv-s3)); padding: var(--dv-s5) var(--dv-s3) var(--dv-s3);
+  background: linear-gradient(to bottom, transparent, var(--dv-paper) var(--dv-s5)); }
+.dv-ob-bar .dv-ob-actions { margin-top: 0; }
+.dv-ob-agent { display: flex; align-items: center; gap: var(--dv-s2); }
+
+/* The set-aside piles, one tap away. */
+.dv-ob-aside .dv-caption { display: flex; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; }
+.dv-ob-piles-open { display: flex; flex-direction: column; gap: var(--dv-s1); margin-top: var(--dv-s2); }
+.dv-ob-pile { border-radius: var(--dv-r2); background: var(--dv-sunk); padding: var(--dv-s2) var(--dv-s3); }
+.dv-ob-pile summary { cursor: pointer; font-size: var(--dv-fs-small); color: var(--dv-ink); }
+.dv-ob-pile summary b { font-weight: 600; }
+.dv-ob-pile ul { list-style: none; margin: var(--dv-s2) 0 0; padding: 0; display: flex; flex-direction: column; gap: 2px; max-height: 220px; overflow: auto; }
+.dv-ob-pile li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--dv-s2); align-items: center; }
+
+/* Threads, the second yes. */
+.dv-ob-row[data-compact] .dv-ob-name { color: var(--dv-ink); cursor: default; }
+.dv-ob-threads { border: 0; margin: 0; padding: var(--dv-s4) var(--dv-s4) var(--dv-s3); border-radius: var(--dv-r3); display: flex; flex-direction: column; gap: 2px;
+  background: color-mix(in srgb, var(--dv-raised) 82%, transparent); box-shadow: var(--dv-lift); }
+.dv-ob-threads legend { float: left; width: 100%; padding: 0 0 var(--dv-s2); font-size: var(--dv-fs-body); font-weight: 600; color: var(--dv-ink); }
+.dv-ob-thread { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--dv-s2); align-items: start; padding: var(--dv-s1) 0; cursor: pointer; }
+.dv-ob-thread input { margin-top: 3px; accent-color: var(--dv-ink); }
+.dv-ob-thread b { display: block; font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); }
+.dv-ob-thread small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+/* One the naming rules couldn't name (NEXT-UP #37): the reason where the name goes, the start of its first message, and a
+   field to name it. */
+.dv-ob-thread .dv-ob-unnamed { font-weight: 500; font-style: italic; color: var(--dv-ink-2); }
+.dv-ob-thread .dv-ob-excerpt { display: block; margin-top: 2px; font-size: var(--dv-fs-caption); color: var(--dv-ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-ob-thread .dv-ob-name-it { display: block; width: 100%; max-width: 20rem; margin-top: var(--dv-s1); }
+/* The opt-in for sessions a tool ran (NEXT-UP #38). */
+.dv-ob-tools { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: var(--dv-s2); align-items: start; padding: var(--dv-s3) var(--dv-s4);
+  border-radius: var(--dv-r2); background: var(--dv-sunk); cursor: pointer; }
+.dv-ob-tools input { margin-top: 3px; accent-color: var(--dv-ink); }
+.dv-ob-tools b { display: block; font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); }
+.dv-ob-tools small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+/* An hour-old look, or one the host no longer has (NEXT-UP #36): what happened and the one way on, in place. */
+.dv-ob-stale { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s3); flex-wrap: wrap; padding: var(--dv-s3) var(--dv-s4);
+  border-radius: var(--dv-r2); background: var(--dv-sunk); }
+.dv-ob-stale p { flex: 1 1 18rem; margin: 0; font-size: var(--dv-fs-small); color: var(--dv-ink); }
+
+/* The Ask card inside first run's project step. */
+.dv-ob-sources { list-style: none; margin: 0 0 var(--dv-s3); padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.dv-ob-sources li { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: var(--dv-s3); align-items: center; padding: var(--dv-s2) var(--dv-s3);
+  border-radius: var(--dv-r1); background: var(--dv-sunk); font-size: var(--dv-fs-small); }
+.dv-ob-sources b { font-weight: 600; color: var(--dv-ink); }
+.dv-ob-sources code { font: 400 var(--dv-fs-caption) var(--dv-font-mono); color: var(--dv-ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-ob-sources [data-present="false"] { color: var(--dv-faint); }
+.dv-ob-promise { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: var(--dv-s1) var(--dv-s3); margin: 0 0 var(--dv-s4); font-size: var(--dv-fs-small); }
+.dv-ob-promise dt { color: var(--dv-muted); }
+.dv-ob-promise dd { margin: 0; color: var(--dv-ink); }
+.dv-ob-ask-actions { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-ob-ask-actions .dv-fr-folder small { font-weight: 400; }
+
+/* Home: the batch line and its Undo. */
+.dv-ob-home { display: flex; flex-direction: column; gap: var(--dv-s1); }
+
+@media (max-width: 760px) {
+  .dv-ob-group-head { flex-wrap: wrap; }
+  .dv-ob-runs, .dv-ob-bulk { margin-left: 0; flex-basis: 100%; }
+  .dv-ob-add .dv-inline { flex-wrap: wrap; }
+  .dv-ob-counters { grid-template-columns: 1fr; }
+  .dv-ob-columns { grid-template-columns: 1fr; }
+  .dv-ob-row { grid-template-columns: 20px minmax(0, 1fr); }
+  .dv-ob-row-end { grid-column: 2; align-items: flex-start; text-align: left; }
+}
+@media (prefers-reduced-motion: reduce) { .dv-ob-row, .dv-ob-name-acts .dv-ob-rename-btn { transition: none; } }

@@ -1,0 +1,12 @@
+#!/bin/sh
+# Names Dervo to AppArmor so its bubblewrap sandbox can start on Ubuntu 23.10 and later (apparmor-dervo-local).
+set -e
+SOURCE=/usr/share/dervo-local/apparmor-dervo-local
+TARGET=/etc/apparmor.d/dervo-local
+if [ "$1" = configure ] && [ -e /etc/apparmor.d/abi/4.0 ] && [ -f "$SOURCE" ]; then
+  cp "$SOURCE" "$TARGET"
+  if command -v apparmor_parser >/dev/null 2>&1 && [ -d /sys/kernel/security/apparmor ]; then
+    apparmor_parser -r -T -W "$TARGET" || echo "Dervo: couldn't load its AppArmor profile; checks may not start until you restart." >&2
+  fi
+fi
+exit 0

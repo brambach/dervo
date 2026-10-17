@@ -1,0 +1,361 @@
+# Dervo for Linux, unsigned: the backend and frontend tests, then the .deb, .rpm and AppImage built, installed and
+# started on a virtual display. Nothing is signed, published, released or sent to anyone: a build's packages stay on
+# the run's page for 3 days, and a build goes to testers only when a maintainer says so.
+#
+# Runs only by hand (Actions, Run workflow) or for a release (free CI). Agents run the Linux and
+# frontend tests on their own machines before each merge, so pull requests and main merges don't start it.
+#
+# Packages are built on Ubuntu 22.04 so they run on its glibc and anything newer (Debian 12, Ubuntu 24.04, Fedora).
+# The tests run on Ubuntu 24.04, whose AppArmor refuses user namespaces to programs no profile names: the backend tests
+# lift that for the test Python, and the install job keeps it on to prove the .deb's own profile is enough.
+name: Linux build
+
+# A release starts when a push to main changes .github/linux-release.json, the release switch.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/linux-release.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: linux-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  APT_BUILD: libwebkit2gtk-4.1-dev libgtk-3-dev librsvg2-dev libayatana-appindicator3-dev patchelf file
+  APT_RUN: bubblewrap libsecret-tools gnome-keyring dbus-x11 xvfb imagemagick poppler-utils
+
+jobs:
+  # The frontend's own checks and tests, beside the backend's so neither waits on the other.
+  frontend:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 12.4.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - name: Install frontend packages
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile
+
+      - name: TypeScript check
+        if: success() || failure()
+        working-directory: frontend
+        run: pnpm run typecheck
+
+      - name: Frontend text checks
+        if: success() || failure()
+        working-directory: frontend
+        run: pnpm run check:px-text && pnpm run check:i18n
+
+      # Against the known-failures list, as the backend tests are: a test that newly fails turns this red.
+      - name: Frontend tests
+        if: success() || failure()
+        run: python -B scripts/frontend-tests-known.py .github/known-frontend-failures.json
+
+      # Not a gate yet: main fails it too (an exclamation mark in backend/thread_routing.py's routing examples).
+      - name: Copy check
+        if: success() || failure()
+        continue-on-error: true
+        working-directory: frontend
+        run: pnpm run check:copy
+
+  tests:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      # Mac and Windows disks ignore case, so two paths, folders or import names that differ only in case break those
+      # builds.
+      - name: No two paths differ only in case
+        run: git ls-files | python3 scripts/check-path-case.py
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 12.4.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+        with:
+          shared-key: linux-tests
+      - name: Install system packages
+        run: sudo apt-get update -q && sudo apt-get install -y -q $APT_BUILD $APT_RUN
+      # Copies, not pnpm's hard links: the TypeScript check fixtures accept only single-link files, as on a Mac.
+      - name: Install frontend packages
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile --config.package-import-method=copy
+
+      # Node checks accept only a real node in /usr/local/bin or /usr/bin (check_profiles.NODE_CANDIDATES).
+      - name: Put Node where checks look for it
+        run: |
+          sudo install -m 755 "$(readlink -f "$(command -v node)")" /usr/local/bin/node
+          /usr/local/bin/node --version
+
+      # cargo test builds the app crate, whose build script needs the frontend and every bundled resource in place.
+      - name: Build the frontend
+        run: node frontend/node_modules/vite/bin/vite.js build frontend --outDir ../dist
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/dervo-build
+          key: linux-runtimes-${{ hashFiles('runtime/python-linux-x64.json', 'runtime/codex-linux-x64.json') }}
+      - name: Stage Dervo's Python and Codex
+        run: |
+          python -B scripts/stage-linux-python.py --cache ~/.cache/dervo-build
+          python -B scripts/stage-windows-codex.py --pin runtime/codex-linux-x64.json ~/.cache/dervo-build
+
+      # The test Python isn't the installed app, so the .deb's AppArmor profile doesn't name it.
+      - name: Let the test Python start sandboxes
+        run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || true
+
+      # Every module in its own process, against the known-failures list: a module that newly fails turns this red.
+      # GNOME Keyring in a private D-Bus session answers the real Secret Service test (test_linux_credentials).
+      - name: Backend tests
+        env:
+          BACKEND_TEST_CAP: '300'
+          BACKEND_TEST_WORKERS: '4'
+          DERVO_TEST_SECRET_SERVICE: '1'
+        run: |
+          dbus-run-session -- sh -c 'echo -n test | gnome-keyring-daemon --unlock --components=secrets >/dev/null &&
+            python -B scripts/backend-tests-by-module.py --known .github/known-test-failures.json linux-tests'
+
+      # The later checks run even when one before them fails, so one red run names every problem.
+      - name: Rust tests
+        if: success() || failure()
+        run: cargo test --locked
+
+      - name: Keep the test results
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: linux-tests-${{ github.sha }}
+          path: linux-tests/
+          if-no-files-found: warn
+          retention-days: 3
+
+  packages:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 12.4.2
+      - name: Install system packages
+        run: sudo apt-get update -q && sudo apt-get install -y -q $APT_BUILD
+      - name: Install frontend packages
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile
+      - name: Build the frontend
+        run: node frontend/node_modules/vite/bin/vite.js build frontend --outDir ../dist
+
+      - uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: ~/.cache/dervo-build
+          key: linux-runtimes-${{ hashFiles('runtime/python-linux-x64.json', 'runtime/codex-linux-x64.json') }}
+      - name: Stage Dervo's Python and Codex
+        run: |
+          python -B scripts/stage-linux-python.py --cache ~/.cache/dervo-build
+          python -B scripts/stage-windows-codex.py --pin runtime/codex-linux-x64.json ~/.cache/dervo-build
+
+      # Keeps backend/test_*.py out of the packages, as the Mac and Windows builds do; they come back afterwards.
+      - name: Stage this build
+        run: python -B scripts/linux-release.py stage linux-held | tee linux-stage.txt
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+      - name: Build the packages
+        run: node frontend/node_modules/@tauri-apps/cli/tauri.js build --bundles deb,rpm,appimage
+      - name: Put the tests back
+        if: always()
+        run: test ! -d linux-held || python -B scripts/linux-release.py restore linux-held
+
+      - name: Collect the packages
+        run: |
+          mkdir linux-packages
+          cp target/release/bundle/deb/*.deb linux-packages/Dervo-linux-x64.deb
+          cp target/release/bundle/rpm/*.rpm linux-packages/Dervo-linux-x64.rpm
+          cp target/release/bundle/appimage/*.AppImage linux-packages/Dervo-linux-x64.AppImage
+          (cd linux-packages && sha256sum * > SHA256SUMS && ls -la)
+      # The install jobs get the packages through the cache: artifact storage is a small shared quota, so a pull
+      # request's packages aren't kept as an artifact, and main's are kept for 3 days.
+      - uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: linux-packages
+          key: linux-packages-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Keep the packages
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: dervo-linux-unsigned-${{ github.sha }}
+          path: linux-packages/
+          if-no-files-found: error
+          retention-days: 3
+
+      # A release, when .github/linux-release.json names one: each format staged, stamped with its own id and build
+      # number, bundled again from the same compiled app and packaged for tools/release-sign (scripts/linux-release.py).
+      - name: Read the release switch
+        id: switch
+        run: echo "release=$(python -c "import json; print(json.load(open('.github/linux-release.json'))['releaseId'] or '')")" >> "$GITHUB_OUTPUT"
+      - name: Package the release
+        if: steps.switch.outputs.release != '' && github.event_name != 'pull_request'
+        run: |
+          for fmt in deb rpm appimage; do
+            python -B scripts/linux-release.py stage "held-$fmt" "$fmt"
+            node frontend/node_modules/@tauri-apps/cli/tauri.js build --bundles "$fmt"
+            python -B scripts/linux-release.py package "held-$fmt" target/release/bundle linux-release
+            python -B scripts/linux-release.py restore "held-$fmt"
+          done
+      - name: Keep the release
+        if: steps.switch.outputs.release != '' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: dervo-linux-release-${{ steps.switch.outputs.release }}
+          path: linux-release/
+          if-no-files-found: error
+          retention-days: 7
+
+  # The .deb and the AppImage started for real on a virtual display, with Ubuntu 24.04's user namespace restriction
+  # left on, so the .deb's AppArmor profile is what lets Dervo's sandbox start.
+  install:
+    needs: packages
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: linux-packages
+          key: linux-packages-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          fail-on-cache-miss: true
+      - name: Install the .deb
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q $APT_RUN ./linux-packages/Dervo-linux-x64.deb
+          dpkg -s dervo-local | grep -E '^(Version|Depends|Recommends)'
+          ! ldd /usr/bin/dervo-local | grep 'not found'
+      # The check sandbox itself (bubblewrap and its seccomp filter), on the installed Python and backend, labelled as the
+      # installed app's processes are.
+      - name: Dervo's sandbox starts under its AppArmor profile
+        run: |
+          sysctl kernel.apparmor_restrict_unprivileged_userns || true
+          sudo aa-status 2>/dev/null | grep dervo-local
+          aa-exec -p dervo-local -- "/usr/lib/Dervo Local/linux-python/bin/python3.13" -E -s -B scripts/linux-sandbox-smoke.py \
+            "/usr/lib/Dervo Local/backend" --expect started
+      # An AppImage runs from a new mount each time, so no AppArmor profile can name it: on Ubuntu 23.10 or later Linux
+      # refuses its sandbox, and Dervo says to install the .deb instead (linux_confinement.NAMESPACE_REFUSED). This
+      # proves that's what happens, not some other failure, and records which.
+      - name: The AppImage's sandbox starts, or is refused with Dervo's message
+        run: |
+          chmod +x linux-packages/Dervo-linux-x64.AppImage
+          (cd "$RUNNER_TEMP" && "$GITHUB_WORKSPACE/linux-packages/Dervo-linux-x64.AppImage" --appimage-extract >/dev/null)
+          resources="$(dirname "$(find "$RUNNER_TEMP/squashfs-root" -path '*/backend/linux_confinement.py' | head -1)")/.."
+          status=0
+          "$resources/linux-python/bin/python3.13" -E -s -B scripts/linux-sandbox-smoke.py "$resources/backend" \
+            > "$RUNNER_TEMP/appimage-sandbox.txt" 2>&1 || status=$?
+          cat "$RUNNER_TEMP/appimage-sandbox.txt"
+          echo "AppImage sandbox on Ubuntu 24.04 with the namespace restriction on: $(tail -n 1 "$RUNNER_TEMP/appimage-sandbox.txt")" >> "$GITHUB_STEP_SUMMARY"
+          exit $status
+      - name: Start the installed app
+        run: xvfb-run -a -s '-screen 0 1512x945x24' dbus-run-session -- sh scripts/linux-app-smoke.sh dervo-local smoke-deb
+      - name: Start the AppImage
+        run: |
+          rm -rf ~/.local/share/local.dervo.connected
+          APPIMAGE_EXTRACT_AND_RUN=1 xvfb-run -a -s '-screen 0 1512x945x24' dbus-run-session -- \
+            sh scripts/linux-app-smoke.sh "$PWD/linux-packages/Dervo-linux-x64.AppImage" smoke-appimage
+      - name: Remove the .deb
+        run: sudo apt-get remove -y -q dervo-local && test ! -e /etc/apparmor.d/dervo-local
+      - name: Keep the screenshots and logs
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: linux-install-${{ github.sha }}
+          path: |
+            smoke-deb/
+            smoke-appimage/
+          if-no-files-found: warn
+          retention-days: 3
+
+  # The packages install with each distribution's own package manager, which resolves their dependencies, and Dervo's
+  # Python starts the backend host there. No display: the install job above starts the window. Each distribution runs
+  # under docker from the host, so the cache restores with the host's own tools.
+  distributions:
+    needs: packages
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - image: ubuntu:22.04
+            package: deb
+          - image: ubuntu:24.04
+            package: deb
+          - image: debian:12
+            package: deb
+          - image: fedora:42
+            package: rpm
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830 # v4
+        with:
+          path: linux-packages
+          key: linux-packages-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+          fail-on-cache-miss: true
+      - name: Install and start the backend host
+        env:
+          IMAGE: ${{ matrix.image }}
+          PACKAGE: ${{ matrix.package }}
+        run: |
+          docker run --rm -e PACKAGE -v "$PWD:/work:ro" -w /work "$IMAGE" sh -euc '
+            if [ "$PACKAGE" = deb ]; then
+              apt-get update -q && DEBIAN_FRONTEND=noninteractive apt-get install -y -q ./linux-packages/Dervo-linux-x64.deb
+            else
+              dnf install -y -q ./linux-packages/Dervo-linux-x64.rpm
+            fi
+            ! ldd /usr/bin/dervo-local | grep "not found"
+            test -x /usr/bin/bwrap && test -x /usr/bin/secret-tool
+            mkdir -p /tmp/dervo-data
+            "/usr/lib/Dervo Local/linux-python/bin/python3.13" -E -s -B scripts/windows-host-smoke.py \
+              "/usr/lib/Dervo Local/linux-python/bin/python3.13" /tmp/dervo-data'
+
+  # The package hand-off is only for this run: delete it, so it doesn't push the Rust and runtime caches out of the
+  # repository's cache space.
+  cleanup:
+    needs: [install, distributions]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - name: Delete this run's packages from the cache
+        env:
+          GH_TOKEN: ${{ github.token }}
+          KEY: linux-packages-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+        run: gh cache delete "$KEY" --repo "$GITHUB_REPOSITORY" || echo "No cache entry $KEY to delete."

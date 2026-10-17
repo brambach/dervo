@@ -1,0 +1,26 @@
+{
+  "name": "dervo-companion",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Dervo on your phone: the shared protocol, the relay and the Mac link. The phone app is in ../mobile.",
+  "scripts": {
+    "test": "node --experimental-strip-types --no-warnings --test \"protocol/*.test.ts\" \"relay/*.test.ts\" \"mac/*.test.ts\"",
+    "typecheck": "tsc -p . && tsc -p relay",
+    "relay:dev": "node --experimental-strip-types --no-warnings relay/dev-server.ts",
+    "relay:check": "wrangler deploy --dry-run --outdir .relay-build -c relay/wrangler.toml",
+    "relay:deploy": "npm test && npm run typecheck && wrangler deploy -c relay/wrangler.toml",
+    "relay:smoke": "node --experimental-strip-types --no-warnings relay/smoke.ts"
+  },
+  "dependencies": {
+    "tweetnacl": "1.0.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "5.20260918.1",
+    "@types/node": "22.10.2",
+    "@types/ws": "8.5.13",
+    "typescript": "5.6.3",
+    "wrangler": "4.135.0",
+    "ws": "8.18.0"
+  }
+}

@@ -1,0 +1,211 @@
+{
+  "projectId": "30621:deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef:dervo",
+  "storageKey": "dervo.workflow.v1",
+  "bryce": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+  "finch": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+  "moss": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+  "channels": [
+    {
+      "id": "b5e2f8a1-3c44-5912-9e67-4a8d1f2b3c4e",
+      "name": "design",
+      "owner": "Finch",
+      "role": "Design"
+    },
+    {
+      "id": "1c7e1c02-87bb-5e88-b2da-5a7a9432d0c9",
+      "name": "engineering",
+      "owner": "Moss",
+      "role": "Engineering"
+    },
+    {
+      "id": "9dae0116-799b-5071-a0a8-fdd30a91a35d",
+      "name": "project-room",
+      "owner": "Bryce",
+      "role": "Decisions"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "ONB-14",
+      "title": "Folder access",
+      "status": "blocked",
+      "owner": "Moss",
+      "channelId": "1c7e1c02-87bb-5e88-b2da-5a7a9432d0c9",
+      "channelName": "engineering",
+      "rootId": "c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4",
+      "summary": "Should first run request read-only inspection, or permission to edit? Moss needs a product decision before drafting the access contract."
+    },
+    {
+      "id": "ONB-12",
+      "title": "First-run flow",
+      "status": "review",
+      "owner": "Finch",
+      "channelId": "b5e2f8a1-3c44-5912-9e67-4a8d1f2b3c4e",
+      "channelName": "design",
+      "rootId": "c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2",
+      "summary": "onboarding-flow.md v1 is ready to inspect. Finch has finished the draft. Bryce has not approved it."
+    },
+    {
+      "id": "ONB-15",
+      "title": "Cancellation and recovery",
+      "status": "active",
+      "owner": "Moss",
+      "channelId": "1c7e1c02-87bb-5e88-b2da-5a7a9432d0c9",
+      "channelName": "engineering",
+      "rootId": "c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5",
+      "summary": "Drafting the state map separately from folder access. Cancel must preserve the selected folder and never start an agent."
+    },
+    {
+      "id": "ONB-16",
+      "title": "Empty-project guidance",
+      "status": "active",
+      "owner": "Finch",
+      "channelId": "b5e2f8a1-3c44-5912-9e67-4a8d1f2b3c4e",
+      "channelName": "design",
+      "rootId": "c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6",
+      "summary": "Preparing the explanation for a project with no conversations. Import stays optional and outside this prototype."
+    },
+    {
+      "id": "ONB-11",
+      "title": "First-run scope",
+      "status": "finished",
+      "owner": "Bryce",
+      "channelId": "9dae0116-799b-5071-a0a8-fdd30a91a35d",
+      "channelName": "project-room",
+      "rootId": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+      "summary": "Bryce limited this proposal to folder selection, access explanation and a reviewable project suggestion. No connection or import yet."
+    }
+  ],
+  "events": [
+    {
+      "id": "c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1c1",
+      "channelName": "project-room",
+      "pubkey": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "content": "ONB-11 | Sample decision: first run should explain folder access before inspection. Keep onboarding implementation, account connection and imports out of this milestone.",
+      "createdAt": 1788955200
+    },
+    {
+      "id": "d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1d1",
+      "channelName": "design",
+      "pubkey": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "content": "ONB-12 | Finch, draft the first-run flow. I want to see what we read, what we change and when I can cancel.",
+      "createdAt": 1788955380
+    },
+    {
+      "id": "d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2d2",
+      "channelName": "design",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "I’m separating selection from consent. Choosing a folder should not begin inspection. I’ll include the empty-folder and cancellation paths.",
+      "createdAt": 1788955560
+    },
+    {
+      "id": "c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2",
+      "channelName": "design",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "ONB-12 | onboarding-flow.md v1 is ready for Bryce’s review. It proposes read-only inspection first, with a separate permission boundary for editing.",
+      "createdAt": 1788955740
+    },
+    {
+      "id": "d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3d3",
+      "channelName": "design",
+      "pubkey": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "content": "Handoff received for ONB-14. I can map recovery states, but I need Bryce to choose when edit permission is requested. The Design draft is a proposal, not permission.",
+      "createdAt": 1788955920,
+      "parentEventId": "c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2c2"
+    },
+    {
+      "id": "c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4",
+      "channelName": "engineering",
+      "pubkey": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "content": "ONB-14 | Folder access boundary is blocked. Bryce, should first run request read-only inspection or edit execution? Finch’s onboarding-flow.md recommends read-only first.",
+      "createdAt": 1788956100
+    },
+    {
+      "id": "d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4d4",
+      "channelName": "engineering",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "ONB-12 → ONB-14 handoff: the Design review thread explains why selection and consent are separate. Keep the original recommendation visible even if Bryce chooses a different scope.",
+      "createdAt": 1788956280,
+      "parentEventId": "c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4c4"
+    },
+    {
+      "id": "c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5",
+      "channelName": "engineering",
+      "pubkey": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "content": "ONB-15 | I’m mapping cancellation and recovery while access scope waits. The current proposal preserves folder selection on cancel and never starts an agent.",
+      "createdAt": 1788956460
+    },
+    {
+      "id": "d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5d5",
+      "channelName": "engineering",
+      "pubkey": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "content": "Include permission revoked between selection and confirmation. Don’t reuse an inspection result after permission changes.",
+      "createdAt": 1788956640,
+      "parentEventId": "c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5c5"
+    },
+    {
+      "id": "c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6c6",
+      "channelName": "design",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "ONB-16 | Empty-project guidance is in progress. I’m writing the path for people who skip folder selection, without implying they connected a provider or imported history.",
+      "createdAt": 1788956820
+    },
+    {
+      "id": "d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6d6",
+      "channelName": "project-room",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "Project update: the first-run draft is awaiting human review in Design. Moss has a folder access question in Engineering. The overview links both to their original threads.",
+      "createdAt": 1788957000
+    },
+    {
+      "id": "e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1e1",
+      "channelName": "engineering",
+      "pubkey": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "content": "ONB-15 | Recovery map: if access is revoked after selection, keep the project name but discard the proposed file list. Ask the user to select again rather than silently retrying.",
+      "createdAt": 1788957180
+    },
+    {
+      "id": "e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2e2",
+      "channelName": "engineering",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "For that error, use “Access changed. Choose the folder again.” Keep Cancel next to the recovery action so there is still a way out.",
+      "createdAt": 1788957360
+    },
+    {
+      "id": "e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3e3",
+      "channelName": "engineering",
+      "pubkey": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "content": "ONB-15 | Continue without a folder must have its own state. It must not fall through to an empty path or begin a scan. I’m documenting that branch before implementation.",
+      "createdAt": 1788957540
+    },
+    {
+      "id": "e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4e4",
+      "channelName": "engineering",
+      "pubkey": "a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2",
+      "content": "ONB-14 remains blocked on Bryce. Cancellation work can continue, but the access contract cannot be finalised from Finch’s recommendation alone.",
+      "createdAt": 1788957720
+    },
+    {
+      "id": "e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5e5",
+      "channelName": "design",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "ONB-16 | Empty-project copy proposal: “Start with a conversation, or choose a folder when you’re ready.” No connection badge and no suggestion that an agent has started.",
+      "createdAt": 1788957900
+    },
+    {
+      "id": "e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6e6",
+      "channelName": "design",
+      "pubkey": "deadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "content": "Keep the choice reversible. A person who skips folder selection should be able to add one later without creating a second project.",
+      "createdAt": 1788958080
+    },
+    {
+      "id": "e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7e7",
+      "channelName": "design",
+      "pubkey": "f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1f1",
+      "content": "ONB-12 | Review note: the file still leaves document selection and permission revocation unresolved. Please request changes in the linked review if those need to be specified before the next pass.",
+      "createdAt": 1788958260
+    }
+  ],
+  "artifact": "# First-run flow\n\nonboarding-flow.md | v1 | ONB-12 | Author: Finch (Design)\n\nSample deliverable. This document proposes a future onboarding flow. No native access, connector or agent execution is implemented here. Finch has completed the draft, not obtained human approval.\n\n## Proposed scope\n\nHelp Bryce choose one project folder, understand access, then review a project suggestion before creating anything. Keep the first session useful without requiring a provider account or importing conversation history.\n\n## 1. Choose a folder\n\nShow “Choose project folder” and “Continue without a folder”. Explain that selecting a folder isn't permission to scan it yet. Display the selected folder name and a Change action. Don't request home-directory access or recurse into sibling folders.\n\n## 2. Explain access before inspection\n\nProposal: start with read-only inspection of the selected folder. List the information to be read: top-level names and explicitly selected project documents. Exclude hidden files, credentials, dependency folders and unrelated directories. Show the exact selection before the user confirms.\n\nOpen decision ONB-14: should edit permission appear during first run, or only when the user asks an agent to make a change? Finch recommends the latter. Moss must not treat this recommendation as permission.\n\n## 3. Review the suggestion\n\nPresent the suggested project name, Design and Engineering channels, and the source documents used for the suggestion. Let the user rename, exclude or cancel. Creating the project doesn't launch Finch or Moss. Don't invent a completed import or classify unrelated work automatically.\n\n## 4. Enter the project\n\nOpen the project overview with the initial conversation and no fabricated progress. A plain channel post stays a channel post. An explicit named-agent target must be visible before a future connected send. Role, tool and model are separate fields; leave unknown configuration unset.\n\n## Cancellation and recovery\n\nCancel before inspection reads nothing. Cancel after a suggestion discards the suggestion, not the original folder. Losing permission must show a recoverable error with Choose another folder. Preserve the user's selected name and unsent reply. A permission change must invalidate any previous inspection result.\n\n## Review boundaries\n\nOpening this file doesn't approve it. “Request changes” records Bryce's local sample feedback in ONB-12's Design thread. “Approve draft locally” approves only this document version in the sample, never filesystem access, onboarding implementation, a release or an agent run.\n\n## Handoff to Moss\n\nUse the Design review thread as the source for the Engineering access decision. ONB-14 is the receiving task. Once Bryce records a sample scope decision, Moss may be shown as ready to revise the contract. Nothing runs automatically.\n\n## Still unresolved\n\n- Is a top-level filename list sufficient, or should users explicitly select each document before inspection?\n- Where should permission revocation live after first run?\n- Does Continue without a folder create an empty project immediately or ask for a name first?\n\n## Validation still required\n\nNo usability study, screen-reader test, native permission check or connector test is claimed. Before implementation, test cancellation at every step, stale permission recovery and an empty-folder path with real users. This fixture is for reviewing the conversation and decision workflow only.\n"
+}

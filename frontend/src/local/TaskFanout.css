@@ -1,0 +1,6 @@
+.dv-thread-proposals { margin-top: 16px; display: grid; gap: 12px; }
+.dv-thread-proposal { border: 1px solid var(--dv-line); border-radius: 12px; padding: 14px; display: grid; gap: 10px; min-width: 0; }
+.dv-thread-proposal h4 { font-weight: 550; overflow-wrap: anywhere; }
+.dv-thread-proposal p { overflow-wrap: anywhere; }
+/* The whole request shows, with no inner scroll box: macOS hides scroll bars, and the last line is the one to read. */
+.dv-thread-proposal .dv-proposed-request { white-space: pre-wrap; margin-top: 4px; font-size: 0.8125rem; }

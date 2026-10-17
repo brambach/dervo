@@ -1,0 +1,216 @@
+/* Dervo design system tokens, ported from evidence/design-system/tokens.css (Bryce's pick, 18 and 19 Sep).
+   Every Dervo screen reads these and nothing else. Names carry a dv- prefix because the inherited Tailwind theme
+   already owns --muted, --border and friends as HSL triplets.
+   Type: Instrument Serif for display (page titles, empty states, brand moments), Instrument Sans for everything you
+   read and use, JetBrains Mono for code. One accent: rust means "this needs you". Green is running, sage is done,
+   everything else is ink on paper. The fonts ship inside the app (SIL OFL 1.1, notices beside them). */
+
+@font-face {
+  font-family: "Dervo Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("./brand-assets/InstrumentSans-latin.woff2") format("woff2-variations");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Dervo Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("./brand-assets/InstrumentSans-latin-ext.woff2") format("woff2-variations");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Dervo Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./brand-assets/InstrumentSerif-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Dervo Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./brand-assets/InstrumentSerif-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: "Dervo Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./brand-assets/InstrumentSerif-latin-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Dervo JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./brand-assets/JetBrainsMono-latin-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Dervo JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./brand-assets/JetBrainsMono-latin-500.woff2") format("woff2");
+}
+
+:root[data-dervo-local] {
+  /* Type */
+  --dv-font-display: "Dervo Instrument Serif", Georgia, serif;
+  --dv-font-text: "Dervo Instrument Sans", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --dv-font-mono: "Dervo JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --dv-fs-caption: 0.75rem;  /* 12: meta, times, hints */
+  --dv-fs-small: 0.8125rem;  /* 13: secondary lines, sidebar */
+  --dv-fs-body: 0.875rem;    /* 14: UI text */
+  --dv-fs-read: 0.9375rem;   /* 15: chat, reports, anything read at length */
+  --dv-fs-title: 1.0625rem;  /* 17: section and card titles */
+  --dv-fs-h2: 1.625rem;      /* 26: display, section heads */
+  --dv-fs-h1: 2.125rem;      /* 34: display, page titles */
+  --dv-fs-hero: 3rem;        /* 48: display, empty states and brand moments */
+
+  --dv-lh-tight: 1.2;
+  --dv-lh-ui: 1.45;
+  --dv-lh-read: 1.62;
+
+  /* Colour, light: neutral warm whites, ink close to black, colour only where it means something */
+  --dv-paper: #f7f6f3;       /* the sidebar and window */
+  --dv-canvas: #fdfdfc;      /* the main area */
+  --dv-raised: #ffffff;      /* cards, popovers, the composer */
+  --dv-sunk: #f2f1ed;        /* inputs, your own messages, hover */
+  --dv-ink: #1b1b19;
+  --dv-ink-2: #3c3c38;
+  --dv-muted: #5b5a55;       /* a step darker with faint (polish, 8 Oct) so the two stay apart: 4.9:1 at worst */
+  --dv-faint: #696762;       /* times, hints, placeholders: 4.5:1 on every surface and its hover tint (polish, 8 Oct) */
+  --dv-line: #ebeae5;
+  --dv-line-strong: #dcdbd4;
+
+  --dv-pine: #22382b;        /* primary action: near-black green */
+  --dv-pine-ink: #f8f8f5;
+  --dv-sage: #5e7351;        /* done */
+  --dv-sage-wash: #eef0e8;
+  --dv-live: #2f7844;        /* running */
+  --dv-live-wash: #e6f1e8;
+  --dv-rust: #b0461f;        /* the one accent: needs you */
+  --dv-rust-wash: #f8ebe4;
+  --dv-rust-ink: #ffffff;    /* text on a rust fill */
+  /* Focus: ink at 60%, so a ring never borrows rust and reads as an error (design review 23 Sep, item 2). Measured:
+     4.5:1 on canvas and raised, 4.3 on sunk. Keyboard focus only; rust stays the one "needs you" mark. Over canvas it
+     lands on #757574, the solid value DervoBrand.css hands the inherited --ring (#9a9894 at night). */
+  --dv-focus: color-mix(in srgb, var(--dv-ink) 60%, transparent);
+
+  /* Space, shape, depth, motion */
+  --dv-s1: 4px; --dv-s2: 8px; --dv-s3: 12px; --dv-s4: 16px; --dv-s5: 24px; --dv-s6: 32px; --dv-s7: 48px;
+  --dv-r1: 6px; --dv-r2: 10px; --dv-r3: 14px; --dv-r-pill: 999px;
+  --dv-hairline: 1px solid var(--dv-line);
+  /* The edge of a card (needs-you, review, handoff, jobs): a hairline in light. Dark swaps it for a top highlight. */
+  --dv-card-edge: 0 0 0 1px var(--dv-line);
+  /* Depth after the landing lab (design report, 23 Sep, #5): a contact shadow, an ambient one and a long pine-tinted
+     fall, scaled down from the landing's hero windows to app cards. Static only; nothing here follows the pointer. */
+  --dv-lift: 0 0 0 1px rgb(20 30 24 / .05), 0 1px 2px rgb(20 30 24 / .05), 0 4px 10px -4px rgb(20 30 24 / .08), 0 18px 36px -18px rgb(34 56 43 / .22);
+  /* Everything that floats: menus, popovers, dialogs, sheets, toasts (surfaces/kit.html, from the model picker). */
+  --dv-float: 0 0 0 1px var(--dv-line), 0 1px 2px rgb(20 30 24 / .05), 0 4px 10px -4px rgb(20 30 24 / .08), 0 18px 48px -18px rgb(20 24 20 / .30), 0 40px 70px -30px rgb(34 56 43 / .24);
+  /* The primary button's lit top edge and seated bottom (landing depth.css buttons, scaled to 32px pills). */
+  --dv-btn-lit: inset 0 1px 0 rgb(255 255 255 / .16), inset 0 -1px 0 rgb(0 0 0 / .18), 0 1px 2px rgb(20 30 24 / .18);
+  /* Pressed, as the landing's: the lit edge becomes a shade pressed into the top, and an outlined button shades inward. */
+  --dv-btn-pressed: inset 0 2px 5px rgb(0 0 0 / .35), inset 0 -1px 0 rgb(255 255 255 / .06);
+  --dv-btn-sunk-in: inset 0 2px 4px rgb(20 30 24 / .14);
+  --dv-glass: rgb(251 250 245 / .70);
+  --dv-glass-blur: blur(22px) saturate(1.15);
+  --dv-meadow: .8;           /* the site's meadow as a photo, brand moments only */
+  /* The meadow behind the sidebar is off (Bryce, 8 Oct: the app should feel as calm as Claude's; the whole-app mockup
+     dropped it). The photo stays for brand moments through --dv-meadow. Set above 0 to bring the wash back. */
+  --dv-wash: 0;
+  /* Secondary text in the sidebar, which sits on the wash. The wash darkens paper to about #cecec7 lower down, where
+     muted measured 3.3 to 3.7:1. This measures 4.8:1 on the darkest patch and 7.0 on plain paper (item 7). */
+  --dv-sb-muted: #55544e;
+  /* Motion (design report, 23 Sep, section 2). One set, used everywhere: entrances ease out, exits ease in, anything
+     that travels from A to B or changes height eases both ways, and loops keep one beat so the screen breathes rather
+     than twitches. --dv-ease stays as the name older rules use for --dv-ease-out. */
+  --dv-ease: cubic-bezier(.2, .7, .2, 1);
+  --dv-ease-out: var(--dv-ease);
+  --dv-ease-in: cubic-bezier(.4, 0, 1, 1);
+  --dv-ease-move: cubic-bezier(.45, 0, .55, 1);
+  --dv-instant: 80ms;   /* a press going down */
+  --dv-fast: 140ms;     /* menus, popovers, tooltips in; every exit; a word or glyph crossfading */
+  --dv-calm: 220ms;     /* dialogs and sheets in, disclosures, entrances */
+  --dv-move: 320ms;     /* anything that travels: filing, reordering */
+  --dv-arrive: 480ms;   /* brand moments and the first arrival on Home only */
+  --dv-loop: 1.2s;      /* spinners; breathing and sweeps run at twice this */
+  /* Hover and press (8 Oct redesign, the Claude Code desktop bar). One tint for every hoverable row and quiet button, one
+     for pressed. Hover fades in fast and leaves slower, so sweeping a list leaves a soft trail instead of flicker. Only
+     background-color moves; nothing changes size or position on hover. */
+  --dv-hover: color-mix(in srgb, var(--dv-ink) 5%, transparent);
+  --dv-press: color-mix(in srgb, var(--dv-ink) 8%, transparent);
+  --dv-hover-in: 90ms;
+  --dv-hover-out: 180ms;
+  /* The selected row: raised with a hairline, no colour. */
+  --dv-selected: var(--dv-raised);
+  --dv-selected-edge: 0 0 0 1px color-mix(in srgb, var(--dv-ink) 5%, transparent), 0 1px 2px rgb(0 0 0 / .05);
+}
+
+/* Dark: the same paper at night, not an inversion. Warm charcoal with the light theme's hue, surfaces that lighten as they
+   rise, and sunk lifted above raised so hover and selection still show on cards, menus and dialogs. Measured (WCAG, dark
+   audit 19 Sep): ink 13.4:1 and muted 5.9:1 on raised, faint 5.5 / 5.1 / 4.7 / 4.1 on paper, canvas, raised and sunk,
+   rust 6.7 / 6.3 / 5.8 / 5.1 on the same, dark ink on rust 6.3:1. The dark rust sits nearer the light rust's hue than the
+   salmon it replaced. The meadow wash is faint at night so the sidebar stays darker than the main panel, not olive. */
+:root[data-dervo-local].dark {
+  --dv-paper: #141312; --dv-canvas: #1b1a18; --dv-raised: #242220; --dv-sunk: #2e2c29;
+  --dv-ink: #eeece7; --dv-ink-2: #cdc9c1; --dv-muted: #b4b0a7; --dv-faint: #a5a198;
+  --dv-line: #2d2b28; --dv-line-strong: #433f3a;
+  --dv-pine: #dfe8d6; --dv-pine-ink: #161a14;
+  --dv-sage: #adc19b; --dv-sage-wash: #242a20;
+  --dv-live: #80c993; --dv-live-wash: #1a2e20;
+  --dv-rust: #e0845b; --dv-rust-wash: #38251c; --dv-rust-ink: #1b1a18;
+  /* Night ink at 60%: 6.0:1 on canvas, 5.7 on raised, 5.3 on sunk. */
+  --dv-focus: color-mix(in srgb, var(--dv-ink) 60%, transparent);
+  --dv-lift: 0 1px 2px rgb(0 0 0 / .35), 0 12px 30px -14px rgb(0 0 0 / .7);
+  /* Fresh-eyes item 10: canvas and raised are close at night, so a card rises by light, not by outline. The hairline
+     goes and a 1px top highlight takes its place. */
+  --dv-card-edge: inset 0 1px 0 rgb(255 255 255 / .04);
+  --dv-float: inset 0 1px 0 rgb(255 255 255 / .05), 0 0 0 1px var(--dv-line-strong), 0 18px 48px -18px rgb(0 0 0 / .7);
+  /* Pine is pale at night, so its lit edge is brighter and its seat lighter. */
+  --dv-btn-lit: inset 0 1px 0 rgb(255 255 255 / .5), inset 0 -1px 0 rgb(0 0 0 / .12), 0 1px 2px rgb(0 0 0 / .3);
+  --dv-btn-pressed: inset 0 2px 5px rgb(0 0 0 / .28), inset 0 -1px 0 rgb(255 255 255 / .3);
+  --dv-btn-sunk-in: inset 0 2px 4px rgb(0 0 0 / .4);
+  --dv-glass: rgb(27 26 24 / .72);
+  --dv-meadow: .3;
+  --dv-wash: 0;
+  --dv-sb-muted: var(--dv-muted); /* the night wash is faint, and muted already clears 6.8:1 on it */
+  --dv-hover: color-mix(in srgb, var(--dv-ink) 6%, transparent);
+  --dv-press: color-mix(in srgb, var(--dv-ink) 10%, transparent);
+  --dv-selected: color-mix(in srgb, var(--dv-ink) 9%, transparent);
+  --dv-selected-edge: inset 0 0 0 1px color-mix(in srgb, var(--dv-ink) 7%, transparent);
+}
+
+/* Dervo, the forest theme (beta.16.1 item 10; Bryce, 26 Sep: "a nice dark forest green that will be easy on the eyes").
+   Dark underneath, with the night palette moved into a deep forest: surfaces on one green hue that lighten as they rise,
+   ink a soft green-white, not pure white. Running stays the brightest mint, done moves toward olive so it reads apart
+   from running, and rust warms to amber so "needs you" can't be mistaken for green. dervoPalette.ts sets the attribute.
+   Measured (WCAG): ink 15.3 / 14.2 / 12.7 / 11.0:1 on paper, canvas, raised and sunk; muted 7.7 to 5.5; faint 6.6 to
+   4.8; rust 7.8 to 5.6; dark ink on rust 7.2; ink on pine 13.4. Focus is the ink at 60%, which lands on #909c94 over
+   canvas, the solid value DervoBrand.css hands the inherited --ring here. */
+:root[data-dervo-local].dark[data-dervo-palette="forest"] {
+  --dv-paper: #0e1813; --dv-canvas: #122019; --dv-raised: #182a21; --dv-sunk: #203529;
+  --dv-ink: #e4eee6; --dv-ink-2: #c1d1c5; --dv-muted: #98ae9e; --dv-faint: #8aa290;
+  --dv-line: #1f3127; --dv-line-strong: #314a3c;
+  --dv-pine: #d4e8c4; --dv-pine-ink: #0f1d15;
+  --dv-sage: #bcc99c; --dv-sage-wash: #1f3223;
+  --dv-live: #7ed89a; --dv-live-wash: #183a26;
+  --dv-rust: #eb946b; --dv-rust-wash: #3b2a1f; --dv-rust-ink: #122019;
+  --dv-lift: 0 1px 2px rgb(0 8 4 / .4), 0 12px 30px -14px rgb(0 8 4 / .75);
+  --dv-card-edge: inset 0 1px 0 rgb(220 255 230 / .05);
+  --dv-float: inset 0 1px 0 rgb(220 255 230 / .06), 0 0 0 1px var(--dv-line-strong), 0 18px 48px -18px rgb(0 8 4 / .75);
+  --dv-glass: rgb(18 32 25 / .72);
+  --dv-meadow: .35;
+  --dv-wash: 0;
+}

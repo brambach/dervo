@@ -1,0 +1,225 @@
+/* Knowledge, one page (design sweep, 19 Sep: evidence/design-sweep/knowledge/knowledge-a.html and parts.css), and the
+   "What it was told" view in the Progress panel (run-context.html). Layout only: every value is a dv- token, and the
+   rows, sheets, add line, facts and switches are the shared components in DervoComponents.css.
+   Everything here is scoped to the page (.dervo-knowledge-body) or the run view (.dv-told), so none of it reaches
+   Settings or any other screen that uses .dv-sec, .dv-sec-head or .dv-disclose. */
+.dervo-knowledge-workspace { display: flex; flex: 1; min-height: 0; flex-direction: column; overflow: hidden; container-type: inline-size; }
+.dervo-knowledge-bar { flex: none; }
+.dervo-knowledge-bar .dv-tools .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-knowledge-body { flex: 1; min-height: 0; font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+.dervo-knowledge-body > .dv-measure { gap: var(--dv-s6); padding-bottom: var(--dv-s7); }
+.dervo-knowledge-body :is(h1, h2, .dv-row-name, .dv-set-name):focus { outline: none; }
+
+/* ---------- Page head: title, lead, the explainer, the one notice line ---------- */
+.dervo-knowledge-body .dv-kn-head { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dervo-knowledge-body .dv-kn-lead { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 62ch; }
+.dervo-knowledge-body .dv-kn-notice { display: flex; align-items: baseline; gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2);
+  position: sticky; top: calc(-1 * var(--dv-s6)); z-index: 2; margin: calc(var(--dv-s3) - var(--dv-s6) - var(--dv-s2)) 0 0; padding: var(--dv-s2) 0; background: var(--dv-canvas); }
+.dervo-knowledge-body .dv-kn-notice .dv-st { align-self: center; flex: none; }
+.dervo-knowledge-body .dv-kn-notice[data-tone="error"] { color: var(--dv-ink); }
+.dervo-knowledge-body .dv-kn-undo { display: inline; height: auto; padding: 0 2px; font: inherit; font-weight: 600; color: var(--dv-ink); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--dv-line-strong); border-radius: var(--dv-r1); }
+.dervo-knowledge-body .dv-kn-undo:hover { text-decoration-color: var(--dv-ink); }
+
+/* ---------- Sections and the groups inside them ---------- */
+.dervo-knowledge-body .dv-sec { gap: var(--dv-s3); }
+.dervo-knowledge-body .dv-sec-head { min-height: 28px; margin-bottom: 0; }
+.dervo-knowledge-body .dv-sec-head .dv-kn-count { font-size: var(--dv-fs-title); font-weight: 600; color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dervo-knowledge-body .dv-sec-head .dv-kn-acts { margin-left: auto; display: flex; gap: var(--dv-s1); align-self: center; }
+.dervo-knowledge-body .dv-kn-sec-caption { margin-top: calc(-1 * var(--dv-s2)); }
+.dervo-knowledge-body .dv-kn-grp { display: flex; flex-direction: column; gap: 2px; }
+.dervo-knowledge-body .dv-kn-grp + .dv-kn-grp { margin-top: var(--dv-s5); }
+.dervo-knowledge-body .dv-kn-grp-head { display: flex; align-items: baseline; gap: var(--dv-s2); padding: 0 0 var(--dv-s1); }
+.dervo-knowledge-body .dv-kn-grp-head .dv-kn-label { color: var(--dv-ink-2); font-size: var(--dv-fs-small); font-weight: 600; }
+.dervo-knowledge-body .dv-kn-grp-head .dv-kn-n { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dervo-knowledge-body .dv-kn-grp-head .dv-caption { margin-left: auto; }
+.dervo-knowledge-body .dv-kn-faint { padding: var(--dv-s1) 0 0; font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dervo-knowledge-body .dv-kn-line { padding: var(--dv-s2) 0; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-line[role="alert"], .dervo-knowledge-body .dv-kn-alert { color: var(--dv-ink); }
+.dervo-knowledge-body :is(.dv-kn-faint, .dv-kn-line, .dv-row-line) code { font-family: var(--dv-font-mono); font-size: 1em; }
+.dervo-knowledge-body .dv-sheet > .dv-kn-line { padding-inline: var(--dv-s3); }
+
+/* ---------- Rows ---------- */
+.dervo-knowledge-body .dv-sheet .dv-row { width: 100%; text-align: left; font: inherit; color: inherit; }
+.dervo-knowledge-body .dv-row .dv-row-name { overflow-wrap: anywhere; }
+.dervo-knowledge-body .dv-row-end .dv-when { white-space: nowrap; }
+.dervo-knowledge-body .dv-row-end .dv-kn-kind { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-weight: 600; white-space: nowrap; }
+.dervo-knowledge-body .dv-row-end .dv-btn-quiet { height: 24px; font-size: var(--dv-fs-caption); }
+.dervo-knowledge-body .dv-row-text { display: flex; flex-direction: column; min-width: 0; }
+.dervo-knowledge-body .dv-row-name.dv-kn-mono { font-family: var(--dv-font-mono); font-size: var(--dv-fs-small); font-weight: 500; letter-spacing: 0; line-height: 1.45; }
+.dervo-knowledge-body .dv-kn-mono-name { font-family: var(--dv-font-mono); font-size: .92em; letter-spacing: 0; }
+/* The rule's number and the leading icons sit in the row's 16px glyph column. */
+.dervo-knowledge-body .dv-num, .dv-told .dv-num { margin-top: 1px; text-align: center; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dervo-knowledge-body .dv-ico, .dv-told .dv-ico { margin-top: 2px; color: var(--dv-faint); display: block; width: 16px; height: 16px; }
+.dervo-knowledge-body .dv-row.dv-open .dv-ico { color: var(--dv-muted); }
+.dervo-knowledge-body .dv-row.dv-open .dv-facts { grid-template-columns: 56px minmax(0, 1fr); }
+.dervo-knowledge-body .dv-facts dd .dv-kn-link { font-weight: 600; }
+.dervo-knowledge-body .dv-kn-link { display: inline; height: auto; padding: 0; border: 0; background: none; font: inherit; color: var(--dv-ink); text-decoration: underline;
+  text-underline-offset: 3px; text-decoration-color: var(--dv-line-strong); cursor: pointer; border-radius: 2px; }
+.dervo-knowledge-body .dv-kn-link:hover { text-decoration-color: var(--dv-ink); }
+.dervo-knowledge-body .dv-row-actions { flex-wrap: wrap; align-items: center; }
+.dervo-knowledge-body .dv-row-actions .dv-kn-spacer { flex: 1; }
+.dervo-knowledge-body .dv-kn-open-head { display: flex; align-items: flex-start; gap: var(--dv-s3); }
+.dervo-knowledge-body .dv-kn-open-head .dv-row-name { flex: 1; min-width: 0; }
+.dervo-knowledge-body .dv-kn-text { margin-top: var(--dv-s2); white-space: pre-wrap; overflow-wrap: anywhere; max-width: 64ch; font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink); }
+
+/* The ways to add, under the add line. */
+.dervo-knowledge-body .dv-sheet .dv-add-line { margin-top: var(--dv-s1); }
+.dervo-knowledge-body .dv-kn-add-more { display: flex; gap: var(--dv-s1); padding: var(--dv-s1) 0 0 calc(16px + 2 * var(--dv-s3) - var(--dv-s2)); }
+.dervo-knowledge-body .dv-kn-add-more .dv-btn-quiet { font-size: var(--dv-fs-caption); height: 24px; }
+.dervo-knowledge-body .dv-kn-procedures { padding: var(--dv-s4) 0 var(--dv-s1); }
+
+.dervo-knowledge-body .dv-kn-more { align-self: flex-start; margin: var(--dv-s1) 0 0 var(--dv-s1); }
+/* "Start from a procedure": the kit's menu, with each procedure's first sentence under its name. */
+.dv-kn-menu { max-width: 360px; }
+:root[data-dervo-local] .dv-kn-menu [data-dv-mi] { height: auto; padding-block: var(--dv-s2); align-items: flex-start; }
+.dv-kn-menu-item { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.dv-kn-menu-item b { font-weight: 600; }
+.dv-kn-menu-item small { font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: normal; }
+
+/* Confirm in place, under what it's about. */
+.dervo-knowledge-body .dv-kn-confirm { margin-top: var(--dv-s3); display: flex; flex-direction: column; gap: var(--dv-s2); outline: none; }
+.dervo-knowledge-body .dv-kn-confirm .dv-kn-what { font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dervo-knowledge-body .dv-kn-confirm .dv-kn-what b { color: var(--dv-ink); font-weight: 600; }
+.dervo-knowledge-body .dv-kn-confirm .dv-row-actions { margin-top: 0; }
+.dervo-knowledge-body .dv-kn-error { margin-top: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink); }
+
+/* Versions inside the open rule: rows, never a tinted box. */
+.dervo-knowledge-body .dv-kn-versions { display: flex; flex-direction: column; gap: 2px; margin-top: var(--dv-s3); }
+.dervo-knowledge-body .dv-kn-version { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: var(--dv-s3); align-items: baseline; padding: var(--dv-s2) 0; }
+.dervo-knowledge-body .dv-kn-version .dv-kn-v { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-version .dv-kn-t { font-size: var(--dv-fs-small); color: var(--dv-ink-2); overflow-wrap: anywhere; white-space: pre-wrap; }
+.dervo-knowledge-body .dv-kn-version .dv-kn-t small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-faint); margin-top: 2px; white-space: normal; }
+.dervo-knowledge-body .dv-kn-version .dv-kn-state { font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+
+/* A repository file, read on its white card: the file's own text in mono, fading out, with no tinted box. */
+.dervo-knowledge-body .dv-kn-file-meta { display: flex; flex-wrap: wrap; gap: 2px var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-muted); margin-top: 2px; }
+.dervo-knowledge-body .dv-kn-file-text { margin-top: var(--dv-s3); position: relative; max-height: 232px; overflow: hidden; }
+.dervo-knowledge-body .dv-kn-file-text[data-all] { max-height: none; }
+.dervo-knowledge-body .dv-kn-file-text pre { margin: 0; font: 400 var(--dv-fs-caption)/1.65 var(--dv-font-mono); color: var(--dv-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.dervo-knowledge-body .dv-kn-file-text:not([data-all])::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 64px; background: linear-gradient(to bottom, transparent, var(--dv-raised)); }
+.dervo-knowledge-body .dv-kn-cut { color: var(--dv-ink-2); font-weight: 600; }
+
+/* The editor on an open card and in place of the add line. */
+.dervo-knowledge-body .dv-kn-edit { display: flex; flex-direction: column; gap: var(--dv-s2); margin-top: var(--dv-s3); }
+.dervo-knowledge-body .dv-kn-edit textarea, .dervo-knowledge-body .dv-kn-field :is(input, textarea, select) { font: inherit; font-size: var(--dv-fs-read); line-height: var(--dv-lh-read);
+  color: var(--dv-ink); background: var(--dv-canvas); border: 0; border-radius: var(--dv-r1); padding: var(--dv-s2) var(--dv-s3); box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+.dervo-knowledge-body .dv-kn-edit textarea { min-height: 5.6em; resize: vertical; }
+.dervo-knowledge-body .dv-kn-edit textarea:focus, .dervo-knowledge-body .dv-kn-field :is(input, textarea, select):focus { outline: 0; box-shadow: inset 0 0 0 1.5px var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-hint { font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dervo-knowledge-body .dv-kn-editor { grid-template-columns: minmax(0, 1fr); outline: none; }
+.dervo-knowledge-body .dv-kn-editor > div { display: flex; flex-direction: column; gap: var(--dv-s2); min-width: 0; }
+.dervo-knowledge-body .dv-kn-field { display: flex; flex-direction: column; gap: var(--dv-s1); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-field :is(input, select) { font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); }
+.dervo-knowledge-body .dv-kn-field textarea { min-height: 7em; resize: vertical; }
+.dervo-knowledge-body .dv-kn-field input::placeholder { color: var(--dv-faint); }
+
+/* A muted line that opens to show more: the explainer, credits, the record. */
+.dervo-knowledge-body .dv-disclose { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-disclose summary { display: inline-flex; align-items: center; gap: var(--dv-s1); cursor: pointer; list-style: none; font-weight: 600; border-radius: var(--dv-r1); }
+.dervo-knowledge-body .dv-disclose summary::-webkit-details-marker { display: none; }
+.dervo-knowledge-body .dv-disclose summary:hover { color: var(--dv-ink); }
+.dervo-knowledge-body .dv-disclose summary svg { color: var(--dv-faint); transition: transform var(--dv-fast) var(--dv-ease); }
+.dervo-knowledge-body .dv-disclose[open] summary svg { transform: rotate(90deg); }
+.dervo-knowledge-body .dv-disclose p { margin-top: var(--dv-s2); font-size: var(--dv-fs-small); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 62ch; }
+.dervo-knowledge-body .dv-disclose dl { margin-top: var(--dv-s2); display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px var(--dv-s3); font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-disclose :is(dd, pre) { overflow-wrap: anywhere; white-space: pre-wrap; }
+.dervo-knowledge-body .dv-disclose pre { margin-top: var(--dv-s1); font-family: var(--dv-font-mono); font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-disclose ul { margin-top: var(--dv-s1); display: flex; flex-direction: column; gap: 2px; font-size: var(--dv-fs-caption); }
+.dervo-knowledge-body .dv-row .dv-disclose { margin-top: 2px; }
+@media (prefers-reduced-motion: reduce) { .dervo-knowledge-body .dv-disclose summary svg { transition: none; } }
+
+/* How agents learn here: settings rows with no boxes. */
+.dervo-knowledge-body .dv-kn-learn .dv-set { padding: var(--dv-s2) 0; gap: 0 var(--dv-s5); }
+.dervo-knowledge-body .dv-kn-learn .dv-set-line { max-width: 60ch; }
+
+/* Skills: steps open in place, and the skill editor. */
+.dervo-knowledge-body .dv-kn-steps { margin-top: var(--dv-s2); white-space: pre-wrap; overflow-wrap: anywhere; font-size: var(--dv-fs-small); line-height: var(--dv-lh-read); color: var(--dv-ink-2); }
+.dervo-knowledge-body .dv-kn-skill-name { text-align: left; font: inherit; font-weight: 600; color: inherit; border-radius: 2px; }
+.dervo-knowledge-body .dv-kn-skill-name:hover { text-decoration: underline; text-decoration-color: var(--dv-line-strong); text-underline-offset: 3px; }
+
+/* ---------- What Dervo knows here (beta.16, b16/memory; evidence/design-tests/b16-memory) ---------- */
+/* The head says what's new since you last looked and what memory costs. */
+.dervo-knowledge-body .dv-kn-meta { display: flex; flex-wrap: wrap; gap: var(--dv-s1) var(--dv-s3); align-items: baseline; margin-top: var(--dv-s2);
+  font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-meta b { color: var(--dv-ink); font-weight: 600; }
+.dervo-knowledge-body .dv-sec-head .dv-caption { margin-left: auto; }
+/* A note reads as a sentence, a little lighter than a row's name. */
+.dervo-knowledge-body .dv-kn-note-name { font-weight: 500; }
+.dervo-knowledge-body .dv-kn-note-name code, .dervo-knowledge-body .dv-kn-foot code { font-family: var(--dv-font-mono); font-size: .92em; letter-spacing: 0; }
+.dervo-knowledge-body .dv-kn-flag { color: var(--dv-ink-2); font-weight: 600; }
+/* New is a small sage pill where the kind label used to sit. It isn't rust: new memory doesn't need you. */
+.dervo-knowledge-body .dv-kn-new { display: inline-flex; align-items: center; height: 18px; padding: 0 7px; border-radius: var(--dv-r-pill);
+  background: var(--dv-sage-wash); color: var(--dv-sage); font-size: var(--dv-fs-caption); font-weight: 600; letter-spacing: .01em; white-space: nowrap; }
+/* Edit and Delete show on hover and on keyboard focus, like the sidebar's row menu. At rest they're out of sight but
+   still reachable with Tab, so 18 notes don't come with 36 buttons. */
+.dervo-knowledge-body .dv-kn-acts { display: flex; gap: var(--dv-s1); align-items: center; }
+.dervo-knowledge-body .dv-kn-note:not(:hover):not(:focus-within) .dv-kn-acts { position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap; }
+.dervo-knowledge-body .dv-kn-note { position: relative; }
+.dervo-knowledge-body .dv-kn-note .dv-row-end { align-self: start; min-height: 24px; }
+.dervo-knowledge-body .dv-kn-note .dv-kn-acts .dv-btn-quiet { height: 24px; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-note .dv-kn-acts .dv-btn-quiet:hover { color: var(--dv-ink); }
+.dervo-knowledge-body .dv-kn-note .dv-kn-acts .dv-btn-icon { width: 24px; height: 24px; }
+.dervo-knowledge-body .dv-kn-note.dv-kn-lit { background: color-mix(in srgb, var(--dv-ink) 4%, transparent); }
+/* Edit in place: the row becomes the raised card, with the text in a field and Save and Cancel under it. The mock's card is
+   tighter than an open row: 12px all round and no gap under it. */
+.dervo-knowledge-body .dv-row.dv-open.dv-kn-editing { padding: var(--dv-s3); margin-bottom: 0; }
+.dervo-knowledge-body .dv-kn-editing textarea { width: 100%; min-height: 64px; padding: var(--dv-s2) var(--dv-s3); border-radius: var(--dv-r1); border: 0;
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); background: var(--dv-canvas); color: var(--dv-ink); font: inherit; font-size: var(--dv-fs-body);
+  line-height: 1.45; resize: none; }
+.dervo-knowledge-body .dv-kn-editing textarea:focus { outline: 0; box-shadow: inset 0 0 0 1.5px var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-editing .dv-row-actions { align-items: center; }
+.dervo-knowledge-body .dv-kn-editing .dv-row-actions .dv-caption { margin-left: auto; }
+/* A deleted note leaves one muted line with Undo in its place. */
+.dervo-knowledge-body .dv-kn-gone { padding: var(--dv-s2) var(--dv-s3) var(--dv-s2) calc(16px + 2 * var(--dv-s3)); }
+/* Out of date?: one quiet outlined card between the newest notes and the fold, never a tinted box. */
+.dervo-knowledge-body .dv-kn-dup { margin: var(--dv-s2) 0 var(--dv-s1); padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dervo-knowledge-body .dv-kn-dup p { margin: 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dervo-knowledge-body .dv-kn-dup p b { color: var(--dv-ink); font-weight: 600; }
+.dervo-knowledge-body .dv-kn-dup p + p { margin-top: 2px; color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-dup .dv-row-actions { margin-top: var(--dv-s2); }
+.dervo-knowledge-body .dv-kn-dup .dv-kn-pill { border-radius: var(--dv-r-pill); }
+.dervo-knowledge-body .dv-kn-dup .dv-btn-quiet { font-size: var(--dv-fs-small); }
+.dervo-knowledge-body .dv-kn-older { display: block; align-self: flex-start; text-align: left; padding: var(--dv-s2) var(--dv-s3) 0 calc(16px + 2 * var(--dv-s3));
+  font: inherit; font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-muted); border-radius: var(--dv-r1); }
+.dervo-knowledge-body .dv-kn-older:hover { color: var(--dv-ink); }
+.dervo-knowledge-body .dv-kn-retired { margin-top: var(--dv-s2); }
+.dervo-knowledge-body .dv-kn-chats { margin-top: var(--dv-s1); }
+/* Outside a sheet (How we work), the add line's buttons line up with the rules' ones, which sit in a sheet. */
+.dervo-knowledge-body .dv-sec > .dv-kn-add-more { padding: var(--dv-s1) 0 0 calc(16px + var(--dv-s3) - var(--dv-s2)); }
+/* The end of the page: the repository's files in one line, then the settings folded away. */
+.dervo-knowledge-body .dv-kn-foot { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dervo-knowledge-body .dv-kn-foot-line { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-foot .dv-kn-grp { margin-top: var(--dv-s2); }
+.dervo-knowledge-body .dv-kn-learn > div { margin-top: var(--dv-s2); }
+
+@container (max-width: 640px) {
+  .dervo-knowledge-body.dv-column { padding-inline: var(--dv-s4); }
+  .dervo-knowledge-body .dv-row .dv-row-end { flex-wrap: wrap; }
+}
+
+/* ---------- What it was told, in the Progress panel (run-context.html) ---------- */
+.dv-panel .dv-panel-told { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; margin-left: calc(-1 * var(--dv-s2)); }
+.dv-panel .dv-panel-told + .dv-panel-foot { margin-top: calc(2px - var(--dv-s5)); }
+.dv-told { display: flex; flex-direction: column; gap: var(--dv-s5); }
+/* Its first line reads as part of the panel's head, as run-context.html draws it. */
+.dv-panel .dv-told { margin-top: calc(var(--dv-s2) - var(--dv-s5)); }
+.dv-told .dv-label { display: block; margin-bottom: var(--dv-s1); }
+.dv-told-list { display: flex; flex-direction: column; gap: 6px; }
+.dv-told-list li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.45; overflow-wrap: anywhere; }
+.dv-told-list li .dv-num { margin-top: 0; }
+.dv-told-list li small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-faint); margin-top: 1px; }
+.dv-told-list li .dv-ico { margin-top: 1px; }
+.dv-told-list .dv-told-name { font-family: var(--dv-font-mono); font-size: .92em; letter-spacing: 0; }
+.dv-told-note { font-size: var(--dv-fs-caption); color: var(--dv-muted); line-height: 1.5; }
+.dv-told-sent { margin-top: var(--dv-s2); max-height: 320px; overflow: auto; font: 400 var(--dv-fs-caption)/1.6 var(--dv-font-mono); color: var(--dv-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.dv-told-links { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; margin-left: calc(-1 * var(--dv-s2)); }
+.dv-told-links .dv-btn-quiet { display: inline-flex; align-items: center; gap: 6px; }
+.dv-told-links .dv-btn-quiet svg { transition: transform var(--dv-fast) var(--dv-ease); }
+.dv-told-links .dv-btn-quiet[aria-expanded="true"] svg { transform: rotate(90deg); }
+@media (prefers-reduced-motion: reduce) { .dv-told-links .dv-btn-quiet svg { transition: none; } }
+/* Pinned in a note's line (beta.17, dd #22), and each rule in the Still true? card. */
+.dervo-knowledge-body .dv-kn-pinned { color: var(--dv-ink); font-weight: 600; }
+.dervo-knowledge-body .dv-kn-still + .dv-kn-still { margin-top: var(--dv-s3); }
+.dervo-knowledge-body .dv-kn-still p { color: var(--dv-ink-2); }

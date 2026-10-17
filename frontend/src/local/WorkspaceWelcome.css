@@ -1,0 +1,14 @@
+/* The main area with no project open (design sweep, brand/welcome-*). Tokens only. */
+.dv-welcome { display: flex; flex: 1; min-height: 0; overflow: auto; justify-content: center; padding: 16vh var(--dv-s5) var(--dv-s7); color: var(--dv-ink); }
+.dv-welcome-failed { padding-top: 22vh; }
+.dv-welcome-col { width: 100%; max-width: 540px; display: flex; flex-direction: column; }
+.dv-welcome .dv-moment-mark { margin-bottom: var(--dv-s5); }
+.dv-welcome h1 { color: var(--dv-ink); margin-bottom: var(--dv-s3); }
+.dv-welcome .dv-lede { margin-top: var(--dv-s2); }
+.dv-welcome-list { margin-top: var(--dv-s5); }
+/* No glyph column: a project has no status here, so its name starts on the heading's edge, not 28px in from it. */
+.dv-welcome-list .dv-row { width: 100%; text-align: left; align-items: center; grid-template-columns: minmax(0, 1fr) auto; }
+.dv-welcome-list .dv-row:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dv-welcome-row { display: flex; flex-direction: column; min-width: 0; }
+.dv-welcome-row > span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-welcome-list .dv-row-end { color: var(--dv-faint); }

@@ -1,0 +1,20 @@
+/* Catch up's Outside Dervo group (OutsideSessions.tsx). Rows are the design system's .dv-row and .dv-sheet, so they
+   read like Home's own; this only adds the row name as a button, the tool's name beside it, and the offer. Only dv-
+   tokens, no accent, no side bars. The group sits under Dervo's own work and never outshouts it. */
+.dv-outside { display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dv-outside.dervo-catchup-section { gap: 0; }
+.dv-outside-offer { display: flex; flex-direction: column; gap: var(--dv-s1); padding: var(--dv-s2) 0 var(--dv-s1); }
+.dv-outside-offer .dv-small { color: var(--dv-ink-2); line-height: 1.5; max-width: 60ch; }
+.dv-outside-offer .dv-row-actions { margin-top: var(--dv-s2); }
+.dv-outside-name { display: block; max-width: 100%; text-align: left; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; cursor: pointer; }
+.dv-outside-row.dv-open .dv-outside-name { white-space: normal; overflow-wrap: anywhere; }
+.dv-outside-mark { font-weight: 400; }
+.dv-outside-row .dv-row-line { overflow-wrap: anywhere; }
+.dv-outside-row .dv-facts dd { overflow-wrap: anywhere; }
+.dv-outside-files { font-variant-numeric: tabular-nums; }
+.dv-outside-row .dv-row-end .dv-when { white-space: nowrap; }
+.dv-outside-note { margin-top: var(--dv-s2); }
+.dv-outside-more { align-self: flex-start; }
+.dv-outside > .dv-caption { padding: var(--dv-s1) 0; }
+.dv-outside.dervo-catchup-section > .dv-caption,
+.dv-outside.dervo-catchup-section > .dv-outside-offer { padding-left: 0; }

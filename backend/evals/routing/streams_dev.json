@@ -1,0 +1,2831 @@
+[
+  {
+    "id": "dev-01",
+    "about": "indie desktop notes app: burst of follow-ups to a working thread, then a new thread and its follow-up",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Sidebar scroll position",
+        "state": "working",
+        "request": "the sidebar jumps back to the top every time I open a note, keep the scroll position in src/components/Sidebar.tsx",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 40
+      },
+      {
+        "id": "t2",
+        "name": "Dark mode colors",
+        "state": "finished",
+        "request": "dark mode text is unreadable in the editor, fix the contrast",
+        "summary": "Raised editor text contrast to 7:1 in the dark theme",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 3600,
+        "at_ago": 3600
+      }
+    ],
+    "home": [
+      {
+        "text": "the sidebar jumps back to the top every time I open a note, keep the scroll position in src/components/Sidebar.tsx",
+        "ago": 120,
+        "thread": "t1"
+      }
+    ],
+    "stream": [
+      {
+        "text": "also keep it when the window resizes",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "and when you collapse a folder",
+        "gap": 3,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "oh and the tags list in the sidebar resets the same way",
+        "gap": 6,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "add a markdown export to the File menu",
+        "gap": 25,
+        "expect": "new",
+        "name_has": [
+          "export",
+          "markdown"
+        ]
+      },
+      {
+        "text": "include the frontmatter in it",
+        "gap": 7,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "thanks!",
+        "gap": 30,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-02",
+    "about": "empty SaaS project: greeting, new thread with follow-ups, explicit separate ask, status",
+    "threads": [],
+    "home": [],
+    "stream": [
+      {
+        "text": "hey",
+        "gap": 2,
+        "expect": "home"
+      },
+      {
+        "text": "set up stripe checkout for the pro plan, monthly and yearly",
+        "gap": 8,
+        "expect": "new",
+        "name_has": [
+          "stripe",
+          "checkout"
+        ]
+      },
+      {
+        "text": "use the price ids from .env.local",
+        "gap": 5,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "and redirect to /billing/success after payment",
+        "gap": 4,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "separately, the landing page hero text wraps weird on iphone",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "hero",
+          "landing",
+          "mobile"
+        ]
+      },
+      {
+        "text": "what's running",
+        "gap": 40,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-03",
+    "about": "data pipelines: answer to a pending question, then follow-ups split between two threads",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Warehouse migration",
+        "state": "needs_you",
+        "request": "move the nightly ETL output off sqlite, it's getting too big",
+        "messages": [],
+        "pending_question": "Should the new tables live in Postgres, or should I keep writing to the SQLite file? Postgres needs a DATABASE_URL.",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 300,
+        "at_ago": 300
+      },
+      {
+        "id": "t2",
+        "name": "Dedupe customer records",
+        "state": "working",
+        "request": "dedupe customers in pipelines/clean_customers.py by email + phone",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "use postgres",
+        "gap": 3,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "DATABASE_URL is already in the .env",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "for the dedupe, lowercase the emails first",
+        "gap": 10,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "and strip the +1 from phone numbers",
+        "gap": 4,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "anything else need me?",
+        "gap": 30,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-04",
+    "about": "hard negative: csv import shares words with finished CSV export; bug report on finished export goes back",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "CSV export",
+        "state": "finished",
+        "request": "add csv export for the invoices table",
+        "summary": "Added an Export CSV button to InvoicesTable that writes invoices.csv",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 7200,
+        "at_ago": 7200
+      },
+      {
+        "id": "t2",
+        "name": "Usage charts",
+        "state": "working",
+        "request": "the usage chart on /analytics should show daily totals not hourly",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 90
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "add csv import for contacts, people want to upload their lists",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "import",
+          "contacts"
+        ]
+      },
+      {
+        "text": "the invoices csv puts the amounts in the wrong column when the customer name has a comma",
+        "gap": 20,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "also quote the description field",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "can the chart tooltip show the date too",
+        "gap": 15,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "perfect, thanks",
+        "gap": 40,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-05",
+    "about": "different words, same work: 'sign-in' bug goes to finished 'Fix login crash'; password reset is new",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Fix login crash",
+        "state": "finished",
+        "request": "app crashes on login when the email has uppercase letters",
+        "summary": "Normalized email casing before lookup in auth/login.ts and added a test",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 5400,
+        "at_ago": 5400
+      },
+      {
+        "id": "t2",
+        "name": "Team invites",
+        "state": "working",
+        "request": "let workspace owners invite teammates by email",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 200
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "sign-in is still blowing up for google accounts",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "TypeError: Cannot read properties of undefined (reading 'email') at oauthCallback (auth/google.ts:42)",
+        "gap": 3,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "can you add a forgot password flow",
+        "gap": 20,
+        "expect": "new",
+        "name_has": [
+          "password",
+          "reset",
+          "forgot"
+        ]
+      },
+      {
+        "text": "invites should expire after 7 days",
+        "gap": 12,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-06",
+    "about": "12 threads: loose name references, a pending answer, bug on finished work, status, a genuinely new ask",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Stripe webhooks",
+        "state": "working",
+        "request": "handle stripe webhooks for subscription created/updated/deleted",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 50
+      },
+      {
+        "id": "t2",
+        "name": "Usage charts",
+        "state": "finished",
+        "request": "replace the usage line chart with stacked bars per feature",
+        "summary": "Stacked bar chart on /analytics with per-feature colors",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 4000,
+        "at_ago": 4000
+      },
+      {
+        "id": "t3",
+        "name": "Welcome email",
+        "state": "finished",
+        "request": "write the welcome email for new signups",
+        "summary": "Added emails/welcome.tsx with react-email",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 9000,
+        "at_ago": 9000
+      },
+      {
+        "id": "t4",
+        "name": "Fix login crash",
+        "state": "finished",
+        "request": "login crashes when the session cookie is expired",
+        "summary": "Clear stale cookie and redirect to /login",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 20000,
+        "at_ago": 20000
+      },
+      {
+        "id": "t5",
+        "name": "Team invites",
+        "state": "working",
+        "request": "invite teammates by email with roles",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 300
+      },
+      {
+        "id": "t6",
+        "name": "Dark mode",
+        "state": "idle",
+        "request": "add a dark mode toggle in settings",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 30000,
+        "at_ago": 30000
+      },
+      {
+        "id": "t7",
+        "name": "Billing page layout",
+        "state": "working",
+        "request": "redo the billing page layout to show plan, usage and invoices as cards",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 100
+      },
+      {
+        "id": "t8",
+        "name": "API rate limiting",
+        "state": "needs_you",
+        "request": "add rate limiting to the public API",
+        "messages": [],
+        "pending_question": "Should limits apply per API key or per workspace?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 600,
+        "at_ago": 600
+      },
+      {
+        "id": "t9",
+        "name": "Audit log",
+        "state": "finished",
+        "request": "log admin actions to an audit_log table",
+        "summary": "Audit log table plus /settings/audit page",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 50000,
+        "at_ago": 50000
+      },
+      {
+        "id": "t10",
+        "name": "Settings page tabs",
+        "state": "working",
+        "request": "split settings into General, Members, Billing and API tabs",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 400
+      },
+      {
+        "id": "t11",
+        "name": "Password reset emails",
+        "state": "finished",
+        "request": "send password reset emails with a 1 hour token",
+        "summary": "Reset token + emails/reset.tsx",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 12000,
+        "at_ago": 12000
+      },
+      {
+        "id": "t12",
+        "name": "CSV export",
+        "state": "finished",
+        "request": "export the audit log as csv",
+        "summary": "Download CSV button on /settings/audit",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 60000,
+        "at_ago": 60000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "in the stripe thread, also handle invoice.payment_failed",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "tell the charts one to use the brand purple",
+        "gap": 8,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "per workspace",
+        "gap": 6,
+        "expect": "existing:t8"
+      },
+      {
+        "text": "the reset email link goes to localhost:3000 in prod",
+        "gap": 15,
+        "expect": "existing:t11"
+      },
+      {
+        "text": "what's still running?",
+        "gap": 20,
+        "expect": "home"
+      },
+      {
+        "text": "the billing page cards overlap on small screens",
+        "gap": 10,
+        "expect": "existing:t7"
+      },
+      {
+        "text": "add 2fa with authenticator apps",
+        "gap": 12,
+        "expect": "new",
+        "name_has": [
+          "2fa",
+          "two-factor",
+          "authenticator"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-07",
+    "about": "mobile app: messages with two unrelated asks are unsure; single asks route",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Push notifications",
+        "state": "working",
+        "request": "set up push notifications with FCM and APNs",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 80
+      },
+      {
+        "id": "t2",
+        "name": "Offline sync",
+        "state": "working",
+        "request": "make the notes list work offline and sync when back online",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 200
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "fix the push badge count and also the sync conflict dialog is cut off at the bottom",
+        "gap": 5,
+        "expect": "unsure"
+      },
+      {
+        "text": "the badge count doesn't reset when you open the app",
+        "gap": 20,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "and while you're at it bump the app version to 2.3 and rename the settings tab to Preferences",
+        "gap": 10,
+        "expect": "unsure"
+      },
+      {
+        "text": "ok",
+        "gap": 15,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-08",
+    "about": "status questions and chit-chat go to home, including a status question naming one thread; one real answer",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Stripe webhooks",
+        "state": "working",
+        "request": "handle stripe subscription webhooks",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 30
+      },
+      {
+        "id": "t2",
+        "name": "Usage charts",
+        "state": "needs_you",
+        "request": "add a usage chart to the dashboard",
+        "messages": [],
+        "pending_question": "Two options: 1) one line per feature, 2) stacked area. Which do you want?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 400,
+        "at_ago": 400
+      },
+      {
+        "id": "t3",
+        "name": "Welcome email",
+        "state": "finished",
+        "request": "write the welcome email",
+        "summary": "Welcome email added",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 3000,
+        "at_ago": 3000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "what's running",
+        "gap": 3,
+        "expect": "home"
+      },
+      {
+        "text": "anything need me?",
+        "gap": 6,
+        "expect": "home"
+      },
+      {
+        "text": "how's the stripe one going",
+        "gap": 8,
+        "expect": "home"
+      },
+      {
+        "text": "is the welcome email done?",
+        "gap": 6,
+        "expect": "home"
+      },
+      {
+        "text": "for the charts go with option 2",
+        "gap": 10,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "cool thanks",
+        "gap": 5,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-09",
+    "about": "archived finished thread referred back by its work; follow-up stays with it",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Onboarding tour",
+        "state": "finished",
+        "request": "build a 6 step onboarding tour for first launch",
+        "summary": "Added OnboardingTour with 6 steps using react-joyride",
+        "messages": [],
+        "pending_question": null,
+        "archived": true,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 600000,
+        "at_ago": 600000
+      },
+      {
+        "id": "t2",
+        "name": "Profile screen",
+        "state": "working",
+        "request": "build the profile screen with avatar, name and bio",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "the onboarding tour from last week, step 3's tooltip is off screen on iPad",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "same thing on step 5",
+        "gap": 6,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "profile avatar upload should crop to a circle",
+        "gap": 15,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "and show a placeholder with initials when there's no photo",
+        "gap": 5,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-10",
+    "about": "corrections within one thread, then an explicit new thread",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Status badge colors",
+        "state": "working",
+        "request": "make the 'overdue' badge in src/components/InvoiceRow.tsx stand out more",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 20
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "make it green",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "actually use red",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "scratch that, keep the old color but make it bold",
+        "gap": 8,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "new thread: rename 'overdue' to 'past due' everywhere in the UI",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "past due",
+          "rename",
+          "overdue"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-11",
+    "about": "long gaps: pronoun follow-ups become uncertain; quick follow-ups stay with the last thread",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Retry failed jobs",
+        "state": "working",
+        "request": "make the ingest worker retry failed jobs 3 times before alerting",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 1800
+      },
+      {
+        "id": "t2",
+        "name": "Parquet output",
+        "state": "working",
+        "request": "write the cleaned events as parquet instead of json",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 1500
+      },
+      {
+        "id": "t3",
+        "name": "Slack alerts",
+        "state": "finished",
+        "request": "post pipeline failures to #data-alerts",
+        "summary": "Slack webhook alerts on DAG failure",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 9000,
+        "at_ago": 9000
+      }
+    ],
+    "home": [
+      {
+        "text": "write the cleaned events as parquet instead of json",
+        "ago": 1500,
+        "thread": "t2"
+      }
+    ],
+    "stream": [
+      {
+        "text": "it's still failing",
+        "gap": 900,
+        "expect": "existing:t1|unsure"
+      },
+      {
+        "text": "the parquet files are 0 bytes",
+        "gap": 20,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "same for the json ones",
+        "gap": 6,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "it's still slow",
+        "gap": 1500,
+        "expect": "unsure"
+      }
+    ]
+  },
+  {
+    "id": "dev-12",
+    "about": "empty mobile project: crash report becomes a thread; 'also' introducing different work is new",
+    "threads": [],
+    "home": [],
+    "stream": [
+      {
+        "text": "the app crashes on launch on android 14, log: java.lang.IllegalStateException: Not allowed to start service Intent { act=sync }",
+        "gap": 3,
+        "expect": "new",
+        "name_has": [
+          "crash",
+          "android",
+          "launch"
+        ]
+      },
+      {
+        "text": "only on pixel devices",
+        "gap": 6,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "also dark mode for the settings screen",
+        "gap": 20,
+        "expect": "new",
+        "name_has": [
+          "dark",
+          "settings"
+        ]
+      },
+      {
+        "text": "follow the system setting by default",
+        "gap": 5,
+        "expect": "existing:@2"
+      },
+      {
+        "text": "thx",
+        "gap": 10,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-13",
+    "about": "data pipelines: bug on finished report incl. failing test, explicit separate backfill and its follow-up",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Daily sales report",
+        "state": "finished",
+        "request": "generate the daily sales report as a csv in reports/",
+        "summary": "reports/daily_sales.py writes reports/daily_sales_YYYYMMDD.csv",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 20000,
+        "at_ago": 20000
+      },
+      {
+        "id": "t2",
+        "name": "Airflow DAG retries",
+        "state": "working",
+        "request": "add retries with backoff to the ingest DAG",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 120
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "the daily report has yesterday's numbers twice",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "test_report.py::test_totals fails now too",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "separately, write a script to backfill january",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "backfill",
+          "january"
+        ]
+      },
+      {
+        "text": "start from jan 1 not dec 31",
+        "gap": 6,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "how long will the backfill take?",
+        "gap": 30,
+        "expect": "home|existing:@1"
+      }
+    ]
+  },
+  {
+    "id": "dev-14",
+    "about": "explicit new-thread requests that share words with an existing thread; later scroll bug goes back",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Sidebar scroll position",
+        "state": "working",
+        "request": "keep the sidebar scroll position when switching notes",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "start a fresh one to redesign the sidebar icons",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "icons",
+          "icon"
+        ]
+      },
+      {
+        "text": "new thread for keyboard shortcuts in the sidebar",
+        "gap": 8,
+        "expect": "new",
+        "name_has": [
+          "shortcuts",
+          "keyboard"
+        ]
+      },
+      {
+        "text": "cmd+k should open search",
+        "gap": 5,
+        "expect": "existing:@2"
+      },
+      {
+        "text": "the scroll position still resets after a search",
+        "gap": 20,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-15",
+    "about": "polite long messages: multi-sentence single ask, thanks, related but separate tax work",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Invoice PDF layout",
+        "state": "working",
+        "request": "make the invoice PDF match the new brand template",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 200
+      },
+      {
+        "id": "t2",
+        "name": "Tax calculation",
+        "state": "idle",
+        "request": "calculate sales tax by customer country",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 7000,
+        "at_ago": 7000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "Hi! Hope it's going well. I was looking at the invoice PDFs this morning and noticed the line items table gets cut off when there are more than about 20 rows, it just doesn't flow onto a second page. Could you make it paginate properly, and repeat the header row on each page?",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "Thank you so much.",
+        "gap": 10,
+        "expect": "home"
+      },
+      {
+        "text": "One more thing on the tax side: EU customers with a valid VAT number should get reverse charge, so 0% tax.",
+        "gap": 30,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "Could you also validate the VAT numbers against VIES when they're entered?",
+        "gap": 8,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-16",
+    "about": "numbered option answer to a pending question, then a correction of that answer",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Chart library choice",
+        "state": "needs_you",
+        "request": "pick a chart library for the analytics page",
+        "messages": [],
+        "pending_question": "Options: 1) Recharts 2) Chart.js 3) visx. Which one?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 500,
+        "at_ago": 500
+      },
+      {
+        "id": "t2",
+        "name": "Signup form validation",
+        "state": "working",
+        "request": "validate the signup form fields client and server side",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 90
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "option 2",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "the email field accepts 'a@b'",
+        "gap": 15,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "actually go with 1, recharts fits our react setup better",
+        "gap": 20,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-17",
+    "about": "bare 'yes' with two threads waiting is ambiguous; qualified answers route",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Delete old sessions",
+        "state": "needs_you",
+        "request": "clean up the sessions table, it's huge",
+        "messages": [],
+        "pending_question": "This will delete about 40k rows from sessions. OK to run?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 200,
+        "at_ago": 200
+      },
+      {
+        "id": "t2",
+        "name": "Upgrade Next.js",
+        "state": "needs_you",
+        "request": "upgrade next to 15",
+        "messages": [],
+        "pending_question": "Upgrading breaks two middleware files. Should I fix them in the same PR?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 150,
+        "at_ago": 150
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "yes",
+        "gap": 4,
+        "expect": "unsure"
+      },
+      {
+        "text": "yes for the next upgrade, fix them in the same pr",
+        "gap": 8,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "and for sessions only delete ones older than 90 days",
+        "gap": 10,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-18",
+    "about": "data: new load job with follow-ups; extension of a finished cleaning thread; question to home",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Clean null rows",
+        "state": "finished",
+        "request": "drop rows with null order_id in pipelines/clean.py",
+        "summary": "Dropped null order_id rows and logged counts",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 8000,
+        "at_ago": 8000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "load the shopify orders export into the warehouse, file is data/raw/orders_2026_09.csv",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "shopify",
+          "orders",
+          "load"
+        ]
+      },
+      {
+        "text": "skip test orders",
+        "gap": 4,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "and the refunded ones",
+        "gap": 3,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "make the null cleaning also drop rows with no sku",
+        "gap": 20,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "btw which model are the agents using",
+        "gap": 15,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-19",
+    "about": "terse lowercase with typos and a pasted status code",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Settings page tabs",
+        "state": "working",
+        "request": "add tabs to the settings page: profile, billing, team",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 100
+      },
+      {
+        "id": "t2",
+        "name": "Avatar upload",
+        "state": "working",
+        "request": "let users upload a profile avatar",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 150
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "tabs dont rember the last one",
+        "gap": 3,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "avtar upload fails >5mb",
+        "gap": 6,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "413 Payload Too Large",
+        "gap": 2,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "thx",
+        "gap": 10,
+        "expect": "home"
+      },
+      {
+        "text": "ok also teh billing tab is empty",
+        "gap": 8,
+        "expect": "existing:t1|new"
+      }
+    ]
+  },
+  {
+    "id": "dev-20",
+    "about": "iOS SwiftUI: bug to working thread, adjacent feature ambiguous between existing and new, status",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Widget refresh",
+        "state": "working",
+        "request": "home screen widget should refresh step count every 15 min",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 70
+      },
+      {
+        "id": "t2",
+        "name": "App Store screenshots",
+        "state": "finished",
+        "request": "generate app store screenshots for 6.7 and 5.5 inch",
+        "summary": "fastlane snapshot config + 10 screenshots",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 40000,
+        "at_ago": 40000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "the widget still shows yesterday's steps after midnight",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "add a lock screen widget too",
+        "gap": 10,
+        "expect": "new|existing:t1",
+        "name_has": [
+          "lock",
+          "widget"
+        ]
+      },
+      {
+        "text": "HealthKit permission prompt shows twice on first launch",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "healthkit",
+          "permission"
+        ]
+      },
+      {
+        "text": "how's the widget going?",
+        "gap": 30,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-21",
+    "about": "long burst of follow-ups to a thread created earlier in the stream, then a bug on a finished thread",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Email templates",
+        "state": "finished",
+        "request": "convert our transactional emails to react-email",
+        "summary": "Moved welcome, receipt and reset emails to emails/*.tsx",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 30000,
+        "at_ago": 30000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "build a weekly digest email for admins with signups, revenue and churn",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "digest",
+          "weekly"
+        ]
+      },
+      {
+        "text": "send it mondays 9am in their timezone",
+        "gap": 5,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "make the revenue number bigger",
+        "gap": 4,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "same for the signups",
+        "gap": 3,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "and a link to the dashboard at the bottom",
+        "gap": 4,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "the welcome email footer has the wrong year",
+        "gap": 25,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-22",
+    "about": "two threads about different headers: specific messages route, vague one after a gap is unsure",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Sticky header",
+        "state": "working",
+        "request": "make the marketing site header sticky with a blur background",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      },
+      {
+        "id": "t2",
+        "name": "Table header sorting",
+        "state": "working",
+        "request": "clicking a column header in the invoices table should sort by it",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 90
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "the header flickers when you scroll fast",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "header is wrong",
+        "gap": 300,
+        "expect": "unsure"
+      },
+      {
+        "text": "clicking the amount header sorts by name instead",
+        "gap": 10,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-23",
+    "about": "hard negative: 'export' and 'pdf' words but different work",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "PDF export",
+        "state": "working",
+        "request": "export monthly reports to PDF from the reports page",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 40
+      },
+      {
+        "id": "t2",
+        "name": "Report scheduling",
+        "state": "finished",
+        "request": "let users schedule reports to be emailed weekly",
+        "summary": "Cron + email for scheduled reports",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 10000,
+        "at_ago": 10000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "export the analytics events to bigquery every night",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "bigquery",
+          "events"
+        ]
+      },
+      {
+        "text": "the pdf has two blank pages at the end",
+        "gap": 15,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "scheduled reports went out twice this morning",
+        "gap": 20,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "upload pdfs of contracts and attach them to customers",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "contract",
+          "upload",
+          "attachments"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-24",
+    "about": "empty Flutter project: greeting, setup thread with 'oh and' follow-ups, status",
+    "threads": [],
+    "home": [],
+    "stream": [
+      {
+        "text": "hello!",
+        "gap": 2,
+        "expect": "home"
+      },
+      {
+        "text": "can you set up the flutter project structure with riverpod",
+        "gap": 6,
+        "expect": "new",
+        "name_has": [
+          "riverpod",
+          "setup",
+          "structure"
+        ]
+      },
+      {
+        "text": "use go_router for navigation",
+        "gap": 5,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "oh and add flavors for dev and prod",
+        "gap": 4,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "what's it doing right now?",
+        "gap": 60,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-25",
+    "about": "different words, same work: subscription and payment event issues belong to 'Stripe webhooks'",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Stripe webhooks",
+        "state": "working",
+        "request": "handle stripe webhooks for subscription changes",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 50
+      },
+      {
+        "id": "t2",
+        "name": "Plan comparison table",
+        "state": "working",
+        "request": "add a plan comparison table on /pricing",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 120
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "when someone downgrades their plan we never update the seat count",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "and the events aren't being verified with the signing secret",
+        "gap": 6,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "the pro column should be highlighted",
+        "gap": 15,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "make it say 'most popular'",
+        "gap": 4,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-26",
+    "about": "long rambling message with two unrelated issues is unsure; later single issue routes",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Notification settings",
+        "state": "working",
+        "request": "build per-channel notification toggles in settings",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 200
+      },
+      {
+        "id": "t2",
+        "name": "Search indexing",
+        "state": "working",
+        "request": "index projects and docs in meilisearch",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 300
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "ok so I've been testing all morning and honestly things look mostly good, but the notification toggles don't save when you switch accounts, and separately the search is returning archived projects which it definitely shouldn't",
+        "gap": 5,
+        "expect": "unsure"
+      },
+      {
+        "text": "notification toggles also need a 'mute all' at the top",
+        "gap": 40,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "search should rank exact title matches first",
+        "gap": 15,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-27",
+    "about": "stopped thread resumed by reference; status question on an unknown thread is home; bug goes to unknown thread",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Image resizing",
+        "state": "stopped",
+        "request": "resize uploaded images to 3 sizes with jimp",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 4000,
+        "at_ago": 4000
+      },
+      {
+        "id": "t2",
+        "name": "Upload queue",
+        "state": "unknown",
+        "request": "move uploads to a background queue with retries",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 900
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "pick the resizing back up, use sharp instead of jimp",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "is the upload queue still alive?",
+        "gap": 10,
+        "expect": "home"
+      },
+      {
+        "text": "the queue drops files over 100mb",
+        "gap": 15,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-28",
+    "about": "pasted traceback for a finished ingest thread; 'also' that belongs to another thread by content",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Fix dbt models",
+        "state": "working",
+        "request": "fix the failing dbt models after the schema change",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      },
+      {
+        "id": "t2",
+        "name": "S3 ingest",
+        "state": "finished",
+        "request": "ingest daily files from s3://acme-raw/events into staging",
+        "summary": "ingest/s3_loader.py loads events_*.json into staging.events",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 15000,
+        "at_ago": 15000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "KeyError: 'customer_id' in ingest/s3_loader.py line 88",
+        "gap": 5,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "happens on the oct 3 file",
+        "gap": 4,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "also stg_orders.sql takes like 4 min now",
+        "gap": 10,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "thank u",
+        "gap": 20,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-29",
+    "about": "several chart threads: loose references by name, compliment to home",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Revenue dashboard",
+        "state": "working",
+        "request": "build a revenue dashboard with MRR, ARR and churn",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": true,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 100
+      },
+      {
+        "id": "t2",
+        "name": "Cohort retention chart",
+        "state": "finished",
+        "request": "add a weekly cohort retention heatmap",
+        "summary": "Cohort heatmap on /analytics/retention",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": true,
+        "since_ago": 600,
+        "at_ago": 600
+      },
+      {
+        "id": "t3",
+        "name": "Funnel chart",
+        "state": "working",
+        "request": "show the signup to paid funnel as a chart",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 80
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "tell the cohort one to start weeks on monday",
+        "gap": 5,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "in the funnel thing, drop the 'visited pricing' step",
+        "gap": 8,
+        "expect": "existing:t3"
+      },
+      {
+        "text": "the mrr number on the dashboard is off by a month",
+        "gap": 10,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "charts look great btw",
+        "gap": 15,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-30",
+    "about": "archived 'Dark mode' vs active 'Theme tokens': regression could belong to either",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Dark mode",
+        "state": "finished",
+        "request": "add dark mode across the app",
+        "summary": "Dark theme via CSS variables",
+        "messages": [],
+        "pending_question": null,
+        "archived": true,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900000,
+        "at_ago": 900000
+      },
+      {
+        "id": "t2",
+        "name": "Theme tokens",
+        "state": "working",
+        "request": "move all colors to design tokens in src/theme/tokens.ts",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 120
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "dark mode is broken again on the settings modal",
+        "gap": 5,
+        "expect": "existing:t1|existing:t2|unsure"
+      },
+      {
+        "text": "the modal background is pure white",
+        "gap": 4,
+        "expect": "existing:t1|existing:t2"
+      },
+      {
+        "text": "rename the token gray-750 to gray-700",
+        "gap": 20,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-31",
+    "about": "'separately' forces a new thread despite overlap; follow-ups split by content",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Onboarding emails",
+        "state": "working",
+        "request": "write a 5 email onboarding sequence",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 90
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "separately, the unsubscribe link in the emails 404s",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "unsubscribe"
+        ]
+      },
+      {
+        "text": "for the onboarding emails, day 3 should mention integrations",
+        "gap": 15,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "and the unsubscribe page needs our logo",
+        "gap": 10,
+        "expect": "existing:@1"
+      }
+    ]
+  },
+  {
+    "id": "dev-32",
+    "about": "chit-chat around a single real follow-up",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Rate limiting",
+        "state": "working",
+        "request": "add rate limiting to /api/v1 with redis",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 30
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "good morning",
+        "gap": 2,
+        "expect": "home"
+      },
+      {
+        "text": "how's it going",
+        "gap": 5,
+        "expect": "home"
+      },
+      {
+        "text": "lol nice",
+        "gap": 10,
+        "expect": "home"
+      },
+      {
+        "text": "ok let's also return a Retry-After header",
+        "gap": 8,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "🙏",
+        "gap": 4,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-33",
+    "about": "macOS menu bar app: pending answer with follow-up, bugs on finished and working threads",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Menu bar icon",
+        "state": "finished",
+        "request": "add a template menu bar icon",
+        "summary": "Added MenuBarIcon.pdf template image",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 50000,
+        "at_ago": 50000
+      },
+      {
+        "id": "t2",
+        "name": "Launch at login",
+        "state": "working",
+        "request": "add a launch at login toggle with SMAppService",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 120
+      },
+      {
+        "id": "t3",
+        "name": "Sparkle updates",
+        "state": "needs_you",
+        "request": "set up sparkle for auto updates",
+        "messages": [],
+        "pending_question": "Do you have an EdDSA key for Sparkle, or should I generate one?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 300,
+        "at_ago": 300
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "generate one",
+        "gap": 5,
+        "expect": "existing:t3"
+      },
+      {
+        "text": "store it in the keychain, not the repo",
+        "gap": 5,
+        "expect": "existing:t3"
+      },
+      {
+        "text": "the menu bar icon is blurry on non-retina displays",
+        "gap": 15,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "launch at login toggle doesn't stick after a reboot",
+        "gap": 10,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "and add a Quit item to the menu",
+        "gap": 8,
+        "expect": "existing:t1|new",
+        "name_has": [
+          "quit",
+          "menu"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-34",
+    "about": "11 data threads: content-based matching without names, a new forecasting ask, status",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Airflow DAG retries",
+        "state": "working",
+        "request": "add retries with backoff to the ingest DAG",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 300
+      },
+      {
+        "id": "t2",
+        "name": "Snowflake costs",
+        "state": "idle",
+        "request": "figure out why our snowflake bill went up",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 90000,
+        "at_ago": 90000
+      },
+      {
+        "id": "t3",
+        "name": "dbt tests",
+        "state": "finished",
+        "request": "add not_null and unique tests to the core dbt models",
+        "summary": "Added schema tests to 14 models",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 40000,
+        "at_ago": 40000
+      },
+      {
+        "id": "t4",
+        "name": "Daily sales report",
+        "state": "finished",
+        "request": "daily sales csv report",
+        "summary": "reports/daily_sales.py",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 70000,
+        "at_ago": 70000
+      },
+      {
+        "id": "t5",
+        "name": "Churn model",
+        "state": "finished",
+        "request": "train a churn model on the last 12 months",
+        "summary": "XGBoost churn model, AUC 0.78",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 20000,
+        "at_ago": 20000
+      },
+      {
+        "id": "t6",
+        "name": "Feature store",
+        "state": "working",
+        "request": "set up feast for user features",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 500
+      },
+      {
+        "id": "t7",
+        "name": "S3 ingest",
+        "state": "finished",
+        "request": "ingest daily files from s3",
+        "summary": "ingest/s3_loader.py",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 100000,
+        "at_ago": 100000
+      },
+      {
+        "id": "t8",
+        "name": "Data quality alerts",
+        "state": "finished",
+        "request": "alert in slack when null rates spike",
+        "summary": "Great Expectations checks + Slack alerts",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 30000,
+        "at_ago": 30000
+      },
+      {
+        "id": "t9",
+        "name": "Looker dashboards",
+        "state": "working",
+        "request": "port the finance dashboards to looker",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 700
+      },
+      {
+        "id": "t10",
+        "name": "PII masking",
+        "state": "working",
+        "request": "mask emails in the analytics schema",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 200
+      },
+      {
+        "id": "t11",
+        "name": "Backfill January",
+        "state": "finished",
+        "request": "backfill january events",
+        "summary": "Backfilled 2026-01-01..31",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 200000,
+        "at_ago": 200000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "churn auc dropped to 0.61 after the last retrain",
+        "gap": 5,
+        "expect": "existing:t5"
+      },
+      {
+        "text": "mask phone numbers too",
+        "gap": 8,
+        "expect": "existing:t10"
+      },
+      {
+        "text": "the slack alert for null rates fires every 5 min, way too noisy",
+        "gap": 10,
+        "expect": "existing:t8"
+      },
+      {
+        "text": "warehouse bill doubled again this week",
+        "gap": 12,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "new: forecast next quarter revenue with prophet",
+        "gap": 10,
+        "expect": "new",
+        "name_has": [
+          "forecast",
+          "revenue"
+        ]
+      },
+      {
+        "text": "what's done?",
+        "gap": 20,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-35",
+    "about": "rapid corrections on pricing copy, an addition to the same page, then a retraction",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Pricing page copy",
+        "state": "working",
+        "request": "rewrite the pricing page copy, it's too long",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 30
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "change the headline to 'Ship faster'",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "no wait, 'Ship with confidence'",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "put a short faq under the plans too",
+        "gap": 10,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "scratch that faq, we'll do it later",
+        "gap": 12,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-36",
+    "about": "Android: bug reports in different words go back to finished threads; share sheet is new",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Biometric login",
+        "state": "finished",
+        "request": "add fingerprint/face login with BiometricPrompt",
+        "summary": "BiometricPrompt on login screen",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 86000,
+        "at_ago": 86000
+      },
+      {
+        "id": "t2",
+        "name": "Deep links",
+        "state": "finished",
+        "request": "handle app links for /invite and /project URLs",
+        "summary": "App Links verified for acme.app",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 60000,
+        "at_ago": 60000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "face unlock doesn't work on samsung",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "links from emails open chrome instead of the app",
+        "gap": 12,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "only for links with query params",
+        "gap": 5,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "build a share sheet target so people can share images into the app",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "share"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-37",
+    "about": "Home history shows the last message went to search filters; quick follow-ups follow it",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Search filters",
+        "state": "working",
+        "request": "add filters to search",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 20
+      },
+      {
+        "id": "t2",
+        "name": "Export to Notion",
+        "state": "working",
+        "request": "export docs to notion pages",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 400
+      }
+    ],
+    "home": [
+      {
+        "text": "add a date range filter to search",
+        "ago": 20,
+        "thread": "t1"
+      }
+    ],
+    "stream": [
+      {
+        "text": "and a filter by author",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "make it multi-select",
+        "gap": 4,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "the notion export loses checkboxes",
+        "gap": 15,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "and code blocks",
+        "gap": 3,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-38",
+    "about": "idle and finished threads revisited: audit rerun, tab-order bug",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Accessibility audit",
+        "state": "idle",
+        "request": "run an accessibility audit with axe on the main pages",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 86400,
+        "at_ago": 86400
+      },
+      {
+        "id": "t2",
+        "name": "Keyboard navigation",
+        "state": "finished",
+        "request": "make all dialogs and forms keyboard navigable",
+        "summary": "Focus traps + tab order fixes in dialogs",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 50000,
+        "at_ago": 50000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "run the accessibility audit again on the new checkout page",
+        "gap": 5,
+        "expect": "existing:t1|new",
+        "name_has": [
+          "accessibility",
+          "audit",
+          "checkout"
+        ]
+      },
+      {
+        "text": "tab order skips the coupon field on checkout",
+        "gap": 20,
+        "expect": "existing:t2|existing:t1"
+      },
+      {
+        "text": "thanks",
+        "gap": 30,
+        "expect": "home"
+      }
+    ]
+  },
+  {
+    "id": "dev-39",
+    "about": "greeting/thanks prefixed to a real ask routes to the thread; separate footer ask is new",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Signup button",
+        "state": "working",
+        "request": "make the signup button more prominent on the homepage",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 15
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "thanks! now make it blue",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "perfect",
+        "gap": 10,
+        "expect": "home"
+      },
+      {
+        "text": "hi, can you make the footer links bigger",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "footer"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-40",
+    "about": "a numbered list of unrelated asks is unsure; a single follow-up routes",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Mobile nav drawer",
+        "state": "working",
+        "request": "add a slide-out nav drawer on mobile",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 50
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "few things:\n1. nav drawer closes when you rotate\n2. the login page logo is stretched\n3. add haptics to the tab bar",
+        "gap": 5,
+        "expect": "unsure"
+      },
+      {
+        "text": "drawer also doesn't close when tapping outside",
+        "gap": 20,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-41",
+    "about": "empty data project: vague perf complaint becomes a thread; pasted detail and suggestion follow it",
+    "threads": [],
+    "home": [],
+    "stream": [
+      {
+        "text": "the nightly job is really slow, can you look into it",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "nightly",
+          "performance",
+          "slow"
+        ]
+      },
+      {
+        "text": "the pandas merge in pipelines/join_events.py takes 20 min on 5M rows",
+        "gap": 8,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "use polars if it helps",
+        "gap": 6,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "hmm",
+        "gap": 30,
+        "expect": "home|unsure"
+      }
+    ]
+  },
+  {
+    "id": "dev-42",
+    "about": "question about what a thread is asking goes to home; answer and refinement go to the thread",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Webhook retries",
+        "state": "needs_you",
+        "request": "retry outgoing webhooks when customers' endpoints fail",
+        "messages": [],
+        "pending_question": "Retry 5 times with exponential backoff, or 3 times at a fixed 1 minute interval?",
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 200,
+        "at_ago": 200
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "what's it asking?",
+        "gap": 3,
+        "expect": "home"
+      },
+      {
+        "text": "5 with backoff",
+        "gap": 10,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "cap it at 1 hour total",
+        "gap": 5,
+        "expect": "existing:t1"
+      }
+    ]
+  },
+  {
+    "id": "dev-43",
+    "about": "three 'login' messages: crash bug, design tweak, new deliverability work",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Login page design",
+        "state": "working",
+        "request": "redesign the login page to match the new brand",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      },
+      {
+        "id": "t2",
+        "name": "Fix login crash",
+        "state": "finished",
+        "request": "login crashes on safari when cookies are blocked",
+        "summary": "Fallback to localStorage when cookies are blocked",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 20000,
+        "at_ago": 20000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "login crashes again on safari 18",
+        "gap": 5,
+        "expect": "existing:t2"
+      },
+      {
+        "text": "the login button should be full width",
+        "gap": 10,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "login emails are going to spam",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "email",
+          "deliverability",
+          "spam"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "dev-44",
+    "about": "empty desktop project: two new threads with follow-ups, status after gap, late pronoun follow-up",
+    "threads": [],
+    "home": [],
+    "stream": [
+      {
+        "text": "I want to add auto-update to the app using tauri's updater plugin, releases are on github",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "update",
+          "updater"
+        ]
+      },
+      {
+        "text": "sign with the key in ~/.tauri",
+        "gap": 6,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "build a crash reporter too, sentry is fine",
+        "gap": 15,
+        "expect": "new",
+        "name_has": [
+          "crash",
+          "sentry"
+        ]
+      },
+      {
+        "text": "only send reports in release builds",
+        "gap": 5,
+        "expect": "existing:@2"
+      },
+      {
+        "text": "did the updater work?",
+        "gap": 600,
+        "expect": "home"
+      },
+      {
+        "text": "it should check on launch and every 6 hours",
+        "gap": 900,
+        "expect": "existing:@1|unsure"
+      }
+    ]
+  },
+  {
+    "id": "dev-45",
+    "about": "explicit references by exact name, status for a named thread, archived thread reopened by name",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Stripe webhooks",
+        "state": "working",
+        "request": "handle stripe webhooks",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 60
+      },
+      {
+        "id": "t2",
+        "name": "Analytics charts",
+        "state": "working",
+        "request": "add charts to the analytics page",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 900,
+        "at_ago": 90
+      },
+      {
+        "id": "t3",
+        "name": "Welcome email",
+        "state": "finished",
+        "request": "welcome email for new users",
+        "summary": "emails/welcome.tsx",
+        "messages": [],
+        "pending_question": null,
+        "archived": true,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 500000,
+        "at_ago": 500000
+      }
+    ],
+    "home": [],
+    "stream": [
+      {
+        "text": "Stripe webhooks: log every event id so we can replay",
+        "gap": 5,
+        "expect": "existing:t1"
+      },
+      {
+        "text": "is Analytics charts close to done?",
+        "gap": 10,
+        "expect": "home"
+      },
+      {
+        "text": "reopen the welcome email thread, the CTA button is misaligned in outlook",
+        "gap": 15,
+        "expect": "existing:t3"
+      },
+      {
+        "text": "and the preheader text is missing",
+        "gap": 5,
+        "expect": "existing:t3"
+      },
+      {
+        "text": "tell analytics charts to add a 90 day range",
+        "gap": 10,
+        "expect": "existing:t2"
+      }
+    ]
+  },
+  {
+    "id": "dev-46",
+    "about": "start/new-thread asks mid-burst: a start verb with its own object is new work, a restart is not",
+    "threads": [
+      {
+        "id": "t1",
+        "name": "Connector picker warning",
+        "state": "working",
+        "request": "the warning in the connector picker is too quiet, make it stand out",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 300,
+        "at_ago": 20
+      },
+      {
+        "id": "t2",
+        "name": "Release build script",
+        "state": "finished",
+        "request": "the release script forgets to bump the build number",
+        "summary": "Build number now bumps on every release",
+        "messages": [],
+        "pending_question": null,
+        "archived": false,
+        "pinned": false,
+        "unread": false,
+        "since_ago": 7200,
+        "at_ago": 7200
+      }
+    ],
+    "home": [
+      {
+        "text": "the warning in the connector picker is too quiet, make it stand out",
+        "ago": 30,
+        "thread": "t1"
+      }
+    ],
+    "stream": [
+      {
+        "text": "start the docs page for connectors too",
+        "gap": 5,
+        "expect": "new",
+        "name_has": [
+          "docs"
+        ]
+      },
+      {
+        "text": "make it list every connector with a screenshot",
+        "gap": 6,
+        "expect": "existing:@1"
+      },
+      {
+        "text": "kick off the onboarding copy rewrite as well",
+        "gap": 8,
+        "expect": "new",
+        "name_has": [
+          "onboarding"
+        ]
+      },
+      {
+        "text": "new thread",
+        "gap": 10,
+        "expect": "new"
+      },
+      {
+        "text": "start the release build script again, it failed",
+        "gap": 20,
+        "expect": "existing:t2"
+      }
+    ]
+  }
+]

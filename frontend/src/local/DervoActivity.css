@@ -1,0 +1,24 @@
+.dervo-activity { display:inline-flex; align-items:center; gap:var(--dervo-s1,8px); min-width:0; max-width:100%; min-height:38px; text-align:left; }
+.dervo-activity-icon { display:grid; place-items:center; flex:0 0 22px; width:22px; height:22px; color:hsl(var(--muted-foreground)); }
+.dervo-activity-dot { width:6px; height:6px; border-radius:50%; background:currentColor; }
+.dervo-activity-copy { display:flex; flex:1; min-width:0; flex-direction:column; gap:2px; }
+.dervo-activity-label { display:block; font-size:0.75rem; font-weight:600; line-height:18px; color:hsl(var(--foreground)); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dervo-activity-secondary { display:block; min-height:16px; font-size:0.6875rem; line-height:16px; color:hsl(var(--muted-foreground)); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+/* With no second line the icon centres on the label alone, not on the label plus a blank line under it, which put the
+   check 8px below "Result approved" (#23). The 38px min-height above keeps the row's height either way. */
+.dervo-activity-secondary:empty { display:none; }
+.dervo-activity[data-tone="error"] .dervo-activity-label { color:hsl(var(--destructive)); }
+.dervo-activity[data-tone="completed"] .dervo-activity-icon { color:hsl(var(--primary)); }
+.dervo-activity[data-active] .dervo-activity-icon { color:hsl(var(--foreground)); }
+@media (prefers-reduced-motion: no-preference) {
+ .dervo-activity-label { transition:color 180ms ease-out; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .dervo-activity * { animation:none !important; transition:none !important; transform:none !important; }
+ .dervo-activity-label { background:none; color:hsl(var(--foreground)); }
+}
+.dervo-conversation-status-button { display:flex; align-items:center; gap:var(--dervo-s2,12px); width:100%; min-width:0; }
+.dervo-conversation-status-button>.dervo-activity { flex:1; }
+.dervo-conversation-status-meta { display:flex; flex-direction:column; gap:3px; min-width:0; max-width:45%; font-size:0.625rem; line-height:15px; }
+.dervo-conversation-status-meta>span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+@container (max-width:620px) { .dervo-conversation-status-meta { display:none; } }

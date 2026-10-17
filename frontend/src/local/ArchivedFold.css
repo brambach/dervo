@@ -1,0 +1,33 @@
+/* The Archived fold's beta.16 pieces (design b16-lifecycle, archived-open). The fold itself is ConversationLifecycle.css. */
+.dervo-archived .dv-archived-head { padding: var(--dv-s2) var(--dv-s2) 2px; font-size: var(--dv-fs-caption); color: var(--dv-faint); font-weight: 600; list-style: none; }
+/* The name opens the thread, which brings it back. It reads as the row, not as a button. */
+.dervo-archived .dv-archived-open { text-align: left; color: inherit; font: inherit; padding: 0; background: none; border: 0; cursor: pointer; }
+.dervo-archived .dv-archived-open:hover { color: var(--dv-ink); }
+.dervo-archived .dv-archived-open:disabled { cursor: default; }
+/* How long a tidied thread was quiet, or when you archived it. Restore and ⋯ take its place on hover and focus. */
+.dervo-archived .dv-archived-when { margin-left: auto; padding-right: var(--dv-s1); font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dervo-archived-row:has(.dv-archived-when):not(:hover):not(:focus-within):not(:has([data-state="open"])) .dervo-archived-actions { display: none; }
+.dervo-archived-row:hover .dv-archived-when, .dervo-archived-row:focus-within .dv-archived-when, .dervo-archived-row:has([data-state="open"]) .dv-archived-when { display: none; }
+
+/* "Delete all archived…" closes the list (beta.16.1 item 3): quiet, like the fold's own rows, and its confirm opens in
+   place with the count. The line after says what it freed. */
+.dervo-archived .dv-archived-foot { list-style: none; padding: var(--dv-s1) 0 var(--dv-s2); }
+.dv-archived-delete-all { display: flex; align-items: center; gap: var(--dv-s2); width: 100%; min-height: 28px; padding: 0 var(--dv-s2);
+  border: 0; border-radius: var(--dv-r1); background: none; color: var(--dv-muted); font: inherit; font-size: var(--dv-fs-small); text-align: left; cursor: pointer; }
+.dv-archived-delete-all:hover:not(:disabled) { color: var(--dv-ink); background: color-mix(in srgb, var(--dv-raised) 45%, transparent); }
+.dv-archived-delete-all:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dv-archived-delete-all:disabled { cursor: default; opacity: .5; }
+.dervo-archived .dv-archived-confirm { width: auto; margin: 0 var(--dv-s1); border: 1px solid var(--dv-line); border-radius: var(--dv-r2); background: var(--dv-raised); }
+.dv-archived-freed { padding: var(--dv-s2) var(--dv-s2) 0; }
+
+/* The one quiet line after a tidy, where the sidebar's own Undo lines sit: just above the fold. */
+.dv-sb-tidied { padding: var(--dv-s2) var(--dv-s2) 0; }
+.dv-sb-tidied .dv-activity-action { margin-left: -2px; }
+/* A pinned thread keeps its time, with a small pin before it. */
+.dv-sb-pinned { display: inline-flex; align-items: center; gap: 4px; }
+.dv-sb-pinned svg { width: 11px; height: 11px; color: var(--dv-muted); }
+/* Knowledge's unread dot: something new was kept since you last looked. Ink, not rust: rust means "needs you". */
+.dv-sb-dot { width: 7px; height: 7px; margin-right: 3px; border-radius: 50%; background: var(--dv-ink-2); flex: none; }
+/* The project menu's "Archive quiet threads" choices (TidySetting.tsx), and the one line on what never goes. */
+.dv-menu-tidy { min-width: 220px; }
+.dv-menu-note { padding: 6px 10px 8px; font-size: var(--dv-fs-caption); color: var(--dv-muted); max-width: 250px; line-height: 1.4; }

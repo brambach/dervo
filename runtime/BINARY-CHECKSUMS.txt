@@ -1,0 +1,6 @@
+# Vendored provider runtime binaries excluded from git (see .gitignore).
+# Recorded 2026-09-25 from the official @openai/codex@0.156.1-darwin-arm64 npm package (b16/codex).
+0196e89fe5a7598f816ee54232c3d7c26d75e502ab5cfe2c9240e81d90f7255a  runtime/codex
+588df0df1dab35f99f272f9f499a9fada658c613d09ef34562fe274dd54287d6  runtime/codex-code-mode-host
+# runtime/codex 238138912 bytes
+# runtime/codex-code-mode-host 62802592 bytes

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/buzz.svg?v=20260610" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <!--
+      Boot background: the document is painted before the app bundle (and its
+      stylesheets) load, so a cold boot never flashes ahead of the loading
+      gate. Three layers paint the same two colours, Dervo's paper from
+      DervoTokens.css (#f7f6f3 by day, #141312 at night, #0e1813 in the Dervo
+      forest theme):
+
+      1. The native window, painted in src/main.rs from the appearance macOS
+         reports, before the webview draws anything. tauri.conf.json sets no
+         backgroundColor; the Rust side owns it.
+      2. boot.css, linked below, which follows prefers-color-scheme. Kept as a
+         <link> rather than an inline <style> to avoid Tauri's nonce injection
+         for style-src (see boot.css for the full rationale).
+      3. The inline script below, which reads ThemeProvider's cache (the same
+         buzz-theme-cache and buzz-follow-system entries it writes) and paints
+         the paper of the theme you chose, so Dark fixed on a light Mac boots
+         dark. With no cache, or when the theme follows macOS, it uses the OS
+         scheme, matching what ThemeProvider applies moments later. It also
+         seeds the light/dark class so themed vars resolve before ThemeProvider
+         mounts.
+
+      The body paints its own themed background once the app CSS loads, so
+      none of this shows through after boot.
+    -->
+    <link rel="stylesheet" href="/boot.css" />
+    <script>
+      (() => {
+        var PAPER_DARK = "#141312", PAPER_LIGHT = "#f7f6f3", PAPER_FOREST = "#0e1813";
+        var dark = null, cached, follow, forest = false;
+        try {
+          follow = window.localStorage.getItem("buzz-follow-system");
+          cached = window.localStorage.getItem("buzz-theme-cache");
+          // A fixed theme (Light or Dark in Preferences) boots in its own paper.
+          // Match macOS, or a fresh profile with nothing stored, follows the OS.
+          var fixed = follow === "false" || (follow === null && window.localStorage.getItem("buzz-theme") !== null);
+          if (fixed && cached) dark = !!JSON.parse(cached).isDark;
+          // The Dervo theme is Dark with the forest palette (src/local/dervoPalette.ts keeps this key).
+          forest = window.localStorage.getItem("dervo-palette") === "forest";
+        } catch {
+          /* no storage: follow the OS below */
+        }
+        if (dark === null) {
+          try {
+            dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          } catch {
+            dark = false;
+          }
+        }
+        document.documentElement.classList.add(dark ? "dark" : "light");
+        if (dark && forest) document.documentElement.setAttribute("data-dervo-palette", "forest");
+        document.documentElement.style.backgroundColor = dark ? (forest ? PAPER_FOREST : PAPER_DARK) : PAPER_LIGHT;
+      })();
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

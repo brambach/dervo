@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Dervo",
+    "slug": "dervo",
+    "version": "0.1.0",
+    "scheme": "dervo",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "backgroundColor": "#fdfdfc",
+    "ios": {
+      "bundleIdentifier": "com.trydervo.dervo",
+      "supportsTablet": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Dervo uses the camera only to scan the pairing code on your Mac.",
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-notifications",
+        {}
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 120,
+          "resizeMode": "contain",
+          "backgroundColor": "#fdfdfc",
+          "dark": {
+            "image": "./assets/splash-icon.png",
+            "backgroundColor": "#1f1f1e"
+          }
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}

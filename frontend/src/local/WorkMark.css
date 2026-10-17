@@ -1,0 +1,15 @@
+/* Work's mark (b16-work design, work.css .b16w-tag): a briefcase and the word, never colour alone. */
+.dv-work-tag { display: inline-flex; align-items: center; gap: 4px; height: 18px; padding: 0 6px 0 5px; border-radius: var(--dv-r-pill);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-ink-2); white-space: nowrap;
+  letter-spacing: .01em; vertical-align: 1px; flex: none; }
+.dv-work-tag svg { width: 11px; height: 11px; flex: none; }
+.dv-work-name { display: inline-flex; align-items: center; gap: 4px; min-width: 0; }
+.dv-work-name svg { width: 12px; height: 12px; flex: none; }
+/* A Work thread's account is signed out: said where you'd type (b16-work thread-signed-out). */
+.dv-work-out { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--dv-s3); align-items: start; box-sizing: border-box;
+  width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto var(--dv-s2); padding: var(--dv-s3) var(--dv-s4);
+  border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: var(--dv-lift), inset 0 0 0 1px var(--dv-line); font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+.dv-work-out p { margin: 0; }
+.dv-work-out b { color: var(--dv-ink); font-weight: 600; }
+.dv-work-out .dv-st { margin-top: 2px; }
+.dv-work-out .dv-ob-acts { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s1); margin-top: var(--dv-s2); }

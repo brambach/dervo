@@ -1,0 +1,15 @@
+.dervo-received-response { min-height: 1.5em; }
+.dervo-response-waiting { min-height: 1.5em; color: hsl(var(--muted-foreground)); font-size: .875rem; }
+/* The slot under live text keeps its height, so a step appearing or clearing never moves the reply. */
+.dervo-response-activity { min-height: 1.25rem; margin-top: .375rem; font-size: .8125rem; line-height: 1.25rem; color: hsl(var(--muted-foreground)); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+/* Streamdown's word fade (streamdown/styles.css, v2.6), scoped to replies. */
+@keyframes sd-fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sd-markerIn { from { color: transparent; } }
+.dervo-streamdown [data-sd-animate] { animation: var(--sd-animation, sd-fadeIn) var(--sd-duration, 150ms) var(--sd-easing, ease) var(--sd-delay, 0ms) both; }
+.dervo-streamdown [data-sd-animate-marker]::marker { animation: sd-markerIn var(--sd-marker-duration, 150ms) var(--sd-marker-easing, ease) var(--sd-marker-delay, 0ms) both; }
+@media (prefers-reduced-motion: reduce) { .dervo-streamdown [data-sd-animate], .dervo-streamdown [data-sd-animate-marker]::marker { animation: none; } }
+.dervo-streamdown > * + * { margin-top: .75rem; }
+.dervo-streamdown > p + p { margin-top: var(--spacing-conversation-paragraph, .75rem); }
+.dervo-streamdown > :first-child { margin-top: 0; }
+.dervo-streamdown > :last-child { margin-bottom: 0; }
+.dervo-streamdown > ul, .dervo-streamdown > ol { margin-top: .375rem; }

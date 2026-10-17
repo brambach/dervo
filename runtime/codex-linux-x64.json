@@ -1,0 +1,18 @@
+{
+  "version": "0.156.1",
+  "platform": "x86_64-unknown-linux-musl",
+  "npm_package_version": "0.156.1-linux-x64",
+  "tarball": "https://registry.npmjs.org/@openai/codex/-/codex-0.156.1-linux-x64.tgz",
+  "integrity": "sha512-2ePo0wgOcnONKsuzp8vBjOmNY+IdsKaouaDDIdiKq9HOWNuV/GI22OeXft2A/1GaoL71ictO0/pLAsCEnQ6wew==",
+  "official_release": "https://github.com/openai/codex/releases/tag/rust-v0.156.1",
+  "version_output": "codex-cli 0.156.1",
+  "archive_root": "package/vendor/x86_64-unknown-linux-musl/",
+  "folder": "runtime/codex-linux",
+  "files": {
+    "codex-package.json": "6cf97f0c8999775e81c038429a31f28c406e077ecdbece52a9700e244bd2458f",
+    "bin/codex": "0b2e9301d6100dddda3b9d5c80ebaeaa3a2f1962388f2f36f6b96a9f08b1f33f",
+    "bin/codex-code-mode-host": "45ba654b0e145406f3316be4729b886980ce811aa2e3b6ed4e033dd41ab524f1",
+    "codex-resources/bwrap": "77360cb751ccedc5971391444ac86a8a33c15b04d6b4a6fe45f5d25496e62c4c",
+    "codex-path/rg": "e62198eb19b136b88c330af83647b5a962cb99b6b1f066758568f12de1974849"
+  }
+}

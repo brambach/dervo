@@ -1,0 +1,72 @@
+/* Releases: Knowledge's two-pane notebook (a 272px rail and a reader), the settings card with hairline dividers, and the
+   dervo-chip pill vocabulary. Colours are named once in DervoBrand.css; nothing here hard-codes one. */
+.dervo-releases { container-type:inline-size; display:flex; flex:1; min-height:0; flex-direction:column; overflow:hidden; color:hsl(var(--foreground)); }
+.dervo-rel-top { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; padding:22px 36px 0; }
+.dervo-rel-top h2 { margin-top:2px; font-size:1.4375rem; font-weight:600; line-height:1.4; letter-spacing:-.02em; outline:none; }
+.dervo-rel-kicker { display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:0.75rem; font-weight:550; line-height:1.6; color:hsl(var(--muted-foreground)); }
+.dervo-rel-kicker>span { font-variant-numeric:tabular-nums; }
+.dervo-rel-intro { padding:14px 36px 20px; border-bottom:1px solid hsl(var(--border)); }
+.dervo-rel-intro>p { max-width:72ch; font-size:0.875rem; line-height:1.65; color:hsl(var(--muted-foreground)); }
+.dervo-rel-intro b { font-weight:550; color:hsl(var(--foreground)); }
+.dervo-rel-loading { padding:28px 36px; font-size:0.875rem; line-height:1.7; color:hsl(var(--muted-foreground)); }
+.dervo-rel-error { display:flex; align-items:center; justify-content:space-between; gap:16px; margin:20px 36px; padding:12px 14px; border-radius:12px; background:hsl(var(--destructive)/.08); color:hsl(var(--destructive)); font-size:0.8125rem; }
+
+.dervo-rel-body { flex:1; min-height:0; overflow-y:auto; display:grid; grid-template-columns:272px minmax(0,1fr); align-items:start; }
+.dervo-rel-rail { align-self:stretch; padding:24px 16px; border-right:1px solid hsl(var(--border)); background:hsl(var(--muted)/.18); }
+.dervo-rel-rail>p { margin:0 12px 14px; }
+.dervo-rel-rail>button { display:grid; gap:7px; width:100%; margin-bottom:5px; padding:14px; border-radius:12px; text-align:left; cursor:pointer; transition:background-color 160ms ease; }
+.dervo-rel-rail>button:hover { background:hsl(var(--accent)/.35); }
+.dervo-rel-rail>button[aria-current=true] { background:hsl(var(--accent)/.7); }
+.dervo-rel-rail>button:focus-visible { outline:2px solid hsl(var(--ring)); outline-offset:2px; }
+.dervo-rel-line { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.dervo-rel-version { font-size:0.9375rem; font-weight:600; letter-spacing:-.01em; }
+.dervo-rel-rail .dervo-rel-when { font-size:0.75rem; color:hsl(var(--muted-foreground)); }
+.dervo-rel-sum { font-size:0.78rem; line-height:1.5; color:hsl(var(--muted-foreground)); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.dervo-rel-dot { width:6px; height:6px; border-radius:999px; flex:none; }
+.dervo-rel-dot.is-running { background:hsl(var(--dervo-moss)); }
+/* The one you're running is a filled moss dot; the version being planned is the same dot not filled in yet. */
+.dervo-rel-dot.is-next { box-shadow:inset 0 0 0 1.5px hsl(var(--muted-foreground)); }
+
+.dervo-rel-reader { min-width:0; padding:26px 34px 34px; }
+.dervo-rel-head { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; }
+.dervo-rel-head h3 { margin-top:7px; font-size:1.75rem; font-weight:550; line-height:1.3; letter-spacing:-.025em; }
+.dervo-rel-sub { max-width:62ch; margin-top:10px; font-size:1rem; line-height:1.7; color:hsl(var(--muted-foreground)); }
+
+.dervo-rel-stats { display:flex; flex-wrap:wrap; gap:10px; margin:22px 0 4px; }
+.dervo-rel-stat { flex:1 1 130px; display:grid; padding:13px 15px; border-radius:12px; box-shadow:inset 0 0 0 1px hsl(var(--border)); }
+.dervo-rel-n { font-size:1.5rem; font-weight:600; letter-spacing:-.02em; font-variant-numeric:tabular-nums; }
+.dervo-rel-n.is-warn { color:hsl(var(--dervo-live-ink)); }
+.dervo-rel-l { margin-top:3px; font-size:0.75rem; line-height:1.5; color:hsl(var(--muted-foreground)); }
+
+.dervo-rel-section { margin-top:26px; }
+.dervo-rel-section>p.dervo-rel-kicker { justify-content:flex-start; margin-bottom:12px; }
+.dervo-rel-empty { font-size:0.8125rem; line-height:1.6; color:hsl(var(--muted-foreground)); }
+.dervo-rel-built { display:flex; align-items:center; gap:6px; margin:-4px 0 12px; font-size:0.75rem; color:hsl(var(--muted-foreground)); }
+.dervo-rel-built .dervo-rel-sha { width:auto; }
+
+.dervo-rel-rows { border-radius:12px; box-shadow:inset 0 0 0 1px hsl(var(--border)); overflow:hidden; }
+.dervo-rel-row { display:flex; align-items:flex-start; gap:14px; padding:14px 16px; }
+.dervo-rel-row+.dervo-rel-row { border-top:1px solid hsl(var(--border)); }
+.dervo-rel-chip { flex:none; margin-top:1px; }
+.dervo-rel-chip.is-planned { background:hsl(var(--muted-foreground)/.14); color:hsl(var(--muted-foreground)); }
+.dervo-rel-chip.is-building { background:hsl(var(--dervo-live)/.18); color:hsl(var(--dervo-live-ink)); }
+.dervo-rel-text { flex:1; min-width:0; }
+.dervo-rel-t { font-size:0.9rem; font-weight:600; line-height:1.5; }
+.dervo-rel-d { max-width:76ch; margin-top:3px; font-size:0.8rem; line-height:1.6; color:hsl(var(--muted-foreground)); }
+
+.dervo-rel-commits { border-radius:12px; box-shadow:inset 0 0 0 1px hsl(var(--border)); overflow:hidden; }
+.dervo-rel-commit { display:flex; align-items:center; gap:13px; padding:9px 16px; font-size:0.8125rem; line-height:1.5; }
+.dervo-rel-commit+.dervo-rel-commit { border-top:1px solid hsl(var(--border)); }
+.dervo-rel-sha { width:56px; flex:none; font-family:ui-monospace,'JetBrains Mono',monospace; font-size:0.72rem; color:hsl(var(--muted-foreground)); }
+.dervo-rel-msg { flex:1; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dervo-rel-commit .dervo-rel-when { flex:none; font-size:0.72rem; color:hsl(var(--muted-foreground)); font-variant-numeric:tabular-nums; }
+.dervo-rel-more { padding:9px 16px; border-top:1px solid hsl(var(--border)); font-size:0.78rem; color:hsl(var(--muted-foreground)); }
+.dervo-rel-foot { max-width:78ch; margin-top:14px; font-size:0.75rem; line-height:1.6; color:hsl(var(--muted-foreground)); overflow-wrap:anywhere; }
+
+@container (max-width:760px) {
+ .dervo-rel-top,.dervo-rel-intro { padding-inline:24px; }
+ .dervo-rel-body { display:block; }
+ .dervo-rel-rail { border-right:0; border-bottom:1px solid hsl(var(--border)); background:none; }
+ .dervo-rel-reader { padding:22px 24px 32px; }
+}
+@media (prefers-reduced-motion:reduce) { .dervo-rel-rail>button { transition:none; } }

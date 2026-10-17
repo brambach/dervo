@@ -1,0 +1,29 @@
+/* The Remembered line under a reply (RememberedLine.tsx). Since beta.17.1 (#41, A) it's one line of counts with Show,
+   ActivityLine's muted caption, and Show opens one clipped row per note: its kind, its words cut to one line (the
+   tooltip has them all) and up to two actions. Mock: evidence/design-tests/memory-explore-20261005/line-*.png in the
+   mvp1 folder. "Waits for you" is ink, not rust: the sidebar and the result card already use a screen's one rust mark.
+   dv- tokens only. */
+/* ConnectedApp's slot: the reply column of .dervo-task-footer, with the lines' own spacing, not the footer's. */
+.dervo-task-footer.dv-rem-slot { margin-block: 0; }
+.dv-rem { display: flex; flex-direction: column; gap: 2px; margin-top: var(--dv-s2); max-width: 640px; }
+.dv-rem .dv-rem-line { display: block; }
+.dv-rem .dv-rem-tag { font-weight: 600; color: var(--dv-ink-2); }
+.dv-rem .dv-rem-waits { font-weight: 600; color: var(--dv-ink); }
+/* The caption face's spaces and middle dot are narrow: unspaced, "retired 1 · 1 waits" read as "retired 1·1 waits". */
+.dv-rem .dv-rem-sep { margin-inline: 3px; color: var(--dv-muted); }
+.dv-rem .dv-rem-acts { flex: none; white-space: nowrap; margin-left: 6px; }
+.dv-rem .dv-rem-acts .dv-activity-action + .dv-activity-action { margin-left: 2px; }
+.dv-rem .dv-rem-acts .dv-activity-done { padding: 0 var(--dv-s1); }
+.dv-rem-rows { display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.dv-rem-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--dv-s2); min-width: 0;
+  font-size: var(--dv-fs-caption); line-height: 1.45; color: var(--dv-muted); }
+.dv-rem-row .dv-rem-kind { flex: none; width: 92px; font-weight: 600; color: var(--dv-ink-2); }
+.dv-rem-row .dv-rem-said { flex: 1 1 0; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; color: var(--dv-ink-2); }
+.dv-rem-row .dv-rem-acts { margin-left: 0; }
+.dv-rem .dv-rem-error { display: block; flex-basis: 100%; margin-top: 2px; color: var(--dv-ink); }
+.dv-rem-edit { display: flex; flex-direction: column; gap: var(--dv-s2); margin-block: var(--dv-s1); font-size: var(--dv-fs-caption); }
+.dv-rem-edit textarea { width: 100%; min-height: 52px; padding: var(--dv-s2) var(--dv-s3); border: 0; border-radius: var(--dv-r1); background: var(--dv-canvas);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); color: var(--dv-ink); font: inherit; font-size: var(--dv-fs-small); line-height: 1.45; resize: none; }
+.dv-rem-edit textarea:focus { outline: 0; box-shadow: inset 0 0 0 1.5px var(--dv-muted); }
+.dv-rem-edit .dv-rem-edit-acts { display: flex; align-items: center; gap: var(--dv-s2); }
+.dv-rem-edit .dv-rem-edit-acts .dv-caption { margin-left: auto; }

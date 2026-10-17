@@ -1,0 +1,150 @@
+/* Chat feel (#30) and the working smile (#31), beta.11 step 3b. Everything that moves in the thread lives here, on the
+   dv- tokens, so DervoComponents.css stays the shell's. The bar is the moment you press Enter: nothing just appears.
+   Transform and opacity only, except the composer box shrinking back to one line (a height, animated in sendMotion.ts).
+   With reduced motion nothing moves: states change at once. */
+
+/* ---------- The working smile: think, then smile ---------- */
+.dv-work { display: inline-block; flex: none; overflow: visible; vertical-align: -3px; }
+.dv-work .dv-work-body { fill: var(--dv-pine); }
+.dv-work .dv-work-eyes ellipse { fill: var(--dv-pine-ink); }
+.dv-work .dv-work-mouth { stroke: var(--dv-pine-ink); }
+.dv-work { transform-origin: 50% 60%; }
+.dv-work .dv-work-eyes { transform-box: view-box; transform-origin: 50% 50%; }
+.dv-work .dv-work-mouth { transform-box: fill-box; transform-origin: 50% 50%; }
+/* Working: the eyes look up and the flat mouth drifts. Done: one small hop, once. */
+.dv-work[data-working] .dv-work-eyes { transform: translate(3px, -4px); }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-work .dv-work-eyes { transition: transform 420ms var(--dv-ease); }
+  .dv-work[data-working] .dv-work-mouth { animation: dv-work-think 2.4s ease-in-out infinite; }
+  .dv-work[data-done] { animation: dv-work-hop 520ms var(--dv-ease) 1; }
+}
+@keyframes dv-work-think { 0%, 100% { transform: translateX(-3px); } 50% { transform: translateX(3px); } }
+/* Step motions (WorkingMark.motionOf, 24 Sep): each follows the recorded step, on the same 2.4 s beat. The eyes and mouth
+   move inside the pebble; only waiting moves the whole. Reduced motion keeps the flat thinking face, still.
+   The breathe and the hop scale the <svg> box itself, not a group inside it: WebKit repaints far more than 16px for a
+   scaled SVG group, and that one breathing smile in the Progress panel kept its GPU process at about 167% of a core
+   (b161/window, evidence/b161-window/NOTES.md). On the box it costs about 8%. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-work[data-motion="read"] .dv-work-eyes { animation: dv-work-read 2.4s cubic-bezier(.45, 0, .55, 1) infinite; }
+  .dv-work[data-motion="search"] .dv-work-eyes { animation: dv-work-search 2.4s steps(1, end) infinite; }
+  .dv-work[data-motion="write"] .dv-work-eyes { transform: translate(2px, 4px); }
+  .dv-work[data-motion="write"] .dv-work-mouth { stroke-dasharray: 1; animation: dv-work-write 2.4s ease-in-out infinite; }
+  .dv-work[data-motion="run"] .dv-work-mouth { animation: dv-work-caret 1.2s steps(1, end) infinite; }
+  .dv-work[data-motion="wait"] .dv-work-eyes ellipse { transform-box: fill-box; transform-origin: 50% 50%; transform: scaleY(.22); }
+  .dv-work[data-motion="wait"] { animation: dv-work-breathe 2.4s ease-in-out infinite; }
+  .dv-work[data-motion="read"] .dv-work-mouth, .dv-work[data-motion="search"] .dv-work-mouth,
+  .dv-work[data-motion="wait"] .dv-work-mouth { animation: none; }
+}
+@keyframes dv-work-read { 0% { transform: translate(-6px, -2px); } 70% { transform: translate(6px, -2px); } 78% { transform: translate(6px, 1px); } 100% { transform: translate(-6px, 1px); } }
+@keyframes dv-work-search { 0% { transform: translate(-7px, 0); } 25% { transform: translate(7px, -3px); } 50% { transform: translate(-2px, 3px); } 75% { transform: translate(6px, 1px); } }
+@keyframes dv-work-write { 0% { stroke-dashoffset: 1; } 55%, 85% { stroke-dashoffset: 0; opacity: 1; } 100% { stroke-dashoffset: 0; opacity: 0; } }
+@keyframes dv-work-caret { 0% { opacity: 1; } 50% { opacity: 0; } }
+@keyframes dv-work-breathe { 0%, 100% { transform: scale(.94); } 50% { transform: scale(1); } }
+@keyframes dv-work-hop { 0% { transform: translateY(0) scale(1); } 35% { transform: translateY(-10%) scale(1.06); } 100% { transform: none; } }
+
+/* ---------- The live line under a reply: the mark, then the step, which changes in place ---------- */
+.dervo-connected-main .dervo-response-waiting,
+.dervo-connected-main .dervo-response-activity { display: flex; align-items: center; gap: var(--dv-s2); }
+.dervo-connected-main :is(.dervo-response-waiting, .dervo-response-activity) .dv-live-step { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* ---------- A run's trail under its reply (16.2, mock F, evidence/design-tests/b162-thinking) ----------
+   The last two finished steps, ticked and faint (the older fainter), then the live step shimmering. No smile here: the
+   header's clock and the shimmer say it's working. Oldest crumbs drop out whole when the line is short (ReplyTrailLine).
+   With reduced motion nothing slides or pulses and the words change in place. */
+.dervo-connected-main :is(.dervo-response-waiting, .dervo-response-activity) > .dv-trail { flex: 1 1 auto; }
+.dervo-connected-main .dv-trail { display: flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; white-space: nowrap; font-size: var(--dv-fs-small); line-height: 20px; }
+.dv-trail .dv-trail-part { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.dv-trail .dv-trail-part[hidden] { display: none; }
+.dv-trail .dv-trail-crumb { display: inline-flex; align-items: baseline; gap: 5px; color: var(--dv-faint); }
+.dv-trail .dv-trail-old { opacity: .5; }
+.dv-trail-tick { flex: none; align-self: center; width: 11px; height: 11px; stroke: var(--dv-sage); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dv-trail .dv-trail-sep { color: var(--dv-line-strong); }
+.dv-trail .dv-trail-now { display: inline-flex; align-items: baseline; gap: 6px; flex: none; font-size: var(--dv-fs-body); }
+.dv-trail .dv-trail-subject { font: 400 var(--dv-fs-caption) var(--dv-font-mono); color: var(--dv-ink-2); }
+.dv-trail .dv-trail-crumb .dv-trail-subject { color: inherit; }
+.dv-trail .dv-trail-dots { display: inline-flex; align-self: center; gap: 3px; margin-left: 2px; }
+.dv-trail .dv-trail-dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--dv-live); box-shadow: 0 0 0 2.5px var(--dv-live-wash); }
+.dv-trail .dv-trail-dots i[data-done] { background: var(--dv-sage); box-shadow: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-trail .dv-trail-part, .dv-trail .dv-trail-now { animation: dv-trail-in 260ms var(--dv-ease) both; }
+  .dv-trail .dv-trail-dots i:not([data-done]) { animation: dv-trail-dot 1.2s ease-in-out infinite; }
+}
+@keyframes dv-trail-in { from { opacity: 0; transform: translateX(10px); } }
+/* The thinking beat (ReplyTrailView.tsx Beat): the pebble filled in ink, breathing slowly.
+   Filled on purpose: an outline at this size read as an unticked step beside the ticks (review, 8 Oct). It arrives with the row the
+   moment you send, so there's never a blank gap under your message. */
+.dv-trail .dv-trail-beat { flex: none; width: 12px; height: 12px; fill: var(--dv-ink-2); opacity: .7; }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-trail .dv-trail-beat { animation: dv-trail-beat-in 220ms var(--dv-ease) both, dv-trail-beat 2.4s ease-in-out 220ms infinite; }
+}
+@keyframes dv-trail-beat-in { from { opacity: 0; transform: scale(.4); } }
+@keyframes dv-trail-beat { 0%, 100% { opacity: .55; transform: scale(.9); } 50% { opacity: .85; transform: scale(1); } }
+@keyframes dv-trail-dot { 50% { transform: scale(.7); } }
+/* The header: "Claude Code  Opus 5.5", the model a step quieter than the name and nothing ticking (beta.18, option B). */
+.dv-reply-meta { color: var(--dv-faint); font-weight: 400; }
+/* The reply header's own rule sets every span in it to 600 and muted (DervoComponents.css); the model steps out of that. */
+:root[data-dervo-local] .dervo-connected-main [data-testid="message-header"] span.dv-reply-meta[data-testid="reply-run-meta"] { color: var(--dv-faint); font-weight: 400; }
+/* The end chip: "6 steps · 2 helpers · 13s ›", which opens Progress. */
+.dervo-response-chip { margin-top: 6px; }
+.dv-run-chip { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: var(--dv-fs-caption); line-height: 20px; color: var(--dv-muted); background: none; border: 1px solid var(--dv-line-strong); border-radius: 999px; padding: 1px 10px; cursor: pointer; }
+.dv-run-chip:hover { color: var(--dv-ink-2); background: var(--dv-sunk); }
+.dv-run-chip:focus-visible { outline: 2px solid var(--dv-focus, var(--dv-pine)); outline-offset: 2px; }
+@media (prefers-reduced-motion: no-preference) { .dv-run-chip { animation: dv-chip-in 220ms var(--dv-ease) both; } }
+@keyframes dv-chip-in { from { opacity: 0; } }
+
+/* ---------- The reply's words: each one fades up over 160 ms as the pacer releases it ---------- */
+:root[data-dervo-local] .dervo-streamdown { --sd-duration: 160ms; --sd-easing: var(--dv-ease); }
+
+/* ---------- The status row above the composer, while an agent works ---------- */
+.dervo-activity[data-active] .dervo-activity-icon .dv-work { display: block; }
+
+/* ---------- Send: the composer's Stop while an agent works ---------- */
+:root[data-dervo-local] .dv-composer [data-testid="stop-run"] { width: 34px; height: 34px; background: var(--dv-pine); color: var(--dv-pine-ink); box-shadow: none; }
+:root[data-dervo-local] .dv-composer [data-testid="stop-run"]:hover { background: color-mix(in srgb, var(--dv-pine) 86%, var(--dv-canvas)); }
+
+/* ---------- The composer's word on a message sent mid-run: steered or queued ---------- */
+.dv-composer-tools .dv-hint[data-interruption] { color: var(--dv-ink-2); }
+/* Under the row itself: the same words as the composer, in the caption size the row's other footers use, right under the bubble. */
+:root[data-dervo-local] .dervo-connected-main .dv-interruption { margin: 2px auto var(--dv-s2); text-align: right; font-size: var(--dv-fs-caption); line-height: var(--dv-lh-ui); color: var(--dv-muted); }
+
+/* ---------- The sent message travels; the row it lands in draws nothing twice ---------- */
+[data-dv-sent] [data-testid="message-body"] { will-change: transform; }
+
+/* ---------- The reply's row enters once, as the sent bubble lands; nothing inside it fades a second time ----------
+   Beta.18: 160 ms after Enter, while the 260 ms travel settles, rather than a 280 ms wait and a 260 ms fade after it. */
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-dervo-local] .dervo-connected-main [data-testid="message-row"]:has(.dervo-received-response[data-response-active] > .dervo-response-waiting) { animation: dv-reply-in 180ms var(--dv-ease) 160ms both; }
+}
+@keyframes dv-reply-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Home: your message rises into the chat on Enter, the step line just after it (Home.tsx send(), beta.18) ----------
+   Once, on the shown copy only: the host's copy takes over the same row without the attribute, so nothing plays twice. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-home .dv-msg-you-wrap[data-outgoing="sending"] { animation: dv-home-sent 200ms var(--dv-ease) both; }
+  .dv-home .dv-msg-dervo[data-outgoing="sending"] { animation: dv-reply-in 180ms var(--dv-ease) 120ms both; }
+}
+@keyframes dv-home-sent { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ---------- Shared presence: Home, active replies and the conversation status (Presence.tsx) ---------- */
+/* A soft shimmer over the words, the way a placeholder line reads in ChatGPT, Claude and Cursor: a lighter band
+   crosses the muted text left to right every 2.4 s, and the words rest plain for a moment between passes. The band
+   starts wholly off the text's left end and finishes wholly off its right (the image is three text widths and the
+   band its middle sixth), so the loop wraps on two identical plain frames and nothing snaps. Bug #6 was the 200%
+   image: the band's centre sat on the text's edge at both ends of the cycle, so every pass ended in a visible cut
+   and read as a sweep that played once. Nothing moves or changes size. The line carries data-shimmer only when the
+   person hasn't asked for less motion; with reduced motion the words just change. Labels stay mounted as real steps
+   change, so a frequent tool update doesn't repeatedly restart the shimmer. */
+.dv-presence-text {
+  --dv-presence-muted: var(--dv-muted, hsl(var(--muted-foreground)));
+  --dv-presence-ink: var(--dv-ink, hsl(var(--foreground)));
+}
+@media (prefers-reduced-motion: no-preference) {
+  .dv-home .dv-home-step[data-shimmer] .dv-home-step-words,
+  .dv-presence-text[data-shimmer],
+  :root[data-dervo-local] .dervo-connected-main span.dv-presence-text[data-shimmer] {
+    background: linear-gradient(90deg, var(--dv-presence-muted) 0%, var(--dv-presence-muted) 42%, var(--dv-presence-ink) 50%, var(--dv-presence-muted) 58%, var(--dv-presence-muted) 100%);
+    background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: dv-home-shimmer 2.4s linear infinite; }
+  .dv-home .dv-home-receipt { transition: opacity 160ms var(--dv-ease); }
+}
+@keyframes dv-home-shimmer { from { background-position: 100% 0; } to { background-position: 0% 0; } }

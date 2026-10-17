@@ -1,0 +1,27 @@
+/* The welcome (Welcome.tsx): the brand window, one reading column set low in the meadow's paper, and nothing else.
+   Tokens only. The pine button is the only colour, so the view has no accent: nothing here needs you. */
+.dv-moment.dv-wm { padding-top: 30vh; }
+.dv-wm-col { max-width: 600px; }
+.dv-wm .dv-moment-mark { margin-bottom: var(--dv-s6); }
+/* Two balanced lines at the column's width, as the 19 Sep router line was ("Keep Dervo open beside you / and fire off tiny
+   tasks."). The headline is about the same length, so it should break the same way. Not seen rendered yet. */
+.dv-wm h1 { margin-bottom: var(--dv-s5); text-wrap: balance; }
+.dv-wm .dv-lede { max-width: 48ch; }
+.dv-wm .dv-moment-actions { margin-top: var(--dv-s6); }
+.dv-wm-go { height: 38px; padding: 0 var(--dv-s5); font-size: var(--dv-fs-body); }
+.dv-wm-go svg { transition: transform var(--dv-fast); }
+.dv-wm-go:hover svg { transform: translateX(2px); }
+
+/* Each line settles in once, after the mark and a beat apart. Nothing moves with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-wm-in { animation: dv-wm-in 480ms var(--dv-ease) both; }
+  .dv-wm h1.dv-wm-in { animation-delay: 160ms; }
+  .dv-wm .dv-lede.dv-wm-in { animation-delay: 300ms; }
+  .dv-wm .dv-moment-actions.dv-wm-in { animation-delay: 440ms; }
+}
+@keyframes dv-wm-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+@media (max-width: 720px) {
+  .dv-moment.dv-wm { padding-top: 20vh; }
+  .dv-wm h1 { font-size: var(--dv-fs-h1); }
+}

@@ -1,0 +1,13 @@
+/* The Running orb (RunningOrb.tsx): B, the halftone sunrise in colour (evidence/design-tests/b16-orb-3/). 16px, in the
+   thread's summary strip beside the word Running. The dots sit on nothing, so the orb takes the colour of what it's on.
+   Light and dark are drawn separately: ink dots on paper by day, light dots on dark at night. Each is a film strip of
+   stills (--dv-orb-frames of them, 16px apart) that one steps() animation slides, so the page never lays out for it. */
+.dv-orb {
+  display: inline-block; flex: none; width: 16px; height: 16px; vertical-align: middle;
+  background: var(--dv-orb-lt) 0 0 / calc(var(--dv-orb-frames) * 16px) 16px no-repeat;
+}
+:root[data-dervo-local].dark .dv-orb { background-image: var(--dv-orb-dk); }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-orb { animation: dv-orb-rise var(--dv-orb-cycle) steps(var(--dv-orb-frames)) infinite; }
+}
+@keyframes dv-orb-rise { to { background-position-x: calc(var(--dv-orb-frames) * -16px); } }

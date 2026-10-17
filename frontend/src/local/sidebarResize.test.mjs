@@ -1,0 +1,44 @@
+import assert from 'node:assert/strict';
+import {test,after,afterEach} from 'node:test';
+import {JSDOM} from 'jsdom';
+const dom=new JSDOM('<!doctype html><html><body></body></html>',{url:'http://localhost'});
+for(const key of ['window','document','HTMLElement','Element','HTMLInputElement','MutationObserver','Node','NodeFilter','CustomEvent','Event','DocumentFragment','KeyboardEvent','MouseEvent','PointerEvent'])if(dom.window[key])globalThis[key]=dom.window[key];
+globalThis.getComputedStyle=dom.window.getComputedStyle.bind(dom.window);
+globalThis.IS_REACT_ACT_ENVIRONMENT=true;
+Object.defineProperty(globalThis,'navigator',{configurable:true,value:dom.window.navigator});
+globalThis.localStorage=dom.window.localStorage;
+globalThis.ResizeObserver=class{observe(){}unobserve(){}disconnect(){}};
+window.matchMedia=()=>({matches:false,addEventListener(){},removeEventListener(){}});
+HTMLElement.prototype.scrollIntoView=function(){};
+globalThis.requestAnimationFrame=cb=>setTimeout(()=>cb(Date.now()),0);globalThis.cancelAnimationFrame=id=>clearTimeout(id);window.requestAnimationFrame=globalThis.requestAnimationFrame;window.cancelAnimationFrame=globalThis.cancelAnimationFrame;
+globalThis.DOMRect=dom.window.DOMRect??class DOMRect{constructor(x=0,y=0,width=0,height=0){Object.assign(this,{x,y,width,height,top:y,left:x,right:x+width,bottom:y+height});}static fromRect(r={}){return new DOMRect(r.x,r.y,r.width,r.height);}toJSON(){return this;}};
+HTMLElement.prototype.hasPointerCapture=()=>false;HTMLElement.prototype.releasePointerCapture=()=>{};
+const React=await import('react');
+const {readFileSync}=await import('node:fs');
+const {render,fireEvent,screen,cleanup,waitFor,within}=await import('@testing-library/react');
+const {QueryClient,QueryClientProvider}=await import('@tanstack/react-query');
+const {SidebarProvider,Sidebar}=await import('@/shared/ui/sidebar');
+const {SidebarResize}=await import('./SidebarResize.tsx');
+after(()=>dom.window.close());afterEach(()=>{cleanup();localStorage.clear();});
+function mount(){return render(React.createElement(SidebarProvider,null,React.createElement(Sidebar,null,React.createElement(SidebarResize))));}
+test('keyboard resizing respects bounds, persists across remount and resets on double click',()=>{
+ const view=mount();let edge=screen.getByRole('separator',{name:'Resize sidebar'});
+ fireEvent.keyDown(edge,{key:'ArrowRight'});assert.equal(edge.getAttribute('aria-valuenow'),'310');
+ view.unmount();mount();edge=screen.getByRole('separator',{name:'Resize sidebar'});
+ assert.equal(edge.getAttribute('aria-valuenow'),'310');
+ fireEvent.keyDown(edge,{key:'End'});fireEvent.keyDown(edge,{key:'ArrowRight'});assert.equal(edge.getAttribute('aria-valuenow'),'420');
+ fireEvent.keyDown(edge,{key:'Home'});fireEvent.keyDown(edge,{key:'ArrowLeft'});assert.equal(edge.getAttribute('aria-valuenow'),'220');
+ fireEvent.doubleClick(edge);assert.equal(edge.getAttribute('aria-valuenow'),'300');
+});
+test('dragging resizes the shared shell and cancellation restores selection and cursor',()=>{
+ window.PointerEvent=class extends window.MouseEvent{constructor(type,props){super(type,props);this.pointerId=props.pointerId;}};
+ HTMLElement.prototype.setPointerCapture=()=>{};
+ mount();const edge=screen.getByRole('separator',{name:'Resize sidebar'});
+ fireEvent.pointerDown(edge,{pointerId:1,button:0,clientX:300});
+ fireEvent.pointerMove(edge,{pointerId:1,clientX:380});
+ assert.equal(edge.getAttribute('aria-valuenow'),'380');
+ assert.equal(document.body.style.userSelect,'none');
+ fireEvent.pointerCancel(edge,{pointerId:1});
+ assert.equal(document.body.style.userSelect,'');assert.equal(document.documentElement.style.cursor,'');
+ assert.equal(document.querySelector('.group\\/sidebar-wrapper').style.getPropertyValue('--sidebar-width'),'380px');
+});

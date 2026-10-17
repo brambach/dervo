@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSDockTilePlugIn</key>
+	<string>DervoDockTile.docktileplugin</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera access is unused in this native fixture.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Dervo uses the microphone for voice on Home: only while you hold the talk key, for a few seconds after Dervo asks you to say yes, or while you have “Hey Dervo” or open mic turned on. What you say is turned into text on this Mac.</string>
+</dict>
+</plist>

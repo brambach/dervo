@@ -1,0 +1,80 @@
+{
+  "build": {
+    "beforeBundleCommand": null
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "create": false,
+        "title": "Dervo",
+        "width": 1512,
+        "height": 945,
+        "minWidth": 800,
+        "minHeight": 500,
+        "transparent": false,
+        "dragDropEnabled": false,
+        "backgroundThrottling": "disabled"
+      }
+    ]
+  },
+  "bundle": {
+    "targets": [
+      "deb",
+      "rpm",
+      "appimage"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.png"
+    ],
+    "category": "DeveloperTool",
+    "shortDescription": "One workspace for your Claude Code and Codex agents",
+    "resources": [
+      "backend/*.py",
+      "backend/dervo_harness/*",
+      "runtime/*",
+      "runtime/codex-linux/**/*",
+      "linux-python/**/*",
+      "LICENSE.md",
+      "LICENSE-Buzz"
+    ],
+    "linux": {
+      "deb": {
+        "depends": [
+          "bubblewrap",
+          "libsecret-tools"
+        ],
+        "recommends": [
+          "poppler-utils",
+          "git"
+        ],
+        "section": "devel",
+        "files": {
+          "/usr/share/dervo-local/apparmor-dervo-local": "packaging/linux/apparmor-dervo-local"
+        },
+        "postInstallScript": "packaging/linux/postinst",
+        "postRemoveScript": "packaging/linux/postrm"
+      },
+      "rpm": {
+        "depends": [
+          "/usr/bin/bwrap",
+          "/usr/bin/secret-tool"
+        ],
+        "recommends": [
+          "/usr/bin/pdftotext",
+          "git"
+        ],
+        "compression": {
+          "type": "zstd",
+          "level": 10
+        }
+      },
+      "appimage": {
+        "bundleMediaFramework": true
+      }
+    }
+  }
+}

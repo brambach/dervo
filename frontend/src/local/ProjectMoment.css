@@ -1,0 +1,11 @@
+/* The project-created moment at the top of the Project overview thread (design sweep, brand/project-created*.html). */
+.dv-pm { width: 100%; max-width: calc(700px + 2 * var(--dv-s5)); margin: 0 auto var(--dv-s4); padding: var(--dv-s4) var(--dv-s5); color: var(--dv-ink); }
+.dv-pm-heading { display: flex; align-items: center; gap: var(--dv-s3); }
+.dv-pm-heading .dv-moment-mark { flex: 0 0 auto; margin-bottom: 0; }
+.dv-pm h2 { min-width: 0; color: var(--dv-ink); font-size: var(--dv-fs-title); font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
+.dv-pm-lede { margin-top: var(--dv-s2); max-width: 60ch; font-size: var(--dv-fs-body); line-height: var(--dv-lh-read); color: var(--dv-ink-2); }
+.dv-status-line.dv-pm-status { margin-top: var(--dv-s4); flex-wrap: nowrap; align-items: flex-start; }
+/* A long reason wraps beside its glyph, not under it (Surfaces.css lets status lines wrap). */
+.dv-pm-status > span:not(.dv-st) { flex: 1 1 auto; min-width: 0; }
+.dv-pm-status .dv-st { margin-top: 3px; }
+.dv-pm-status .dv-btn { margin-left: var(--dv-s1); }

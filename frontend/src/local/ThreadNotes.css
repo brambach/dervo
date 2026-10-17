@@ -1,0 +1,45 @@
+/* Notes between threads and the review of finished subthreads (ThreadNotes.tsx). The mocks in
+   evidence/design-tests/b17-threads drew these; dv- tokens only, so dark follows. */
+/* The composer's column, as the question tray and the status line use it. */
+.dv-thread-notes { display: grid; gap: var(--dv-s2); width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto var(--dv-s2); }
+
+/* A note: not your message and not the agent's, so a quoted card with its sender, set apart by a rule on the left. */
+.dv-thread-note { padding: 12px 14px; border-radius: 12px; border: 1px solid var(--dv-line); display: grid; gap: 8px;
+  background: color-mix(in srgb, var(--dv-raised) 55%, transparent); }
+.dv-thread-note-head { display: flex; align-items: center; gap: 8px; min-width: 0; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-thread-note-head svg { flex: none; color: var(--dv-muted); }
+.dv-thread-note-head b { color: var(--dv-ink); font-weight: 600; }
+.dv-thread-note-from { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-thread-note-head .dv-when { margin-left: auto; flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dv-thread-note blockquote, .dv-note-quote blockquote { margin: 0; padding: 0 0 0 12px; border-left: 2px solid color-mix(in srgb, var(--dv-ink) 16%, transparent);
+  color: var(--dv-ink); font-size: var(--dv-fs-body, 15px); line-height: 1.55; white-space: pre-wrap; overflow-wrap: anywhere; }
+.dv-thread-note-why { font-size: var(--dv-fs-caption); color: var(--dv-muted); line-height: 1.45; }
+.dv-thread-note-error { font-size: var(--dv-fs-caption); color: var(--dv-ink); line-height: 1.45; }
+.dv-thread-note .dv-row-actions { margin-top: 2px; }
+/* Beta.17.1: a note Dervo passed on by itself, and the note card's own switch. */
+.dv-thread-note-mark { flex: none; padding: 1px 8px; border-radius: 999px; font-size: var(--dv-fs-caption); font-weight: 550; color: var(--dv-ink-2);
+  background: color-mix(in srgb, var(--dv-pine) 12%, transparent); white-space: nowrap; }
+.dv-thread-note .dv-suggest-switch { margin-top: 0; color: var(--dv-muted); }
+
+/* The review card: the handoff card's shape (dv-sheet, dv-row, dv-facts) with one row per subthread. */
+.dv-subthread-review { margin: 0; }
+.dv-subthread-review .dv-facts { grid-template-columns: minmax(0, max-content) minmax(0, 1fr); row-gap: 8px; }
+.dv-subthread-review .dv-facts dt { display: flex; align-items: flex-start; gap: 6px; min-width: 0; padding-top: 0; white-space: nowrap;
+  color: var(--dv-ink); font-weight: 550; font-size: var(--dv-fs-small); }
+.dv-subthread-review .dv-facts dt .dv-st, .dv-subthread-review .dv-facts dt .dv-st svg { width: 14px; height: 14px; flex: none; }
+.dv-subthread-review .dv-facts dt .dv-st { margin-top: 3px; }
+.dv-subthread-review .dv-subthread-name { color: inherit; font: inherit; text-align: left; border-radius: var(--dv-r1); }
+.dv-subthread-review .dv-subthread-name:hover { text-decoration: underline; text-underline-offset: 2px; }
+:root[data-dervo-local] .dv-subthread-review .dv-subthread-name:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-subthread-review .dv-facts dd { color: var(--dv-ink-2); }
+.dv-subthread-review-caption { margin-top: var(--dv-s2); max-width: 520px; font-size: var(--dv-fs-caption); color: var(--dv-muted); line-height: 1.45; }
+.dv-subthread-review .dv-suggest-switch { margin-top: var(--dv-s2); }
+
+/* The opening of a run a note or review started, in the timeline, above Dervo's one line. */
+.dv-note-quote { display: grid; gap: 6px; margin: 0 0 6px; max-width: 640px; }
+.dv-note-quote figcaption { display: flex; align-items: center; gap: 6px; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-note-quote figcaption svg { flex: none; }
+.dv-note-quote details summary { cursor: pointer; width: fit-content; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); border-radius: var(--dv-r1); }
+.dv-note-quote details summary:hover { color: var(--dv-ink); }
+.dv-note-quote details pre { margin-top: 6px; max-height: 320px; overflow: auto; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--dv-line);
+  font-family: var(--dv-font-mono); font-size: var(--dv-fs-caption); line-height: 1.5; white-space: pre-wrap; color: var(--dv-ink-2); }

@@ -1,0 +1,46 @@
+/* The choices tray (#16, direction A): a small list of answers that rises from the composer's top edge. Neutral on
+   purpose: no rust, no smile. Rust stays on the sidebar's needs-you glyph. Layout and the keycaps only; colour, type
+   and spacing come from the dv- tokens. It sits directly above .dv-composer and the two share one outline. */
+.dv-qtray { flex: none; width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto; padding: var(--dv-s3) var(--dv-s2) var(--dv-s2);
+  border: 1px solid var(--dv-line-strong); border-bottom: 0; border-radius: 24px 24px 0 0; background: var(--dv-raised);
+  color: var(--dv-ink); font: 400 var(--dv-fs-body)/var(--dv-lh-ui) var(--dv-font-text); }
+.dv-qtray + .dv-composer { margin-top: 0; border-top: var(--dv-hairline); border-top-left-radius: 0; border-top-right-radius: 0; }
+.dv-qtray[data-folded] { padding: 10px var(--dv-s4); }
+.dv-qtray-head { display: flex; justify-content: space-between; align-items: center; gap: var(--dv-s3); padding: 0 var(--dv-s3) var(--dv-s2);
+  color: var(--dv-faint); font-size: var(--dv-fs-caption); }
+.dv-qtray[data-folded] .dv-qtray-head { padding: 0; }
+.dv-qtray-hint { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; white-space: nowrap; }
+.dv-qtray-key { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px; border: 1px solid var(--dv-line-strong);
+  border-bottom-width: 2px; border-radius: 5px; font-size: .6875rem; font-weight: 600; line-height: 1; color: var(--dv-muted);
+  font-variant-numeric: tabular-nums; flex: none; }
+.dv-qtray-hint .dv-qtray-key { min-width: 18px; height: 18px; font-size: .625rem; }
+.dv-qtray-list { display: flex; flex-direction: column; gap: 1px; margin: 0; padding: 0; list-style: none; }
+.dv-qtray-opt { display: flex; gap: var(--dv-s3); align-items: flex-start; width: 100%; padding: var(--dv-s2) 10px; border: 0; border-radius: 10px;
+  background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.dv-qtray-opt .dv-qtray-key { margin-top: 1px; }
+.dv-qtray-opt:hover, .dv-qtray-opt:focus-visible { background: var(--dv-sunk); outline: 0; }
+.dv-qtray-opt[data-armed] { background: var(--dv-sunk); }
+.dv-qtray-opt[data-armed] .dv-qtray-key { color: var(--dv-ink); border-color: var(--dv-faint); }
+.dv-qtray-text { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.dv-qtray-label { font-weight: 500; color: var(--dv-ink); }
+.dv-qtray-detail { color: var(--dv-muted); font-size: var(--dv-fs-small); }
+/* What a grant runs, and what it won't: always in view, so you read it before you press anything. */
+.dv-qtray-grant { display: flex; flex-direction: column; gap: 2px; margin-top: 6px; color: var(--dv-ink-2); }
+.dv-qtray-grant code { font-family: var(--dv-font-mono); font-size: .78rem; color: var(--dv-ink-2); }
+.dv-qtray-wont { margin-top: 2px; color: var(--dv-muted); font-size: var(--dv-fs-small); }
+@media (prefers-reduced-motion: no-preference) {
+  .dv-qtray:not([data-folded]) { animation: dv-qtray-rise var(--dv-fast) var(--dv-ease) both; }
+  @keyframes dv-qtray-rise { from { transform: translateY(6px); opacity: 0; } to { transform: none; opacity: 1; } }
+}
+/* Beta.16, a thread's tray (WorkerQuestions.tsx): "1 of 2" when two tasks ask at once, Skip as a quiet last choice, and
+   the one line that stands in for the choices while an answer is saved but not confirmed, or the run has ended. */
+.dv-qtray-of { color: var(--dv-muted); font-weight: 600; }
+.dv-qtray-opt[data-quiet] .dv-qtray-label { font-weight: 400; color: var(--dv-muted); }
+.dv-qtray-status { color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dv-qtray-act { display: inline-flex; align-items: center; gap: var(--dv-s2); flex: none; }
+.dv-qtray-act button { padding: 2px var(--dv-s1); border: 0; border-radius: var(--dv-r1); background: none; color: var(--dv-ink); font: inherit; font-weight: 600; cursor: pointer; }
+.dv-qtray-act button:hover, .dv-qtray-act button:focus-visible { background: var(--dv-sunk); outline: 0; }
+.dv-qtray-act button:disabled { color: var(--dv-faint); cursor: default; background: none; }
+/* By keyboard the option and its buttons show the page's one focus ring (a sunk background alone is what hover does). */
+.dv-qtray-opt:focus-visible, .dv-qtray-act button:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dv-qtray-error { margin: 0; padding: var(--dv-s1) var(--dv-s3) 0; color: var(--dv-rust); font-size: var(--dv-fs-small); overflow-wrap: anywhere; }

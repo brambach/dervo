@@ -1,0 +1,33 @@
+/* The top of a thread (ThreadPickup.tsx, app #15): one strip in the recap's old place and size, with its Hide, so
+   nothing jumps. A small first line with the state, then one sentence at reading size (b16-thread/summary-*). */
+.dervo-thread-recap .dv-summary { max-width: 700px; margin: 0 auto; padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk); }
+:root[data-dervo-local].dark .dervo-thread-recap .dv-summary { background: var(--dv-canvas); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dv-summary-head { display: flex; align-items: center; gap: var(--dv-s2); min-width: 0; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-summary-head .dv-state { font-weight: 600; color: var(--dv-ink); }
+.dv-summary-head .dv-state[data-state="running"] { color: var(--dv-live); }
+.dv-summary-head .dv-state[data-state="needs"] { color: var(--dv-rust); }
+.dv-summary-head .dv-st svg { width: 14px; height: 14px; }
+.dv-summary-time { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dv-summary-head button { margin-left: auto; flex: none; border: 0; background: none; padding: 0; font: inherit; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); cursor: pointer; }
+.dv-summary-head button:hover, .dv-summary-head button:focus-visible { color: var(--dv-ink); }
+.dv-summary-text { margin: 6px 0 0; font-size: var(--dv-fs-read); line-height: 1.5; color: var(--dv-ink); text-wrap: pretty; overflow-wrap: anywhere; }
+
+/* The thread's head says the state (ThreadLive, design 8 Oct), so the strip under it is the sentence and Hide alone. */
+.dervo-thread-recap .dv-summary[data-headless] { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: var(--dv-s3); }
+.dv-summary[data-headless] .dv-summary-text { margin: 0; }
+.dv-summary-hide { border: 0; background: none; padding: 0; font: inherit; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); cursor: pointer;
+  transition: color var(--dv-hover-out) var(--dv-ease); }
+.dv-summary-hide:hover, .dv-summary-hide:focus-visible { color: var(--dv-ink); transition-duration: var(--dv-hover-in); }
+
+/* ThreadLive: the state, its word and a time, as one quiet pill in the middle of the thread's head. */
+/* It follows the crumb rather than centring in the space left, so it never lands on the column divider. */
+.dv-main-live { flex: 0 1 auto; min-width: 0; display: flex; margin-left: var(--dv-s2); }
+.dv-live { display: inline-flex; align-items: center; gap: 6px; max-width: 100%; height: 26px; padding: 0 10px 0 8px; border: 0; border-radius: var(--dv-r-pill);
+  background: var(--dv-hover); color: var(--dv-muted); font-size: var(--dv-fs-caption); white-space: nowrap;
+  transition: background-color var(--dv-hover-out) var(--dv-ease), color var(--dv-hover-out) var(--dv-ease); }
+button.dv-live { cursor: pointer; }
+button.dv-live:hover { background: var(--dv-hover); transition-duration: var(--dv-hover-in); }
+button.dv-live:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-live .dv-st svg { width: 13px; height: 13px; }
+.dv-live-word { font-weight: 600; color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; }
+.dv-live-time { font-variant-numeric: tabular-nums; }

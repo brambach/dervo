@@ -1,0 +1,15 @@
+project_id = "dervo"
+
+[functions.dervo-beta-download]
+# The handler verifies the user JWT with Auth on every request before reading
+# through the user's RLS context. This supports the project's current signing keys.
+verify_jwt = false
+
+[functions.dervo-billing]
+# Same as dervo-beta-download: the handler verifies the user JWT with Auth on every request and reads the caller's
+# billing context through their own session.
+verify_jwt = false
+
+[functions.dervo-billing-webhook]
+# Paddle can't send a Supabase JWT. The database checks each delivery's Paddle signature against the Vault secret.
+verify_jwt = false

@@ -1,0 +1,22 @@
+/* Move agent-made rules to notes (KnowledgeNotebook.tsx MoveRules; beta.17.1, #41 step 8). It sits in Your rules like the
+   Still true? card (.dv-kn-dup in ProjectKnowledge.css): one row per rule, its number, its first line cut to one line
+   (the tooltip has it all) and a three-way choice. The choice in use is ink on the raised fill; the others are quiet.
+   dv- tokens only. */
+.dervo-knowledge-body .dv-kn-moves { display: flex; flex-direction: column; gap: 2px; margin: var(--dv-s2) 0 0; padding: 0; list-style: none; }
+.dervo-knowledge-body .dv-kn-moverow { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto auto; align-items: center; column-gap: var(--dv-s2);
+  min-height: 30px; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dervo-knowledge-body .dv-kn-moverow .dv-num { color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dervo-knowledge-body .dv-kn-movetext { min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.dervo-knowledge-body .dv-kn-moverow[data-choice="drop"] .dv-kn-movetext { color: var(--dv-muted); text-decoration: line-through; text-decoration-color: var(--dv-line-strong); }
+.dervo-knowledge-body .dv-kn-choices { display: inline-flex; gap: 2px; padding: 2px; border-radius: var(--dv-r-pill); background: var(--dv-canvas); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dervo-knowledge-body .dv-kn-choice { padding: 2px var(--dv-s2); border: 0; border-radius: var(--dv-r-pill); background: transparent; color: var(--dv-muted);
+  font: inherit; font-size: var(--dv-fs-caption); line-height: 1.4; cursor: pointer; }
+.dervo-knowledge-body .dv-kn-choice[aria-pressed="true"] { background: var(--dv-raised); color: var(--dv-ink); font-weight: 600; box-shadow: 0 0 0 1px var(--dv-line); }
+.dervo-knowledge-body .dv-kn-choice:focus-visible { outline: 2px solid var(--dv-focus, var(--dv-muted)); outline-offset: 1px; }
+.dervo-knowledge-body .dv-kn-moveedit { grid-column: 2 / -1; display: flex; flex-direction: column; gap: 2px; margin: 2px 0 var(--dv-s2); }
+.dervo-knowledge-body .dv-kn-moveedit textarea { width: 100%; padding: var(--dv-s2) var(--dv-s3); border: 0; border-radius: var(--dv-r1); background: var(--dv-canvas);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); color: var(--dv-ink); font: inherit; font-size: var(--dv-fs-small); line-height: 1.45; resize: vertical; }
+.dervo-knowledge-body .dv-kn-moveedit textarea:focus { outline: 0; box-shadow: inset 0 0 0 1.5px var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-moveedit-cell { display: inline-flex; justify-content: flex-end; min-width: 0; }
+.dervo-knowledge-body .dv-kn-moveedit-open { padding: 2px var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dervo-knowledge-body .dv-kn-moveedit-open:hover, .dervo-knowledge-body .dv-kn-moveedit-open:focus-visible { color: var(--dv-ink); }

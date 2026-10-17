@@ -1,0 +1,55 @@
+# Build output and dependencies
+node_modules/
+target/
+frontend/node_modules/
+
+# Vendored provider runtime binaries (~272M, unchanging, restored from the
+# Codex distribution). Checksums tracked in runtime/BINARY-CHECKSUMS.txt.
+runtime/codex
+runtime/codex-code-mode-host
+# The Windows Codex CLI, staged on the Windows build runner by scripts/stage-windows-codex.py from
+# runtime/codex-win32-x64.json. Don't stage it in a Mac checkout: the Mac release builder copies runtime/ whole.
+runtime/codex-win/
+
+# macOS
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Smartness eval runs (backend/evals/runner.py --out): throwaway hosts, repos and call logs
+backend/evals/out/
+
+# Claude Code agent worktrees
+/.claude/worktrees/
+
+# Raw extracts from the local Dervo store stay on this Mac
+/evidence/jev/*.jsonl
+
+# Launch video renders
+*.mp4
+
+# Windows build (b16/windows): the bundled Python the workflow stages
+windows-python/
+companion/.relay-build/
+companion/relay/.wrangler/
+
+# Linux build: the bundled Python and Codex the Linux workflow stages (scripts/stage-linux-python.py,
+# scripts/stage-windows-codex.py --pin runtime/codex-linux-x64.json), and their download cache
+linux-python/
+runtime/codex-linux/
+tools/cache/
+gen/schemas/linux-schema.json
+
+
+# Built interface (vite build frontend --outDir ../dist)
+/dist/
+
+# Local run records, screenshots and notes written by scripts and tools
+/evidence/
+/notes/
+
+# Local environment files
+.env
+.env.*

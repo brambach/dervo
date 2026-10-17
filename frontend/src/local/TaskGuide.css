@@ -1,0 +1,67 @@
+/* The Progress panel (design system, .dv-panel), and the record inside it. Layout only: every value is a dv- token.
+   The first two rules are the inherited spacing steps and the container the conversation's components still read;
+   they stay here until the shell moves them. */
+.dervo-connected-main { container-type:inline-size; --dervo-s1:8px; --dervo-s2:12px; --dervo-s3:16px; --dervo-s4:24px; --dervo-add:95 38% 90%; --dervo-add-ink:120 30% 27%; --dervo-del:18 60% 93%; --dervo-del-ink:18 56% 30%; }
+.dark .dervo-connected-main { --dervo-add:130 20% 16%; --dervo-add-ink:105 38% 72%; --dervo-del:15 28% 17%; --dervo-del-ink:16 62% 75%; }
+/* --dervo-live is the design system's green (DervoBrand.css); the amber override that lived here is gone (dark audit #7). */
+/* The day label that pins to the top of the conversation floats over message text as you scroll. Dervo keeps the day
+   dividers between messages and drops the pinned copy. */
+.dervo-connected-main [data-testid="message-timeline-sticky-day-divider"] { display:none; }
+.dervo-conversation-workspace { display:flex; flex:1; min-height:0; min-width:0; }
+.dervo-conversation-main { display:flex; flex-direction:column; flex:1; min-height:0; min-width:0; }
+.dervo-task-guide { flex:0 0 320px; min-width:0; min-height:0; font-size:var(--dv-fs-body); line-height:var(--dv-lh-ui); }
+.dervo-task-guide button { cursor:pointer; }
+.dervo-task-guide :focus-visible { outline:2px solid var(--dv-focus); outline-offset:2px; border-radius:var(--dv-r1); }
+.dv-panel-head { display:flex; flex-direction:column; }
+.dv-panel-state { display:flex; align-items:center; gap:var(--dv-s2); margin-top:var(--dv-s2); min-height:28px; }
+.dv-panel-state .dv-caption { font-variant-numeric:tabular-nums; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.dv-panel-state .dv-panel-stop { margin-left:auto; }
+.dv-panel-error { margin-top:var(--dv-s2); font-size:var(--dv-fs-caption); line-height:var(--dv-lh-ui); color:var(--dv-ink-2); overflow-wrap:anywhere; }
+.dv-panel-section .dv-label { display:block; margin-bottom:var(--dv-s1); }
+.dv-fold { display:grid; grid-template-columns:16px minmax(0,1fr); gap:var(--dv-s3); align-items:center; width:100%; padding:7px 0; text-align:left;
+  font-size:var(--dv-fs-small); font-weight:600; color:var(--dv-muted); }
+.dv-fold:hover { color:var(--dv-ink); }
+.dv-fold .dv-st { color:inherit; }
+.dv-step .dv-st { margin-top:1px; }
+.dv-step > span { min-width:0; overflow-wrap:anywhere; }
+.dv-step code { font-family:var(--dv-font-mono); font-size:.92em; }
+.dv-step.dv-later { color:var(--dv-muted); }
+.dv-step[data-now] small { color:var(--dv-muted); font-weight:400; }
+.dv-file > span:first-child { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.dv-panel-foot { margin-top:auto; align-self:flex-start; display:inline-flex; align-items:center; gap:6px; margin-left:calc(-1 * var(--dv-s2)); }
+.dv-panel-back { align-self:flex-start; display:inline-flex; align-items:center; gap:6px; margin:0 0 var(--dv-s3) calc(-1 * var(--dv-s2)); }
+.dv-panel-handoff { display:flex; flex-direction:column; }
+/* The column while the thread's tasks load (TaskGuideLoading): bars where the state line, a label and steps will sit. Still. */
+.dv-panel-skeleton { display:flex; flex-direction:column; gap:var(--dv-s3); margin-top:var(--dv-s2); }
+.dv-panel-skeleton i { display:block; height:12px; width:88%; border-radius:var(--dv-r1); background:var(--dv-sunk); }
+.dv-panel-skeleton i[data-w="state"] { height:16px; width:52%; margin-bottom:var(--dv-s2); }
+.dv-panel-skeleton i[data-w="label"] { height:10px; width:22%; margin-top:var(--dv-s3); }
+.dv-panel-skeleton i[data-w="short"] { width:64%; }
+
+/* The record inside the panel: the same TaskRecord as the Task result window, scaled to the column. */
+.dervo-guide-record { min-height:0; display:flex; flex-direction:column; gap:var(--dv-s3); font-size:var(--dv-fs-small); line-height:var(--dv-lh-ui); }
+.dervo-guide-record .dervo-task-nav { position:sticky; top:0; z-index:1; display:flex; flex-direction:row; flex-wrap:wrap; gap:var(--dv-s1); padding:0 0 var(--dv-s2); background:var(--dv-canvas); border-bottom:0; }
+.dervo-guide-record .dervo-task-nav button { display:inline-flex; align-items:center; justify-content:center; width:auto; height:28px; padding:0 var(--dv-s3); border-radius:var(--dv-r-pill); font-size:var(--dv-fs-caption); font-weight:600; color:var(--dv-muted); }
+.dervo-guide-record .dervo-task-nav button[aria-pressed=true] { background:var(--dv-sunk); color:var(--dv-ink); }
+.dervo-guide-record .dervo-task-body { overflow:visible; max-height:none; padding:0; font-size:var(--dv-fs-small); line-height:var(--dv-lh-read); }
+.dervo-guide-record .dervo-task-outcome { padding:var(--dv-s3); border-radius:var(--dv-r2); background:var(--dv-sunk); }
+.dervo-guide-record .dervo-task-outcome-top > p { font-size:var(--dv-fs-body); font-weight:600; color:var(--dv-ink); }
+.dervo-guide-record .dervo-task-outcome > p { font-size:var(--dv-fs-small); color:var(--dv-ink-2); }
+.dervo-guide-record .dervo-task-checks { grid-template-columns:1fr; gap:var(--dv-s3); padding:var(--dv-s3) 0; border-bottom:var(--dv-hairline); }
+.dervo-guide-record .dervo-task-checks h3 { color:var(--dv-muted); }
+.dervo-guide-record .dervo-task-response>div { font-size:var(--dv-fs-small); line-height:var(--dv-lh-read); }
+.dervo-guide-record .dervo-task-warning { margin:var(--dv-s3) 0; padding:var(--dv-s2) var(--dv-s3); background:var(--dv-sunk); box-shadow:none; font-size:var(--dv-fs-small); }
+
+/* A wide window: Progress takes some of the room the conversation can't use, because prose is held to 64ch. */
+@container (min-width: 1240px) {
+ .dervo-task-guide { flex-basis:372px; }
+}
+@container (max-width: 820px) {
+ .dervo-task-guide { flex-basis:280px; padding-left:var(--dv-s4); padding-right:var(--dv-s4); }
+}
+@container (max-width: 620px) {
+ /* Narrow: Progress docks under the chat, so you can still read and type while it works. */
+ .dervo-conversation-workspace:has(.dervo-task-guide) { flex-direction:column; }
+ .dervo-conversation-workspace:has(.dervo-task-guide) .dervo-conversation-main { flex:1 1 auto; min-height:0; }
+ .dervo-task-guide { flex:0 0 auto; width:auto; max-height:44%; border-left:0; border-top:var(--dv-hairline); }
+}

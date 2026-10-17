@@ -1,0 +1,46 @@
+/* Replies that do the next step (beta.15, group 1): Run on a command block, a path's menu and Open beside a local page.
+   Dervo's tokens only (DervoTokens.css), so light and dark follow the app. Quiet until you look: the actions sit where
+   the Copy button already is, and a path keeps its code chip with a dotted underline to say it opens. */
+.dv-reply-run, .dv-reply-open, .dv-reply-quiet {
+  display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 10px 0 8px;
+  border: 0; border-radius: var(--dv-r-pill, 999px); font: 500 var(--dv-fs-small, .8125rem)/1 var(--dv-font-text, system-ui);
+  cursor: pointer; white-space: nowrap;
+  transition: background-color var(--dv-fast, 120ms) var(--dv-ease, ease), color var(--dv-fast, 120ms) var(--dv-ease, ease),
+    box-shadow var(--dv-fast, 120ms), transform var(--dv-fast, 120ms) var(--dv-ease-out, ease-out);
+}
+/* A pine pill like every other: the landing's lit edge, and pressed it sinks a pixel into a shade (DervoComponents.css,
+   design report 23 Sep #5). It was the one filled button left flat (design review, 23 Sep). */
+.dv-reply-run { background: var(--dv-pine, #22382b); color: var(--dv-pine-ink, #f8f8f5); box-shadow: var(--dv-btn-lit, none); }
+.dv-reply-run:active { transform: translateY(1px) scale(.985); box-shadow: var(--dv-btn-pressed, none); transition-duration: var(--dv-instant, 80ms); }
+.dv-reply-run:hover { background: color-mix(in srgb, var(--dv-pine, #22382b) 88%, var(--dv-canvas, #fff)); }
+.dv-reply-open { height: 22px; margin-inline-start: 6px; padding: 0 8px 0 6px; vertical-align: 1px;
+  background: var(--dv-sunk, #f2f1ed); color: var(--dv-ink, #1b1b19); box-shadow: inset 0 0 0 1px var(--dv-line-strong, #dcdbd4); font-size: var(--dv-fs-caption, .75rem); }
+.dv-reply-open:hover { background: var(--dv-raised, #fff); }
+.dv-reply-quiet { background: transparent; color: var(--dv-muted, #5b5a55); }
+.dv-reply-quiet:hover { color: var(--dv-ink, #1b1b19); background: var(--dv-sunk, #f2f1ed); }
+.dv-reply-run:focus-visible, .dv-reply-open:focus-visible, .dv-reply-quiet:focus-visible, .dv-reply-path:focus-visible {
+  outline: 2px solid var(--dv-focus, #757574); outline-offset: 2px; }
+
+/* The block's action row: Run beside Copy, top right, always visible for a command (Copy stays hover-only). */
+[data-code-block] .dv-reply-actions { position: absolute; top: 8px; right: 44px; display: flex; gap: 6px; }
+.dv-reply-ask { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--dv-s2, 8px) var(--dv-s3, 12px);
+  margin-top: var(--dv-s2, 8px); padding: var(--dv-s2, 8px) var(--dv-s3, 12px); border-radius: var(--dv-r2, 10px);
+  background: var(--dv-rust-wash, #f8ebe4); color: var(--dv-ink, #1b1b19); font: var(--dv-fs-small, .8125rem)/var(--dv-lh-ui, 1.45) var(--dv-font-text, system-ui); }
+.dv-reply-ask p { margin: 0; min-width: 0; flex: 1 1 240px; }
+.dv-reply-ask b { font-weight: 600; }
+.dv-reply-ask-actions { display: inline-flex; gap: 6px; }
+
+.dv-reply-path { display: inline; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer;
+  text-decoration: underline dotted color-mix(in srgb, var(--dv-ink, #1b1b19) 45%, transparent); text-underline-offset: 3px; }
+.dv-reply-path:hover { text-decoration-style: solid; }
+.dv-reply-path > code { cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dv-reply-run, .dv-reply-open, .dv-reply-quiet { transition: none; }
+  .dv-reply-run:active { transform: none; }
+}
+
+/* Settings' command rows (SettingsKit CopyCommand): Run sits after Copy, and its question takes the row below. */
+.dv-cmd[data-runnable] { flex-wrap: wrap; }
+.dv-cmd .dv-reply-actions { display: inline-flex; }
+.dv-cmd .dv-reply-ask { flex-basis: 100%; margin-top: 2px; }

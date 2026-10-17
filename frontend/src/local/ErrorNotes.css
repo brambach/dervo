@@ -1,0 +1,34 @@
+/* Errors you can keep (ErrorNotes.tsx). The toast is the kit's toast material (DervoKit.css), drawn here because a
+   custom sonner toast is unstyled. Its words select like any text. */
+:root[data-dervo-local] .dv-err-toast {
+  width: var(--dv-toast-width, 220px); display: flex; flex-direction: column; gap: var(--dv-s1);
+  padding: var(--dv-s3) var(--dv-s2) var(--dv-s1) var(--dv-s3); border-radius: var(--dv-r3);
+  background: var(--dv-raised); color: var(--dv-ink-2); box-shadow: var(--dv-float);
+  font: 400 var(--dv-fs-small)/1.4 var(--dv-font-text);
+}
+:root[data-dervo-local] :is(.dv-err-toast, .dv-thread-error) :is(.dv-err-text, .dv-err-detail) {
+  margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; -webkit-user-select: text; user-select: text; cursor: text;
+}
+:root[data-dervo-local] .dv-err-toast .dv-err-text { color: var(--dv-ink); max-height: 12em; overflow: auto; }
+:root[data-dervo-local] .dv-err-toast .dv-err-detail { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+:root[data-dervo-local] .dv-err-acts { display: flex; justify-content: flex-end; gap: var(--dv-s1); }
+:root[data-dervo-local] .dv-err-acts .dv-btn-quiet { color: var(--dv-ink); }
+
+/* In the thread: one quiet line per error under the thread's alert, the same place the alert shows. */
+/* The rows' words start where the alert's do, at the thread's 24px edge: the row box sits one step out (design review). */
+:root[data-dervo-local] .dv-thread-errors { display: flex; flex-direction: column; gap: var(--dv-s1); padding: var(--dv-s1) var(--dv-s3) var(--dv-s2); }
+:root[data-dervo-local] .dv-thread-error {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: var(--dv-s2);
+  padding: var(--dv-s1) var(--dv-s2) var(--dv-s1) var(--dv-s3); border-radius: var(--dv-r2);
+  /* Sunk, not rust: an error is ink, and rust is the one "needs you" mark (design report, 23 Sep, #2). */
+  background: var(--dv-sunk); color: var(--dv-ink); font-size: var(--dv-fs-small); line-height: 1.4;
+}
+:root[data-dervo-local] .dv-thread-error .dv-err-time { font-size: var(--dv-fs-caption); color: var(--dv-ink-2); font-variant-numeric: tabular-nums; }
+:root[data-dervo-local] .dv-thread-error { align-items: start; }
+:root[data-dervo-local] .dv-thread-error .dv-err-time { padding-top: 1px; }
+:root[data-dervo-local] .dv-thread-error .dv-err-acts .dv-btn-quiet { color: var(--dv-ink-2); font-weight: 500; }
+:root[data-dervo-local] .dv-thread-error .dv-err-text { max-height: 6em; overflow: auto; }
+/* The drafts toast that stays until it's fixed (WorkspaceDraftGate) and the thread's alert line select the same way. */
+:root[data-dervo-local] :is(.dv-toast-fixed p, .dv-thread-alert-text) { -webkit-user-select: text; user-select: text; cursor: text; }
+:root[data-dervo-local] .dv-thread-alert { display: flex; align-items: baseline; gap: var(--dv-s2); flex-wrap: wrap; padding-inline: var(--dv-s5); }
+:root[data-dervo-local] .dv-thread-alert-text { flex: 1 1 16rem; min-width: 0; white-space: pre-wrap; overflow-wrap: anywhere; }

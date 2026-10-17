@@ -1,0 +1,38 @@
+[package]
+name = "dervo-local"
+version = "0.1.0"
+edition = "2021"
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+[dependencies]
+tauri = { version = "2", features = ["macos-private-api"] }
+window-vibrancy = "0.6"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+ed25519-dalek = { version = "2.2", default-features = false, features = ["std"] }
+# Dervo on your phone (src/phone/): NaCl box sealing, wire-compatible with the phone's tweetnacl, and the relay socket
+# over TLS with ring and the bundled web roots, so nothing depends on the system's TLS stack.
+crypto_box = { version = "0.9", features = ["std", "salsa20", "getrandom"] }
+sha2 = "0.10"
+# X25519 for the relay sign-in proof (v2), apart from any box key.
+curve25519-dalek = { version = "4.1", default-features = false }
+base64 = "0.22"
+tungstenite = { version = "0.24", default-features = false, features = ["handshake", "rustls-tls-webpki-roots"] }
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+webpki-roots = "0.26"
+# AppKit, Foundation and blocks: the Mac folder pickers, notifications, Dock icon and Keychain (b16/seam).
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3", default-features = false, features = ["std", "NSOpenPanel", "NSSavePanel"] }
+objc2-foundation = { version = "0.3", default-features = false, features = ["std", "NSString", "NSDictionary", "NSObject", "NSURL"] }
+block2 = "0.6"
+# The platform's own open(2) flags (preview.rs reads without following links).
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+# Everywhere else, the folder picker and notifications come from Tauri's own plugins (b16/windows).
+[target.'cfg(not(target_os = "macos"))'.dependencies]
+tauri-plugin-dialog = "2"
+tauri-plugin-notification = "2"

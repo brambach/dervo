@@ -1,0 +1,61 @@
+{
+  "productName": "Dervo Local",
+  "version": "0.1.0",
+  "identifier": "local.dervo.connected",
+  "build": {
+    "frontendDist": "dist",
+    "beforeBundleCommand": "if [ -f scripts/build-docktile.sh ]; then sh scripts/build-docktile.sh; else sh ../scripts/build-docktile.sh; fi"
+  },
+  "app": {
+    "macOSPrivateApi": true,
+    "windows": [
+      {
+        "label": "main",
+        "create": false,
+        "title": "Dervo",
+        "titleBarStyle": "Overlay",
+        "hiddenTitle": true,
+        "width": 1512,
+        "height": 945,
+        "minWidth": 800,
+        "minHeight": 500,
+        "transparent": false,
+        "dragDropEnabled": false,
+        "backgroundThrottling": "disabled"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; connect-src 'self' ipc: http://ipc.localhost wss://relay.trydervo.com; img-src 'self' data: blob: dervo-preview:; frame-src dervo-preview: http://localhost:* http://127.0.0.1:*; font-src 'self' data:; media-src 'self' blob: data:; object-src 'none'; form-action 'none'"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.png"
+    ],
+    "targets": [
+      "app"
+    ],
+    "macOS": {
+      "infoPlist": "Info.plist",
+      "files": {
+        "PlugIns/DervoDockTile.docktileplugin": "target/docktile/DervoDockTile.docktileplugin"
+      },
+      "minimumSystemVersion": "11.0",
+      "hardenedRuntime": true,
+      "entitlements": "signing/Dervo.entitlements"
+    },
+    "resources": [
+      "backend/*.py",
+      "backend/dervo_harness/*",
+      "backend/dervo_voice/*.py",
+      "runtime/*",
+      "LICENSE.md",
+      "LICENSE-Buzz"
+    ]
+  }
+}

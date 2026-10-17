@@ -1,0 +1,187 @@
+/* Menus, dialogs, the task sheet and the thread's notices, drawn from evidence/design-sweep/surfaces (surfaces.css and
+   the kit). The material itself (raised, --dv-r3, the float shadow, the menu row) is DervoKit.css; this file adds the
+   parts a menu row can hold and the surfaces the kit doesn't draw. Every value is a token. */
+
+/* ---------- Menu rows: text, a right-hand column, two lines, a reason ---------- */
+.dv-mi-t { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-mi-end { margin-left: auto; display: inline-flex; align-items: center; gap: var(--dv-s1); flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint);
+  font-variant-numeric: tabular-nums; letter-spacing: .02em; }
+.dv-mi-end .dv-val { color: var(--dv-muted); letter-spacing: 0; }
+.dv-mi-end .dv-tick { color: var(--dv-ink); }
+.dv-mi-end svg { width: 12px; height: 12px; }
+.dv-mi-end svg.dv-tick { width: 14px; height: 14px; }
+[data-dv-mi].dv-mi-two { align-items: flex-start; padding-top: 7px; padding-bottom: 7px; }
+[data-dv-mi].dv-mi-two > svg:first-child, [data-dv-mi].dv-mi-two > .dv-pmark, [data-dv-mi].dv-mi-two > .dv-st { margin-top: 1px; }
+.dv-mi-two .dv-mi-t { display: flex; flex-direction: column; gap: 1px; white-space: normal; }
+.dv-mi-two .dv-mi-t > span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-mi-two .dv-mi-t small { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-weight: 400; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-mi-two .dv-mi-end { margin-top: 1px; }
+[data-dv-mi][aria-current="true"] .dv-mi-t > span:first-child, [data-dv-mi][data-current] .dv-mi-t > span:first-child { color: var(--dv-ink); font-weight: 600; }
+/* A disabled row keeps its place and says why on a second line. */
+[data-dv-mi][data-disabled] .dv-mi-t small { color: var(--dv-muted); white-space: normal; text-overflow: clip; }  /* the reason it's off, in full (it read "...so it st...") */
+/* The row the filter would open with Return, while focus is still in the filter. */
+[data-dv-mi][data-active] { background: var(--dv-sunk); color: var(--dv-ink); }
+[data-dv-mi] > .dv-st { flex: none; }
+
+/* A project's mark: its first letter on sunk. */
+.dv-pmark { width: 20px; height: 20px; flex: none; border-radius: var(--dv-r1); display: grid; place-items: center; background: var(--dv-sunk);
+  box-shadow: inset 0 0 0 1px var(--dv-line); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-ink-2); line-height: 1; }
+
+/* Type-to-filter at the top of a long menu. */
+.dv-mfilter { display: flex; align-items: center; gap: var(--dv-s2); height: 32px; padding: 0 var(--dv-s2); margin-bottom: var(--dv-s1); border-radius: var(--dv-r1);
+  box-shadow: inset 0 0 0 1px var(--dv-line); font-size: var(--dv-fs-small); color: var(--dv-faint); }
+.dv-mfilter:focus-within { box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+.dv-mfilter > svg { flex: none; color: var(--dv-muted); }
+.dv-mfilter input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: none; padding: 0; font: inherit; color: var(--dv-ink); }
+.dv-mfilter input::placeholder { color: var(--dv-faint); }
+.dv-mfilter .dv-mfilter-end { flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-mempty { padding: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-muted); line-height: 1.45; }
+.dv-merror { display: flex; align-items: flex-start; gap: var(--dv-s2); padding: var(--dv-s1) var(--dv-s2) var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-ink-2); line-height: 1.45; }
+
+/* The account menu's header: who's signed in. Not a command. */
+.dv-mhead { padding: var(--dv-s1) var(--dv-s2) var(--dv-s2); }
+.dv-mhead small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-mhead b { display: block; font-size: var(--dv-fs-small); font-weight: 600; line-height: 1.25; color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* A menu that turns into its own confirm: same place, the way out first. */
+.dv-mconfirm { display: flex; flex-direction: column; gap: var(--dv-s2); width: 300px; padding: var(--dv-s2) var(--dv-s2) var(--dv-s1); }
+.dv-mconfirm .dv-q { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; color: var(--dv-ink); overflow-wrap: anywhere; }
+.dv-mconfirm .dv-points { color: var(--dv-ink-2); }
+.dv-mconfirm .dv-acts { display: flex; justify-content: flex-end; gap: var(--dv-s2); margin-top: var(--dv-s1); }
+.dv-mconfirm .dv-merror { padding: 0; }
+
+/* Menu widths, from the mockups. */
+.dv-menu-picker { width: 280px; }
+.dv-menu-picker[data-filtering] { width: 300px; }
+.dv-menu-account { width: 264px; }
+.dv-menu-thread { width: 232px; }
+.dv-menu-thread-head { width: 296px; }
+.dv-menu-move { width: 248px; }
+.dv-menu-new { width: 264px; }
+[data-dv-surface="menu"]:has(> .dv-mconfirm) { width: auto; min-width: 0; }
+
+/* ---------- Sidebar rows: held while their menu is open, renaming in place, and the row an action left ---------- */
+.dv-sb-project[data-state="open"], .dv-me[data-state="open"] { background: var(--dv-press); }
+.dv-sb-thread.dv-held, .dv-sb-thread.dv-held:hover { background: var(--dv-press); color: var(--dv-ink); }
+.dv-sb-thread.dv-held .dv-meta { opacity: 0; }
+.dv-sb-thread.dv-held .dv-sb-more { opacity: 1; pointer-events: auto; }
+.dv-sb-thread.dv-renaming { background: var(--dv-raised); box-shadow: 0 0 0 1px var(--dv-line-strong); padding-top: 5px; padding-bottom: 5px; }
+.dv-sb-thread.dv-renaming .dv-rename { flex: 1; min-width: 0; height: 22px; padding: 0; border: 0; outline: 0; background: none; font: 600 var(--dv-fs-small) var(--dv-font-text);
+  color: var(--dv-ink); }
+.dv-sb-thread.dv-renaming .dv-rename::selection { background: color-mix(in srgb, var(--dv-pine) 18%, transparent); }
+.dv-sb-thread .dv-tip { left: 26px; top: calc(100% + 6px); }
+.dv-sb-undo { flex: none; margin: -3px 0; padding: 2px var(--dv-s1); border-radius: var(--dv-r1); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-ink); }
+.dv-sb-undo:hover { background: color-mix(in srgb, var(--dv-raised) 60%, transparent); }
+.dv-sb-item.dv-gone { color: var(--dv-muted); }
+.dv-sb-item.dv-gone > svg { color: var(--dv-faint); }
+.dv-sb-item.dv-gone .dv-name { font-weight: 400; }
+.dv-sb-item.dv-gone .dv-sb-undo { margin-left: auto; }
+.dv-sb-item.dv-gone .dv-sc { flex: none; font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-sb-item.dv-gone[data-failed] { color: var(--dv-ink-2); }
+.dv-sb-row-error { margin: 0 var(--dv-s2) var(--dv-s1) calc(var(--dv-s2) + 16px + var(--dv-s2)); font-size: var(--dv-fs-caption); color: var(--dv-ink-2); line-height: 1.4; }
+/* A row that just arrived in its group lifts for a moment. */
+.dv-sb-thread.dv-arrived { background: color-mix(in srgb, var(--dv-raised) 60%, transparent); }
+/* Thread rows take their hover timing from .dv-sb-item and the shared hover tokens (DervoComponents.css). */
+
+/* ---------- Tooltip-shaped hint: ink, so it never reads as a popover ---------- */
+.dv-tip { position: absolute; z-index: 60; display: inline-flex; align-items: center; gap: var(--dv-s2); padding: var(--dv-s1) var(--dv-s2); border-radius: var(--dv-r1);
+  background: var(--dv-ink); color: var(--dv-canvas); font-size: var(--dv-fs-caption); font-weight: 500; white-space: nowrap; pointer-events: none; }
+.dv-tip .dv-sc { color: color-mix(in srgb, var(--dv-canvas) 60%, var(--dv-ink)); letter-spacing: .02em; }
+:root[data-dervo-local].dark .dv-tip { background: var(--dv-sunk); color: var(--dv-ink); box-shadow: 0 0 0 1px var(--dv-line-strong); }
+:root[data-dervo-local].dark .dv-tip .dv-sc { color: var(--dv-muted); }
+
+/* ---------- Selected text: a pine tint, the same one the rename field uses (dark audit #13) ---------- */
+:root[data-dervo-local] ::selection { background: color-mix(in srgb, var(--dv-pine) 20%, transparent); }
+
+/* ---------- Dialog: only when the app needs an answer it can't get in place ---------- */
+:root[data-dervo-local] .dv-dlg { width: min(500px, calc(100vw - 2 * var(--dv-s5))); max-width: none; display: flex; flex-direction: column; gap: var(--dv-s4); padding: var(--dv-s5); }
+.dv-dlg-head { display: flex; align-items: flex-start; gap: var(--dv-s3); }
+.dv-dlg-head > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.dv-dlg-head .dv-dlg-line { font-size: var(--dv-fs-small); line-height: var(--dv-lh-ui); color: var(--dv-ink-2); }
+.dv-dlg-head .dv-dlg-line code { font-family: var(--dv-font-mono); font-size: var(--dv-fs-caption); }
+.dv-dlg-head .dv-link { font-weight: 600; color: var(--dv-ink); text-decoration: underline; text-decoration-color: var(--dv-line-strong); text-underline-offset: 2px; }
+.dv-dlg-head .dv-btn-icon { margin: -6px -8px 0 0; flex: none; }
+.dv-dlg-fields { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dv-fld { display: grid; grid-template-columns: 88px minmax(0, 1fr); align-items: center; gap: var(--dv-s3); }
+.dv-fld.dv-top { align-items: start; }
+.dv-fld.dv-top > .dv-k { padding-top: 7px; }
+.dv-fld > .dv-k { font-size: var(--dv-fs-small); color: var(--dv-muted); font-weight: 600; }
+.dv-fld .dv-v { min-width: 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-fld .dv-input, .dv-fld .dv-select { width: 100%; justify-content: space-between; }
+.dv-fld .dv-line { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: var(--dv-s1); line-height: 1.45; }
+.dv-dlg-note { display: flex; align-items: flex-start; gap: var(--dv-s2); padding: var(--dv-s2) var(--dv-s3); border-radius: var(--dv-r2); background: var(--dv-sunk);
+  font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.45; }
+.dv-dlg-note .dv-st { margin-top: 1px; }
+.dv-dlg-note .dv-btn { margin-left: auto; flex: none; }
+.dv-dlg-foot { display: flex; align-items: center; justify-content: flex-end; gap: var(--dv-s2); }
+.dv-dlg-foot .dv-caption { margin-right: auto; }
+.dv-dlg-caption { font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.5; }
+.dv-dlg-caption + .dv-dlg-foot { margin-top: calc(-1 * var(--dv-s2)); }
+
+/* ---------- The task record: a sheet beside the thread ---------- */
+:root[data-dervo-local] .dv-sheet-r { display: flex; flex-direction: column; overflow: hidden; gap: 0; }
+.dv-sheet-r .dv-sh-head { display: flex; align-items: flex-start; gap: var(--dv-s3); padding: var(--dv-s4) calc(var(--dv-s4) + 32px + var(--dv-s3)) var(--dv-s3) var(--dv-s5); }
+.dv-sheet-r .dv-sh-head > div { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.dv-sheet-r .dv-sh-head .dv-title { outline: none; overflow-wrap: anywhere; }
+.dv-sheet-r .dv-sh-head .dv-btn-icon { flex: none; }
+.dv-sheet-r .dv-sh-tabs { padding: 0 var(--dv-s5) var(--dv-s3); }
+.dv-sheet-r .dv-sh-body { flex: 1; min-height: 0; overflow: auto; padding: var(--dv-s2) var(--dv-s5) var(--dv-s5); display: flex; flex-direction: column; gap: var(--dv-s5); }
+.dv-sheet-r .dv-sh-foot { display: flex; align-items: center; flex-wrap: wrap; gap: var(--dv-s2); padding: var(--dv-s3) var(--dv-s4) var(--dv-s3) var(--dv-s5); box-shadow: 0 -1px 0 var(--dv-line); }
+.dv-sheet-r .dv-sh-foot .dv-what { flex: 1; min-width: 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-sheet-r .dv-sh-foot .dv-what b { color: var(--dv-ink); font-weight: 600; }
+.dv-sheet-r .dv-sh-field { display: flex; flex-direction: column; gap: var(--dv-s2); padding: var(--dv-s3) var(--dv-s4) 0 var(--dv-s5); box-shadow: 0 -1px 0 var(--dv-line); }
+.dv-sheet-r .dv-sh-field label { font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); }
+.dv-sheet-r .dv-sh-field textarea { width: 100%; min-height: 64px; }
+.dv-sheet-r .dv-sh-field + .dv-sh-foot { box-shadow: none; }
+.dv-sheet-r section { display: flex; flex-direction: column; gap: var(--dv-s2); min-width: 0; }
+.dv-status-line { display: flex; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; }
+.dv-status-line .dv-state { font-size: var(--dv-fs-small); }
+.dv-status-line .dv-caption { margin-left: auto; }
+.dv-sheet-r .dv-facts.dv-wide { grid-template-columns: 64px minmax(0, 1fr); margin-top: 0; }
+.dv-sheet-r .dv-line-alert { font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.45; }
+.dv-sheet-r .dv-sheet-note { font-size: var(--dv-fs-small); color: var(--dv-muted); line-height: 1.5; }
+.dv-sheet-r .dv-report { font-size: var(--dv-fs-body); }
+.dv-sheet-r .dv-report pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 400 var(--dv-fs-caption)/1.6 var(--dv-font-mono); }
+.dv-sheet-r .dv-report code { font-family: var(--dv-font-mono); font-size: .92em; }
+.dv-sheet-r .dv-actions { display: flex; flex-wrap: wrap; gap: var(--dv-s2); }
+.dv-diff { font: 400 var(--dv-fs-caption)/1.7 var(--dv-font-mono); color: var(--dv-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; }
+.dv-diff .dv-ln { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--dv-s2); }
+.dv-diff .dv-ln i { font-style: normal; color: var(--dv-faint); text-align: center; }
+.dv-diff .dv-ln-add i { color: var(--dv-sage); }
+.dv-diff .dv-ln-del span { color: var(--dv-muted); }
+.dv-diff .dv-ln-hunk span { color: var(--dv-faint); }
+.dv-file-head { display: flex; align-items: baseline; gap: var(--dv-s2); font: 500 var(--dv-fs-small) var(--dv-font-mono); color: var(--dv-ink); min-width: 0; }
+.dv-file-head > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+.dv-file-head .dv-caption { margin-left: auto; font-family: var(--dv-font-text); flex: none; }
+.dv-more-lines { align-self: flex-start; display: inline-flex; align-items: center; gap: var(--dv-s1); margin-left: calc(-1 * var(--dv-s2)); padding: 2px var(--dv-s2); border-radius: var(--dv-r1);
+  font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dv-more-lines:hover { background: var(--dv-sunk); color: var(--dv-ink); }
+.dv-kv { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: var(--dv-s2) var(--dv-s4); font-size: var(--dv-fs-small); }
+.dv-kv dt { color: var(--dv-muted); font-weight: 600; font-size: var(--dv-fs-caption); padding-top: 2px; }
+.dv-kv dd { color: var(--dv-ink-2); min-width: 0; overflow-wrap: anywhere; }
+.dv-kv dd code { font-family: var(--dv-font-mono); font-size: var(--dv-fs-caption); }
+.dv-mono-list { font: 400 var(--dv-fs-caption)/1.8 var(--dv-font-mono); color: var(--dv-ink-2); white-space: pre-wrap; overflow-wrap: anywhere; }
+.dv-sheet-r .dv-disclose-body pre { white-space: pre-wrap; overflow-wrap: anywhere; font: 400 var(--dv-fs-caption)/1.6 var(--dv-font-mono); color: var(--dv-ink-2); }
+/* A copy confirmation is a tick on the button itself. */
+.dv-copied { color: var(--dv-sage); }
+
+/* ---------- A notice in the thread: a decision the composer can't start without ---------- */
+.dv-notice { display: flex; align-items: center; gap: var(--dv-s3); width: min(700px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto var(--dv-s2); padding: var(--dv-s2) var(--dv-s2) var(--dv-s2) var(--dv-s3);
+  border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: 0 0 0 1px var(--dv-line); font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.45; }
+.dv-notice { flex-wrap: wrap; row-gap: var(--dv-s1); }
+.dv-notice .dv-what { flex: 1 1 320px; min-width: 0; }
+.dv-notice .dv-acts { margin-left: auto; }
+.dv-notice .dv-what b { color: var(--dv-ink); font-weight: 600; }
+.dv-notice .dv-acts { display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end; gap: var(--dv-s1); }
+.dv-notice .dv-st { flex: none; }
+
+@media (prefers-reduced-motion: reduce) { .dv-sb-thread { transition: none; } }
+/* The current value in a list menu (Move to workstream) reads in ink, beside its tick. */
+[data-dv-mi][data-current] > .dv-mi-t { color: var(--dv-ink); font-weight: 600; }
+
+/* ---------- A toast that stays until it's fixed (drafts that can't be saved): the kit's toast, over the sidebar foot ---------- */
+.dv-toast-fixed { position: fixed; z-index: 50; left: var(--dv-s3); bottom: 64px; width: var(--dv-toast-width, 220px); display: flex; flex-direction: column; gap: var(--dv-s1);
+  padding: var(--dv-s3) var(--dv-s2) var(--dv-s1) var(--dv-s3); border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: var(--dv-float);
+  font-size: var(--dv-fs-small); line-height: 1.4; color: var(--dv-ink-2); }
+.dv-toast-fixed .dv-acts { display: flex; justify-content: flex-end; }
+.dv-toast-fixed .dv-btn-quiet { color: var(--dv-ink); }

@@ -1,0 +1,25 @@
+/* Send to cloud (CloudPage.tsx). Only the shared tokens, no new colours: the design lane owns the final look. */
+.dv-cloud-compose{display:flex;flex-direction:column;gap:var(--dv-s2)}
+.dv-cloud-task{min-height:calc(var(--dv-fs-body) * 6);resize:vertical;font:inherit}
+.dv-cloud-actions{display:flex;gap:var(--dv-s2);flex-wrap:wrap}
+.dv-cloud-preview{display:flex;flex-direction:column;gap:var(--dv-s2);padding:var(--dv-s3);border:1px solid var(--dv-line);border-radius:var(--dv-r2);background:var(--dv-sunk)}
+.dv-cloud-preview dl{display:grid;grid-template-columns:max-content 1fr;gap:var(--dv-s1) var(--dv-s3);margin:0;font-size:var(--dv-fs-small)}
+.dv-cloud-preview dt{color:var(--dv-muted)}
+.dv-cloud-preview dd{margin:0;color:var(--dv-ink);min-width:0;overflow-wrap:anywhere}
+.dv-cloud-notes{margin:0;padding-left:var(--dv-s4);color:var(--dv-muted);font-size:var(--dv-fs-small);line-height:var(--dv-lh-read)}
+.dv-cloud-runs{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.dv-cloud-run{display:flex;flex-direction:column;gap:var(--dv-s1);padding:var(--dv-s3) 0;border-top:1px solid var(--dv-line)}
+.dv-cloud-run:first-child{border-top:0}
+.dv-cloud-run-head{display:flex;align-items:baseline;gap:var(--dv-s2);min-width:0}
+.dv-cloud-run-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;color:var(--dv-ink)}
+.dv-cloud-run-line{margin:0;color:var(--dv-muted);font-size:var(--dv-fs-small);line-height:var(--dv-lh-read)}
+.dv-cloud-run-foot{display:flex;align-items:center;gap:var(--dv-s2);flex-wrap:wrap;font-size:var(--dv-fs-caption)}
+.dv-cloud-run-foot code{font-family:var(--dv-font-mono)}
+.dv-cloud-pill{flex:none;padding:0 var(--dv-s2);border-radius:var(--dv-r-pill);border:1px solid var(--dv-line-strong);font-size:var(--dv-fs-caption);color:var(--dv-muted)}
+.dv-cloud-pill[data-state="working"]{color:var(--dv-pine);border-color:currentColor}
+.dv-cloud-pill[data-state="ready"],.dv-cloud-pill[data-state="back"]{color:var(--dv-ink);border-color:var(--dv-ink)}
+.dv-cloud-pill[data-state="failed"]{color:var(--dv-rust);border-color:currentColor}
+.dv-cloud-pill[data-state="pick"]{color:var(--dv-ink);border-color:currentColor;border-style:dashed}
+.dv-cloud-link{font-family:var(--dv-font-mono);user-select:all;overflow-wrap:anywhere}
+.dv-cloud-follow{display:flex;gap:var(--dv-s2);align-items:center;flex-wrap:wrap}
+.dv-cloud-follow .dv-input{flex:1 1 calc(var(--dv-fs-body) * 16);min-width:0}

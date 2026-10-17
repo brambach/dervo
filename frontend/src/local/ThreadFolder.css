@@ -1,0 +1,80 @@
+/* A thread's own branch and folder (ThreadFolder.tsx, beta.18). Drawn from the explore's mocks
+   (evidence/design-tests/worktrees-explore-20261005/mock.css), on the dv- tokens only, so dark and forest follow. */
+.dv-tf-mono, .dv-tf-chip code, .dv-tf-pop code, .dv-tf-card code, .dv-tf-merge code, .dv-tf-settings code { font-family: var(--dv-font-mono); font-size: var(--dv-fs-caption); }
+
+/* The chip on the composer, beside the access button. */
+.dv-tf-chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; max-width: 240px; padding: 0 10px; border-radius: var(--dv-r-pill);
+  border: 1px solid var(--dv-line); background: transparent; color: var(--dv-ink-2); font-size: var(--dv-fs-small); white-space: nowrap; cursor: pointer; }
+.dv-tf-chip > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dv-tf-chip .dv-tf-mono { font-size: var(--dv-fs-caption); }
+.dv-tf-chip svg { width: 13px; height: 13px; flex: none; color: var(--dv-muted); }
+.dv-tf-chip .dv-tf-caret { width: 12px; height: 12px; color: var(--dv-faint); }
+.dv-tf-chip:hover { background: var(--dv-sunk); color: var(--dv-ink); }
+.dv-tf-chip[aria-expanded="true"], .dv-tf-chip[data-state="open"] { background: var(--dv-sunk); border-color: var(--dv-line-strong); color: var(--dv-ink); }
+.dv-tf-chip:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 1px; }
+
+/* Where this thread works: the chip's popover. */
+.dv-tf-pop { width: min(360px, calc(100vw - 2 * var(--dv-s4))); padding: 12px; border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: var(--dv-float);
+  color: var(--dv-ink); border: 0; }
+.dv-tf-pop h4 { margin: 2px 4px 8px; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); letter-spacing: .01em; }
+.dv-tf-opt { display: grid; grid-template-columns: 18px 1fr; gap: 8px; width: 100%; padding: 8px; border: 0; border-radius: var(--dv-r2); background: transparent;
+  color: inherit; text-align: left; cursor: pointer; }
+.dv-tf-opt:hover { background: color-mix(in srgb, var(--dv-sunk) 60%, transparent); }
+.dv-tf-opt[aria-checked="true"] { background: var(--dv-sunk); }
+.dv-tf-opt:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: -2px; }
+.dv-tf-opt b { font-weight: 600; font-size: var(--dv-fs-small); }
+.dv-tf-opt small { display: block; margin-top: 2px; color: var(--dv-muted); font-size: var(--dv-fs-caption); line-height: 16px; }
+.dv-tf-opt code, .dv-tf-pop code { font-size: var(--dv-fs-caption); }
+.dv-tf-radio { width: 14px; height: 14px; margin-top: 2px; border-radius: 50%; border: 1.5px solid var(--dv-line-strong); box-sizing: border-box; }
+.dv-tf-opt[aria-checked="true"] .dv-tf-radio { border: 4.5px solid var(--dv-pine); }
+.dv-tf-base { display: flex; align-items: center; justify-content: space-between; margin: 8px 8px 0; padding-top: 10px; border-top: 1px solid var(--dv-line);
+  font-size: var(--dv-fs-small); }
+.dv-tf-base code { padding: 3px 8px; border-radius: var(--dv-r2); border: 1px solid var(--dv-line); }
+.dv-tf-why { margin: 10px 8px 2px; color: var(--dv-muted); font-size: var(--dv-fs-caption); line-height: 16px; }
+.dv-tf-fixed { padding: 0 8px; }
+.dv-tf-branch { display: flex; align-items: center; gap: 7px; margin: 0; color: var(--dv-ink); }
+.dv-tf-branch svg { width: 14px; height: 14px; color: var(--dv-muted); flex: none; }
+.dv-tf-branch code { font-size: var(--dv-fs-caption); }
+.dv-tf-from { margin: 3px 0 0 21px; color: var(--dv-muted); font-size: var(--dv-fs-caption); }
+.dv-tf-reveal { display: inline-flex; align-items: center; gap: 6px; margin: 8px 0 0 12px; }
+.dv-tf-reveal svg { width: 13px; height: 13px; }
+.dv-tf-error { margin: 8px 8px 0; color: var(--dv-rust); font-size: var(--dv-fs-caption); }
+
+/* The setup card, above the composer in the composer's column (as the note cards sit). */
+.dv-tf-cards { display: grid; gap: var(--dv-s2); width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto var(--dv-s2); }
+.dv-tf-card { padding: 16px 18px; border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: var(--dv-card-edge); color: var(--dv-ink); }
+.dv-tf-card-head { display: flex; align-items: center; gap: 8px; font-weight: 600; font-size: var(--dv-fs-body); min-width: 0; }
+.dv-tf-card-head > svg { width: 14px; height: 14px; flex: none; color: var(--dv-muted); }
+.dv-tf-card-head .dv-tf-mono { font-weight: 400; color: var(--dv-muted); margin-left: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-tf-card-line { margin: 4px 0 0; color: var(--dv-muted); font-size: var(--dv-fs-small); }
+.dv-tf-steps { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.dv-tf-steps li { display: grid; grid-template-columns: 16px 104px minmax(0, 1fr); gap: 10px; align-items: start; font-size: var(--dv-fs-small); line-height: 18px; }
+.dv-tf-steps li .dv-st { margin-top: 1px; }
+.dv-tf-steps li b { font-weight: 600; }
+.dv-tf-steps li span:last-child { color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dv-tf-steps li[data-later] b, .dv-tf-steps li[data-later] span:last-child { color: var(--dv-faint); }
+.dv-tf-why-stopped { margin: 12px 0 0; color: var(--dv-ink-2); font-size: var(--dv-fs-small); line-height: 18px; overflow-wrap: anywhere; }
+.dv-tf-command { margin: 12px 0 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-tf-command code:last-child { display: inline-block; margin-top: 4px; padding: 3px 8px; border-radius: var(--dv-r2); background: var(--dv-sunk); color: var(--dv-ink); }
+.dv-tf-card-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--dv-line); }
+.dv-tf-card-foot .dv-caption { margin-right: auto; color: var(--dv-muted); font-size: var(--dv-fs-caption); }
+.dv-tf-left { display: flex; align-items: flex-start; gap: 8px; margin: 0; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--dv-line);
+  color: var(--dv-ink-2); font-size: var(--dv-fs-small); line-height: 18px; }
+
+/* Merge, under the thread's latest result, in the decision row's shape. */
+.dv-tf-merge { margin-top: var(--dv-s2); }
+.dv-tf-merge .dv-what code { font-size: var(--dv-fs-caption); }
+.dv-tf-merge-button { display: inline-flex; align-items: center; gap: 7px; }
+.dv-tf-merge-button svg { width: 14px; height: 14px; }
+.dv-tf-merge-button:disabled { opacity: .45; }
+
+/* Project settings, Access: the ignored files each thread folder gets. */
+.dv-tf-settings { display: grid; gap: 8px; }
+.dv-tf-files-head { display: grid; gap: 2px; margin: 4px 0 0; font-size: var(--dv-fs-small); }
+.dv-tf-files-head span { color: var(--dv-muted); font-size: var(--dv-fs-caption); }
+.dv-tf-files { margin: 0; padding: 0; list-style: none; }
+.dv-tf-files li + li { border-top: 1px solid var(--dv-line); }
+.dv-tf-files label { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 6px 0; font-size: var(--dv-fs-small); cursor: pointer; }
+.dv-tf-files input { margin-top: 3px; accent-color: var(--dv-pine); }
+.dv-tf-files code { overflow-wrap: anywhere; }
+.dv-tf-files small { color: var(--dv-muted); font-size: var(--dv-fs-caption); }

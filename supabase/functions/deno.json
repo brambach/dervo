@@ -1,0 +1,9 @@
+{
+  "lock": "deno.lock",
+  "nodeModulesDir": "none",
+  "compilerOptions": { "strict": true },
+  "tasks": {
+    "check": "deno check dervo-beta-download/index.ts dervo-billing/index.ts dervo-billing-webhook/index.ts",
+    "test": "deno test dervo-beta-download/handler.test.ts dervo-billing/handler.test.ts"
+  }
+}

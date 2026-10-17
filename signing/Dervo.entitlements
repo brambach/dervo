@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Hardened-runtime entitlements for Dervo Local.app. backend/release_signing.py attaches this file when it signs the
+  app with a Developer ID Application certificate (codesign, with the hardened runtime and a timestamp). Ad hoc builds
+  don't use it.
+
+  The dictionary is empty on purpose. Every entitlement here loosens the hardened runtime, so each one needs a reason
+  that was checked, not guessed. What was checked on 19 Sep 2026 and why nothing is needed:
+
+  - com.apple.security.cs.allow-jit: not needed. The web view is WKWebView, whose JavaScript runs in Apple's own
+    WebContent helper process, not in dervo-local. The Rust shell runs no JIT of its own.
+  - com.apple.security.cs.allow-unsigned-executable-memory and
+    com.apple.security.cs.allow-dyld-environment-variables: not needed. dervo-local loads no plugins and spawns the
+    Python host with a cleared environment (src/launch.rs host_command).
+  - com.apple.security.cs.disable-library-validation: not needed. No third-party dylib or .node addon is loaded into
+    dervo-local. If one is ever bundled, sign it with the same identity instead of adding this.
+  - The bundled Codex runtime (Contents/Resources/runtime/codex and codex-code-mode-host) is a separate process signed
+    by OpenAI with its own hardened runtime. It needs nothing from this file and isn't re-signed (codex_runtime.py
+    pins its hash).
+  - The Python host runs on the Python 3.13 the app carries (Contents/Resources/runtime/python, runtime/python.json)
+    since beta.17, a separate process. release_signing.py signs its one Mach-O, bin/python3.13 (statically linked, no
+    extension modules after trimming), with this identity and the hardened runtime and no entitlements of its own.
+    Checked on 2 Oct 2026 under the hardened runtime (ad hoc): ctypes calls into Security.framework, CoreFoundation,
+    libSystem and libproc, pty.fork, fcntl, os.killpg, sqlite3 and ssl with /etc/ssl/cert.pem all work, and nothing in
+    the backend uses ctypes callbacks, so no allow-unsigned-executable-memory. Spawning it needs no entitlement here.
+    Up to beta.16.4 the host was /Library/Frameworks/Python.framework, signed by the Python Software Foundation.
+  - com.apple.security.network.client and the other App Sandbox keys: not needed. Dervo isn't sandboxed.
+  - keychain-access-groups: not yet. The Keychain fix in notes/devid-plan.md uses the login Keychain's default
+    access (trusts the signed app by its designated requirement), which needs no entitlement. Add this key only if
+    that plan moves to the data-protection keychain.
+
+  If a signed build fails where an ad hoc build worked, the crash report names the missing entitlement. Add it here
+  with the reason, one line each.
+-->
+<plist version="1.0">
+<dict>
+</dict>
+</plist>

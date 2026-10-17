@@ -1,0 +1,289 @@
+# Dervo for Windows, unsigned (b16/windows, milestone 2 in PLAN-beta16-build-20260925.md).
+#
+# Builds an NSIS installer on a GitHub-hosted Windows runner and runs the backend tests there, and keeps the installer
+# as a download on the run's page for 3 days. Nothing is signed, published, released or sent to anyone: a build goes
+# to a tester only when Bryce says so for that build.
+#
+# Runs only by hand (Actions, Run workflow) or for a release (Bryce, 9 Oct 2026: free CI, with Windows checked by
+# hand before each release). Pull requests and main merges don't start it.
+#
+# Release builds (milestone 5, PLAN-windows-m5-20260926.md): when .github/windows-release.json names a release id, the
+# build is stamped with it, a build number and the private-beta profile, and the installer is kept with the
+# package.json the Dervo release signer reads (tools/release-sign), for 7 days. GitHub only offers a manual run for
+# workflows on the default branch, and only b16/windows is pushed, so the file is the switch. No Authenticode
+# signature yet (Bryce, 26 Sep 2026: unsigned while only his friend tests on Windows). When that changes, signing goes
+# between "Build the installer" and "Package the release", with its secrets in the repo's GitHub secrets.
+name: Windows build
+
+# A release starts when a push changes .github/windows-release.json, the release switch.
+on:
+  push:
+    branches:
+      - main
+      - b16/windows
+    paths:
+      - '.github/windows-release.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: windows-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  installer:
+    runs-on: windows-latest
+    timeout-minutes: 110
+    steps:
+      # Windows runners check text files out with CRLF endings. The packaged harness checks its files' sha256 against
+      # the bytes the Mac committed (harness_port.py), and the installer carries whatever the checkout wrote, so the
+      # files stay byte for byte as committed.
+      - name: Keep line endings as committed
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+
+      # The same tools the Mac build uses: Node and the frontend's own pnpm lockfile, Python 3.13, stable Rust.
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 12.4.2
+      - name: Install frontend packages
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile
+
+      - name: Build the frontend
+        run: node frontend/node_modules/vite/bin/vite.js build frontend --outDir ../dist
+
+      # Windows has no Python.framework. The app carries its own Python 3.13 in windows-python/ (src/launch.rs looks
+      # for it next to Dervo's exe). This copies the runner's python.org build and drops what the host never uses.
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+          architecture: x64
+      - name: Stage the bundled Python
+        shell: pwsh
+        run: |
+          Copy-Item -Recurse $env:pythonLocation windows-python
+          foreach ($unused in 'Lib\test', 'Lib\idlelib', 'Lib\tkinter', 'Lib\turtledemo', 'Lib\site-packages', 'tcl', 'Tools', 'Scripts', 'Doc', 'include', 'libs') {
+            if (Test-Path "windows-python\$unused") { Remove-Item -Recurse -Force "windows-python\$unused" }
+          }
+          Get-ChildItem windows-python -Recurse -Include __pycache__ -Directory | Remove-Item -Recurse -Force
+          # Precompiled once here, as the Mac and Linux runtimes are (scripts/python_runtime.py): the app runs Python
+          # with -B, so without these every launch compiles each standard library module it imports from source.
+          & windows-python\python.exe -E -s -I -m compileall -q -j 0 --invalidation-mode unchecked-hash windows-python\Lib
+          if ($LASTEXITCODE) { throw 'Precompiling the bundled Python failed.' }
+          & windows-python\python.exe --version
+          "{0:N0} MB" -f ((Get-ChildItem windows-python -Recurse -File | Measure-Object Length -Sum).Sum / 1MB)
+          if (-not (Test-Path windows-python\LICENSE.txt)) { throw 'The Python licence is missing from windows-python.' }
+
+      # Codex for Windows: the official win32-x64 npm package pinned in runtime/codex-win32-x64.json, checked against npm's
+      # integrity and each file's sha256, into runtime/codex-win (packaged by tauri.windows.conf.json). A mismatch stops the
+      # build, the same as a changed Mac runtime/codex would.
+      - name: Stage Codex for Windows
+        shell: pwsh
+        run: |
+          python -B scripts\stage-windows-codex.py "$env:RUNNER_TEMP\codex-cache"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+
+      # The host with the bundled Python, the same flags and the same cleared environment as the app gives it. It isn't
+      # expected to pass yet: its log says how far a Windows host gets, and the installer is built either way.
+      - name: Start the backend host once
+        id: host
+        continue-on-error: true
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force "$env:RUNNER_TEMP\dervo-data" | Out-Null
+          & windows-python\python.exe -E -s -B scripts\windows-host-smoke.py "$PWD\windows-python\python.exe" "$env:RUNNER_TEMP\dervo-data" 2>&1 | Tee-Object -FilePath host-smoke.txt
+          exit $LASTEXITCODE
+
+      # Keeps backend/test_*.py out of the installer, and for a release stamps its version and profile and audits
+      # every file the installer takes (scripts/windows-release.py). The tests come back after packaging.
+      - name: Stage this build
+        id: stage
+        shell: pwsh
+        run: |
+          python -B scripts\windows-release.py stage windows-held | Tee-Object -FilePath windows-stage.txt
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+          $release = (Get-Content windows-held\stage.json -Raw | ConvertFrom-Json).releaseId
+          "release=$release" >> $env:GITHUB_OUTPUT
+
+      - uses: Swatinem/rust-cache@6323deb102c322ba6fcbdcafc7e3dddab59af2b6 # v2
+      - name: Build the installer
+        run: node frontend/node_modules/@tauri-apps/cli/tauri.js build --bundles nsis
+
+      # Artifact storage is a small shared quota, so a pull request's installer isn't kept, and main's for 3 days.
+      - name: Keep the installer
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: dervo-windows-unsigned-${{ github.sha }}
+          path: target/release/bundle/nsis/*.exe
+          if-no-files-found: error
+          retention-days: 3
+
+      - name: Package the release
+        if: steps.stage.outputs.release != '' && github.event_name != 'pull_request'
+        run: python -B scripts\windows-release.py package windows-held target\release\bundle\nsis windows-release
+
+      - name: Keep the release
+        if: steps.stage.outputs.release != '' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: dervo-windows-release-${{ steps.stage.outputs.release }}
+          path: windows-release/
+          if-no-files-found: error
+          retention-days: 7
+
+      - name: Put the tests back
+        if: always() && steps.stage.outcome == 'success'
+        run: python -B scripts\windows-release.py restore windows-held
+
+      # Milestone 3's run path through the real host and a real child process, with the fake Claude CLI: a task from
+      # Home and one in a thread, Stop mid-run, resume after it, the account and model checks, and what a killed host
+      # leaves behind. The same tests pass on a Mac. No account, no model call. Milestone 4 adds the project terminal:
+      # PowerShell in a ConPTY console, typing, resize, and Close ending everything the shell started (Windows only).
+      # Not a gate: each host call's seconds and where the host's threads spent them, because test_run_path's
+      # coding_permission_grant took 5 to 6 s here (run 37856853359) and well under 1 s on Linux.
+      - name: Time the test host's first calls
+        continue-on-error: true
+        timeout-minutes: 5
+        shell: pwsh
+        working-directory: backend
+        run: python -B ..\scripts\host-call-sample.py
+
+      - name: Run, stop and resume on Windows
+        timeout-minutes: 10
+        shell: pwsh
+        working-directory: backend
+        run: |
+          python -B -m unittest -v test_run_path test_headless_lifecycle test_windows_terminal 2>&1 | Tee-Object -FilePath ..\run-path.txt
+          exit $LASTEXITCODE
+
+      # Claude Code from its own Windows installer, then Dervo finds it and reads its version and sign-in the way it
+      # does before a run. The runner is never signed in, so loggedIn false is the expected answer. No account, no
+      # model call.
+      - name: Claude Code on Windows
+        if: success() || failure()
+        continue-on-error: true
+        timeout-minutes: 10
+        shell: pwsh
+        run: |
+          irm https://claude.ai/install.ps1 | iex
+          python -B scripts\windows-claude-smoke.py 2>&1 | Tee-Object -FilePath claude-smoke.txt
+          exit $LASTEXITCODE
+
+      # Dervo's own check of the bundled Codex (codex_runtime.executable: path and sha256), then its version and sign-in
+      # state from a scratch CODEX_HOME. The runner is never signed in to Codex. No account, no model call.
+      - name: Codex on Windows
+        if: success() || failure()
+        continue-on-error: true
+        timeout-minutes: 5
+        shell: pwsh
+        run: |
+          $env:CODEX_HOME = "$env:RUNNER_TEMP\codex-home"
+          New-Item -ItemType Directory -Force $env:CODEX_HOME | Out-Null
+          & {
+            python -B -c "import sys; sys.path.insert(0, 'backend'); import codex_runtime; print('Dervo verified', codex_runtime.executable())"
+            & runtime\codex-win\bin\codex.exe --version
+            & runtime\codex-win\bin\codex.exe login status
+          } 2>&1 | Tee-Object -FilePath codex-smoke.txt
+
+      # The host log, the run path and Windows test results, and the Cargo.lock the runner resolved.
+      - name: Keep the host log and lockfile
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: windows-build-notes-${{ github.sha }}
+          path: |
+            host-smoke.txt
+            windows-stage.txt
+            claude-smoke.txt
+            codex-smoke.txt
+            run-path.txt
+            Cargo.lock
+          if-no-files-found: warn
+          retention-days: 3
+
+      - name: Say how the host check went
+        if: always()
+        shell: pwsh
+        run: |
+          if ('${{ steps.host.outcome }}' -eq 'success') { 'The backend host started and answered status on Windows.' }
+          else { 'The backend host did not start on Windows. The installer was still built. See host-smoke.txt.' }
+
+  # The backend's own unit tests, split across three runners (one runner took 28 minutes for 63 of 205 modules), each
+  # running three modules at a time, each module in its own process and hidden console with a four-minute cap. A module
+  # that fails and isn't in .github/known-test-failures.json for win32 turns the build red. Each runner has what the
+  # installer job has before it builds: the frontend, the bundled Python and Codex.
+  backend:
+    runs-on: windows-latest
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [1, 2, 3]
+    steps:
+      - name: Keep line endings as committed
+        run: git config --global core.autocrlf false
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4
+        with:
+          version: 12.4.2
+      - name: Install frontend packages
+        working-directory: frontend
+        run: pnpm install --frozen-lockfile
+      - name: Build the frontend
+        run: node frontend/node_modules/vite/bin/vite.js build frontend --outDir ../dist
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version: '3.13'
+          architecture: x64
+      - name: Stage the bundled Python
+        shell: pwsh
+        run: |
+          Copy-Item -Recurse $env:pythonLocation windows-python
+          foreach ($unused in 'Lib\test', 'Lib\idlelib', 'Lib\tkinter', 'Lib\turtledemo', 'Lib\site-packages', 'tcl', 'Tools', 'Scripts', 'Doc', 'include', 'libs') {
+            if (Test-Path "windows-python\$unused") { Remove-Item -Recurse -Force "windows-python\$unused" }
+          }
+          Get-ChildItem windows-python -Recurse -Include __pycache__ -Directory | Remove-Item -Recurse -Force
+          # Precompiled once here, as the Mac and Linux runtimes are (scripts/python_runtime.py): the app runs Python
+          # with -B, so without these every launch compiles each standard library module it imports from source.
+          & windows-python\python.exe -E -s -I -m compileall -q -j 0 --invalidation-mode unchecked-hash windows-python\Lib
+          if ($LASTEXITCODE) { throw 'Precompiling the bundled Python failed.' }
+          & windows-python\python.exe --version
+          "{0:N0} MB" -f ((Get-ChildItem windows-python -Recurse -File | Measure-Object Length -Sum).Sum / 1MB)
+          if (-not (Test-Path windows-python\LICENSE.txt)) { throw 'The Python licence is missing from windows-python.' }
+
+      - name: Stage Codex for Windows
+        shell: pwsh
+        run: |
+          python -B scripts\stage-windows-codex.py "$env:RUNNER_TEMP\codex-cache"
+          if ($LASTEXITCODE) { exit $LASTEXITCODE }
+
+      - name: Backend tests on Windows, part ${{ matrix.shard }} of 3
+        timeout-minutes: 60
+        shell: pwsh
+        env:
+          BACKEND_TEST_CAP: '240'
+          BACKEND_TEST_WORKERS: '3'
+          SHARD: ${{ matrix.shard }}
+        run: python -B scripts\backend-tests-by-module.py --known .github/known-test-failures.json --shard "$env:SHARD/3" windows-tests
+
+      - name: Keep the test log
+        if: always()
+        continue-on-error: true
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: windows-tests-${{ matrix.shard }}-${{ github.sha }}
+          path: windows-tests/
+          if-no-files-found: warn
+          retention-days: 3

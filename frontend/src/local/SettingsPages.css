@@ -1,0 +1,217 @@
+/* The Settings pages you own and Dervo's (design sweep, 19 Sep; evidence/design-sweep/settings/settings.css): Account,
+   Preferences, Connected accounts, Updates and Testers, the usage popover and the feedback dialog. Page layout only;
+   rows, controls and type are the dv- classes in DervoComponents.css. Tokens only: no new colours, sizes or radii. */
+
+/* These five pages follow area 1's measure (settings/settings.css): a section sits close to its rows, and a row's line
+   wraps at 58ch. Scoped by page, so the project's pages keep area 2's. It also keeps Knowledge's global .dv-sec gap
+   (ProjectKnowledge.css) off these pages. */
+.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]) .dv-sec { gap: var(--dv-s1); }
+.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]) .dv-set-line { max-width: 58ch; }
+.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]) .dv-set + .dv-set { padding-top: var(--dv-s3); }
+.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]) .dv-sec-head { min-height: 0; }
+.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]) .dv-sec-note { max-width: none; }
+
+/* Text fields on these pages and the feedback dialog (settings/settings.css, interactions.md "Focus"): sunk at rest,
+   raised with the strong edge while you type. Focus is shown by the field itself, never a ring on a click. */
+:is(.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]), .dv-feedback) .dv-input {
+  background: var(--dv-sunk); box-shadow: inset 0 0 0 1px transparent; transition: box-shadow var(--dv-fast), background var(--dv-fast); }
+:is(.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]), .dv-feedback) :is(.dv-open-card, .dv-confirm) .dv-input,
+.dv-feedback .dv-input { box-shadow: inset 0 0 0 1px var(--dv-line); }
+:is(.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]), .dv-feedback) .dv-input:focus {
+  outline: none; background: var(--dv-raised); box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+:is(.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]), .dv-feedback) .dv-input[aria-invalid="true"] { box-shadow: inset 0 0 0 1px var(--dv-ink-2); }
+.dv-settings:is([data-page="account"], [data-page="preferences"], [data-page="accounts"], [data-page="updates"], [data-page="testers"]) .dv-input:not(textarea) { height: 36px; }
+@media (prefers-reduced-motion: reduce) { .dv-settings .dv-input, .dv-feedback .dv-input { transition: none; } }
+
+/* A disabled button is dimmed and says so on hover (interactions.md "Disabled"); the row's line gives the reason. */
+:is(.dv-settings, .dv-feedback, .dv-usage-pop) .dv-btn:disabled { opacity: .45; cursor: not-allowed; }
+:is(.dv-settings, .dv-feedback, .dv-usage-pop) .dv-btn-primary:disabled { opacity: 1; }
+:is(.dv-settings, .dv-feedback, .dv-usage-pop) :is(.dv-btn-ghost, .dv-btn-quiet):disabled:hover { background: var(--dv-raised); color: inherit; }
+:is(.dv-settings, .dv-feedback, .dv-usage-pop) .dv-btn-quiet:disabled:hover { background: none; color: var(--dv-muted); }
+:is(.dv-settings, .dv-feedback) .dv-btn:active:not(:disabled) { filter: brightness(.94); }
+
+/* A row with something before it (the photo on Account). */
+.dv-set.dv-lead { grid-template-columns: auto minmax(0, 1fr) auto; }
+.dv-set .dv-set-line b { color: var(--dv-ink-2); font-weight: 600; }
+.dv-set-end .dv-input { width: 240px; }
+.dv-status { display: inline-flex; align-items: center; gap: 6px; font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink-2); white-space: nowrap; }
+.dv-status[data-state="done"] { color: var(--dv-sage); }
+.dv-field-row { display: flex; flex-direction: column; align-items: flex-end; gap: var(--dv-s1); }
+
+/* The large avatar on Account, the sidebar's avatar at page size. */
+.dv-avatar.dv-avatar-lg { width: 56px; height: 56px; font-size: var(--dv-fs-title); overflow: hidden; }
+.dv-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+/* The one open item on a page, lifted onto a card as on Home. It rises in once. */
+.dv-open-card { display: flex; flex-direction: column; gap: var(--dv-s4); padding: var(--dv-s5); margin: var(--dv-s2) calc(-1 * var(--dv-s3));
+  border-radius: var(--dv-r3); background: var(--dv-raised); box-shadow: 0 0 0 1px var(--dv-line), var(--dv-lift); animation: dv-rise var(--dv-calm) var(--dv-ease) both; }
+.dv-open-card > .dv-seg { align-self: flex-start; }
+.dv-open-card > .dv-seg.dv-wide { align-self: stretch; }
+.dv-card-head { display: flex; align-items: baseline; gap: var(--dv-s3); }
+.dv-card-head .dv-caption { margin-left: auto; }
+.dv-card-actions { display: flex; align-items: center; justify-content: flex-end; gap: var(--dv-s2); }
+.dv-card-actions > .dv-caption { margin-right: auto; }
+.dv-card-text { font-size: var(--dv-fs-small); line-height: var(--dv-lh-ui); color: var(--dv-ink-2); }
+.dv-card-text b { color: var(--dv-ink); font-weight: 600; }
+@keyframes dv-rise { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .dv-open-card, .dv-confirm { animation: none; } }
+
+/* A field on a card: its label, the control, one line under it. */
+.dv-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.dv-field > span:first-child { font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink-2); }
+.dv-field > .dv-seg { align-self: flex-start; }
+.dv-field > small { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-field .dv-input { width: 100%; }
+.dv-input.dv-mono { font-family: var(--dv-font-mono); font-size: var(--dv-fs-small); letter-spacing: .02em; }
+.dv-input.dv-code { width: 180px; font-family: var(--dv-font-mono); font-size: var(--dv-fs-read); letter-spacing: .32em; }
+.dv-inline { display: flex; align-items: center; gap: var(--dv-s2); }
+.dv-inline .dv-input { flex: 1; }
+.dv-inline .dv-input.dv-code { flex: none; }
+.dv-seg.dv-wide { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; }
+
+/* An in-place confirm: the row lifts, says the consequence, and offers the way out first. */
+.dv-confirm { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--dv-s2) var(--dv-s5); padding: var(--dv-s4);
+  margin: var(--dv-s1) calc(-1 * var(--dv-s4)); border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: 0 0 0 1px var(--dv-line), var(--dv-lift);
+  animation: dv-rise var(--dv-calm) var(--dv-ease) both; }
+.dv-confirm .dv-set-name { font-weight: 600; }
+.dv-confirm .dv-set-line { color: var(--dv-ink-2); }
+.dv-confirm .dv-set-end { display: flex; gap: var(--dv-s2); }
+
+/* Connected accounts: an account, its usage, its menu. No rules or boxes between accounts. */
+.dv-provider { display: flex; flex-direction: column; gap: 0; }
+.dv-acct { display: grid; grid-template-columns: minmax(0, 1fr) 196px 32px; align-items: start; gap: 0 var(--dv-s5); padding: var(--dv-s3) 0; }
+.dv-acct-name { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; display: flex; align-items: center; gap: var(--dv-s2); color: var(--dv-ink); }
+.dv-acct-line { font-size: var(--dv-fs-small); color: var(--dv-muted); margin-top: 2px; }
+/* What the account runs: its side and projects (b16-work settings-accounts). */
+.dv-acct-used { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: 2px; }
+.dv-acct-note { font-size: var(--dv-fs-small); color: var(--dv-ink-2); margin-top: var(--dv-s1); }
+.dv-acct-problem { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s2) var(--dv-s3); margin-top: var(--dv-s2);
+  font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-acct-problem > span { flex: 1 1 280px; }
+.dv-acct-below { grid-column: 1 / -1; margin-top: var(--dv-s2); display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-acct .dv-btn-icon { justify-self: end; }
+.dv-acct .dv-btn-icon[aria-expanded="true"] { background: var(--dv-sunk); color: var(--dv-ink); }
+.dv-acct-side { margin-top: 2px; justify-self: stretch; display: flex; align-items: center; justify-content: flex-end; gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-acct .dv-input { width: 240px; }
+.dv-meter { display: grid; grid-template-columns: minmax(0, 1fr) 76px; align-items: center; gap: 3px var(--dv-s2); }
+.dv-meter .dv-bar { height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--dv-ink) 9%, transparent); overflow: hidden; }
+.dv-meter .dv-bar i { display: block; height: 100%; border-radius: 2px; background: var(--dv-sage); transition: width var(--dv-calm) var(--dv-ease); }
+.dv-meter .dv-pct { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-ink-2); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.dv-meter small { grid-column: 1 / -1; font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-meter.dv-none small { white-space: normal; }
+@media (prefers-reduced-motion: reduce) { .dv-meter .dv-bar i { transition: none; } }
+.dv-add-row { display: grid; grid-template-columns: 16px minmax(0, 1fr); align-items: center; gap: var(--dv-s3); width: calc(100% + 2 * var(--dv-s3));
+  margin: var(--dv-s1) calc(-1 * var(--dv-s3)) 0; padding: 10px var(--dv-s3); border-radius: var(--dv-r2); color: var(--dv-muted); font-size: var(--dv-fs-body); text-align: left; }
+.dv-add-row:hover:not(:disabled) { background: var(--dv-sunk); color: var(--dv-ink); }
+.dv-add-row:disabled { opacity: .45; cursor: not-allowed; }
+.dv-cmd { display: flex; align-items: center; gap: var(--dv-s2); padding: 6px 6px 6px var(--dv-s3); border-radius: var(--dv-r2); background: var(--dv-sunk); }
+.dv-cmd code { flex: 1; min-width: 0; font-family: var(--dv-font-mono); font-size: var(--dv-fs-small); color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-attention { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: var(--dv-s1) var(--dv-s3); align-items: start; padding: var(--dv-s2) 0 var(--dv-s3); }
+.dv-attention > .dv-st { margin-top: 2px; }
+.dv-attention .dv-cmd { margin-top: var(--dv-s3); }
+.dv-link-pick { display: flex; flex-wrap: wrap; align-items: center; gap: var(--dv-s2); }
+
+/* A disclosure, as in Knowledge: quiet, with a chevron that turns. */
+.dv-disclose { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-disclose > summary { display: inline-flex; align-items: center; gap: var(--dv-s1); cursor: pointer; list-style: none; border-radius: var(--dv-r1); font-weight: 500; }
+.dv-disclose > summary::-webkit-details-marker { display: none; }
+/* The chevron is this disclosure's marker; the app-wide "+" and "−" (DervoBrand.css) would say it twice. */
+:root[data-dervo-local] details.dv-disclose > summary::after, :root[data-dervo-local] details.dv-disclose[open] > summary::after { content: none; }
+.dv-disclose > summary svg { color: var(--dv-faint); transition: transform var(--dv-fast) var(--dv-ease); }
+.dv-disclose[open] > summary svg { transform: rotate(90deg); }
+.dv-disclose > summary:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-disclose .dv-disclose-body { margin-top: var(--dv-s2); line-height: var(--dv-lh-ui); }
+@media (prefers-reduced-motion: reduce) { .dv-disclose > summary svg { transition: none; } }
+.dv-rules { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: var(--dv-s2) var(--dv-s4); padding-top: var(--dv-s2); line-height: 1.5; }
+.dv-rules dt { color: var(--dv-ink); font-weight: 600; }
+.dv-rules dd { color: var(--dv-ink-2); }
+
+/* Preferences: the theme tiles. Each preview draws that theme in its own token values (paper, canvas, line-strong and
+   ink from DervoTokens.css, as literals because a tile shows its theme whichever mode is on), so Dark looks dark in
+   light mode. Keep these in step with the tokens. */
+.dv-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--dv-s4); padding-top: var(--dv-s2); }
+.dv-tile { display: flex; flex-direction: column; gap: var(--dv-s2); text-align: left; font-size: var(--dv-fs-small); font-weight: 500; color: var(--dv-ink-2); border-radius: var(--dv-r2); }
+.dv-tile[aria-checked="true"] { color: var(--dv-ink); font-weight: 600; }
+.dv-tile:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-pv { height: 92px; border-radius: var(--dv-r2); overflow: hidden; display: grid; grid-template-columns: 32% 1fr; box-shadow: 0 0 0 1px var(--dv-line-strong); }
+.dv-tile[aria-checked="true"] .dv-pv, .dv-tile[aria-checked="true"]:hover .dv-pv { box-shadow: 0 0 0 2px var(--dv-ink); }
+.dv-tile:hover .dv-pv { box-shadow: 0 0 0 1px var(--dv-muted); }
+.dv-pv .dv-pv-s { background: var(--pp); padding: 10px 8px; display: flex; flex-direction: column; gap: 5px; }
+.dv-pv .dv-pv-m { background: var(--pc); padding: 14px 12px; display: flex; flex-direction: column; gap: 6px; }
+.dv-pv i { display: block; height: 5px; border-radius: 3px; background: var(--pl); }
+.dv-pv .dv-pv-m i:first-child { width: 60%; height: 8px; background: var(--pi); opacity: .8; }
+.dv-pv .dv-pv-s i:nth-child(2) { background: var(--pi); opacity: .25; }
+.dv-pv .dv-pv-m i:last-child { width: 70%; }
+.dv-pv.dv-light { --pp: #f7f6f3; --pc: #fdfdfc; --pl: #dcdbd4; --pi: #1b1b19; }
+.dv-pv.dv-dark { --pp: #141312; --pc: #1b1a18; --pl: #433f3a; --pi: #eeece7; }
+.dv-pv.dv-forest { --pp: #0e1813; --pc: #122019; --pl: #314a3c; --pi: #e4eee6; }
+.dv-pv-stack { position: relative; display: block; }
+.dv-pv-stack .dv-pv + .dv-pv { position: absolute; inset: 0; clip-path: polygon(62% 0, 100% 0, 100% 100%, 38% 100%); box-shadow: none; }
+.dv-tile[aria-checked="true"] .dv-pv-stack .dv-pv + .dv-pv { box-shadow: none; }
+.dv-range { width: 200px; accent-color: var(--dv-pine); }
+
+/* Updates: the release notes on the open card. */
+.dv-open-card .dv-report { font-size: var(--dv-fs-body); }
+.dv-progress { display: flex; flex-direction: column; gap: 6px; }
+
+/* Testers: the audit as plain dated lines. */
+.dv-log { display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: var(--dv-s2) var(--dv-s4); padding: var(--dv-s2) 0; font-size: var(--dv-fs-small); }
+.dv-log time { color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dv-log span { color: var(--dv-ink-2); }
+.dv-log b { color: var(--dv-ink); font-weight: 600; }
+
+/* The usage popover beside the sidebar's usage lines (usage-b.html). The kit's popover material; width is ours. */
+.dv-usage-pop { width: 360px; display: flex; flex-direction: column; gap: var(--dv-s3); padding: var(--dv-s4) !important; outline: none; }
+.dv-usage-pop .dv-pop-head { display: flex; align-items: baseline; gap: var(--dv-s3); }
+.dv-usage-pop .dv-pop-head .dv-caption { margin-left: auto; }
+.dv-usage-pop .dv-pop-grp { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dv-usage-pop .dv-u { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 2px var(--dv-s4); align-items: center; }
+.dv-usage-pop .dv-u b { font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-usage-pop .dv-u .dv-meter { grid-template-columns: minmax(0, 1fr) auto; }
+.dv-usage-pop .dv-u > small { grid-column: 1 / -1; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-usage-pop .dv-pop-foot { display: flex; align-items: center; justify-content: space-between; padding-top: var(--dv-s1); }
+.dv-sb-usage .dv-usage[aria-expanded="true"] { background: color-mix(in srgb, var(--dv-raised) 72%, transparent); }
+
+/* Send feedback, a dialog over wherever you are (feedback-b.html). */
+.dv-feedback.dervo-feedback-dialog { width: min(480px, calc(100vw - 2 * var(--dv-s5))) !important; max-width: none !important; display: flex !important; flex-direction: column;
+  gap: var(--dv-s4) !important; padding: var(--dv-s5) !important; }
+.dv-feedback form > .dv-seg { align-self: flex-start; }
+.dv-feedback .dv-feedback-head { display: flex; align-items: flex-start; gap: var(--dv-s3); }
+.dv-feedback .dv-feedback-head > div { flex: 1; display: flex; flex-direction: column; gap: 2px; }
+.dv-feedback form { display: flex; flex-direction: column; gap: var(--dv-s4); }
+.dv-feedback textarea.dv-input { width: 100%; min-height: 128px; box-shadow: inset 0 0 0 1px var(--dv-line); resize: none; }
+.dv-feedback textarea.dv-input:focus { box-shadow: inset 0 0 0 1px var(--dv-line-strong); outline: none; }
+.dv-feedback .dv-feedback-foot { display: flex; align-items: center; gap: var(--dv-s2); }
+.dv-feedback .dv-feedback-foot .dv-caption { margin-right: auto; }
+.dv-feedback .dv-feedback-sent { display: flex; align-items: center; gap: var(--dv-s3); padding: var(--dv-s5) 0 var(--dv-s4); }
+.dv-feedback .dv-feedback-sent b { display: block; font-weight: 600; color: var(--dv-ink); }
+
+/* The add card's method choice spans the card. */
+.dv-seg-wide-host > .dv-seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; width: 100%; }
+/* A link-like button inside a line of text ("Copy the sign-in link"). */
+.dv-link { display: inline; padding: 0; font: inherit; font-weight: 600; color: var(--dv-ink); text-decoration: underline; text-decoration-color: var(--dv-line-strong);
+  text-underline-offset: 3px; }
+.dv-link:hover { text-decoration-color: currentColor; }
+.dv-link:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; border-radius: 2px; }
+/* A download's progress, as the usage bar. */
+progress.dv-meter-progress { -webkit-appearance: none; appearance: none; width: 100%; height: 4px; border: 0; border-radius: 2px; overflow: hidden;
+  background: color-mix(in srgb, var(--dv-ink) 9%, transparent); }
+progress.dv-meter-progress::-webkit-progress-bar { background: color-mix(in srgb, var(--dv-ink) 9%, transparent); }
+progress.dv-meter-progress::-webkit-progress-value { background: var(--dv-sage); border-radius: 2px; }
+
+/* OpenRouter's route and spending, on its card: rows and choices, no boxes inside the card. */
+.dv-or-part { display: flex; flex-direction: column; gap: var(--dv-s3); }
+.dv-or-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--dv-s2) var(--dv-s4); }
+.dv-or-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--dv-s3); font-size: var(--dv-fs-small); }
+.dv-or-facts dt { color: var(--dv-muted); font-size: var(--dv-fs-caption); font-weight: 600; }
+.dv-or-facts dd { color: var(--dv-ink); font-weight: 600; margin-top: 2px; font-variant-numeric: tabular-nums; }
+.dv-or-list { display: flex; flex-direction: column; gap: 2px; max-height: 240px; overflow-y: auto; margin: 0 calc(-1 * var(--dv-s3)); }
+.dv-or-model { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s3); padding: 7px var(--dv-s3); border-radius: var(--dv-r1); text-align: left; }
+.dv-or-model:hover:not(:disabled) { background: var(--dv-sunk); }
+.dv-or-choice { display: flex; flex-direction: column; gap: 2px; padding: var(--dv-s3); border-radius: var(--dv-r2); text-align: left; box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dv-or-choice:hover:not(:disabled) { background: var(--dv-sunk); }
+.dv-or-choice[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--dv-ink); }
+.dv-or-choice:disabled { opacity: .45; cursor: not-allowed; }
+.dv-or-name { font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); word-break: break-all; }
+.dv-or-small { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+:root[data-dervo-local] :is(.dv-or-model, .dv-or-choice):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }

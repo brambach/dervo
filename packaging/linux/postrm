@@ -1,0 +1,12 @@
+#!/bin/sh
+set -e
+TARGET=/etc/apparmor.d/dervo-local
+if [ "$1" = remove ] || [ "$1" = purge ]; then
+  if [ -f "$TARGET" ]; then
+    if command -v apparmor_parser >/dev/null 2>&1 && [ -d /sys/kernel/security/apparmor ]; then
+      apparmor_parser -R "$TARGET" 2>/dev/null || true
+    fi
+    rm -f "$TARGET"
+  fi
+fi
+exit 0

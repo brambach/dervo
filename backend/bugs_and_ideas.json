@@ -1,0 +1,250 @@
+{
+ "source": "Bugs and ideas thread, as read in PLAN-beta11-lens-review.md on 19 Sep 2026 and merged.md",
+ "items": [
+  {
+   "number": 1,
+   "kind": "idea",
+   "name": "Stop asking for approval on every commit",
+   "text": "Decided 19 Sep: keep approval, add #27 to #29 instead (notes/decisions.md)",
+   "state": "closed"
+  },
+  {
+   "number": 2,
+   "kind": "bug",
+   "name": "Thread started from Home needs a manual Start",
+   "text": "Cause unknown",
+   "state": "planned"
+  },
+  {
+   "number": 3,
+   "kind": "bug",
+   "name": "Can't attach images in the Home chat",
+   "text": "Home composer has a text box and Send only (Home.tsx:468-478)",
+   "state": "planned"
+  },
+  {
+   "number": 4,
+   "kind": "bug",
+   "name": "Send arrow sits left of centre",
+   "text": "Uncommitted fix in DervoComponents.css (.dv-btn-send becomes a centred flex box). Not rendered",
+   "state": "planned"
+  },
+  {
+   "number": 5,
+   "kind": "bug",
+   "name": "A message sent mid-run doesn't steer the worker",
+   "text": "Steering code exists since 85fda45 (17 Sep). An earlier chat thought it found the break. Unverified",
+   "state": "planned"
+  },
+  {
+   "number": 6,
+   "kind": "idea",
+   "name": "Log bugs and ideas on the Releases page",
+   "text": "Not built",
+   "state": "planned"
+  },
+  {
+   "number": 7,
+   "kind": "bug",
+   "name": "Releases page stopped updating",
+   "text": "Uncommitted fix: beta_plan.stamp plus builder changes, waiting for review",
+   "state": "done"
+  },
+  {
+   "number": 8,
+   "kind": "idea",
+   "name": "Split Home: chat one side, what's happening the other",
+   "text": "Direction A picked, mockups only",
+   "state": "planned"
+  },
+  {
+   "number": 9,
+   "kind": "bug",
+   "name": "Runs fail when claude.ai connectors drop and reconnect...",
+   "text": "Runs fail when claude.ai connectors drop and reconnect mid-run, then stick on leftover files\n\nCause written up in another project's doc, not read here",
+   "state": "planned"
+  },
+  {
+   "number": 10,
+   "kind": "idea",
+   "name": "Progress bar (Task guide) on by default in threads",
+   "text": "Not built",
+   "state": "planned"
+  },
+  {
+   "number": 11,
+   "kind": "bug",
+   "name": "Progress bar randomly disappeared",
+   "text": "No repro",
+   "state": "planned"
+  },
+  {
+   "number": 12,
+   "kind": "bug",
+   "name": "In full screen, the main content sits too high: starts...",
+   "text": "In full screen, the main content sits too high: starts at the window's top edge and stops about 50 px short of the bottom, showing blurred background under it\n\nFrom screenshots, on a thread and on Releases, so likely the window layout",
+   "state": "planned"
+  },
+  {
+   "number": 13,
+   "kind": "bug",
+   "name": "\"View image\" button for an attached image sits on the...",
+   "text": "\"View image\" button for an attached image sits on the far left, on its own row, under a right-hand message\n\nFrom a screenshot",
+   "state": "planned"
+  },
+  {
+   "number": 14,
+   "kind": "idea",
+   "name": "Keep the profile picture and other settings across releases",
+   "text": "Not known whether releases reset them. See lens 5",
+   "state": "planned"
+  },
+  {
+   "number": 15,
+   "kind": "idea",
+   "name": "Knowledge updates on its own, and you see when...",
+   "text": "Knowledge updates on its own, and you see when something's remembered\n\nNot built",
+   "state": "planned"
+  },
+  {
+   "number": 16,
+   "kind": "idea",
+   "name": "Dervo asks questions, you answer with number keys",
+   "text": "Not built. Also the prompt for #21",
+   "state": "planned"
+  },
+  {
+   "number": 17,
+   "kind": "idea",
+   "name": "Opt-in sharing of how people use the models, and a team...",
+   "text": "Opt-in sharing of how people use the models, and a team view of logs\n\nNot built",
+   "state": "planned"
+  },
+  {
+   "number": 18,
+   "kind": "idea",
+   "name": "Voice chat with the Home orchestrator",
+   "text": "AGENTS.md says voice comes later",
+   "state": "planned"
+  },
+  {
+   "number": 19,
+   "kind": "idea",
+   "name": "Orchestrator splits one message into several actions and...",
+   "text": "Orchestrator splits one message into several actions and offers one-tap next prompts\n\nNot built",
+   "state": "planned"
+  },
+  {
+   "number": 20,
+   "kind": "idea",
+   "name": "Side browser panel for mockups and screenshots",
+   "text": "Not built",
+   "state": "planned"
+  },
+  {
+   "number": 21,
+   "kind": "idea",
+   "name": "Send to a mentioned chat from any chat",
+   "text": "Not built. Related to #19",
+   "state": "planned"
+  },
+  {
+   "number": 22,
+   "kind": "bug",
+   "name": "Report headings on every reply",
+   "text": "Fixed in source, 983117e, not in a build",
+   "state": "closed"
+  },
+  {
+   "number": 23,
+   "kind": "bug",
+   "name": "\"Result approved\" row: check sits lower than the text",
+   "text": "From a screenshot",
+   "state": "planned"
+  },
+  {
+   "number": 24,
+   "kind": "bug",
+   "name": "Replies read like a form even after real work",
+   "text": "983117e covers only no-change turns",
+   "state": "planned"
+  },
+  {
+   "number": 25,
+   "kind": "bug",
+   "name": "Old Home cards stuck on \"New thread · Starting\"",
+   "text": "From a screenshot",
+   "state": "planned"
+  },
+  {
+   "number": 26,
+   "kind": "idea",
+   "name": "Run button next to a shown command, small terminal panel...",
+   "text": "Run button next to a shown command, small terminal panel bottom right\n\nNot built",
+   "state": "planned"
+  },
+  {
+   "number": 27,
+   "kind": "bug",
+   "name": "Approve also commits, button only says \"Approve\"",
+   "text": "Design in PLAN-github-push.md section 1",
+   "state": "planned"
+  },
+  {
+   "number": 28,
+   "kind": "bug",
+   "name": "Approval off, but full-access tasks still wait for...",
+   "text": "Approval off, but full-access tasks still wait for Approve, and the setting doesn't say why\n\nEarlier chat read conversation_coding.py:739-743. Design in the same section",
+   "state": "planned"
+  },
+  {
+   "number": 29,
+   "kind": "idea",
+   "name": "Push to GitHub button, better commit subjects",
+   "text": "Design in PLAN-github-push.md",
+   "state": "planned"
+  },
+  {
+   "number": 30,
+   "kind": "bug",
+   "name": "Home's send button looks enabled when the composer is empty",
+   "text": "Bug: Home's send button looks enabled when the composer is empty (UX1). Added by the beta.11 lens review (evidence/lens-reviews/beta11/merged.md).",
+   "state": "planned"
+  },
+  {
+   "number": 31,
+   "kind": "bug",
+   "name": "Home says \"No threads yet\" when threads exist but none...",
+   "text": "Bug: Home says \"No threads yet\" when threads exist but none has started (UX2). Added by the beta.11 lens review (evidence/lens-reviews/beta11/merged.md).",
+   "state": "planned"
+  },
+  {
+   "number": 32,
+   "kind": "bug",
+   "name": "A thread's empty state is wider than its composer and...",
+   "text": "Bug: a thread's empty state is wider than its composer and off-centre (UX3). Added by the beta.11 lens review (evidence/lens-reviews/beta11/merged.md).",
+   "state": "planned"
+  },
+  {
+   "number": 33,
+   "kind": "bug",
+   "name": "Signed out, nothing prompts you to sign in",
+   "text": "Bug: signed out, nothing prompts you to sign in (UX7). Added by the beta.11 lens review (evidence/lens-reviews/beta11/merged.md).",
+   "state": "planned"
+  },
+  {
+   "number": 34,
+   "kind": "bug",
+   "name": "When project memory is full, a failed save isn't shown...",
+   "text": "Bug: when project memory is full, a failed save isn't shown to you (MEM1). Added by the beta.11 lens review (evidence/lens-reviews/beta11/merged.md).",
+   "state": "planned"
+  },
+  {
+   "number": 35,
+   "kind": "idea",
+   "name": "Say in the composer whether a mid-run message steered...",
+   "text": "Idea: say in the composer whether a mid-run message steered the run or was queued (DC4). Added by the beta.11 lens review (evidence/lens-reviews/beta11/merged.md).",
+   "state": "planned"
+  }
+ ]
+}

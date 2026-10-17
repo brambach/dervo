@@ -1,0 +1,47 @@
+/* Pull requests in the thread's decision bar and in History's open card (b16/git, thread-pr-* and grouped-open mocks,
+   approved 25 Sep). Layout only: every colour, size and radius is a dv- token. */
+.dervo-pr-i { width: 13px; height: 13px; flex: none; }
+.dv-decision .dervo-pr-i { width: 14px; height: 14px; }
+.dervo-open-pr { display: inline-flex; align-items: center; gap: 6px; }
+
+/* The confirm: who and where, what goes in, into which branch, draft or not, and what the one click does. */
+.dervo-prc { display: flex; flex-direction: column; gap: var(--dv-s3); margin-top: var(--dv-s1); padding-top: var(--dv-s3); box-shadow: 0 -1px 0 var(--dv-line); color: var(--dv-ink-2); outline: none; }
+.dervo-prc-q { font-size: var(--dv-fs-body); color: var(--dv-ink); }
+.dervo-prc-q b, .dervo-prc-what b { font-weight: 600; color: var(--dv-ink); }
+.dervo-prc .dv-choices { margin: 0 calc(-1 * var(--dv-s2)); }
+.dervo-prc .dv-choice { text-align: left; background: transparent; border: 0; font: inherit; color: inherit; border-radius: var(--dv-r2); cursor: pointer; }
+.dervo-prc .dv-choice[aria-checked="true"] { background: var(--dv-sunk); }
+.dervo-prc code { font: 400 .92em/1 var(--dv-font-mono); }
+.dervo-prc-fields { display: flex; align-items: center; flex-wrap: wrap; gap: var(--dv-s2) var(--dv-s3); }
+.dervo-prc-field { display: flex; align-items: center; gap: var(--dv-s3); flex: 1 1 260px; min-width: 0; font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink-2); }
+.dervo-prc-title { flex: 1; min-width: 0; padding: 7px var(--dv-s3); border-radius: var(--dv-r1); box-shadow: inset 0 0 0 1px var(--dv-line); font-weight: 400; color: var(--dv-ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-prc-into { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-prc-draft { display: flex; align-items: flex-start; gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-prc-draft .dv-switch { margin-top: 1px; }
+.dervo-prc-draft b { color: var(--dv-ink); font-weight: 600; margin-right: 4px; }
+.dervo-prc-what { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-prc-error { color: var(--dv-ink); }
+.dervo-prc-actions { display: flex; gap: var(--dv-s2); align-items: center; }
+
+/* gh missing or signed out, a lost result, the merged-PR pull: one plain line and the one way on. */
+.dervo-pr-signin, .dervo-pr-unknown { display: flex; align-items: center; flex-wrap: wrap; gap: var(--dv-s2) var(--dv-s3); }
+.dervo-pr-signin p, .dervo-pr-unknown p { flex: 1 1 100%; }
+.dervo-pr-cmd { font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dervo-pr-cmd code { font: 400 .95em/1 var(--dv-font-mono); }
+
+/* The pull request: read from GitHub, the reviewers' words quoted, when and as whom. */
+.dervo-pr-box { padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk); color: var(--dv-ink-2); }
+:root[data-dervo-local].dark .dervo-pr-box { background: var(--dv-canvas); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dervo-prline { margin-top: var(--dv-s1); }
+.dervo-pr-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink); }
+.dervo-pr-head b { font-weight: 600; }
+.dervo-pr-box[data-state="merged"] .dervo-pr-head .dervo-pr-i { color: var(--dv-sage); }
+.dervo-pr-where { color: var(--dv-muted); }
+.dervo-pr-where code, .dervo-pr-comments code { font: 400 .92em/1 var(--dv-font-mono); }
+.dervo-pr-gh { margin-left: auto; display: inline-flex; align-items: center; gap: 4px; font-size: var(--dv-fs-small); }
+.dervo-pr-facts { grid-template-columns: 56px minmax(0, 1fr); margin-top: var(--dv-s3); font-size: var(--dv-fs-small); }
+.dervo-pr-facts:empty { display: none; }
+.dervo-pr-comments p + p { margin-top: 4px; }
+.dervo-pr-comments q { quotes: '\201C' '\201D'; }
+.dervo-pr-checked { margin-top: var(--dv-s3); font-size: var(--dv-fs-caption); color: var(--dv-faint); }

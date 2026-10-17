@@ -1,0 +1,86 @@
+/* First run (design sweep, brand/brand.css): three steps as rows on the page. A done step folds to one line, the current
+   one is the open card, later ones are muted rows. No ruled lines. Tokens only. */
+.dv-moment.dv-fr { padding-top: 12vh; }
+.dv-fr-compact { display: flex; align-items: center; gap: var(--dv-s3); }
+.dv-fr-compact .dv-moment-mark { margin: 0; }
+.dv-fr-steps { display: flex; flex-direction: column; gap: 2px; margin-top: var(--dv-s6); }
+.dv-fr-compact + .dv-fr-steps { margin-top: var(--dv-s5); }
+
+.dv-fr-step { display: grid; grid-template-columns: 22px minmax(0, 1fr) auto; gap: 0 var(--dv-s3); align-items: center; padding: var(--dv-s3) 0; }
+.dv-fr-step-text { min-width: 0; }
+.dv-fr-t { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; color: var(--dv-ink); }
+.dv-fr-l { font-size: var(--dv-fs-small); color: var(--dv-muted); margin-top: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-fr-step.dv-later .dv-fr-t { color: var(--dv-muted); font-weight: 500; }
+.dv-fr-num { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; flex: none; font-size: var(--dv-fs-caption); font-weight: 600;
+  background: var(--dv-sunk); color: var(--dv-muted); }
+.dv-fr-num.dv-fr-now { background: var(--dv-ink); color: var(--dv-canvas); }
+.dv-fr-num.dv-done { background: var(--dv-sage-wash); color: var(--dv-sage); }
+.dv-fr-num svg { width: 12px; height: 12px; }
+.dv-fr-note { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--dv-s3); padding: 0 0 var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.55; }
+
+/* The open card (the kit's), with the step number beside its title. The kit's card pads 24 and pulls out 12, which left
+   step 1's number 12px right of steps 2 and 3; pulling out the full 24 puts every number on one edge. */
+.dv-open-card.dv-fr-card { margin-inline: calc(-1 * var(--dv-s5)); }
+.dv-fr-card-head { display: flex; align-items: center; gap: var(--dv-s3); }
+.dv-fr-card .dv-input:not(.dv-code) { width: 100%; }
+.dv-fr-form { display: flex; flex-direction: column; gap: var(--dv-s4); }
+.dv-fr-code { display: flex; align-items: center; gap: var(--dv-s3); }
+.dv-fr-card .dv-card-actions { margin-top: var(--dv-s5); flex-wrap: wrap; }
+.dv-fr-card h2:focus { outline: none; }
+.dv-fr-card .dv-choice[aria-checked="true"] { background: var(--dv-sunk); }
+
+.dv-fr-folder { display: flex; align-items: center; gap: var(--dv-s3); width: 100%; padding: var(--dv-s4); border-radius: var(--dv-r2); text-align: left;
+  background: var(--dv-sunk); color: var(--dv-ink); transition: box-shadow var(--dv-fast); }
+.dv-fr-folder:hover:not(:disabled) { box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+.dv-fr-folder:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-fr-folder > svg { flex: none; color: var(--dv-ink-2); }
+.dv-fr-folder b { display: block; font-size: var(--dv-fs-body); font-weight: 600; }
+.dv-fr-folder small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: 2px; }
+.dv-fr-folder kbd { margin-left: auto; font: 500 var(--dv-fs-caption) var(--dv-font-text); color: var(--dv-faint); }
+
+/* A setting line: label, value with a second line, and Change. */
+.dv-fr-setting { display: grid; grid-template-columns: 84px minmax(0, 1fr) auto; gap: var(--dv-s3); align-items: center; font-size: var(--dv-fs-small); }
+.dv-fr-setting[data-open] { align-items: start; }
+.dv-fr-setting[data-open] .dv-fr-k { padding-top: 2px; }
+.dv-fr-k { color: var(--dv-muted); }
+.dv-fr-v { color: var(--dv-ink); font-weight: 600; min-width: 0; }
+.dv-fr-v small { display: block; font-weight: 400; color: var(--dv-muted); font-size: var(--dv-fs-caption); margin-top: 1px; line-height: 1.5; }
+.dv-fr-needs { display: flex; gap: var(--dv-s2); align-items: flex-start; }
+.dv-fr-needs .dv-st { margin-top: 1px; }
+.dv-fr-model .dv-fr-v { font-weight: 400; }
+.dv-fr-card .dv-choices { margin-top: calc(-1 * var(--dv-s2)); }
+
+/* A command to copy, inside a choice's line. */
+.dv-fr-cmd { display: inline-flex; align-items: center; gap: var(--dv-s2); max-width: 100%; margin-top: var(--dv-s2); padding: 4px 4px 4px var(--dv-s3);
+  border-radius: var(--dv-r1); background: var(--dv-canvas); box-shadow: inset 0 0 0 1px var(--dv-line); color: var(--dv-ink-2); }
+.dv-fr-cmd code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font: 400 var(--dv-fs-caption) var(--dv-font-mono); }
+.dv-fr-cmd .dv-btn-icon { width: 24px; height: 24px; display: grid; place-items: center; }
+
+/* Connecting an account inside its choice. */
+.dv-fr-inline { display: flex; flex-direction: column; gap: var(--dv-s3); margin-top: var(--dv-s3); }
+.dv-fr-inline .dv-seg { align-self: flex-start; }
+.dv-fr-inline .dv-input { width: 100%; }
+.dv-fr-inline-actions { display: flex; justify-content: flex-end; }
+.dv-fr-verify { display: flex; align-items: center; gap: var(--dv-s2); margin-top: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-fr-verify .dv-btn { margin-left: auto; }
+
+/* The one line about this Mac, under the steps. */
+.dv-fr-mac { display: flex; align-items: center; gap: var(--dv-s2); margin-top: var(--dv-s4); font-size: var(--dv-fs-caption); color: var(--dv-muted); min-height: 28px; }
+.dv-fr-mac .dv-btn { margin-left: var(--dv-s1); }
+
+/* Adding a later project: the same cards inside the app, with the sidebar. */
+.dv-fr-add { display: flex; flex: 1; min-height: 0; overflow: auto; justify-content: center; padding: 12vh var(--dv-s5) var(--dv-s7); color: var(--dv-ink); }
+.dv-fr-col { width: 100%; max-width: 540px; display: flex; flex-direction: column; }
+.dv-fr-add-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--dv-s3); }
+.dv-fr-add .dv-lede { margin-top: var(--dv-s2); }
+.dv-fr-add .dv-fr-steps { margin-top: var(--dv-s5); }
+/* Under a Codex choice: Home needs Claude for now. Its own line, in the choice's muted size (UX review, 23 Sep, H1). */
+.dv-fr-home-note, .dv-fr-work-note { display: block; margin-top: 2px; }
+
+/* Setup's access choice (9 Oct): the chosen full-access row lifts open with what runs after each change and the warning. */
+.dv-fr-access-k { margin: var(--dv-s2) 0 calc(var(--dv-s1) * -1); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-fr-full { display: grid; gap: var(--dv-s2); font-size: var(--dv-fs-caption); line-height: 1.5; color: var(--dv-ink-2); }
+.dv-fr-full p { margin: 0; }
+.dv-fr-warning { padding: var(--dv-s2) var(--dv-s3); border-radius: var(--dv-r2); color: var(--dv-muted);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+.dv-c-name .dv-tag { margin-left: 6px; vertical-align: 1px; }

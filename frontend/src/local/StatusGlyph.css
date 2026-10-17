@@ -1,0 +1,26 @@
+.dv-st { width: 16px; height: 16px; flex: none; display: inline-grid; place-items: center; color: var(--dv-muted); }
+.dv-st svg { width: 16px; height: 16px; display: block; }
+.dv-st[data-state="running"] { color: var(--dv-live); }
+.dv-st[data-state="running"] svg { animation: dv-st-spin var(--dv-loop, 1.2s) linear infinite; }
+.dv-st[data-state="done"] { color: var(--dv-sage); }
+.dv-st[data-state="needs"], .dv-st[data-state="failed"], .dv-st[data-state="stopped"], .dv-st[data-state="unknown"] { color: var(--dv-ink-2); }
+.dv-st[data-accent] { color: var(--dv-rust); }
+@keyframes dv-st-spin { to { transform: rotate(360deg); } }
+
+/* A state that changed on screen (StatusGlyph.arrivalOf, design report 23 Sep #3). Any change crossfades in 140ms. A run
+   that finished draws its check over 220ms, then the disc behind it fades in, once. A glyph that just appeared never moves.
+   The colour follows at the same pace. Transform and opacity only, apart from the check's stroke. */
+.dv-st[data-arrive] { transition: color var(--dv-fast, 140ms) var(--dv-ease-out, ease-out); }
+.dv-st[data-arrive="swap"] svg { animation: dv-st-in var(--dv-fast, 140ms) var(--dv-ease-out, ease-out) both; }
+.dv-st[data-arrive="swap"][data-state="running"] svg { animation: dv-st-in var(--dv-fast, 140ms) var(--dv-ease-out, ease-out) both, dv-st-spin var(--dv-loop, 1.2s) linear infinite; }
+.dv-st[data-arrive="done"] path { stroke-dasharray: 1; animation: dv-st-draw var(--dv-calm, 220ms) var(--dv-ease-out, ease-out) both; } /* pathLength 1 */
+.dv-st[data-arrive="done"] circle { animation: dv-st-in var(--dv-fast, 140ms) var(--dv-ease-out, ease-out) var(--dv-calm, 220ms) both; }
+@keyframes dv-st-in { from { opacity: 0; } }
+@keyframes dv-st-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+/* Reduced motion: no spin and no drawing, but a change still dissolves in (120ms), so it isn't lost. */
+@media (prefers-reduced-motion: reduce) {
+  .dv-st[data-state="running"] svg { animation: none; }
+  .dv-st[data-arrive] svg, .dv-st[data-arrive="swap"][data-state="running"] svg { animation: dv-st-in 120ms linear both; }
+  .dv-st[data-arrive="done"] path, .dv-st[data-arrive="done"] circle { animation: none; stroke-dasharray: none; }
+}

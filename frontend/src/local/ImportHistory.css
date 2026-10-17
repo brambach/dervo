@@ -1,0 +1,137 @@
+/* Reading what's already here (evidence/design-tests/onboarding/index.html, ported 21 Sep). Layout and playback only:
+   every colour, size, radius and shadow is a dv- token or a dv- component class. The meadow is full-bleed behind the
+   offer and gone by the next screen. Rows land once, when they appear, and nothing moves on scroll. The one accent per
+   view: rust on the "being worked on" count and on the thread that needs you. Sorting has none: a rust rule label per
+   workstream made new ran seven times on a first import, and the lead sentence already says how many were made. */
+.dv-import { position: relative; isolation: isolate; display: flex; flex: 1; min-height: 0; min-width: 0; overflow: auto; color: var(--dv-ink);
+  font: 400 var(--dv-fs-body)/var(--dv-lh-ui) var(--dv-font-text); letter-spacing: .003em; -webkit-font-smoothing: antialiased; }
+.dv-import-stage { display: grid; place-items: center; width: 100%; min-height: 100%; padding: var(--dv-s6) var(--dv-s7); }
+
+/* 1. Found: the number persuades before anything is asked for. */
+.dv-import-found::before { content: ''; position: absolute; inset: 0; z-index: -2; pointer-events: none; opacity: var(--dv-meadow); filter: saturate(.92);
+  background: url('./brand-assets/studio-meadow.webp') center / cover no-repeat; }
+.dv-import-found::after { content: ''; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--dv-canvas) 50%, transparent), color-mix(in srgb, var(--dv-canvas) 92%, transparent)); }
+.dv-import-hero { position: relative; text-align: center; max-width: 32rem; display: flex; flex-direction: column; align-items: center; }
+.dv-import-hero .dv-moment-mark { margin-bottom: var(--dv-s5); }
+.dv-import-hero h1 { margin: 0 0 var(--dv-s4); }
+.dv-import-hero .dv-lede { margin: 0; }
+.dv-import-n { font-variant-numeric: tabular-nums; color: var(--dv-ink); font-weight: 600; }
+.dv-import-fine { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin: var(--dv-s5) auto 0; max-width: 26rem; line-height: var(--dv-lh-ui); }
+.dv-import-acts { display: flex; gap: var(--dv-s3); justify-content: center; margin-top: var(--dv-s6); flex-wrap: wrap; }
+.dv-import :is(.dv-btn, .dv-btn-quiet):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-import .dv-btn:disabled { opacity: .45; cursor: not-allowed; }
+
+/* 2. Reading: the work is visible. What gets set aside is the point. */
+.dv-import-read { width: 100%; max-width: 47rem; }
+.dv-import-counts { display: flex; gap: var(--dv-s7); justify-content: center; margin-bottom: var(--dv-s6); text-align: center; }
+.dv-import-c b { display: block; font: 400 var(--dv-fs-h1)/1 var(--dv-font-display); font-variant-numeric: tabular-nums; }
+.dv-import-c small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: var(--dv-s2); text-transform: uppercase; letter-spacing: .06em; }
+.dv-import-c[data-keep] b { color: var(--dv-rust); }
+.dv-import-wait { display: flex; align-items: center; justify-content: center; gap: var(--dv-s2); color: var(--dv-muted); font-size: var(--dv-fs-small); }
+.dv-import-failed { max-width: 36rem; margin: 0 auto; text-align: center; }
+.dv-import-failed .dv-import-acts { margin-top: var(--dv-s5); }
+.dv-import-split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--dv-s6); align-items: start; }
+.dv-import-h { text-transform: uppercase; letter-spacing: .06em; font-weight: 400; margin-bottom: var(--dv-s3); min-height: 1.1rem; }
+.dv-import-stream { height: 16rem; overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 20%, #000 74%, transparent); mask-image: linear-gradient(180deg, transparent, #000 20%, #000 74%, transparent); }
+.dv-import-l { font: 400 var(--dv-fs-caption)/2 var(--dv-font-mono); color: var(--dv-ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dv-import-l[data-drop] { color: var(--dv-faint); text-decoration: line-through; text-decoration-color: var(--dv-line-strong); }
+/* The newest eight kept (KEPT_SHOWN): a real folder keeps more than a column holds. */
+.dv-import-kept { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-import-k { display: flex; align-items: baseline; gap: var(--dv-s2); padding: var(--dv-s2) var(--dv-s3); background: var(--dv-raised); box-shadow: var(--dv-card-edge);
+  border-radius: var(--dv-r1); font-size: var(--dv-fs-body); overflow: hidden; }
+.dv-import-k b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 3. Sorting: the structure builds itself. */
+.dv-import-sort { width: 100%; max-width: 40rem; }
+.dv-import-sort-head { margin-bottom: var(--dv-s4); }
+.dv-import-sort-head h2 { margin: 0 0 var(--dv-s2); }
+.dv-import-sort-lead { margin: 0; color: var(--dv-muted); font-size: var(--dv-fs-body); min-height: 2.6em; line-height: var(--dv-lh-ui); }
+.dv-import-sort-lead b { color: var(--dv-ink); font-weight: 600; }
+.dv-import-tree { display: flex; flex-direction: column; gap: var(--dv-s3); min-height: 24rem; }
+.dv-import-proj-head { display: flex; align-items: baseline; gap: var(--dv-s2); padding-bottom: var(--dv-s2); border-bottom: var(--dv-hairline); flex-wrap: wrap; }
+.dv-import-proj-head b { font-size: var(--dv-fs-body); font-weight: 600; }
+.dv-import-proj-head code { font: 400 var(--dv-fs-caption) var(--dv-font-mono); color: var(--dv-faint); }
+.dv-import-pc { margin-left: auto; font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dv-import-ws { display: flex; flex-direction: column; }
+.dv-import-ws-head { display: flex; align-items: baseline; gap: var(--dv-s3); padding: 5px 0; }
+.dv-import-ws-head b { font-size: var(--dv-fs-body); font-weight: 600; }
+.dv-import-rule { font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-import-rule[data-new] { color: var(--dv-muted); }
+.dv-import-fold { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-import-ct { margin-left: auto; font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dv-import-ws[data-folded] .dv-import-thread, .dv-import-ws[data-folded] .dv-import-ct { display: none; }
+.dv-import-thread { display: flex; align-items: center; gap: var(--dv-s3); padding: 4px 0 4px var(--dv-s5); font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-import-thread .dv-st { flex: none; }
+.dv-import-tn { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-import-tw { margin-left: auto; font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.dv-import-foot { margin-top: var(--dv-s5); padding-top: var(--dv-s4); border-top: var(--dv-hairline); display: flex; gap: var(--dv-s3); align-items: center;
+  opacity: 0; transition: opacity var(--dv-calm) var(--dv-ease); }
+.dv-import-foot[data-on] { opacity: 1; }
+.dv-import-foot > span { flex: 1; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+
+/* 4. Answer: one keystroke, on the app's own row and facts. */
+.dv-import-ask { width: 100%; max-width: 38rem; }
+.dv-import-ask-head { margin-bottom: var(--dv-s5); }
+.dv-import-ask-head h2 { margin: 0 0 var(--dv-s2); }
+.dv-import-ask-head p { margin: 0; color: var(--dv-muted); font-size: var(--dv-fs-body); }
+.dv-import-ask-head b { color: var(--dv-ink); font-weight: 600; }
+.dv-import-ask .dv-row.dv-open { margin-bottom: 0; }
+.dv-import-ask .dv-row-end { flex-direction: column; align-items: flex-end; gap: var(--dv-s1); }
+.dv-import-choices { display: flex; flex-direction: column; gap: var(--dv-s2); margin-top: var(--dv-s4); }
+.dv-import-choice { display: flex; align-items: center; gap: var(--dv-s3); width: 100%; text-align: left; background: var(--dv-raised); box-shadow: inset 0 0 0 1px var(--dv-line-strong);
+  border-radius: var(--dv-r2); padding: var(--dv-s3) var(--dv-s4); font: 400 var(--dv-fs-body)/1.45 var(--dv-font-text); color: var(--dv-ink); cursor: pointer;
+  transition: box-shadow var(--dv-fast) var(--dv-ease), background var(--dv-fast) var(--dv-ease); }
+.dv-import-choice:hover:not(:disabled) { box-shadow: inset 0 0 0 1px var(--dv-ink-2); background: var(--dv-sunk); }
+.dv-import-choice:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-import-choice kbd { flex: none; display: grid; place-items: center; width: 22px; height: 22px; border-radius: var(--dv-r1); background: var(--dv-sunk);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); font: 500 var(--dv-fs-caption)/1 var(--dv-font-mono); color: var(--dv-muted); }
+.dv-import-choice[data-picked] { box-shadow: inset 0 0 0 1px var(--dv-sage); background: var(--dv-sage-wash); }
+.dv-import-choice[data-picked] kbd { background: var(--dv-sage); color: var(--dv-pine-ink); box-shadow: none; }
+.dv-import-choice:disabled:not([data-picked]) { color: var(--dv-muted); cursor: default; }
+.dv-import-typed { display: flex; gap: var(--dv-s2); margin-top: var(--dv-s4); }
+.dv-import-typed .dv-input { flex: 1; }
+.dv-import-hint { font-size: var(--dv-fs-caption); color: var(--dv-muted); margin: var(--dv-s4) 0 0; }
+.dv-import-done { margin: var(--dv-s4) 0 0; font-size: var(--dv-fs-body); color: var(--dv-sage); }
+:root[data-dervo-local].dark .dv-import-done { color: var(--dv-ink-2); }
+.dv-import-later { display: flex; justify-content: flex-end; margin-top: var(--dv-s3); }
+
+/* Rows land once. With reduced motion they're simply there. */
+@media (prefers-reduced-motion: no-preference) {
+  .dv-import-k, .dv-import-ws, .dv-import-thread { animation: dv-import-land var(--dv-calm) var(--dv-ease) both; }
+  .dv-import-thread { animation-duration: var(--dv-fast); }
+  .dv-import-ask .dv-row.dv-open { animation: dv-import-land var(--dv-calm) var(--dv-ease) both; }
+}
+@keyframes dv-import-land { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* Narrow main panels: the reading split stacks, the counts tighten. */
+@container (max-width: 640px) {
+  .dv-import-split { grid-template-columns: 1fr; }
+  .dv-import-counts { gap: var(--dv-s5); }
+}
+@media (max-width: 900px) {
+  .dv-import-stage { padding: var(--dv-s5) var(--dv-s5); }
+  .dv-import-split { grid-template-columns: 1fr; }
+}
+
+.dv-import-selection { max-height: 45vh; overflow-y: auto; margin-block: var(--dv-s4); }
+.dv-import-choice { display: flex; align-items: flex-start; gap: var(--dv-s3); padding: var(--dv-s3); border-bottom: 1px solid var(--dv-line); cursor: pointer; }
+.dv-import-choice input { margin-top: 4px; accent-color: var(--dv-rust); }
+.dv-import-choice span { min-width: 0; }
+.dv-import-choice b, .dv-import-choice small { display: block; }
+.dv-import-choice small { color: var(--dv-muted); }
+.dv-import-choice p { overflow-wrap: anywhere; white-space: pre-wrap; margin-top: var(--dv-s1); color: var(--dv-ink-2); }
+/* A conversation the naming rules couldn't name (NEXT-UP #37): the reason in place of a name, and a field to give it one. */
+.dv-import-choice .dv-import-unnamed { font-weight: 500; font-style: italic; color: var(--dv-ink-2); }
+.dv-import-choice span { flex: 1; }
+.dv-import-name { display: block; width: 100%; max-width: 22rem; margin-top: var(--dv-s2); }
+/* The opt-in for sessions a tool ran (NEXT-UP #38), above the list it changes. */
+.dv-import-tools { display: flex; align-items: flex-start; gap: var(--dv-s3); padding: var(--dv-s3); margin-top: var(--dv-s4); border-radius: var(--dv-r2);
+  background: var(--dv-sunk); cursor: pointer; text-align: left; box-sizing: border-box; }
+/* The option and the list it changes share one width, so the box lines up with the rows under it. */
+.dv-import-choose .dv-import-tools, .dv-import-choose .dv-import-selection { width: 100%; max-width: 36rem; }
+.dv-import-tools input { margin-top: 4px; accent-color: var(--dv-rust); }
+.dv-import-tools b, .dv-import-tools small { display: block; }
+.dv-import-tools small { color: var(--dv-muted); font-size: var(--dv-fs-caption); }
+.dv-import-tool-tag { margin-left: var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-muted); }

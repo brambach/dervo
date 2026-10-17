@@ -1,0 +1,595 @@
+/* Dervo design system components, ported from evidence/design-system/app.css on 19 Sep. Classes carry a dv- prefix
+   and read only the dv- tokens in DervoTokens.css. Screens compose these and may add layout, never new colours, sizes
+   or radii. The status glyph lives in StatusGlyph.css. Not ported: the mockup window chrome and the meadow variants
+   Bryce turned down; the sidebar wash is the shell's job. */
+/* ---------- Type roles ---------- */
+.dv-display-hero { font: 400 var(--dv-fs-hero)/1.02 var(--dv-font-display); letter-spacing: -.02em; }
+.dv-display-1 { font: 400 var(--dv-fs-h1)/1.1 var(--dv-font-display); letter-spacing: -.015em; }
+.dv-display-2 { font: 400 var(--dv-fs-h2)/1.12 var(--dv-font-display); letter-spacing: -.01em; }
+.dv-title { font-size: var(--dv-fs-title); font-weight: 600; letter-spacing: -.012em; line-height: 1.3; }
+.dv-label { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); letter-spacing: .005em; }
+.dv-read { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); letter-spacing: -.006em; }
+.dv-small { font-size: var(--dv-fs-small); }
+.dv-caption { font-size: var(--dv-fs-caption); color: var(--dv-muted); letter-spacing: .01em; }
+.dv-muted { color: var(--dv-muted); }
+/* ---------- Sidebar ---------- */
+.dv-sb { display: flex; flex-direction: column; min-height: 0; padding: 48px var(--dv-s3) var(--dv-s3); gap: var(--dv-s1); }
+.dv-sb-project { display: flex; align-items: center; gap: var(--dv-s3); padding: var(--dv-s2); border-radius: var(--dv-r2); text-align: left; }
+.dv-sb-project:hover { background: var(--dv-hover); }
+.dv-sb-project .dv-mark { width: 28px; height: 28px; flex: none; display: grid; place-items: center; }
+.dv-sb-project .dv-mark svg { width: 28px; height: 28px; }
+/* The project's letter tile: the letter the project menu shows, on pine, so it reads as this project's mark and not
+   as a status. Empty and sunk while no project is chosen. */
+.dv-sb-project .dv-ptile { border-radius: var(--dv-r1); background: var(--dv-pine); color: var(--dv-pine-ink); font-size: var(--dv-fs-title); font-weight: 600;
+  line-height: 1; letter-spacing: 0; }
+.dv-sb-project .dv-ptile[data-empty] { background: var(--dv-sunk); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dv-sb-project b { display: block; font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.2; }
+.dv-sb-project small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-sb-project .dv-chev { margin-left: auto; color: var(--dv-faint); }
+.dv-sb-search { display: flex; align-items: center; gap: var(--dv-s2); margin: var(--dv-s2) 0 var(--dv-s3); padding: 7px var(--dv-s2); border-radius: var(--dv-r1);
+  color: var(--dv-muted); font-size: var(--dv-fs-small); }
+.dv-sb-search kbd { margin-left: auto; font: 500 var(--dv-fs-caption) var(--dv-font-text); color: var(--dv-faint); }
+.dv-sb-item { display: flex; align-items: center; gap: var(--dv-s2); padding: 7px var(--dv-s2); border-radius: var(--dv-r1); font-size: var(--dv-fs-small);
+  color: var(--dv-ink-2); min-width: 0; }
+/* Hover is a tint of ink, so it shows in light and dark alike and stays under the selected row's own lift (dark audit: hover was
+   invisible at night, and in light it was the selected row's pill at 45%). */
+.dv-sb-item:hover { background: var(--dv-hover); }
+/* 8 Oct: hover fades in over --dv-hover-in and out over --dv-hover-out; press is instant. Background only. */
+.dv-sb-item { transition: background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-sb-item:hover { transition-duration: var(--dv-hover-in); }
+.dv-sb-item:active:not(:disabled) { background: var(--dv-press); transition: none; }
+.dv-sb-item[aria-current="page"] { background: var(--dv-selected); color: var(--dv-ink); font-weight: 600; box-shadow: var(--dv-selected-edge); }
+/* At night raised is the sidebar's own colour (#242220 on #252320), so the frosted row measured 1.0:1 and only the bold
+   name said where you were (design review 23 Sep, item 6). Ink at 10% lifts it, with an 8% inner edge. */
+
+.dv-sb-item .dv-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-sb-item .dv-meta { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dv-sb-item svg { flex: none; }
+.dv-sb-group { margin-top: var(--dv-s4); }
+.dv-sb-group-head { display: flex; align-items: baseline; gap: var(--dv-s2); padding: 0 var(--dv-s2) var(--dv-s1); }
+.dv-sb-group-head .dv-label { flex: 1; }
+.dv-sb-group-head .dv-count { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-sb-foot { margin-top: auto; display: flex; flex-direction: column; gap: var(--dv-s3); padding-top: var(--dv-s3); }
+/* One line per account (fresh-eyes item 8): provider, account, bar, percent. The account name gives way first; the
+   full wording, with the reset or the spend, is the row's title and its screen-reader text. */
+.dv-usage { display: grid; grid-template-columns: auto minmax(0, 1fr) 44px auto; align-items: center; gap: 0 var(--dv-s2); padding: 2px var(--dv-s2); }
+.dv-usage b { font-size: var(--dv-fs-caption); font-weight: 600; }
+.dv-usage .dv-bar { height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--dv-ink) 9%, transparent); overflow: hidden; }
+.dv-usage .dv-bar i { display: block; height: 100%; background: var(--dv-sage); border-radius: 2px; }
+.dv-usage .dv-pct { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dv-usage small { min-width: 0; font-size: var(--dv-fs-caption); color: var(--dv-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-me { display: flex; align-items: center; gap: var(--dv-s2); padding: var(--dv-s2); border-top: 1px solid color-mix(in srgb, var(--dv-ink) 8%, transparent); }
+.dv-avatar { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--dv-sage-wash); color: var(--dv-ink-2);
+  font-size: var(--dv-fs-caption); font-weight: 600; flex: none; }
+.dv-me b { font-size: var(--dv-fs-small); font-weight: 600; display: block; line-height: 1.2; }
+.dv-me small { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+/* On the wash, secondary text reads --dv-sb-muted (the same as muted at night). The window sits in :where(), so the
+   hover rules in DervoSidebar.css and the low-usage ink still win on specificity. */
+:where(.dv-window) [data-testid="app-sidebar"] :is(.dv-label, .dv-count, .dv-sb-new) { color: var(--dv-sb-muted); }
+:where(.dv-window) [data-testid="app-sidebar"] :is(.dv-sb-item .dv-meta, .dv-usage small, .dv-me small) { color: var(--dv-sb-muted); }
+:where(.dv-window) [data-testid="app-sidebar"] .dv-usage:not([data-low="true"]) .dv-pct { color: var(--dv-sb-muted); }
+:where(.dv-window) [data-testid="app-sidebar"] .dv-sb-list .dervo-archived { color: var(--dv-sb-muted); }
+
+/* ---------- Main panel ---------- */
+.dv-main { background: var(--dv-canvas); box-shadow: -1px 0 0 var(--dv-line);
+  display: flex; flex-direction: column; min-height: 0; min-width: 0; overflow: hidden; }
+.dv-main-head { display: flex; align-items: center; gap: var(--dv-s3); height: 40px; padding: 0 var(--dv-s5); flex: none; }
+.dv-main-head .dv-crumb { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-main-head .dv-crumb-sep { margin: 0 var(--dv-s2); color: var(--dv-faint); }
+.dv-main-head .dv-here { color: var(--dv-ink-2); }
+.dv-main-head .dv-tools { margin-left: auto; display: flex; gap: var(--dv-s1); }
+.dv-main-body { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; }
+.dv-column { overflow: auto; padding: var(--dv-s6) var(--dv-s5) var(--dv-s4); }
+.dv-column > .dv-measure { max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: var(--dv-s6); }
+.dv-state { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); white-space: nowrap; }
+.dv-state[data-state="running"] { color: var(--dv-live); }
+.dv-state[data-state="done"] { color: var(--dv-sage); }
+.dv-state[data-accent] { color: var(--dv-rust); }
+/* Dark (fresh-eyes item 10): the state word reads in ink and the glyph beside it alone carries the colour, so a green
+   "Finished" no longer sits against the rust ring in the Progress head. Light keeps its coloured words. */
+:root[data-dervo-local].dark .dv-state:is([data-state="running"], [data-state="done"], [data-accent]) { color: var(--dv-ink-2); }
+
+/* ---------- Buttons ---------- */
+.dv-btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--dv-s2); height: 32px; padding: 0 var(--dv-s4); border-radius: var(--dv-r-pill);
+  font-size: var(--dv-fs-small); font-weight: 600; white-space: nowrap;
+  transition: background var(--dv-fast), box-shadow var(--dv-fast), transform var(--dv-fast) var(--dv-ease-out); }
+/* Pressed, as the landing's buttons (design report, 23 Sep, #5; depth.css): a filled button sinks a pixel and its lit
+   edge becomes a pressed-in shade; a ghost keeps its place and shades inward. Quiet and icon buttons only change colour.
+   Down in 80ms, back in 140ms. Reduced motion shades without moving. */
+:is(.dv-btn-primary, .dv-btn-accent, .dv-btn-send):active:not(:disabled) { transform: translateY(1px) scale(.985); box-shadow: var(--dv-btn-pressed); transition-duration: var(--dv-instant); }
+.dv-btn-ghost:active:not(:disabled) { box-shadow: inset 0 0 0 1px var(--dv-line-strong), var(--dv-btn-sunk-in); transition-duration: var(--dv-instant); }
+@media (prefers-reduced-motion: reduce) {
+  :is(.dv-btn-primary, .dv-btn-accent, .dv-btn-send):active:not(:disabled) { transform: none; }
+}
+.dv-btn-primary { background: var(--dv-pine); color: var(--dv-pine-ink); box-shadow: var(--dv-btn-lit); }
+.dv-btn-primary:hover { background: color-mix(in srgb, var(--dv-pine) 86%, var(--dv-canvas)); }
+.dv-btn-accent { background: var(--dv-rust); color: var(--dv-rust-ink); }
+.dv-btn-ghost { box-shadow: inset 0 0 0 1px var(--dv-line-strong); color: var(--dv-ink); background: var(--dv-raised); }
+.dv-btn-ghost:hover { background: color-mix(in srgb, var(--dv-ink) 4%, var(--dv-raised)); }
+.dv-btn-quiet { height: 28px; padding: 0 var(--dv-s2); color: var(--dv-muted); border-radius: var(--dv-r1); font-weight: 600; }
+.dv-btn-quiet:hover { color: var(--dv-ink); background: var(--dv-hover); }
+.dv-btn-icon { width: 32px; height: 32px; padding: 0; border-radius: var(--dv-r1); color: var(--dv-muted); }
+.dv-btn-icon:hover { background: var(--dv-hover); color: var(--dv-ink); }
+/* Every quiet control fades its hover like the rows do: in over 90ms, out over 180ms (design, 8 Oct). */
+:is(.dv-sb-search, .dv-sb-project, .dv-sb-group-stale, .dv-usage, .dv-me, .dv-sb-new, .dv-sb-fold, .dv-btn-quiet, .dv-btn-icon, .dv-btn-ghost) {
+  transition-property: background-color, color, box-shadow; transition-duration: var(--dv-hover-out); transition-timing-function: var(--dv-ease); }
+:is(.dv-sb-search, .dv-sb-project, .dv-sb-group-stale, .dv-usage, .dv-me, .dv-sb-new, .dv-sb-fold, .dv-btn-quiet, .dv-btn-icon, .dv-btn-ghost):hover { transition-duration: var(--dv-hover-in); }
+.dv-btn-send { display: inline-flex; align-items: center; justify-content: center; flex: none; width: 34px; height: 34px; padding: 0; border-radius: 50%; background: var(--dv-pine); color: var(--dv-pine-ink);
+  box-shadow: var(--dv-btn-lit); transition: background var(--dv-fast), box-shadow var(--dv-fast), transform var(--dv-fast) var(--dv-ease-out); }
+/* Disabled reads disabled (UX1, dark audit #10): a primary button with nothing to do goes sunk with muted text, so it
+   never reads as a pale pine you can press. Home's empty composer has nothing to send. Scoped to the root so the
+   per-screen .dv-btn:disabled dimming (Settings, brand moments) doesn't dim it a second time. */
+:root[data-dervo-local] :is(.dv-btn-primary, .dv-btn-send):disabled { background: var(--dv-sunk); color: var(--dv-muted); opacity: 1; cursor: not-allowed; box-shadow: none; }
+:root[data-dervo-local] :is(.dv-btn-primary, .dv-btn-send):disabled:hover { background: var(--dv-sunk); }
+.dv-btn-sm { height: 28px; padding: 0 var(--dv-s3); font-size: var(--dv-fs-caption); }
+
+/* ---------- Where you left off ---------- */
+.dv-pickup { display: flex; flex-direction: column; gap: var(--dv-s4); }
+.dv-pickup-head { display: flex; align-items: baseline; gap: var(--dv-s3); }
+.dv-pickup-head .dv-caption { margin-left: auto; }
+.dv-pickup-lead { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 62ch; }
+.dv-pickup-lead b { color: var(--dv-ink); font-weight: 600; }
+.dv-sheet { display: flex; flex-direction: column; gap: 2px; margin: 0 calc(-1 * var(--dv-s3)); }
+.dv-sheet-label { padding: var(--dv-s3) var(--dv-s3) var(--dv-s1); }
+.dv-row { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 0 var(--dv-s3); align-items: start; padding: var(--dv-s3); border-radius: var(--dv-r2); }
+.dv-row { transition: background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-row:hover { background: var(--dv-hover); transition-duration: var(--dv-hover-in); }
+.dv-row .dv-st { margin-top: 2px; }
+.dv-row-name { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; }
+.dv-row-line { font-size: var(--dv-fs-small); color: var(--dv-muted); margin-top: 2px; }
+.dv-row-end { display: flex; align-items: center; gap: var(--dv-s3); }
+.dv-row-end .dv-when { font-size: var(--dv-fs-caption); color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dv-row.dv-open { background: var(--dv-raised); box-shadow: var(--dv-card-edge), var(--dv-lift); padding: var(--dv-s4) var(--dv-s3); margin-bottom: var(--dv-s2); }
+.dv-row.dv-open:hover { background: var(--dv-raised); }
+.dv-facts { display: grid; grid-template-columns: 52px minmax(0, 1fr); gap: 6px var(--dv-s3); margin-top: var(--dv-s3); font-size: var(--dv-fs-small); line-height: 1.5; }
+.dv-facts dt { color: var(--dv-faint); font-weight: 600; font-size: var(--dv-fs-caption); padding-top: 2px; }
+.dv-facts dd { color: var(--dv-ink-2); }
+.dv-row-actions { display: flex; gap: var(--dv-s2); margin-top: var(--dv-s3); }
+
+/* ---------- Chat ---------- */
+.dv-chat { display: flex; flex-direction: column; gap: var(--dv-s5); }
+.dv-msg-you { align-self: flex-end; max-width: 78%; padding: 10px var(--dv-s4); border-radius: 16px 16px 4px 16px; background: var(--dv-sunk);
+  font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); }
+.dv-msg-dervo { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-byline { display: flex; align-items: center; gap: var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-muted); font-weight: 600; }
+.dv-byline .dv-who { width: 20px; height: 20px; flex: none; display: grid; place-items: center; }
+.dv-byline .dv-who svg { width: 20px; height: 20px; }
+.dv-msg-dervo .dv-read { max-width: 62ch; }
+.dv-msg-dervo .dv-read b { font-weight: 600; }
+.dv-jobs { background: var(--dv-raised); border-radius: var(--dv-r2); box-shadow: var(--dv-card-edge); padding: var(--dv-s1); margin-top: var(--dv-s1); }
+.dv-job { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto 16px; gap: var(--dv-s3); align-items: center; padding: 10px var(--dv-s3); border-radius: var(--dv-r1); }
+.dv-job:hover { background: var(--dv-sunk); }
+.dv-job b { font-weight: 600; font-size: var(--dv-fs-body); }
+.dv-job small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-muted); margin-top: 1px; }
+.dv-job .dv-go { color: var(--dv-faint); }
+
+/* ---------- Composer ---------- */
+.dv-composer { flex: none; width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto var(--dv-s4); border-radius: 24px; background: var(--dv-raised);
+  box-shadow: 0 0 0 1px var(--dv-line-strong), 0 10px 30px -18px rgb(0 0 0 / .22); padding: var(--dv-s3) var(--dv-s3) var(--dv-s2) var(--dv-s5); }
+/* Typing in the box shows it: the edge takes the focus ink (60%), the one colour every Tab stop already uses (DervoBrand.css). */
+.dv-composer:focus-within { box-shadow: 0 0 0 1px var(--dv-focus), 0 10px 30px -18px rgb(0 0 0 / .22); }
+.dv-composer .dv-field { min-height: 44px; font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-faint); }
+.dv-composer .dv-foot { display: flex; align-items: center; gap: var(--dv-s2); }
+/* At Bryce's review width (1052) the hint wraps, and without balance the second line was the one word "unsure". */
+.dv-composer .dv-hint { font-size: var(--dv-fs-caption); color: var(--dv-faint); text-wrap: balance; }
+.dv-composer .dv-btn-send { margin-left: auto; }
+.dv-chip { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: var(--dv-r-pill); font-size: var(--dv-fs-caption);
+  font-weight: 600; color: var(--dv-ink-2); box-shadow: inset 0 0 0 1px var(--dv-line); }
+
+/* ---------- Thread ---------- */
+.dv-recap { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 4px var(--dv-s3); padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2);
+  background: var(--dv-sunk); font-size: var(--dv-fs-small); line-height: 1.5; }
+/* Dark (fresh-eyes item 10): sunk is the lightest surface at night, so the Asked strip read as a toolbar. It sits on
+   canvas with an inset hairline instead, context rather than chrome. */
+:root[data-dervo-local].dark .dv-recap { background: var(--dv-canvas); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dv-recap dt { color: var(--dv-faint); font-weight: 600; font-size: var(--dv-fs-caption); padding-top: 1px; }
+.dv-recap dd { color: var(--dv-ink-2); }
+.dv-recap .dv-recap-foot { grid-column: 1 / -1; display: flex; justify-content: space-between; margin-top: var(--dv-s1); font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-report { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); display: flex; flex-direction: column; gap: var(--dv-s3); max-width: 58ch; }
+.dv-report h3 { font-size: var(--dv-fs-body); font-weight: 650; margin-top: var(--dv-s2); }
+.dv-report ul { display: flex; flex-direction: column; gap: 6px; }
+.dv-report li { position: relative; padding-left: 18px; }
+.dv-report li::before { content: ''; position: absolute; left: 4px; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--dv-faint); }
+.dv-decision { display: flex; align-items: center; gap: var(--dv-s3); padding: var(--dv-s3) var(--dv-s3) var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2);
+  background: var(--dv-raised); box-shadow: var(--dv-card-edge); }
+.dv-decision .dv-what { flex: 1; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-decision .dv-what b { color: var(--dv-ink); font-weight: 600; }
+
+/* ---------- Progress panel ---------- */
+.dv-panel { width: 320px; border-left: var(--dv-hairline); overflow: auto; padding: var(--dv-s5) var(--dv-s5) var(--dv-s4); display: flex; flex-direction: column; gap: var(--dv-s5); }
+.dv-panel-kicker { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-panel-title { font-size: var(--dv-fs-title); font-weight: 600; letter-spacing: -.012em; line-height: 1.3; margin-top: 2px; }
+.dv-steps { display: flex; flex-direction: column; }
+.dv-step { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--dv-s3); padding: 7px 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-step small { display: block; font-size: var(--dv-fs-caption); color: var(--dv-faint); margin-top: 1px; }
+.dv-step[data-now] { color: var(--dv-ink); font-weight: 600; }
+.dv-files { display: flex; flex-direction: column; gap: 4px; }
+.dv-file { display: flex; justify-content: space-between; gap: var(--dv-s2); font: 400 var(--dv-fs-caption)/1.5 var(--dv-font-mono); color: var(--dv-ink-2); }
+.dv-file .dv-delta { color: var(--dv-faint); }
+
+/* ---------- Home ---------- */
+.dv-home-chat { display: flex; flex-direction: column; gap: var(--dv-s4); }
+.dv-divider { display: flex; align-items: center; gap: var(--dv-s3); }
+.dv-divider::after { content: ''; flex: 1; height: 1px; background: var(--dv-line); }
+.dv-pickup.dv-compact { gap: var(--dv-s3); }
+.dv-row:not(.dv-open) .dv-facts { margin-top: var(--dv-s2); }
+
+/* ---------- Adding a line to a list ---------- */
+.dv-add-line { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 0 var(--dv-s3); align-items: center; padding: 10px var(--dv-s3);
+  border-radius: var(--dv-r2); background: var(--dv-sunk); color: var(--dv-muted); cursor: text; }
+.dv-add-line input { min-width: 0; padding: 0; border: 0; outline: 0; background: none; font: inherit; font-size: var(--dv-fs-body); color: var(--dv-ink); }
+.dv-add-line input::placeholder { color: var(--dv-faint); }
+.dv-add-line .dv-hint { font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-add-line:focus-within { box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+
+/* ---------- Empty and quiet states ---------- */
+.dv-quiet { display: flex; flex-direction: column; gap: var(--dv-s2); padding: var(--dv-s5) 0; }
+.dv-quiet .dv-display-2 { color: var(--dv-ink); }
+
+/* ---------- shell ---------- */
+/* The frame every screen sits in: the window, the sidebar in the app, the main head, the composer as the inherited
+   editor inside the pill, and the chip. Layout and state only; every value is a token. */
+.dv-main-head { position: relative; z-index: 2; }
+.dv-main-head .dv-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* A Work project's mark, whole, right after its name (b16-work thread-work). */
+.dv-main-head .dv-main-work { margin-left: calc(-1 * var(--dv-s1)); }
+.dv-main-head .dv-crumb { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-main-head .dv-tools { align-items: center; }
+/* With the sidebar closed on a Mac the traffic lights sit at the head's left edge, so the head clears them. */
+.dv-main-head[data-lights] { padding-left: 80px; }
+.dv-main-head .dv-main-chrome { margin-left: calc(-1 * var(--dv-s2)); color: var(--dv-faint); }
+.dv-main-head .dv-main-chrome:hover { color: var(--dv-ink); }
+/* The composer dock the inherited editor renders around the pill: bare, so the pill's own width and margin hold. */
+.dv-composer-dock { padding: 0; }
+.dv-composer-dock .dv-composer { border: 0; backdrop-filter: none; -webkit-backdrop-filter: none; }
+/* The thread's message box (DvComposer): the words grow with what you type to 40% of the window, then scroll. */
+.dv-dvc { position: relative; }
+.dv-dvc-scroll { min-width: 0; }
+.dv-dvc-field { display: block; width: 100%; min-height: 44px; max-height: 40vh; overflow-y: auto; padding: var(--dv-s2) 0 var(--dv-s1); border: 0; outline: 0; resize: none; background: transparent;
+  color: var(--dv-ink); font: inherit; font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); letter-spacing: -.006em; field-sizing: content; }
+/* The pill around it shows focus, so the field never draws the global ring: a textarea matches :focus-visible on a
+   click too, and that rule loads later at the same weight, so it would win (RC review, 9 Oct). */
+.dv-dvc-field:focus-visible { outline: 0; }
+.dv-dvc-field::placeholder { color: var(--dv-faint); }
+.dv-dvc-field:disabled { color: var(--dv-faint); cursor: not-allowed; }
+.dv-dvc-foot { display: flex; align-items: center; gap: var(--dv-s1); min-width: 0; min-height: 34px; }
+.dv-dvc-foot > .dv-composer-tools { margin-right: var(--dv-s1); }
+.dv-composer [data-dv-btn][data-dv-size="icon"] { width: 28px; height: 28px; color: var(--dv-faint); }
+.dv-composer [data-dv-btn][data-dv-size="icon"]:hover { color: var(--dv-ink); background: var(--dv-sunk); }
+.dv-dvc-clip { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: var(--dv-r1); color: var(--dv-faint);
+  transition: color var(--dv-hover-out) var(--dv-ease), background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-dvc-clip:hover:not(:disabled) { color: var(--dv-ink); background: var(--dv-hover); transition-duration: var(--dv-hover-in); }
+.dv-dvc-clip:active:not(:disabled) { background: var(--dv-press); }
+.dv-dvc-clip:disabled { opacity: .45; cursor: not-allowed; }
+.dv-dvc-clip svg { width: 16px; height: 16px; }
+/* One round button: Send, Sending, or Pause while the agent works and nothing is typed. */
+.dv-dvc-send { flex: none; display: grid; place-items: center; width: 34px; height: 34px; margin-left: auto; border-radius: 50%;
+  background: var(--dv-pine); color: var(--dv-pine-ink); box-shadow: var(--dv-btn-lit); transition: background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-dvc-send:hover:not(:disabled) { background: color-mix(in srgb, var(--dv-pine) 86%, var(--dv-canvas)); transition-duration: var(--dv-hover-in); }
+.dv-dvc-send[data-testid="send-message"]:disabled { background: var(--dv-sunk); color: var(--dv-muted); opacity: 1; cursor: not-allowed; box-shadow: none; }
+.dv-dvc-send[data-sending] { cursor: progress; }
+.dv-dvc-send svg { width: 16px; height: 16px; }
+:is(.dv-dvc-clip, .dv-dvc-send):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-dvc-send[data-testid="stop-run"] svg { width: 14px; height: 14px; fill: currentColor; }
+.dv-dvc-spin { width: 14px; height: 14px; border: 2px solid currentColor; border-top-color: transparent; border-radius: 50%; animation: dv-dvc-spin .8s linear infinite; }
+@keyframes dv-dvc-spin { to { transform: rotate(1turn); } }
+/* @ and #: the names on offer, in a card just above the box. */
+.dv-dvc-suggest { position: absolute; left: var(--dv-s3); bottom: calc(100% + var(--dv-s1)); z-index: 20; width: min(420px, calc(100% - 2 * var(--dv-s3)));
+  margin: 0; padding: var(--dv-s1); list-style: none; border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: var(--dv-float); }
+.dv-dvc-suggest li { display: flex; align-items: baseline; justify-content: space-between; gap: var(--dv-s3); padding: 6px 10px; border-radius: var(--dv-r1);
+  font-size: var(--dv-fs-body); color: var(--dv-ink); cursor: pointer; transition: background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-dvc-suggest li[data-active] { background: var(--dv-hover); transition-duration: var(--dv-hover-in); }
+.dv-dvc-suggest-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-dvc-suggest-note { flex: 0 1 auto; min-width: 0; max-width: 50%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+@media (prefers-reduced-motion: reduce) { .dv-dvc-spin { animation-duration: 2.4s; } }
+/* The status line and Stop above the composer sit in the composer's column. */
+.dv-composer-status { width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto; }
+/* Usage by account, in its dialog: the sidebar's row, one per line. */
+.dv-usage-account { display: grid; gap: var(--dv-s1); }
+.dv-usage-account .dv-bar { height: 4px; border-radius: 2px; background: color-mix(in srgb, var(--dv-ink) 9%, transparent); overflow: hidden; }
+.dv-usage-account .dv-bar i { display: block; height: 100%; background: var(--dv-sage); border-radius: 2px; }
+.dv-usage-account[data-low="true"] .dv-bar i { background: var(--dv-rust); }
+.dv-usage-account .dv-pct { font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+
+/* ---------- thread ---------- */
+/* The message list as Dervo draws it (thread-review.html): yours as a sunk bubble on the right, the agent's as a byline
+   and a report in reading type. MessageRow is shared with the inherited chat, so only the row's data-pubkey is read
+   here and nothing in the component changes. The rows sit in a 700px measure like the composer.
+   The timeline's scroll shell pads 8px each side (MessageTimeline's px-2), so anything inside it takes s5 less 8px as its
+   gutter. Report text, bylines, the review bar, the recap and the composer box then start on one edge (design review
+   23 Sep, item 4): 324px at 1052, and the recap's edge at 1512. */
+:root[data-dervo-local] .dervo-connected-main [data-timeline-scroll-shell] { --dv-row-gutter: calc(var(--dv-s5) - var(--dv-s2)); }
+:root[data-dervo-local] .dervo-connected-main :is([data-testid="message-row"], .dervo-skeleton-row) { max-width: calc(700px + 2 * var(--dv-row-gutter, var(--dv-s5))); margin-inline: auto; padding-inline: var(--dv-row-gutter, var(--dv-s5)); }
+/* The thread while it loads (TimelineSkeleton shape "thread"): a bubble on the right, then reading lines across the measure,
+   at the bubble's radius and the reading line height, so the first read lands where the bars were. */
+:root[data-dervo-local] .dervo-connected-main .dervo-thread-skeleton { display: flex; flex-direction: column; gap: var(--dv-s6); width: 100%; padding-block: var(--dv-s2); }
+.dervo-thread-skeleton-turn { display: flex; flex-direction: column; gap: var(--dv-s5); }
+.dervo-thread-skeleton-ask { align-self: flex-end; height: 44px; border-radius: 16px 16px 4px 16px; }
+.dervo-thread-skeleton-reply { display: flex; flex-direction: column; gap: 12px; }
+.dervo-thread-skeleton-line { height: 14px; border-radius: var(--dv-r1); }
+/* The row itself (DvMessageRow). Yours: a sunk bubble on the right with nothing above it. The agent's: its 20px mark, name
+   and model on one line, then the answer across the measure. A follow-on message from the same agent drops the byline. */
+:root[data-dervo-local] .dervo-connected-main .dv-msg { position: relative; isolation: isolate; width: 100%; padding-block: 4px; }
+:root[data-dervo-local] .dervo-connected-main .dv-msg[data-own] { display: flex; justify-content: flex-end; }
+:root[data-dervo-local] .dervo-connected-main .dv-msg[data-own] .dv-msg-body { max-width: 78%; min-width: 0; padding: 10px var(--dv-s4); border-radius: 16px 16px 4px 16px;
+  background: var(--dv-sunk); color: var(--dv-ink); }
+:root[data-dervo-local] .dervo-connected-main .dv-msg[data-own] .message-markdown { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); letter-spacing: -.006em; }
+.dv-msg-head { display: flex; align-items: center; gap: var(--dv-s2); min-width: 0; height: 20px; font-size: var(--dv-fs-caption); line-height: 1.45; color: var(--dv-muted); }
+.dv-msg-head + .dv-msg-body { margin-top: var(--dv-s3); }
+.dv-msg-mark { flex: none; display: grid; place-items: center; width: 20px; height: 20px; border-radius: 6px; object-fit: cover;
+  background: var(--dv-sunk); color: var(--dv-ink-2); font-size: calc(var(--buzz-type-rem) * 0.6875); /* text-2xs: 11px at 16px */ font-weight: 650; }
+.dv-msg-author { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: var(--dv-muted); }
+.dv-msg-time, .dv-msg-persona { flex: none; color: var(--dv-faint); font-variant-numeric: tabular-nums; }
+.dv-msg-head > :is(.dv-msg-time, .dv-msg-persona)::before { content: '·'; margin-right: var(--dv-s2); color: var(--dv-faint); }
+.dv-msg-status { margin-top: var(--dv-s1); font-size: var(--dv-fs-caption); color: var(--dv-faint); }
+.dv-msg[data-own] .dv-msg-status[data-testid="message-send-status"] { display: none; }
+.dv-msg[data-own] .dv-msg-status { text-align: right; }
+/* Search and a link to a message land here: an ink wash that holds, then fades out over two seconds. Not rust, which means "needs you". */
+.dv-msg[data-highlighted]::before { content: ''; position: absolute; inset: 0 calc(var(--dv-row-gutter, var(--dv-s5)) - var(--dv-s2)); z-index: -1; border-radius: var(--dv-r2);
+  background: color-mix(in srgb, var(--dv-ink) 7%, transparent); animation: dv-msg-found 2s var(--dv-ease) forwards; }
+@keyframes dv-msg-found { 0%, 40% { opacity: 1; } 100% { opacity: 0; } }
+/* "View image" under a request (SentImages) hangs off the row like the task footer: the rows' measure, and at the
+   bubble's right edge when the row is yours (#13). The row's wrapper is the footer's earlier sibling. */
+:root[data-dervo-local] .dervo-connected-main .dervo-sent-images { width: 100%; max-width: calc(700px + 2 * var(--dv-row-gutter, var(--dv-s5))); margin-inline: auto; padding-inline: var(--dv-row-gutter, var(--dv-s5)); }
+:root[data-dervo-local] .dervo-connected-main :has(> [data-pubkey="local-user"]) ~ .dervo-sent-images { justify-content: flex-end; }
+/* Sent pictures as pictures (SentImages), like the Claude app: a thumbnail at the card radius, a named chip for a document. */
+.dv-sent-thumb { display: block; flex: none; width: 96px; height: 96px; padding: 0; overflow: hidden; border: 1px solid var(--dv-line); border-radius: var(--dv-r2);
+  background: var(--dv-sunk); cursor: zoom-in; transition: border-color var(--dv-hover-out, 180ms) var(--dv-ease), transform var(--dv-hover-in, 90ms) var(--dv-ease); }
+.dv-sent-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.dv-sent-thumb:hover { border-color: var(--dv-line-strong, var(--dv-muted)); transition-duration: var(--dv-hover-in, 90ms); }
+.dv-sent-thumb:active { transform: scale(.98); }
+.dv-sent-loading { cursor: default; animation: dv-sent-pulse 1.2s var(--dv-ease-move) infinite alternate; }
+@keyframes dv-sent-pulse { from { opacity: .55; } to { opacity: 1; } }
+.dv-sent-file { display: inline-flex; align-items: center; gap: var(--dv-s2); max-width: min(240px, 100%); height: 40px; padding: 0 var(--dv-s3);
+  border: 1px solid var(--dv-line); border-radius: var(--dv-r2); background: var(--dv-raised, transparent); color: var(--dv-ink); font-size: var(--dv-fs-caption);
+  transition: background-color var(--dv-hover-out, 180ms) var(--dv-ease); }
+.dv-sent-file svg { width: 16px; height: 16px; flex: none; color: var(--dv-muted); }
+.dv-sent-file span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* The tint is mixed into the chip's own fill, as the ghost button's is, so dark shows it as clearly as light and it fades. */
+.dv-sent-file:hover { background-color: color-mix(in srgb, var(--dv-ink) 5%, var(--dv-raised)); transition-duration: var(--dv-hover-in, 90ms); }
+.dv-sent-file:active { background-color: color-mix(in srgb, var(--dv-ink) 9%, var(--dv-raised)); }
+:is(.dv-sent-thumb, .dv-sent-file):focus-visible { outline: 2px solid var(--dv-focus, var(--dv-ink)); outline-offset: 2px; }
+/* Reduced motion keeps the colour fades and drops only the press shrink and the pulse. */
+@media (prefers-reduced-motion: reduce) { .dv-sent-loading { animation: none; } .dv-sent-thumb:active { transform: none; } }
+/* Copy and Edit under a message (MessageActions), as the Claude app has them: they come in on hover or keyboard focus, at
+   the bubble's right edge for yours and at the report's left edge for the agent's (the icon's inset makes the glyph line up). They replace the inherited chat's
+   floating bar (Reply, Copy link, reactions), which was clipped above the bubble and whose Reply a coding thread ignored. */
+:root[data-dervo-local] .dervo-connected-main[data-coding-thread] [data-testid^="message-action-bar-"] { display: none; }
+.dv-msg-actions { display: flex; gap: 2px; width: 100%; max-width: calc(700px + 2 * var(--dv-row-gutter, var(--dv-s5)));
+  margin: -4px auto 0; padding-inline: calc(var(--dv-row-gutter, var(--dv-s5)) - 6px) var(--dv-row-gutter, var(--dv-s5));
+  opacity: 0; transition: opacity var(--dv-hover-out, 180ms) var(--dv-ease); }
+/* Yours mirror it: the last glyph lines up with the bubble's right edge, as the first lines up with the report's text. */
+.dv-msg-actions[data-own] { justify-content: flex-end; padding-inline: var(--dv-row-gutter, var(--dv-s5)) calc(var(--dv-row-gutter, var(--dv-s5)) - 6px); }
+.dv-msg-actions .dv-btn-icon { width: 28px; height: 28px; display: grid; place-items: center; }
+.dv-msg-actions svg { width: 15px; height: 15px; }
+/* The row's own wrapper holds the message, these and its footers, so the pointer keeps them up across the 4px between. */
+div:hover > .dv-msg-actions, .dv-msg-actions:focus-within, .dv-msg-actions[data-held] { opacity: 1; transition-duration: var(--dv-hover-in, 90ms); }
+/* No hover on a touch screen, so they stay up. */
+@media (hover: none) { .dv-msg-actions { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .dv-msg-actions { transition: none; } }
+/* An empty thread's prompt sits in the composer's column, not edge to edge (UX3). The timeline pads 8px each side, so
+   100% less 2 × s4 lands on the composer's 100% less 2 × s5. */
+:root[data-dervo-local] .dervo-connected-main [data-testid="message-empty"] { width: calc(100% - 2 * var(--dv-s4)); max-width: calc(700px + 2 * var(--dv-s5)); margin-inline: auto; }
+/* The report: 15px on a 1.62 line, 60ch (about 90 characters, beta.16.1 item 8; it was 58ch), headings at body size and weight 650, quiet bullets, code in JetBrains Mono. */
+:root[data-dervo-local] .dervo-connected-main :is([data-pubkey^="provider"], [data-pubkey^="helper:"], [data-pubkey="dervo-coordinator"]) .message-markdown { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); letter-spacing: -.006em; color: var(--dv-ink); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :is(p, ul, ol, blockquote, h1, h2, h3, h4, h5, h6) { max-width: 60ch; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :is(p, li) { line-height: var(--dv-lh-read); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown > * + *,
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown .dervo-streamdown > * + * { margin-top: var(--dv-s3); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :is(h1, h2, h3, h4, h5, h6) { font-size: var(--dv-fs-body); font-weight: 650; line-height: var(--dv-lh-ui); letter-spacing: 0; color: var(--dv-ink); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :is(* + h1, * + h2, * + h3, * + h4, .dervo-streamdown > * + h1, .dervo-streamdown > * + h2, .dervo-streamdown > * + h3) { margin-top: var(--dv-s4); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :is(h1, h2, h3, h4) + * { margin-top: var(--dv-s2); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown ul { padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown ul > li { position: relative; padding-left: 18px; margin-top: 0; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown ul > li::before { content: ''; position: absolute; left: 4px; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--dv-faint); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown ol { padding-left: 1.35em; display: flex; flex-direction: column; gap: 6px; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown ol > li { margin-top: 0; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown li::marker { color: var(--dv-faint); }
+/* Inline code at 400 in ink-2: markdown.css sets 500, and beside 400 body text a file name read as shouted (item 8). */
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :is(code, .inline-code-chip) { font-family: var(--dv-font-mono); font-size: .92em; font-weight: 400; background: none; padding: 0; border: 0; box-shadow: none; color: var(--dv-ink-2); }
+/* Inline paths wrap with their sentence instead of forming a separate flex box. */
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown :not(pre) > code {
+  display: inline; min-height: 0; line-height: inherit; white-space: break-spaces;
+  overflow-wrap: anywhere; word-break: normal; font-size: .88em;
+}
+/* Keep the viewport fixed when the jump control appears. Its visibility comes
+   from the scroll position, so resizing that viewport can retrigger scrolling.
+   Text scrolling up under the Asked strip fades over 20px instead of being sliced at the strip's edge (design review
+   23 Sep, item 1). The mask belongs to the shell's box, not its content, so it stays put while the thread scrolls, and
+   the timeline's own 32px lead-in keeps the first message clear of it at the top. */
+:root[data-dervo-local] .dervo-connected-main [data-message-timeline-root] > [data-timeline-scroll-shell] { bottom: 44px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 20px); mask-image: linear-gradient(to bottom, transparent 0, #000 20px); }
+:root[data-dervo-local] .dervo-connected-main [data-timeline-jump] { bottom: 4px; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown pre { padding: var(--dv-s3) var(--dv-s4); border-radius: var(--dv-r2); background: var(--dv-sunk); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown pre code { font-size: var(--dv-fs-small); line-height: 1.6; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown strong { font-weight: 650; }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown blockquote { font-style: normal; color: var(--dv-muted); border-left: 2px solid var(--dv-line-strong); padding-left: var(--dv-s3); }
+:root[data-dervo-local] .dervo-connected-main [data-pubkey] .message-markdown table { font-size: var(--dv-fs-body); line-height: 1.5; }
+/* The live step under a reply: a caption, and nothing moves but the panel's glyph. With the panel open it's said there. */
+:root[data-dervo-local] .dervo-connected-main :is(.dervo-response-activity, .dervo-response-waiting) { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+/* A run's trail (16.2, ChatMotion.css) draws its own crumbs and shimmer, so this only quiets the plain chat line. */
+:root[data-dervo-local] .dervo-connected-main :is(.dervo-response-activity, .dervo-response-waiting) span:not(.dv-trail *) { animation: none; background: none; -webkit-text-fill-color: initial; color: var(--dv-muted); }
+/* The live line under a reply stays while Progress is open (Bryce, 24 Sep): hiding it made the chat look finished for as
+   long as the agent kept working. It shows the same pebble and step words as the Progress head. */
+/* One Stop in a running thread (design review 23 Sep). While nothing is typed the composer's Send is Stop (#30), and it's
+   there whether Progress is open or not, so the panel's Stop steps aside. Type something and Send comes back, and so
+   does the panel's Stop, so a running task can always be stopped with one click. */
+:root[data-dervo-local] .dervo-conversation-workspace:has([data-testid="stop-run"]) .dv-panel-stop { display: none; }
+
+/* The recap at the top of a thread, with 12px under it so the timeline's fade starts below the strip, not on it. */
+.dervo-thread-recap { flex: none; padding: var(--dv-s5) var(--dv-s5) var(--dv-s3); }
+.dervo-thread-recap .dv-recap { max-width: 700px; margin: 0 auto; }
+.dv-recap .dv-recap-row { display: contents; }
+.dv-recap dd { display: flex; align-items: baseline; gap: var(--dv-s3); min-width: 0; }
+.dv-recap dd > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-recap dd button { margin-left: auto; flex: none; font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-muted); }
+.dv-recap dd button:hover { color: var(--dv-ink); }
+
+/* The decision bar under a report, and the handoff row. */
+.dervo-task-footer { width: 100%; max-width: calc(700px + 2 * var(--dv-row-gutter, var(--dv-s5))); margin: var(--dv-s2) auto var(--dv-s2); padding-inline: var(--dv-row-gutter, var(--dv-s5)); font-size: var(--dv-fs-body); line-height: var(--dv-lh-ui); container-type: inline-size; }
+/* A narrow column: the sentence takes the first line, the buttons the next, so nothing clips. */
+@container (max-width: 600px) { .dv-decision .dv-decision-line { flex-basis: 100%; } .dv-decision { justify-content: flex-end; } }
+.dervo-task-footer:empty { display: none; }
+.dv-decision { flex-wrap: wrap; }
+.dv-decision-line { display: flex; align-items: center; gap: var(--dv-s3); flex: 1 1 12ch; min-width: 0; }
+/* A long sentence with three actions beside it got 230px and wrapped to five lines (the unsure card, beta.18). With three or
+   more actions it takes its own row and the actions sit under it, at the right, as they already do in a narrow column. The
+   usual decision bar (a short sentence) is untouched; CodingTasks sets data-long past 110 characters. */
+.dv-decision[data-long]:has(> .dv-btn:nth-of-type(3)) { justify-content: flex-end; }
+.dv-decision[data-long]:has(> .dv-btn:nth-of-type(3)) > .dv-decision-line { flex-basis: 100%; }
+.dv-decision-line .dv-what { flex: 1; }
+.dv-decision-note { flex-basis: 100%; font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-muted); }
+.dv-decision-error { color: var(--dv-ink); }
+.dv-decision-confirm { display: flex; align-items: center; flex-wrap: wrap; gap: var(--dv-s2); }
+.dv-decision-confirm p { flex: 1 1 240px; }
+.dervo-task-footer .dv-sheet { margin: var(--dv-s2) 0 0; }
+.dv-facts .dv-facts-row { display: contents; }
+.dv-facts dd code { font-family: var(--dv-font-mono); font-size: .92em; }
+.dv-handoff .dv-row.dv-open { margin-bottom: 0; }
+.dv-handover { display: flex; align-items: center; gap: var(--dv-s2); margin-top: var(--dv-s2); font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-handover svg { color: var(--dv-faint); flex: none; }
+.dv-suggest-switch { display: flex; align-items: center; gap: var(--dv-s2); margin-top: var(--dv-s3); }
+.dv-suggest-switch input { accent-color: var(--dv-pine); margin: 0; }
+.dv-row-end .dv-when { white-space: nowrap; }
+
+/* A coding request that couldn't start, and a message waiting behind this thread's own run. */
+.dervo-active-run { margin: var(--dv-s2) var(--dv-s5) 0; font-size: var(--dv-fs-body); }
+.dervo-active-run .dv-what b { font-weight: 600; color: var(--dv-ink); }
+.dervo-active-run-actions { display: flex; align-items: center; gap: var(--dv-s2); }
+.dervo-queue-line { display: flex; align-items: center; gap: var(--dv-s2); justify-content: flex-end; }
+.dervo-queue-detail { color: var(--dv-ink); text-align: right; }
+
+/* Day markers in a thread (the shared timeline's DayDivider). A thread that all happened today needs none, as the
+   mockups draw it; one that spans days keeps them, quiet, so an old "1:52 AM" still says which day. */
+:root[data-dervo-local] body:not(:has([data-testid="message-timeline-day-divider"]:not([data-day-label="Today"]))) [data-testid="message-timeline-day-divider"][data-day-label="Today"] { display: none; }
+:root[data-dervo-local] [data-testid="message-timeline-day-divider"] p { border: 0; background: var(--dv-canvas); color: var(--dv-faint);
+  font: 500 var(--dv-fs-caption)/1.4 var(--dv-font-text); letter-spacing: .01em; }
+
+/* ---------- Controls (design sweep, 19 Sep) ---------- */
+/* From project-settings/parts.css and the settings mockups: a switch, a segmented control, a select, a text field, a tag,
+   the settings row, and choice rows for one-of-several. The behaviour (keys, saving on Return, Esc putting a value
+   back) is in DervoControls.tsx. Focus is 2px --dv-focus (ink at 60%), offset 2px, keyboard only. */
+/* Off is a strong-line track inside a muted hairline, so the control's edge clears 3:1 on every surface in both modes
+   (dark audit #8: the old 16% ink tint was 1.4 to 1.6:1). On is a pine fill and needs no ring. */
+.dv-switch { position: relative; width: 32px; height: 18px; flex: none; border-radius: var(--dv-r-pill); background: var(--dv-line-strong);
+  box-shadow: inset 0 0 0 1px var(--dv-muted); transition: background var(--dv-fast), box-shadow var(--dv-fast); cursor: pointer; }
+.dv-switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px; border-radius: 50%; background: var(--dv-raised);
+  box-shadow: 0 1px 2px rgb(0 0 0 / .25); transition: transform var(--dv-fast) var(--dv-ease), background var(--dv-fast); }
+.dv-switch[aria-checked="true"] { background: var(--dv-pine); box-shadow: none; }
+.dv-switch[aria-checked="true"]::after { transform: translateX(14px); }
+.dv-switch:disabled { opacity: .45; cursor: not-allowed; }
+/* Dark: a raised knob disappears on the dark track, so it's ink when off and pine ink on the pale pine when on. */
+:root[data-dervo-local].dark .dv-switch::after { background: var(--dv-ink-2); }
+:root[data-dervo-local].dark .dv-switch[aria-checked="true"]::after { background: var(--dv-pine-ink); }
+
+.dv-seg { display: inline-flex; flex-wrap: wrap; gap: 2px; padding: 2px; border-radius: var(--dv-r-pill); background: var(--dv-sunk); }
+.dv-seg button { height: 26px; padding: 0 var(--dv-s3); border-radius: var(--dv-r-pill); font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-muted); white-space: nowrap; }
+.dv-seg button:hover:not(:disabled) { color: var(--dv-ink); }
+.dv-seg button[aria-checked="true"] { background: var(--dv-raised); color: var(--dv-ink); box-shadow: 0 0 0 1px var(--dv-line), 0 1px 2px rgb(0 0 0 / .06); }
+.dv-seg button:disabled { color: var(--dv-faint); cursor: not-allowed; }
+/* Dark: raised sits below sunk, so the chosen option takes the strong line to stay the lighter one. */
+:root[data-dervo-local].dark .dv-seg button[aria-checked="true"] { background: var(--dv-line-strong); box-shadow: none; }
+
+.dv-select { display: inline-flex; align-items: center; gap: var(--dv-s2); height: 32px; max-width: 100%; padding: 0 var(--dv-s2) 0 var(--dv-s3); border-radius: var(--dv-r2);
+  background: var(--dv-raised); box-shadow: inset 0 0 0 1px var(--dv-line-strong); font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); white-space: nowrap; }
+.dv-select { transition: background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-select:hover:not(:disabled), .dv-select[aria-expanded="true"] { background: color-mix(in srgb, var(--dv-ink) 4%, var(--dv-raised)); transition-duration: var(--dv-hover-in); }
+.dv-select > .dv-select-value { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.dv-select .dv-sub { font-weight: 400; color: var(--dv-muted); }
+.dv-select > svg { flex: none; color: var(--dv-muted); }
+.dv-select:disabled { opacity: .45; cursor: not-allowed; }
+
+.dv-input { height: 32px; min-width: 0; padding: 0 var(--dv-s3); border: 0; border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: inset 0 0 0 1px var(--dv-line-strong);
+  font: inherit; font-size: var(--dv-fs-body); color: var(--dv-ink); }
+.dv-input::placeholder { color: var(--dv-faint); }
+.dv-input:focus { outline: 2px solid var(--dv-focus); outline-offset: 1px; }
+.dv-input:disabled { opacity: .45; cursor: not-allowed; }
+.dv-input[aria-invalid="true"] { box-shadow: inset 0 0 0 1px var(--dv-ink-2); }
+textarea.dv-input { height: auto; padding: var(--dv-s2) var(--dv-s3); line-height: var(--dv-lh-ui); resize: none; }
+.dv-field-note { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-field-note[role="alert"] { color: var(--dv-ink-2); }
+
+.dv-tag { display: inline-flex; align-items: center; height: 18px; padding: 0 6px; border-radius: var(--dv-r-pill); font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-ink-2);
+  box-shadow: inset 0 0 0 1px var(--dv-line-strong); white-space: nowrap; letter-spacing: .01em; }
+.dv-kbd { font: 600 var(--dv-fs-caption) var(--dv-font-text); color: var(--dv-muted); padding: 0 5px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--dv-line-strong); }
+
+:root[data-dervo-local] :is(.dv-switch, .dv-seg button, .dv-select, .dv-choice):focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+.dv-choice:focus-visible { outline-offset: 0; }
+
+/* A setting: what it is and one line, its control on the right. No rules between rows; whitespace groups them. */
+.dv-set { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 2px var(--dv-s5); padding: var(--dv-s3) 0; }
+.dv-set + .dv-set { padding-top: var(--dv-s2); }
+.dv-set-name { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; color: var(--dv-ink); }
+.dv-set-line { font-size: var(--dv-fs-small); color: var(--dv-muted); line-height: 1.5; margin-top: 2px; }
+.dv-set-line code { font-size: var(--dv-fs-caption); color: var(--dv-ink-2); }
+.dv-set-end { display: flex; align-items: center; gap: var(--dv-s2); justify-self: end; }
+.dv-set-below { grid-column: 1 / -1; margin-top: var(--dv-s2); }
+.dv-set[aria-disabled="true"] .dv-set-name { color: var(--dv-muted); }
+.dv-why { font-size: var(--dv-fs-small); color: var(--dv-ink-2); margin-top: var(--dv-s1); }
+/* A row you can tick: the waitlist's people. The whole name is the checkbox's label. */
+.dv-pick { display: inline-flex; align-items: center; gap: var(--dv-s2); cursor: pointer; overflow-wrap: anywhere; }
+.dv-pick input { accent-color: var(--dv-ink); flex: none; }
+.dv-saved { font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+
+/* Choice rows: one of several (Access, Account and model). The chosen one can lift open as the page's only card. */
+.dv-choices { display: flex; flex-direction: column; gap: 2px; margin: 0 calc(-1 * var(--dv-s3)); }
+.dv-choice { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 0 var(--dv-s3); align-items: start; width: 100%; padding: var(--dv-s3);
+  border-radius: var(--dv-r2); text-align: left; cursor: pointer; }
+.dv-choice { transition: background-color var(--dv-hover-out) var(--dv-ease); }
+.dv-choice:hover { background: var(--dv-hover); transition-duration: var(--dv-hover-in); }
+.dv-choices.dv-compact .dv-choice { padding: 9px var(--dv-s3); }
+.dv-choice .dv-dot { width: 16px; height: 16px; margin-top: 1px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--dv-line-strong); display: grid; place-items: center; }
+.dv-choice[aria-checked="true"] .dv-dot { box-shadow: inset 0 0 0 1.5px var(--dv-pine); }
+.dv-choice[aria-checked="true"] .dv-dot::after { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--dv-pine); }
+.dv-choice .dv-c-name { font-size: var(--dv-fs-body); font-weight: 600; line-height: 1.35; color: var(--dv-ink); display: flex; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; }
+.dv-choice .dv-c-line { font-size: var(--dv-fs-small); color: var(--dv-muted); margin-top: 2px; line-height: 1.5; }
+.dv-choice .dv-c-end { font-size: var(--dv-fs-caption); color: var(--dv-muted); padding-top: 2px; white-space: nowrap; }
+.dv-choice[aria-disabled="true"] { cursor: not-allowed; }
+.dv-choice[aria-disabled="true"]:hover { background: none; }
+.dv-choice[aria-disabled="true"] .dv-c-name { color: var(--dv-muted); }
+.dv-choice[aria-disabled="true"] .dv-dot { box-shadow: inset 0 0 0 1.5px var(--dv-line); }
+.dv-choice.dv-open { background: var(--dv-raised); box-shadow: var(--dv-card-edge), var(--dv-lift); padding: var(--dv-s4) var(--dv-s3); margin: var(--dv-s1) 0; }
+.dv-choice.dv-open:hover { background: var(--dv-raised); }
+.dv-c-body { grid-column: 2 / -1; display: flex; flex-direction: column; gap: var(--dv-s3); margin-top: var(--dv-s3); cursor: auto; }
+.dv-c-body .dv-set { padding: var(--dv-s1) 0; }
+@media (prefers-reduced-motion: reduce) { .dv-switch, .dv-switch::after { transition: none; } }
+
+/* ---------- A settings page: serif title, one plain line, then sections set apart by space alone ---------- */
+.dv-page-head { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-page-head h1 { outline: none; }
+.dv-page-lead { font-size: var(--dv-fs-read); line-height: var(--dv-lh-read); color: var(--dv-ink-2); max-width: 62ch; text-wrap: pretty; }
+.dv-page-lead code { font-size: var(--dv-fs-small); }
+/* Home's lead under Catch up wraps the same way, so neither leaves one word on its last line. */
+.dv-now-lead { text-wrap: pretty; }
+.dv-sec { display: flex; flex-direction: column; gap: var(--dv-s2); }
+.dv-sec-head { display: flex; align-items: baseline; gap: var(--dv-s3); margin-bottom: var(--dv-s1); }
+.dv-sec-head .dv-caption { margin-left: auto; }
+.dv-sec-note { font-size: var(--dv-fs-small); color: var(--dv-muted); max-width: 60ch; }
+
+/* ---------- The mark: the forest pebble (DervoBrand.tsx), pine with a cream face, pale pine in dark mode ---------- */
+.dv-pebble { display: block; flex: none; }
+.dv-pebble .dv-pebble-body { fill: var(--dv-pine); }
+.dv-pebble .dv-pebble-face { fill: var(--dv-pine-ink); stroke: none; }
+.dv-pebble .dv-pebble-face path { fill: none; stroke: var(--dv-pine-ink); }
+
+/* Add a contact separately from confirming an invitation. */
+.dv-invite-add { display: flex; align-items: flex-end; flex-wrap: wrap; gap: var(--dv-s3); margin: var(--dv-s3) 0; }
+.dv-invite-add label { display: grid; gap: var(--dv-s2); flex: 1 1 16rem; font-size: var(--dv-fs-small); }
+.dv-invite-preview { overflow-wrap: anywhere; font-size: var(--dv-fs-small); }
+.dv-invite-email { white-space: pre-wrap; margin-top: var(--dv-s3); line-height: 1.65; }
+/* The waitlist: one search across every group, then the waiting people as a compact list that scrolls inside the page
+   instead of one full row each (Bryce, 23 Sep: "a huge list of names and emails"). */
+.dv-waitlist-search { display: flex; align-items: center; gap: var(--dv-s3); margin: var(--dv-s2) 0 var(--dv-s3); }
+.dv-waitlist-field { position: relative; display: flex; align-items: center; flex: 1 1 auto; min-width: 0; }
+.dv-waitlist-field > svg { position: absolute; left: var(--dv-s2); color: var(--dv-muted); pointer-events: none; }
+.dv-waitlist-field .dv-input { width: 100%; padding-left: calc(var(--dv-s2) * 2 + 16px); }
+.dv-waitlist-count { flex: none; font-size: var(--dv-fs-caption); color: var(--dv-muted); }
+.dv-waitlist { list-style: none; margin: 0; padding: var(--dv-s1); max-height: 22rem; overflow-y: auto; overscroll-behavior: contain;
+  border-radius: var(--dv-r2); background: var(--dv-raised); box-shadow: inset 0 0 0 1px var(--dv-line); }
+.dv-waitlist-row { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s3); min-height: 34px; padding: 0 var(--dv-s2);
+  border-radius: var(--dv-r1); }
+.dv-waitlist-row:hover { background: color-mix(in srgb, var(--dv-ink) 4%, transparent); }
+.dv-waitlist-row[data-selected] { background: color-mix(in srgb, var(--dv-ink) 7%, transparent); }
+.dv-waitlist-row .dv-pick { flex: 1 1 auto; min-width: 0; min-height: 34px; }
+.dv-waitlist-email { font-size: var(--dv-fs-body); color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-waitlist-meta { flex: none; font-size: var(--dv-fs-caption); color: var(--dv-muted); white-space: nowrap; font-variant-numeric: tabular-nums; }

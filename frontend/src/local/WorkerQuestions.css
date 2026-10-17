@@ -1,0 +1,19 @@
+/* Beta.16: a thread's questions sit on Home's tray (Questions.css), directly above the thread composer. The composer is
+   inside .dv-send-root, so the shared outline is drawn across that one wrapper. */
+.dervo-conversation-main > .dv-qtray + .dv-send-root .dv-composer { margin-top: 0; border-top: var(--dv-hairline); border-top-left-radius: 0; border-top-right-radius: 0; }
+/* Design review S11 (24 Sep): a long question must never push its choices under the fold. The tray scrolls inside
+   itself, and the composer under it stays where it is. */
+.dervo-conversation-main > .dv-qtray:not([data-folded]) { max-height: min(46vh, 420px); overflow-y: auto; overscroll-behavior: contain; }
+.dv-worker-question-error { flex: none; width: min(748px, calc(100% - 2 * var(--dv-s5))); margin: 0 auto var(--dv-s2); padding: 0 var(--dv-s3);
+  color: var(--dv-rust); font-size: var(--dv-fs-small); overflow-wrap: anywhere; }
+/* Beta.15: a settled question is one quiet line under its task in the thread, not a card above the composer. */
+.dv-question-history { list-style:none; margin:0 0 var(--dv-s2); padding:0; display:flex; flex-direction:column; gap:var(--dv-s1); }
+.dv-question-history li { overflow-wrap:anywhere; line-height:1.45; }
+/* Beta.16.1: the question itself, in the tray and above your answer in the thread. It's the asker's words, so it sits
+   in the quiet quoted style the thread uses for an agent's words, never as your own text. */
+.dv-qtray-ask { margin: 0 var(--dv-s3) var(--dv-s2); padding-left: var(--dv-s3); border-left: 2px solid var(--dv-line-strong);
+  color: var(--dv-ink); font-size: var(--dv-fs-read); line-height: 1.5; overflow-wrap: anywhere; white-space: pre-wrap; }
+.dv-qtray[data-folded] .dv-qtray-ask { margin: var(--dv-s2) 0 0; }
+.dv-answered-q { margin: 0 0 var(--dv-s2); padding-left: var(--dv-s3); border-left: 2px solid var(--dv-line-strong); }
+.dv-answered-q figcaption { color: var(--dv-muted); font-size: var(--dv-fs-caption); line-height: 1.5; }
+.dv-answered-q blockquote { margin: 0; color: var(--dv-ink-2); font-size: var(--dv-fs-small); line-height: 1.5; overflow-wrap: anywhere; white-space: pre-wrap; }

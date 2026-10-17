@@ -1,0 +1,21 @@
+/* Archived threads, folded under the sidebar list: a chevron that turns, then a row per thread with its glyph or the
+   lock, the name, Restore on hover and focus, and ⋯. Colours, sizes and spacing are the dv- tokens. */
+.dervo-archived { margin: 4px 0 8px; font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dervo-archived > summary { display: flex; align-items: center; gap: 6px; cursor: pointer; list-style: none; padding: 7px var(--dv-s2); border-radius: var(--dv-r1); }
+.dervo-archived > summary::-webkit-details-marker { display: none; }
+.dervo-archived-count { margin-left: auto; font-size: var(--dv-fs-caption); font-variant-numeric: tabular-nums; }
+.dervo-archived ul { list-style: none; margin: 2px 0 0; padding: 0; display: grid; gap: 2px; }
+.dervo-archived-row { display: flex; align-items: center; gap: var(--dv-s2); padding: 5px var(--dv-s1) 5px var(--dv-s2); border-radius: var(--dv-r1); color: var(--dv-ink-2); }
+.dervo-archived-row .dv-st, .dervo-archived-lock { flex: none; color: var(--dv-faint); }
+.dervo-archived-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dervo-archived-actions { display: flex; align-items: center; gap: 2px; opacity: 0; }
+.dervo-archived-row:hover .dervo-archived-actions, .dervo-archived-row:focus-within .dervo-archived-actions, .dervo-archived-row:has([data-state="open"]) .dervo-archived-actions { opacity: 1; }
+.dervo-archived-actions button { display: inline-grid; place-items: center; height: 22px; min-width: 22px; margin: -3px 0; padding: 0 var(--dv-s1); border-radius: var(--dv-r1); color: var(--dv-muted); }
+.dervo-archived-actions button:hover { color: var(--dv-ink); }
+.dervo-archived-actions button:disabled { opacity: .5; }
+.dervo-archived-actions .dervo-archived-restore { font-size: var(--dv-fs-caption); font-weight: 600; color: var(--dv-ink); }
+.dervo-archived-error { margin: 2px var(--dv-s2) var(--dv-s1) calc(var(--dv-s2) + 16px + var(--dv-s2)); color: var(--dv-ink-2); font-size: var(--dv-fs-caption); line-height: 1.4; }
+.dervo-archived-chevron { transition: transform var(--dv-fast) var(--dv-ease); color: var(--dv-faint); }
+.dervo-archived[open] > summary .dervo-archived-chevron { transform: rotate(90deg); }
+@media (prefers-reduced-motion: no-preference) { .dervo-archived-actions { transition: opacity var(--dv-fast) var(--dv-ease); } }
+@media (prefers-reduced-motion: reduce) { .dervo-archived-chevron { transition: none; } }

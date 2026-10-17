@@ -1,0 +1,115 @@
+/* The five project settings pages (design sweep, 19 Sep): the page-level layout from project-settings/gen.py and
+   parts.css, on the dv- tokens. The rows, choice rows, switch, segmented control, select and text field are the
+   foundation's (DervoComponents.css). One lifted card per page at most; groups are set apart by space. */
+
+.dv-settings .dv-measure { gap: var(--dv-s6); }
+.dv-settings .dv-sec-head .dv-caption { white-space: nowrap; }
+
+/* A consequence stated before you say yes, one point per line. */
+.dv-points { display: flex; flex-direction: column; gap: 4px; font-size: var(--dv-fs-small); color: var(--dv-ink-2); line-height: 1.5; }
+.dv-points li { position: relative; padding-left: 14px; }
+.dv-points li::before { content: ''; position: absolute; left: 2px; top: .62em; width: 4px; height: 4px; border-radius: 50%; background: var(--dv-faint); }
+.dv-points code { font-size: var(--dv-fs-caption); }
+
+.dv-confirm.dv-project-confirm { display: flex; flex-direction: column; align-items: stretch; gap: var(--dv-s2); }
+.dv-actions { display: flex; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; margin-top: var(--dv-s1); }
+.dv-disclose { font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-disclose summary { display: inline-flex; align-items: center; gap: var(--dv-s1); cursor: pointer; list-style: none; font-weight: 600; border-radius: var(--dv-r1); }
+.dv-disclose summary::-webkit-details-marker { display: none; }
+.dv-disclose summary:hover { color: var(--dv-ink); }
+.dv-disclose summary:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+/* The app's details elsewhere carry a trailing plus; a disclosure here has its chevron instead. */
+:root[data-dervo-local] details.dv-disclose:not(#dv-none) > summary::after { content: none; }
+.dv-disclose summary svg { color: var(--dv-faint); transition: transform var(--dv-fast) var(--dv-ease); }
+.dv-disclose[open] summary svg { transform: rotate(90deg); }
+.dv-disclose-body { margin-top: var(--dv-s2); display: flex; flex-direction: column; gap: var(--dv-s1); }
+.dv-disclose-body > p { max-width: 62ch; line-height: 1.5; }
+.dv-detail { font-size: var(--dv-fs-caption); max-width: 60ch; }
+
+.dv-field-error { display: flex; align-items: center; gap: var(--dv-s2); flex-wrap: wrap; font-size: var(--dv-fs-small); line-height: 1.5; color: var(--dv-ink-2); }
+.dv-field-error .dv-st { flex: none; }
+.dv-inline-why { display: inline-flex; align-items: center; gap: var(--dv-s2); }
+.dv-self-start { align-self: flex-start; }
+.dv-muted { color: var(--dv-muted); font-weight: 400; }
+
+/* ---------- Account and model ---------- */
+.dv-more-models { padding: var(--dv-s2) 0 0; }
+.dv-more-models .dv-choices { margin-top: var(--dv-s1); }
+.dv-model-id { display: flex; flex-direction: column; gap: var(--dv-s2); margin-top: var(--dv-s2); }
+.dv-model-id .dv-input { width: 280px; }
+.dv-thinking { display: flex; flex-direction: column; align-items: flex-start; gap: var(--dv-s2); }
+.dv-thinking .dv-seg { align-self: flex-start; }
+.dv-thinking { position: relative; }
+.dv-thinking-seg .dv-pk-more { display: inline-flex; align-items: center; gap: 4px; }
+.dv-other-threads { margin-top: calc(-1 * var(--dv-s1)); }
+.dv-other-threads .dv-row { align-items: center; }
+.dv-other-threads .dv-st { color: var(--dv-faint); }
+.dv-linkish-plain { display: block; padding: 0; text-align: left; font: inherit; font-weight: 600; color: var(--dv-ink); cursor: pointer; border-radius: var(--dv-r1); }
+.dv-linkish-plain:hover { text-decoration: underline; text-decoration-color: var(--dv-line-strong); text-underline-offset: 3px; }
+.dv-linkish-plain:focus-visible { outline: 2px solid var(--dv-focus); outline-offset: 2px; }
+
+/* The account menu: each account by name with its plan, what's left and a thin bar, the current one ticked. */
+:root[data-dervo-local] .dv-acct-menu { width: 248px; min-width: 248px; padding: var(--dv-s1); }
+:root[data-dervo-local] .dv-acct-menu .dv-acct-item { display: grid; grid-template-columns: minmax(0, 1fr) 14px; align-items: center; gap: 0 var(--dv-s2); padding: 7px var(--dv-s2); min-height: 0; }
+.dv-acct-item b { font-size: var(--dv-fs-small); font-weight: 600; color: var(--dv-ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dv-acct-item small { grid-column: 1; font-size: var(--dv-fs-caption); color: var(--dv-muted); font-variant-numeric: tabular-nums; }
+.dv-acct-item .dv-pk-tick { grid-row: 1 / span 2; grid-column: 2; color: var(--dv-ink); }
+.dv-acct-item .dv-pk-bar { grid-column: 1; height: 3px; margin-top: 5px; border-radius: 2px; background: color-mix(in srgb, var(--dv-ink) 9%, transparent); overflow: hidden; }
+.dv-acct-item .dv-pk-bar i { display: block; height: 100%; background: var(--dv-sage); border-radius: 2px; }
+.dv-acct-empty { padding: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+
+/* ---------- Access ---------- */
+.dv-problem { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: var(--dv-s3); padding-bottom: var(--dv-s1); }
+.dv-problem .dv-st { margin-top: 1px; }
+.dv-problem .dv-actions { margin-top: var(--dv-s3); }
+.dv-problem code, .dv-path code { font-size: var(--dv-fs-small); }
+.dv-paths { display: flex; flex-direction: column; gap: 2px; }
+.dv-paths .dv-label { margin-top: var(--dv-s2); }
+.dv-path { display: flex; align-items: center; gap: var(--dv-s3); min-height: 28px; font-size: var(--dv-fs-small); }
+.dv-path .dv-caption, .dv-path .dv-path-remove { margin-left: auto; }
+.dv-path .dv-path-remove { opacity: 0; }
+.dv-path:hover .dv-path-remove, .dv-path .dv-path-remove:focus-visible { opacity: 1; }
+.dv-add { align-self: flex-start; display: inline-flex; gap: 6px; margin-left: calc(-1 * var(--dv-s2)); margin-top: var(--dv-s2); }
+.dv-never { padding-left: 0; }
+.dv-conns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--dv-s1) var(--dv-s5); }
+.dv-conn { display: flex; align-items: center; justify-content: space-between; gap: var(--dv-s3); padding: 5px 0; font-size: var(--dv-fs-small); color: var(--dv-ink-2); }
+.dv-choice .dv-why { display: block; }
+
+/* ---------- Checks and review ---------- */
+.dv-extra { display: flex; align-items: center; justify-content: space-between; font-size: var(--dv-fs-small); margin-top: calc(-1 * var(--dv-s2)); }
+.dv-extra b { font-weight: 600; }
+.dv-extra .dv-cmd { font-family: var(--dv-font-mono); font-size: var(--dv-fs-caption); color: var(--dv-ink-2); overflow-wrap: anywhere; }
+.dv-secs { display: inline-flex; align-items: center; gap: var(--dv-s2); font-size: var(--dv-fs-small); color: var(--dv-muted); }
+.dv-secs .dv-input { width: 56px; text-align: center; }
+.dv-secs .dv-field-note { position: absolute; }
+.dv-rev { padding-left: var(--dv-s5); display: flex; flex-direction: column; }
+.dv-more-checks { padding-left: 0; }
+.dv-wide { width: 100%; }
+
+/* ---------- Helper agents ---------- */
+.dv-agents .dv-row { grid-template-columns: 26px minmax(0, 1fr) auto; align-items: start; }
+.dv-agents .dv-row-end { gap: var(--dv-s2); }
+.dv-add-agent { width: 100%; grid-template-columns: 26px minmax(0, 1fr) auto; margin-top: var(--dv-s2); text-align: left; cursor: pointer; color: var(--dv-muted); }
+.dv-add-agent > span:first-child { display: grid; place-items: center; }
+.dv-add-agent .dv-al { font-size: var(--dv-fs-body); }
+.dv-add-agent:hover { color: var(--dv-ink); }
+.dv-agent-card { grid-template-columns: 26px minmax(0, 1fr); }
+.dv-agent-fields { display: flex; flex-direction: column; gap: var(--dv-s1); min-width: 0; }
+.dv-agent-fields .dv-set { padding: var(--dv-s1) 0; }
+.dv-agent-fields .dv-input { width: 220px; }
+.dv-instructions { display: flex; flex-direction: column; gap: 2px; margin-top: var(--dv-s2); }
+.dv-instructions textarea.dv-input { width: 100%; margin-top: var(--dv-s2); }
+.dv-push-right { margin-left: auto; }
+.dv-limits-label { display: block; margin-top: var(--dv-s3); }
+
+/* ---------- General ---------- */
+.dv-name-field { width: 240px; }
+.dv-set-end .dv-btn-quiet { display: inline-flex; gap: 6px; }
+.dv-choice.dv-open.dv-delete { margin: var(--dv-s1) calc(-1 * var(--dv-s3)) 0; grid-template-columns: 0 minmax(0, 1fr) 0; gap: 0; padding: var(--dv-s4); cursor: auto; }
+.dv-delete .dv-points { margin-top: var(--dv-s2); }
+.dv-typed { display: flex; flex-direction: column; gap: var(--dv-s2); margin-top: var(--dv-s4); }
+.dv-typed .dv-input { width: 260px; }
+.dv-delete .dv-actions { margin-top: var(--dv-s3); }
+.dv-delete-go { color: var(--dv-ink); }
+
+@media (prefers-reduced-motion: reduce) { .dv-disclose summary svg { transition: none; } }

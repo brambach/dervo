@@ -1,0 +1,66 @@
+import path from "node:path";
+import { defineConfig, loadEnv } from "vite";
+import react from "@vitejs/plugin-react";
+
+const host = process.env.TAURI_DEV_HOST;
+
+// https://vite.dev/config/
+export default defineConfig(async ({ mode }) => {
+  const modeEnv = loadEnv(mode, __dirname, "");
+  const protectedFeaturesEnabled =
+    (process.env.VITE_BUZZ_BESTIE ?? modeEnv.VITE_BUZZ_BESTIE) === "1";
+
+  return {
+    plugins: [react()],
+    resolve: {
+      // The phone link's shared protocol (../companion/protocol) imports tweetnacl; take it from here, not from a
+      // companion/node_modules a fresh checkout doesn't have.
+      dedupe: ["tweetnacl"],
+      alias: {
+        "@": "/src",
+        "@features-manifest": path.resolve(
+          __dirname,
+          "../preview-features.json",
+        ),
+        "@protected-features": path.resolve(
+          __dirname,
+          protectedFeaturesEnabled
+            ? "./src/protectedFeatures/internal.ts"
+            : "./src/protectedFeatures/public.ts",
+        ),
+        "@protected-feature-components": path.resolve(
+          __dirname,
+          protectedFeaturesEnabled
+            ? "./src/protectedFeatures/internalUi.ts"
+            : "./src/protectedFeatures/publicUi.ts",
+        ),
+        "@model-capabilities-manifest": path.resolve(
+          __dirname,
+          "../scripts/model-capabilities.json",
+        ),
+      },
+    },
+
+    // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
+    //
+    // 1. prevent Vite from obscuring rust errors
+    clearScreen: false,
+    // 2. tauri expects a fixed port, fail if that port is not available
+    server: {
+      port: parseInt(process.env.VITE_PORT || "1420", 10),
+      strictPort: true,
+      host: host || false,
+      hmr: host
+        ? {
+            protocol: "ws",
+            host,
+            port: parseInt(process.env.VITE_HMR_PORT || "1421", 10),
+          }
+        : undefined,
+      watch: {
+        // 3. tell Vite to ignore watching `src-tauri`
+        ignored: ["**/src-tauri/**"],
+      },
+    },
+  };
+});
