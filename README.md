@@ -8,7 +8,7 @@
 
 [![License: FSL-1.1-ALv2](https://img.shields.io/badge/license-FSL--1.1--ALv2-blue.svg)](LICENSE.md)
 ![Platforms: macOS, Windows, Linux](https://img.shields.io/badge/platform-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey)
-![Status: early](https://img.shields.io/badge/status-early-orange.svg)
+![Status: finished](https://img.shields.io/badge/status-finished-lightgrey.svg)
 
 [What it does](#what-it-does) · [Get started](#getting-started) · [How it's built](#how-its-built) · [FAQ](#faq) · [Contributing](CONTRIBUTING.md)
 
@@ -34,9 +34,11 @@ Dervo runs the coding agents you already have, Claude Code and Codex, on your ow
 keeps track of what they did so you don't have to. Come back after a day away and Home tells you what moved, what
 needs you and what finished.
 
-> **Status.** Dervo grew out of a private beta and is now open to read, run and learn from. It's maintained as time
-> allows: issues and pull requests are welcome, but replies can be slow and there's no roadmap. The Mac app is the most
-> complete. Windows and Linux builds work but are newer. Expect rough edges.
+> **Status: finished, no longer developed.** Dervo was a side project I built in September and October 2026. It went
+> through a small private beta, and then I stopped working on it. I now use Claude Code's own projects for the same job,
+> and they cover most of what Dervo set out to do. The code stays here to read, run and learn from. The Mac app is the
+> most complete. The Windows and Linux builds are newer and have known test failures. I'm not planning more work,
+> and issues and pull requests probably won't get a reply.
 
 ## Why Dervo
 
@@ -158,8 +160,9 @@ More detail on the design is in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Please report security issues privately, as described in
-[SECURITY.md](SECURITY.md).
+Dervo isn't being developed any more, so pull requests probably won't be reviewed. You're welcome to fork it under
+the license below. [CONTRIBUTING.md](CONTRIBUTING.md) still describes how the code was worked on. Please report
+security issues privately, as described in [SECURITY.md](SECURITY.md).
 
 ## License
 
